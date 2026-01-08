@@ -1,0 +1,565 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Competências • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="competencias.css" />
+</head>
+
+<body>
+  <!-- Toggle do menu (CSS-only) -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+  <!-- HEADER / TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+      <label for="nav-toggle" class="menu-btn" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <div class="title-wrap">
+        <h1 class="title">GESTÃO DE RH</h1>
+      </div>
+
+      <div class="brand">
+        <img src="img/logo-topo.png" alt="Estratégia Consultoria" />
+      </div>
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="nav-overlay" aria-hidden="true">
+    <label for="nav-toggle" class="nav-backdrop" aria-label="Fechar menu"></label>
+
+    <aside class="nav-drawer" role="dialog" aria-label="Menu lateral">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <span class="drawer-dot"></span>
+          <div>
+            <strong>Menu</strong>
+            <span class="drawer-sub">Gestão de RH</span>
+          </div>
+        </div>
+
+        <label for="nav-toggle" class="close-btn" aria-label="Fechar menu">✕</label>
+      </div>
+
+      <nav class="drawer-links" aria-label="Links do menu">
+        <!-- Identidade Organizacional -->
+        <details class="drawer-group">
+          <summary>Identidade Organizacional</summary>
+          <div class="drawer-submenu">
+            <a href="dados-gerais.html">DADOS GERAIS</a>
+            <a href="estrutura.html">ESTRUTURA</a>
+            <a href="identidade-organizacional.html">IDENTIDADE ORGANIZACIONAL</a>
+          </div>
+        </details>
+
+        <!-- ✅ Cargos, Salários & Cultura (Competências aqui dentro) -->
+        <details class="drawer-group" open>
+          <summary>Cargos, Salários &amp; Cultura</summary>
+          <div class="drawer-submenu">
+            <a href="competencias.html">COMPETÊNCIAS</a>
+            <!-- você pode adicionar outras telas aqui depois -->
+            <a href="#">CARGOS</a>
+            <a href="#">SALÁRIOS</a>
+            <a href="#">CULTURA</a>
+          </div>
+        </details>
+
+        <a href="#">Recrutamento &amp; Seleção</a>
+        <a href="#">Jornada do Colaborador</a>
+        <a href="#">Treinamentos Empresa</a>
+        <a href="#">Gestão de Liderança</a>
+        <a href="#">Pesquisas Internas</a>
+        <a href="#">Marketing &amp; Endomarketing</a>
+        <a href="#">Reuniões &amp; Alinhamentos</a>
+        <a href="#">Documentos &amp; Políticas</a>
+        <a href="#">Indicadores &amp; Relatórios</a>
+        <a href="#">Tirar Dúvidas</a>
+        <a href="#">Suporte</a>
+      </nav>
+
+      <div class="drawer-footer">
+        <small>Protótipo • HTML + CSS</small>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <main>
+    <div class="competencias">
+      <header class="competencias__header">
+        <h2 class="competencias__title">Competências</h2>
+        <p class="competencias__subtitle">Gerencie competências técnicas, comportamentais e organizacionais.</p>
+      </header>
+
+      <nav class="tabs" aria-label="Abas de Competências">
+        <button class="tabs__tab is-active" type="button" data-tab="tecnicas">Competências Técnicas</button>
+        <button class="tabs__tab" type="button" data-tab="comportamentais">Competências Comportamentais</button>
+        <button class="tabs__tab" type="button" data-tab="organizacionais">Competências Organizacionais</button>
+      </nav>
+
+      <section class="tabpanels">
+        <!-- =========================
+             TÉCNICAS
+        ========================== -->
+        <div class="tabpanel is-active" id="tab-tecnicas">
+          <div class="card">
+            <div class="toolbar">
+              <div class="search">
+                <span class="search__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+                  </svg>
+                </span>
+                <input class="search__input" type="text" placeholder="Pesquisar..." />
+              </div>
+
+              <div class="toolbar__actions">
+                <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                  <span class="btn__icon" aria-hidden="true">+</span>
+                  Incluir
+                </button>
+
+                <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                  </svg>
+                  Editar
+                </button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nome da Competência <span class="sort">↕</span></th>
+                    <th>Categoria</th>
+                    <th>Níveis de Exigência <span class="sort">↕</span></th>
+                    <th>Descrição</th>
+                    <th class="col-status">Status <span class="sort">↕</span></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td class="strong">Escolaridade</td>
+                    <td>Formação / Escolaridade</td>
+                    <td>Em andamento, Completo, Incompleto</td>
+                    <td>Formação em nível superior ou técnico.</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Excel</td>
+                    <td>Ferramentas / Sistemas</td>
+                    <td>Indiferente, Básico, Intermediário, Avançado</td>
+                    <td>Domínio de planilhas eletrônicas para controles e análises.</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Inglês</td>
+                    <td>Idiomas</td>
+                    <td>Indiferente, Básico, Intermediário, Avançado, Fluente</td>
+                    <td>Conhecimento em idioma inglês para conversação e escrita.</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">NR-11</td>
+                    <td>Certificações / Cursos</td>
+                    <td>Obrigatório, Desejável</td>
+                    <td>Treinamento obrigatório para operação de empilhadeira.</td>
+                    <td class="col-status">
+                      <span class="status status--neutral">Ativo</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Experiência na função</td>
+                    <td>Experiência Profissional</td>
+                    <td>Sem experiência, Até 6 meses, Até 1 ano, De 1 a 3 anos, De 3 a 5 anos, Acima</td>
+                    <td>Tempo mínimo de atuação prática na função.</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Power BI</td>
+                    <td>Ferramentas / Sistemas</td>
+                    <td>Indiferente, Básico, Intermediário, Avançado</td>
+                    <td>Análise de dados e construção de dashboards.</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =========================
+             COMPORTAMENTAIS
+        ========================== -->
+        <div class="tabpanel" id="tab-comportamentais">
+          <div class="card">
+            <div class="toolbar">
+              <div class="search">
+                <span class="search__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+                  </svg>
+                </span>
+                <input class="search__input" type="text" placeholder="Pesquisar..." />
+              </div>
+
+              <div class="toolbar__actions">
+                <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                  <span class="btn__icon" aria-hidden="true">+</span>
+                  Incluir
+                </button>
+
+                <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                  </svg>
+                  Editar
+                </button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Fator Comportamental <span class="sort">↕</span></th>
+                    <th>Nome da Competência</th>
+                    <th>Descrição</th>
+                    <th class="col-scale">Escala de Grau</th>
+                    <th class="col-status">Status</th>
+                    <th class="col-edit">Editar</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td class="pill">Emocional</td>
+                    <td class="strong">Autoconfiança</td>
+                    <td>Segurança para agir, expor ideias e tomar decisões, mesmo diante de desafios.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Emocional</td>
+                    <td class="strong">Autoconsciência</td>
+                    <td>Capacidade de reconhecer emoções, limites e impactos do próprio comportamento.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Emocional</td>
+                    <td class="strong">Autocontrole</td>
+                    <td>Capacidade de controlar emoções e reações em situações de pressão ou conflito.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Execução</td>
+                    <td class="strong">Planejamento</td>
+                    <td>Capacidade de organizar atividades, definir prioridades e estruturar ações.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Execução</td>
+                    <td class="strong">Responsabilidade</td>
+                    <td>Compromisso com resultados, prazos e qualidade do trabalho entregue.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Relacional</td>
+                    <td class="strong">Trabalho em equipe</td>
+                    <td>Disposição para colaborar, compartilhar e contribuir com objetivos comuns.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Relacional</td>
+                    <td class="strong">Mentalidade colaborativa</td>
+                    <td>Disposição para ajudar, apoiar e construir soluções em conjunto.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Relacional</td>
+                    <td class="strong">Autonomia</td>
+                    <td>Capacidade de atuar com independência, sem necessidade de supervisão constante.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Liderança</td>
+                    <td class="strong">Flexibilidade</td>
+                    <td>Capacidade de se adaptar a mudanças, ajustes e novos cenários.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+
+                  <tr>
+                    <td class="pill">Liderança</td>
+                    <td class="strong">Integridade</td>
+                    <td>Atuação ética, coerente e alinhada a valores e princípios.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =========================
+             ORGANIZACIONAIS
+        ========================== -->
+        <div class="tabpanel" id="tab-organizacionais">
+          <div class="card">
+            <div class="toolbar">
+              <div class="search">
+                <span class="search__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24">
+                    <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+                  </svg>
+                </span>
+                <input class="search__input" type="text" placeholder="Pesquisar..." />
+              </div>
+
+              <div class="toolbar__actions">
+                <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                  <span class="btn__icon" aria-hidden="true">+</span>
+                  Incluir
+                </button>
+
+                <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
+                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                  </svg>
+                  Editar
+                </button>
+              </div>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nome da Competência</th>
+                    <th>Descrição</th>
+                    <th class="col-scale">Escala de Grau</th>
+                    <th class="col-status">Status</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td class="name-with-icon">
+                      <span class="dot dot--red" aria-hidden="true">✦</span>
+                      <span class="strong">Respeito às pessoas</span>
+                    </td>
+                    <td>Capacidade de agir com respeito, consideração e sensibilidade nas relações profissionais, compreendendo diferentes realidades e pontos de vista.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="name-with-icon">
+                      <span class="dot dot--yellow" aria-hidden="true">✦</span>
+                      <span class="strong">Conduta ética</span>
+                    </td>
+                    <td>Atuação íntegra, honesta e responsável, alinhada às normas, princípios e valores da organização.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="name-with-icon">
+                      <span class="dot dot--blue" aria-hidden="true">✦</span>
+                      <span class="strong">Trabalho colaborativo</span>
+                    </td>
+                    <td>Disposição para cooperar, compartilhar informações e contribuir ativamente para o alcance dos objetivos comuns.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="name-with-icon">
+                      <span class="dot dot--green" aria-hidden="true">✦</span>
+                      <span class="strong">Foco na excelência</span>
+                    </td>
+                    <td>Busca constante por qualidade, eficiência e melhoria contínua nas entregas e resultados.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="name-with-icon">
+                      <span class="dot dot--indigo" aria-hidden="true">✦</span>
+                      <span class="strong">Perfil generalista</span>
+                    </td>
+                    <td>Capacidade de atuar de forma ampla, conectando áreas e temas diferentes, com visão sistêmica.</td>
+                    <td class="col-scale">1 a 5</td>
+                    <td class="col-status">
+                      <span class="status status--active">
+                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+                        Ativo
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll(".tabs__tab");
+      const panels = {
+        tecnicas: document.getElementById("tab-tecnicas"),
+        comportamentais: document.getElementById("tab-comportamentais"),
+        organizacionais: document.getElementById("tab-organizacionais"),
+      };
+
+      function activate(key) {
+        tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
+        Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
+      }
+
+      tabs.forEach(btn => btn.addEventListener("click", () => activate(btn.dataset.tab)));
+    })();
+  </script>
+</body>
+</html>

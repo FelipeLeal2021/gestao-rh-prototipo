@@ -1,0 +1,349 @@
+/* =========================
+   COMPETÊNCIAS
+   (CSS na raiz do projeto)
+   ========================= */
+
+.competencias{
+  --brand: #0b1e78;
+  --brand-2: #1736b6;
+
+  --bg: #f4f7ff;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #dfe7f6;
+
+  --radius: 16px;
+  --radius-sm: 12px;
+
+  min-height: calc(100vh - 80px);
+  background: var(--bg);
+  padding: 22px 18px 40px;
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Container central */
+.competencias__header,
+.tabs,
+.tabpanels{
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.competencias__header{
+  margin-bottom: 12px;
+}
+
+.competencias__title{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 900;
+  letter-spacing: 0.2px;
+}
+
+.competencias__subtitle{
+  margin: 6px 0 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* =========================
+   Tabs (pílulas)
+   ========================= */
+.tabs{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.tabs__tab{
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid #dbe5ff;
+  background: #ffffff;
+  padding: 12px 12px;
+  border-radius: 999px;
+  font-weight: 900;
+  color: var(--brand);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.06s ease, box-shadow 0.2s ease;
+}
+
+.tabs__tab:hover{ background: #f3f6ff; }
+.tabs__tab:active{ transform: translateY(1px); }
+
+.tabs__tab.is-active{
+  background: var(--brand);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(11, 30, 120, 0.16);
+}
+
+/* Painéis */
+.tabpanel{ display: none; }
+.tabpanel.is-active{ display: block; }
+
+/* =========================
+   Card / toolbar
+   ========================= */
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  padding: 12px;
+}
+
+.toolbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.toolbar__actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+/* Busca */
+.search{
+  position: relative;
+  flex: 1;
+  min-width: 240px;
+}
+
+.search__icon{
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  color: #94a3b8;
+}
+
+.search__icon svg{
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+}
+
+.search__input{
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  border: 1px solid #dbe5ff;
+  background: #fff;
+  padding: 0 12px 0 38px;
+  outline: none;
+}
+
+.search__input:focus{
+  border-color: #b9ccff;
+  box-shadow: 0 0 0 4px rgba(11, 30, 120, 0.08);
+}
+
+/* =========================
+   Botões (escopados)
+   ========================= */
+.competencias .btn{
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  font-weight: 900;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  transition: transform 0.06s ease, background 0.2s ease, box-shadow 0.2s ease;
+  white-space: nowrap;
+}
+
+.competencias .btn:active{ transform: translateY(1px); }
+
+.competencias .btn__icon{
+  width: 26px;
+  height: 26px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.18);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.competencias .btn--success{
+  background: #22c55e;
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(34, 197, 94, 0.18);
+}
+
+.competencias .btn--success:hover{
+  background: #16a34a;
+}
+
+.competencias .btn--ghost{
+  background: #f1f5ff;
+  color: var(--brand);
+  border: 1px solid #dbe5ff;
+}
+
+.competencias .btn--ghost:hover{
+  background: #e9efff;
+}
+
+.competencias .icon{
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* =========================
+   Tabela
+   ========================= */
+.table-wrap{
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
+
+.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 900px;
+}
+
+.table thead th{
+  text-align: left;
+  font-size: 12px;
+  color: #475569;
+  font-weight: 900;
+  padding: 12px 12px;
+  background: #f6f8ff;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table tbody td{
+  padding: 12px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: #334155;
+  font-size: 13px;
+}
+
+.table tbody tr:hover td{
+  background: #fbfcff;
+}
+
+.sort{
+  color: #94a3b8;
+  font-weight: 900;
+  margin-left: 6px;
+  font-size: 11px;
+}
+
+.strong{ font-weight: 900; color: #0f172a; }
+
+/* colunas especiais */
+.col-status{ width: 120px; white-space: nowrap; }
+.col-scale{ width: 110px; white-space: nowrap; }
+.col-edit{ width: 90px; white-space: nowrap; }
+
+/* status badge */
+.status{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  font-weight: 900;
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+
+.status svg{
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.status--active{
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.status--neutral{
+  background: #eef2ff;
+  color: #1d4ed8;
+  border-color: #dbe5ff;
+}
+
+/* pill do fator */
+.pill{
+  font-weight: 900;
+  color: #0b1e78;
+}
+
+/* link editar */
+.link{
+  color: #1d4ed8;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.link:hover{
+  text-decoration: underline;
+}
+
+/* nome com ícone (organizacionais) */
+.name-with-icon{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dot{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: #fff;
+}
+
+.dot--red{ background: #ef4444; }
+.dot--yellow{ background: #f59e0b; }
+.dot--blue{ background: #3b82f6; }
+.dot--green{ background: #22c55e; }
+.dot--indigo{ background: #6366f1; }
+
+/* responsivo */
+@media (max-width: 980px){
+  .toolbar{
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .toolbar__actions{
+    justify-content: flex-start;
+  }
+
+  .tabs__tab{
+    min-width: 0;
+  }
+}

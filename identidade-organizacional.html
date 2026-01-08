@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Identidade Organizacional • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="identidade-organizacional.css" />
+</head>
+
+<body>
+  <!-- Toggle do menu (CSS-only) -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+  <!-- HEADER / TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <!-- Botão menu -->
+      <label for="nav-toggle" class="menu-btn" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Título -->
+      <div class="title-wrap">
+        <h1 class="title">GESTÃO DE RH</h1>
+      </div>
+
+      <!-- Logo topo -->
+      <div class="brand">
+        <img src="img/logo-topo.png" alt="Estratégia Consultoria" />
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="nav-overlay" aria-hidden="true">
+    <label for="nav-toggle" class="nav-backdrop" aria-label="Fechar menu"></label>
+
+    <aside class="nav-drawer" role="dialog" aria-label="Menu lateral">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <span class="drawer-dot"></span>
+          <div>
+            <strong>Menu</strong>
+            <span class="drawer-sub">Gestão de RH</span>
+          </div>
+        </div>
+
+        <label for="nav-toggle" class="close-btn" aria-label="Fechar menu">✕</label>
+      </div>
+
+      <nav class="drawer-links" aria-label="Links do menu">
+        <details class="drawer-group" open>
+          <summary>Identidade Organizacional</summary>
+          <div class="drawer-submenu">
+            <a href="dados-gerais.html">DADOS GERAIS</a>
+            <a href="estrutura.html">ESTRUTURA</a>
+            <a href="identidade-organizacional.html">IDENTIDADE ORGANIZACIONAL</a>
+          </div>
+        </details>
+
+        <a href="#">Cargos, Salários & Cultura</a>
+        <a href="#">Recrutamento & Seleção</a>
+        <a href="#">Jornada do Colaborador</a>
+        <a href="#">Treinamentos Empresa</a>
+        <a href="#">Gestão de Liderança</a>
+        <a href="#">Pesquisas Internas</a>
+        <a href="#">Marketing & Endomarketing</a>
+        <a href="#">Reuniões & Alinhamentos</a>
+        <a href="#">Documentos & Políticas</a>
+        <a href="#">Indicadores & Relatórios</a>
+        <a href="#">Tirar Dúvidas</a>
+        <a href="#">Suporte</a>
+      </nav>
+
+      <div class="drawer-footer">
+        <small>Protótipo • HTML + CSS</small>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <main>
+    <div class="identidade">
+      <header class="identidade__top">
+        <div class="identidade__left">
+          <div class="breadcrumb">
+            <a class="breadcrumb__link" href="estrutura.html">Estrutura</a>
+            <span class="breadcrumb__sep">›</span>
+            <span class="breadcrumb__current">Identidade Organizacional</span>
+          </div>
+
+          <p class="identidade__desc">Gerencie a missão, visão e valores da empresa.</p>
+        </div>
+
+        <div class="identidade__actions">
+          <button class="btn btn--primary" type="button" onclick="alert('Incluir ainda não implementado')">
+            <span class="btn__icon" aria-hidden="true">+</span>
+            Incluir
+          </button>
+
+          <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+            </svg>
+            Editar
+          </button>
+
+          <button class="btn btn--ghost" type="button" onclick="alert('Baixar PNG ainda não implementado')">
+            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 20h14v-2H5v2zm7-18-5.5 5.5 1.42 1.42L11 6.84V16h2V6.84l3.08 3.08 1.42-1.42L12 2z"/>
+            </svg>
+            Baixar PNG
+          </button>
+        </div>
+      </header>
+
+      <section class="cards">
+        <!-- Missão -->
+        <article class="card">
+          <div class="card__head">
+            <span class="badge-icon badge-icon--orange" aria-hidden="true">
+              <!-- alvo -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8zm0-14a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 10a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm0-6a2 2 0 1 0 2 2 2 2 0 0 0-2-2z"/>
+              </svg>
+            </span>
+            <h2 class="card__title">Missão</h2>
+          </div>
+
+          <p class="card__text">
+            A nossa missão é oferecer soluções inovadoras e de qualidade que superem as expectativas dos nossos clientes,
+            promovendo o desenvolvimento sustentável e o crescimento da nossa equipe.
+          </p>
+
+          <div class="card__divider"></div>
+
+          <p class="card__text card__text--small">
+            A nossa missão é oferecer soluções inovadoras que superem as expectativas dos nossos clientes, promovendo
+            desempenho, sustentabilidade e o crescimento da equipe.
+          </p>
+        </article>
+
+        <!-- Visão -->
+        <article class="card">
+          <div class="card__head">
+            <span class="badge-icon badge-icon--blue" aria-hidden="true">
+              <!-- olho -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 5c-7 0-11 7-11 7s4 7 11 7 11-7 11-7-4-7-11-7zm0 12a5 5 0 1 1 5-5 5 5 0 0 1-5 5zm0-8a3 3 0 1 0 3 3 3 3 0 0 0-3-3z"/>
+              </svg>
+            </span>
+            <h2 class="card__title">Visão</h2>
+          </div>
+
+          <p class="card__text">
+            Ser reconhecida como a empresa líder em nosso setor, destacando-nos pela excelência em nossos produtos e
+            serviços, e pelo compromisso com a responsabilidade social e ambiental.
+          </p>
+
+          <div class="card__divider"></div>
+
+          <p class="card__text card__text--small">
+            Ser reconhecida como empresa líder, destacando excelência, inovação e compromisso social e ambiental com a equipe.
+          </p>
+        </article>
+
+        <!-- Valores -->
+        <article class="card">
+          <div class="card__head">
+            <span class="badge-icon badge-icon--green" aria-hidden="true">
+              <!-- coração/valores -->
+              <svg viewBox="0 0 24 24">
+                <path d="M12 21s-7-4.35-9.33-8.28C.83 9.8 2.22 6.7 5.4 6.1A5.2 5.2 0 0 1 12 8.26 5.2 5.2 0 0 1 18.6 6.1c3.18.6 4.57 3.7 2.73 6.62C19 16.65 12 21 12 21z"/>
+              </svg>
+            </span>
+            <h2 class="card__title">Valores</h2>
+          </div>
+
+          <ul class="values">
+            <li>Empatia</li>
+            <li>Ética</li>
+            <li>Colaboração</li>
+            <li>Excelência</li>
+            <li>Sustentabilidade</li>
+          </ul>
+
+          <div class="card__divider"></div>
+
+          <p class="card__text card__text--small">
+            Nossos valores guiam decisões, comportamentos e a forma como construímos relações dentro e fora da empresa.
+          </p>
+        </article>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

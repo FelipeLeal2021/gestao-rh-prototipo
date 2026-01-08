@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Estrutura • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="estrutura.css" />
+</head>
+
+<body>
+  <!-- Toggle do menu (CSS-only) -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+  <!-- HEADER / TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <!-- Botão menu -->
+      <label for="nav-toggle" class="menu-btn" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Título -->
+      <div class="title-wrap">
+        <h1 class="title">GESTÃO DE RH</h1>
+      </div>
+
+      <!-- Logo topo -->
+      <div class="brand">
+        <img src="img/logo-topo.png" alt="Estratégia Consultoria" />
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MENU LATERAL -->
+  <div class="nav-overlay" aria-hidden="true">
+    <label for="nav-toggle" class="nav-backdrop" aria-label="Fechar menu"></label>
+
+    <aside class="nav-drawer" role="dialog" aria-label="Menu lateral">
+      <div class="drawer-header">
+        <div class="drawer-title">
+          <span class="drawer-dot"></span>
+          <div>
+            <strong>Menu</strong>
+            <span class="drawer-sub">Gestão de RH</span>
+          </div>
+        </div>
+
+        <label for="nav-toggle" class="close-btn" aria-label="Fechar menu">✕</label>
+      </div>
+
+      <nav class="drawer-links" aria-label="Links do menu">
+        <details class="drawer-group" open>
+          <summary>Identidade Organizacional</summary>
+          <div class="drawer-submenu">
+            <a href="dados-gerais.html">DADOS GERAIS</a>
+            <a href="estrutura.html">ESTRUTURA</a>
+            <a href="identidade-organizacional.html">IDENTIDADE ORGANIZACIONAL</a>
+          </div>
+        </details>
+
+        <a href="#">Cargos, Salários & Cultura</a>
+        <a href="#">Recrutamento & Seleção</a>
+        <a href="#">Jornada do Colaborador</a>
+        <a href="#">Treinamentos Empresa</a>
+        <a href="#">Gestão de Liderança</a>
+        <a href="#">Pesquisas Internas</a>
+        <a href="#">Marketing & Endomarketing</a>
+        <a href="#">Reuniões & Alinhamentos</a>
+        <a href="#">Documentos & Políticas</a>
+        <a href="#">Indicadores & Relatórios</a>
+        <a href="#">Tirar Dúvidas</a>
+        <a href="#">Suporte</a>
+      </nav>
+
+      <div class="drawer-footer">
+        <small>Protótipo • HTML + CSS</small>
+      </div>
+    </aside>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <main>
+    <div class="estrutura">
+
+      <header class="estrutura__header">
+        <h2 class="estrutura__title">Estrutura</h2>
+      </header>
+
+      <nav class="tabs" aria-label="Abas de Estrutura">
+        <button class="tabs__tab is-active" type="button" data-tab="areas">Áreas</button>
+        <button class="tabs__tab" type="button" data-tab="departamentos">Departamentos</button>
+        <button class="tabs__tab" type="button" data-tab="centros">Centros de Custo</button>
+        <button class="tabs__tab" type="button" data-tab="organograma">Organograma</button>
+      </nav>
+
+      <section class="tabpanels">
+        <!-- ÁREAS -->
+        <div class="tabpanel is-active" id="tab-areas">
+          <div class="card">
+
+            <!-- botão incluir DENTRO da aba -->
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" onclick="alert('Incluir (Áreas) ainda não implementado')">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nome da Área</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                    <th class="table__actions-col">Ação</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>Administrativo</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Produção</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEPARTAMENTOS -->
+        <div class="tabpanel" id="tab-departamentos">
+          <div class="card">
+
+            <!-- botão incluir DENTRO da aba -->
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" onclick="alert('Incluir (Departamentos) ainda não implementado')">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nome do Departamento</th>
+                    <th>Área</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                    <th class="table__actions-col">Ação</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>RH</td>
+                    <td>Administrativo</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Financeiro</td>
+                    <td>Administrativo</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Compras</td>
+                    <td>Administrativo</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Montagem</td>
+                    <td>Produção</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Embalagem</td>
+                    <td>Produção</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Controle de Qualidade</td>
+                    <td>Produção</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- CENTROS DE CUSTO -->
+        <div class="tabpanel" id="tab-centros">
+          <div class="card">
+
+            <!-- botão incluir DENTRO da aba -->
+            <div class="panel-actions">
+              <button class="btn btn--primary" type="button" onclick="alert('Incluir (Centros de Custo) ainda não implementado')">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Nome do Centro de Custo</th>
+                    <th>Área</th>
+                    <th>Departamento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                    <th class="table__actions-col">Ação</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>RH</td>
+                    <td>Administrativo</td>
+                    <td>RH</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Contabilidade</td>
+                    <td>Administrativo</td>
+                    <td>Financeiro</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Compras</td>
+                    <td>Administrativo</td>
+                    <td>Compras</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Montagem</td>
+                    <td>Administrativo</td>
+                    <td>Montagem</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Embalagem</td>
+                    <td>Produção</td>
+                    <td>Embalagem</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Controle de Qualidade</td>
+                    <td>Produção</td>
+                    <td>Controle de Qualidade</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="muted">Editar</td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ORGANOGRAMA -->
+        <div class="tabpanel" id="tab-organograma">
+          <div class="card card--empty">
+            <h3 class="card__title">Organograma</h3>
+            <p class="muted">Aqui você pode exibir uma imagem do organograma ou montar cards/níveis futuramente.</p>
+
+            <button class="btn btn--secondary" type="button" onclick="alert('Upload ainda não implementado')">
+              Enviar organograma
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <script>
+    (function () {
+      const tabs = document.querySelectorAll(".tabs__tab");
+      const panels = {
+        areas: document.getElementById("tab-areas"),
+        departamentos: document.getElementById("tab-departamentos"),
+        centros: document.getElementById("tab-centros"),
+        organograma: document.getElementById("tab-organograma"),
+      };
+
+      function activate(tabKey) {
+        tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === tabKey));
+        Object.entries(panels).forEach(([key, el]) => el.classList.toggle("is-active", key === tabKey));
+      }
+
+      tabs.forEach(btn => {
+        btn.addEventListener("click", () => activate(btn.dataset.tab));
+      });
+    })();
+  </script>
+</body>
+</html>

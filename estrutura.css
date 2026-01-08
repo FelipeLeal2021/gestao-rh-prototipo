@@ -1,0 +1,302 @@
+/* =========================
+   ESTRUTURA - estilo "Dados Gerais"
+   (CSS na raiz do projeto)
+   ========================= */
+
+.estrutura{
+  /* Paleta semelhante ao topo azul do projeto */
+  --brand: #0b1e78;
+  --brand-2: #1736b6;
+
+  --bg: #f4f7ff;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #dfe7f6;
+
+  /* dimensões */
+  --radius: 16px;
+  --radius-sm: 12px;
+
+  min-height: calc(100vh - 80px); /* ajuda quando existe header azul */
+  background: var(--bg);
+  padding: 28px 18px 40px;
+  color: var(--text);
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+}
+
+/* Container central (igual sensação do Dados Gerais) */
+.estrutura__header,
+.tabs,
+.tabpanels{
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Título */
+.estrutura__header{
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.estrutura__title{
+  margin: 0;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+}
+
+.estrutura__subtitle{
+  margin: 6px 0 0 0;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* =========================
+   Botões (escopado só pra página)
+   ========================= */
+.estrutura .btn{
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  transition: transform 0.06s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.estrutura .btn:active{
+  transform: translateY(1px);
+}
+
+.estrutura .btn__icon{
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.18);
+  font-size: 18px;
+  line-height: 1;
+}
+
+.estrutura .btn--primary{
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 10px 22px rgba(11, 30, 120, 0.18);
+}
+
+.estrutura .btn--primary:hover{
+  background: var(--brand-2);
+}
+
+.estrutura .btn--secondary{
+  background: #eef2ff;
+  color: var(--brand);
+  border: 1px solid #dbe5ff;
+}
+
+.estrutura .btn--secondary:hover{
+  background: #e7edff;
+}
+
+.estrutura .btn--ghost{
+  background: #f1f5ff;
+  color: var(--brand);
+  border: 1px solid #dbe5ff;
+  border-radius: 12px;
+}
+
+.estrutura .btn--ghost:hover{
+  background: #e9efff;
+}
+
+.estrutura .btn--sm{
+  padding: 8px 12px;
+  border-radius: 12px;
+  font-weight: 800;
+}
+
+/* ícone do lápis */
+.estrutura .icon{
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+/* =========================
+   Abas
+   ========================= */
+.tabs{
+  display: flex;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.tabs__tab{
+  flex: 1;
+  border: 1px solid #dbe5ff;
+  background: #ffffff;
+  padding: 12px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  color: var(--brand);
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.06s ease, box-shadow 0.2s ease;
+}
+
+.tabs__tab:hover{
+  background: #f3f6ff;
+}
+
+.tabs__tab:active{
+  transform: translateY(1px);
+}
+
+.tabs__tab.is-active{
+  background: var(--brand);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 22px rgba(11, 30, 120, 0.16);
+}
+
+/* =========================
+   Card / Conteúdo
+   ========================= */
+.tabpanels{
+  margin-top: 0;
+}
+
+.card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  padding: 14px;
+}
+
+.card--empty{
+  padding: 18px;
+}
+
+.card__title{
+  margin: 0 0 6px 0;
+  font-size: 18px;
+  font-weight: 900;
+  color: var(--text);
+}
+
+.muted{
+  color: var(--muted);
+}
+
+/* Painéis */
+.tabpanel{ display: none; }
+.tabpanel.is-active{ display: block; }
+
+/* =========================
+   Botão "Incluir" dentro de cada aba
+   ========================= */
+.panel-actions{
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+
+/* =========================
+   Tabela
+   ========================= */
+.table-wrap{
+  width: 100%;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
+
+.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 720px;
+}
+
+.table thead th{
+  text-align: left;
+  font-size: 12px;
+  color: #475569;
+  font-weight: 900;
+  padding: 12px 14px;
+  background: #f6f8ff;
+  border-bottom: 1px solid var(--border);
+}
+
+.table tbody td{
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.table tbody tr:last-child td{
+  border-bottom: 0;
+}
+
+/* coluna do botão editar */
+.table__actions-col{
+  width: 160px;
+  text-align: right;
+}
+
+/* =========================
+   Badge (Status)
+   ========================= */
+.badge{
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 900;
+  border: 1px solid transparent;
+}
+
+.badge--active{
+  background: #dcfce7;
+  color: #166534;
+  border-color: #bbf7d0;
+}
+
+.badge--inactive{
+  background: #eef2ff;
+  color: #1d4ed8;
+  border-color: #dbe5ff;
+}
+
+/* =========================
+   Responsivo
+   ========================= */
+@media (max-width: 800px){
+  .estrutura__header{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .tabs{
+    flex-direction: column;
+  }
+
+  .tabs__tab{
+    text-align: left;
+  }
+
+  .table{
+    min-width: 680px;
+  }
+}
