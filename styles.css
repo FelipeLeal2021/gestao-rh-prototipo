@@ -185,18 +185,16 @@ body{
   border-right: 1px solid var(--drawer-border);
   box-shadow: var(--shadow);
 
-  /* aqui é a chave: layout em coluna */
   display: flex;
   flex-direction: column;
   gap: 12px;
 
-  /* começa abaixo do topo */
   padding: calc(var(--topbar-h) + 16px) 16px 16px;
 
   transform: translateX(-102%);
   transition: transform .22s ease;
 
-  overflow: hidden; /* não deixa o drawer inteiro rolar; só a lista rola */
+  overflow: hidden;
 }
 
 /* quando abre, desliza */
@@ -266,20 +264,16 @@ body{
   display: grid;
   gap: 10px;
 
-  /* permite o scroll */
   overflow-y: auto;
   flex: 1;
   min-height: 0;
 
-  /* espaço pro scroll e pro último item não ficar “colado” */
   padding-right: 6px;
   padding-bottom: 10px;
 }
 
-/* estilo da scrollbar (Chrome/Edge) */
-.drawer-links::-webkit-scrollbar{
-  width: 10px;
-}
+/* scrollbar (Chrome/Edge) */
+.drawer-links::-webkit-scrollbar{ width: 10px; }
 .drawer-links::-webkit-scrollbar-track{
   background: rgba(0,0,0,.06);
   border-radius: 999px;
@@ -292,6 +286,7 @@ body{
   background: rgba(5, 13, 141, .32);
 }
 
+/* links padrão do menu */
 .drawer-links a{
   text-decoration: none;
   color: rgba(15, 20, 40, .92);
@@ -310,7 +305,63 @@ body{
   transform: translateY(-1px);
 }
 
-/* rodapé (fica fixo no fim, sem cobrir a lista) */
+/* ===== SUBMENU (Identidade Organizacional) ===== */
+.drawer-group{
+  border-radius: 14px;
+}
+
+.drawer-group summary{
+  cursor: pointer;
+  user-select: none;
+
+  padding: 12px 12px;
+  border-radius: 14px;
+  background: var(--link-bg);
+  border: 1px solid var(--link-border);
+  color: rgba(15, 20, 40, .92);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+  list-style: none;
+}
+
+/* remove marcador padrão */
+.drawer-group summary::-webkit-details-marker{ display: none; }
+
+.drawer-group summary::after{
+  content: "▸";
+  opacity: .75;
+  transition: transform .15s ease;
+}
+
+.drawer-group[open] summary{
+  background: rgba(5, 13, 141, .10);
+  border-color: rgba(5, 13, 141, .18);
+}
+
+.drawer-group[open] summary::after{
+  transform: rotate(90deg);
+}
+
+.drawer-submenu{
+  margin-top: 10px;
+  display: grid;
+  gap: 10px;
+  padding-left: 14px;
+}
+
+.drawer-submenu a{
+  padding: 11px 12px;
+  border-radius: 14px;
+  background: rgba(5, 13, 141, .04);
+  border: 1px solid rgba(5, 13, 141, .10);
+  font-size: 13px;
+}
+
+/* rodapé */
 .drawer-footer{
   padding-top: 12px;
   border-top: 1px solid rgba(15, 20, 40, .10);

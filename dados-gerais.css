@@ -1,0 +1,119 @@
+/* ===== PÁGINA: DADOS GERAIS ===== */
+.content{
+  min-height: calc(100vh - var(--topbar-h));
+  padding: 26px 20px 60px;
+}
+
+.content-wrap{
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.back-link{
+  display: inline-block;
+  text-decoration: none;
+  color: rgba(15, 20, 40, .85);
+  background: rgba(5, 13, 141, .06);
+  border: 1px solid rgba(5, 13, 141, .12);
+  padding: 10px 12px;
+  border-radius: 12px;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.back-link:hover{
+  background: rgba(5, 13, 141, .10);
+  border-color: rgba(5, 13, 141, .18);
+  transform: translateY(-1px);
+}
+
+.page-title{
+  margin: 18px 0 6px;
+  font-size: 26px;
+  color: rgba(15, 20, 40, .92);
+}
+
+.page-subtitle{
+  margin: 0 0 14px;
+  opacity: .72;
+  line-height: 1.45;
+}
+
+.form-card{
+  background: rgba(255,255,255,.92);
+  border: 1px solid rgba(15, 20, 40, .10);
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.06);
+  padding: 16px;
+}
+
+.form-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.field label{
+  display: block;
+  font-size: 12px;
+  letter-spacing: .4px;
+  opacity: .75;
+  margin: 0 0 6px;
+}
+
+.field input{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(255,255,255,.96);
+  outline: none;
+  transition: border-color .12s ease, box-shadow .12s ease;
+}
+
+.field input:focus{
+  border-color: rgba(5, 13, 141, .28);
+  box-shadow: 0 0 0 4px rgba(5, 13, 141, .10);
+}
+
+/* ações (botão salvar) */
+.form-actions{
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 6px;
+}
+
+.btn-primary{
+  cursor: pointer;
+  border: 1px solid rgba(5, 13, 141, .22);
+  background: rgba(5, 13, 141, .10);
+  color: rgba(15, 20, 40, .92);
+  font-weight: 800;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+
+  padding: 12px 16px;
+  border-radius: 14px;
+
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.btn-primary:hover{
+  background: rgba(5, 13, 141, .14);
+  border-color: rgba(5, 13, 141, .30);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 720px){
+  .form-grid{
+    grid-template-columns: 1fr;
+  }
+
+  .form-actions{
+    justify-content: stretch;
+  }
+
+  .btn-primary{
+    width: 100%;
+  }
+}
