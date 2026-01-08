@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gestão de RH</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Toggle do menu (CSS-only) -->
+  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+  <header class="topbar">
+    <div class="topbar-inner">
+
+      <!-- Botão menu -->
+      <label for="nav-toggle" class="menu-btn" aria-label="Abrir menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <!-- Título -->
+      <div class="title-wrap">
+        <h1 class="title">GESTÃO DE RH</h1>
+      </div>
+
+      <!-- Logo topo -->
+      <div class="brand">
+        <img src="img/logo-topo.png" alt="Estratégia Consultoria" />
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Overlay/Menu -->
+  <div class="nav-overlay" aria-hidden="true">
+    <!-- clicar fora fecha -->
+    <label for="nav-toggle" class="nav-backdrop" aria-label="Fechar menu"></label>
+
+    <section class="nav-panel" role="dialog" aria-label="Menu principal">
+      <header class="nav-header">
+        <div class="nav-title">
+          <span class="nav-dot"></span>
+          <h2>Menu</h2>
+        </div>
+
+        <label for="nav-toggle" class="close-btn" aria-label="Fechar menu">✕</label>
+      </header>
+
+      <nav class="nav-links" aria-label="Links do menu">
+        <a href="#">Identidade Organizacional</a>
+        <a href="#">Cargos, Salários & Cultura</a>
+        <a href="#">Recrutamento & Seleção</a>
+        <a href="#">Jornada do Colaborador</a>
+        <a href="#">Treinamentos Empresa</a>
+        <a href="#">Gestão de Liderança</a>
+        <a href="#">Pesquisas Internas</a>
+        <a href="#">Marketing & Endomarketing</a>
+        <a href="#">Reuniões & Alinhamentos</a>
+        <a href="#">Documentos & Políticas</a>
+        <a href="#">Indicadores & Relatórios</a>
+        <a href="#">Tirar Dúvidas</a>
+        <a href="#">Suporte</a>
+      </nav>
+    </section>
+  </div>
+
+  <main class="hero">
+    <img
+      class="hero-logo"
+      src="img/logo-centro.png"
+      alt="Estratégia Consultoria — Planejamento que transforma"
+    />
+  </main>
+</body>
+</html>
