@@ -7,12 +7,11 @@
   --text: #0c1020;
   --white: #ffffff;
 
-  /* menu */
+  /* Drawer */
   --overlay: rgba(8, 10, 18, .55);
-  --panel: rgba(255,255,255,.92);
-  --panel-border: rgba(15, 20, 40, .10);
+  --drawer-bg: rgba(255,255,255,.92);
+  --drawer-border: rgba(15, 20, 40, .12);
   --shadow: 0 24px 60px rgba(0,0,0,.28);
-  --radius: 18px;
 
   --link-bg: rgba(5, 13, 141, .06);
   --link-border: rgba(5, 13, 141, .10);
@@ -139,13 +138,14 @@ body{
   display: block;
 }
 
-/* ===== MENU (CSS-only) ===== */
+/* ===== MENU LATERAL (CSS-only) ===== */
 .nav-toggle{
   position: absolute;
   left: -9999px;
   top: -9999px;
 }
 
+/* overlay */
 .nav-overlay{
   position: fixed;
   inset: 0;
@@ -164,7 +164,7 @@ body{
   pointer-events: auto;
 }
 
-/* backdrop (clicar fora fecha) */
+/* fundo escuro */
 .nav-backdrop{
   position: absolute;
   inset: 0;
@@ -172,36 +172,53 @@ body{
   backdrop-filter: blur(6px);
 }
 
-/* painel */
-.nav-panel{
-  position: relative;
-  margin: calc(var(--topbar-h) + 22px) auto 0;
-  width: min(980px, calc(100% - 52px));
+/* Drawer: entra da esquerda */
+.nav-drawer{
+  position: absolute;
+  top: 0;
+  left: 0;
 
-  background: var(--panel);
-  border: 1px solid var(--panel-border);
-  border-radius: var(--radius);
+  height: 100%;
+  width: min(420px, 88vw);
+
+  background: var(--drawer-bg);
+  border-right: 1px solid var(--drawer-border);
   box-shadow: var(--shadow);
 
-  padding: 18px 18px 20px;
+  /* aqui é a chave: layout em coluna */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  /* começa abaixo do topo */
+  padding: calc(var(--topbar-h) + 16px) 16px 16px;
+
+  transform: translateX(-102%);
+  transition: transform .22s ease;
+
+  overflow: hidden; /* não deixa o drawer inteiro rolar; só a lista rola */
 }
 
-/* header do menu */
-.nav-header{
+/* quando abre, desliza */
+#nav-toggle:checked ~ .nav-overlay .nav-drawer{
+  transform: translateX(0);
+}
+
+/* header do drawer */
+.drawer-header{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 10px 14px;
-  border-bottom: 1px solid rgba(15, 20, 40, .10);
+  gap: 12px;
 }
 
-.nav-title{
+.drawer-title{
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.nav-dot{
+.drawer-dot{
   width: 10px;
   height: 10px;
   border-radius: 999px;
@@ -209,13 +226,20 @@ body{
   box-shadow: 0 0 0 6px rgba(5,13,141,.08);
 }
 
-.nav-title h2{
-  margin: 0;
+.drawer-title strong{
+  display: block;
   font-size: 16px;
-  letter-spacing: .3px;
+  letter-spacing: .2px;
 }
 
-/* botão fechar bonito */
+.drawer-sub{
+  display: block;
+  font-size: 12px;
+  opacity: .65;
+  margin-top: 2px;
+}
+
+/* botão fechar */
 .close-btn{
   width: 38px;
   height: 38px;
@@ -226,7 +250,7 @@ body{
   user-select: none;
 
   background: rgba(5, 13, 141, .06);
-  border: 1px solid rgba(5, 13, 141, .10);
+  border: 1px solid rgba(5, 13, 141, .12);
   color: rgba(10, 12, 18, .85);
 
   transition: transform .12s ease, background .12s ease;
@@ -237,16 +261,38 @@ body{
   transform: translateY(-1px);
 }
 
-/* links em duas colunas */
-.nav-links{
-  padding: 16px 10px 6px;
-
+/* ===== AQUI: área rolável ===== */
+.drawer-links{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px 12px;
+  gap: 10px;
+
+  /* permite o scroll */
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+
+  /* espaço pro scroll e pro último item não ficar “colado” */
+  padding-right: 6px;
+  padding-bottom: 10px;
 }
 
-.nav-links a{
+/* estilo da scrollbar (Chrome/Edge) */
+.drawer-links::-webkit-scrollbar{
+  width: 10px;
+}
+.drawer-links::-webkit-scrollbar-track{
+  background: rgba(0,0,0,.06);
+  border-radius: 999px;
+}
+.drawer-links::-webkit-scrollbar-thumb{
+  background: rgba(5, 13, 141, .22);
+  border-radius: 999px;
+}
+.drawer-links::-webkit-scrollbar-thumb:hover{
+  background: rgba(5, 13, 141, .32);
+}
+
+.drawer-links a{
   text-decoration: none;
   color: rgba(15, 20, 40, .92);
 
@@ -258,10 +304,17 @@ body{
   transition: transform .12s ease, background .12s ease, border-color .12s ease;
 }
 
-.nav-links a:hover{
+.drawer-links a:hover{
   background: rgba(5, 13, 141, .10);
   border-color: rgba(5, 13, 141, .18);
   transform: translateY(-1px);
+}
+
+/* rodapé (fica fixo no fim, sem cobrir a lista) */
+.drawer-footer{
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 20, 40, .10);
+  opacity: .75;
 }
 
 /* ===== RESPONSIVO ===== */
@@ -269,10 +322,6 @@ body{
   .brand{ min-width: auto; }
   .title{ font-size: 24px; }
   .title::after{ width: 150px; }
-
-  .nav-links{
-    grid-template-columns: 1fr; /* 1 coluna no mobile */
-  }
 }
 
 @media (max-width: 520px){
@@ -284,8 +333,5 @@ body{
   .title{ font-size: 20px; }
   .title::after{ width: 120px; margin-top: 8px; }
 
-  .nav-panel{
-    width: calc(100% - 28px);
-    margin-top: calc(var(--topbar-h) + 16px);
-  }
+  .nav-drawer{ width: 88vw; }
 }
