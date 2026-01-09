@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tabela Salarial • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="tabela-salarial.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+</head>
+
+<body>
+  <!-- Menu/Header (vem do components/menu.html) -->
+  <div id="app-menu"></div>
+
+  <main class="ts-page">
+    <header class="page-head">
+      <div>
+        <h2 class="page-title">Tabela Salarial</h2>
+        <p class="page-subtitle">Visualize faixas salariais por cargo e nível (Júnior, Pleno e Sênior).</p>
+      </div>
+
+      <div class="head-actions">
+        <button class="btn btn--ghost" type="button" onclick="window.print()">
+          Imprimir
+        </button>
+        <button class="btn btn--success" type="button" onclick="alert('Exportar ainda não implementado')">
+          Exportar
+        </button>
+      </div>
+    </header>
+
+    <section class="card" aria-label="Tabela salarial">
+      <div class="toolbar">
+        <div class="search">
+          <span class="search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+            </svg>
+          </span>
+          <input id="searchInput" class="search__input" type="text" placeholder="Pesquisar cargo..." />
+        </div>
+
+        <div class="chips" role="group" aria-label="Legenda de níveis">
+          <span class="chip chip--junior">Júnior</span>
+          <span class="chip chip--pleno">Pleno</span>
+          <span class="chip chip--senior">Sênior</span>
+        </div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Tabela salarial rolável" tabindex="0">
+        <table class="table" aria-label="Tabela Salarial">
+          <thead>
+            <tr class="thead-top">
+              <th class="th-cargo" rowspan="2">Cargo</th>
+              <th class="th-group th-junior" colspan="3">Júnior</th>
+              <th class="th-group th-pleno" colspan="3">Pleno</th>
+              <th class="th-group th-senior" colspan="3">Sênior</th>
+            </tr>
+            <tr class="thead-sub">
+              <th class="th-junior">1</th>
+              <th class="th-junior">2</th>
+              <th class="th-junior">3</th>
+
+              <th class="th-pleno">1</th>
+              <th class="th-pleno">2</th>
+              <th class="th-pleno">3</th>
+
+              <th class="th-senior">1</th>
+              <th class="th-senior">2</th>
+              <th class="th-senior">3</th>
+            </tr>
+          </thead>
+
+          <tbody id="tsBody">
+            <tr>
+              <td class="cargo strong">Auxiliar Administrativo</td>
+              <td>R$ 1.500,00</td><td>R$ 1.545,00</td><td>R$ 1.591,35</td>
+              <td>R$ 1.639,09</td><td>R$ 1.688,26</td><td>R$ 1.738,91</td>
+              <td>R$ 1.791,08</td><td>R$ 1.844,81</td><td>R$ 1.900,16</td>
+            </tr>
+
+            <tr>
+              <td class="cargo strong">Assistente Administrativo</td>
+              <td>R$ 1.900,16</td><td>R$ 1.957,16</td><td>R$ 2.015,87</td>
+              <td>R$ 2.076,35</td><td>R$ 2.138,64</td><td>R$ 2.202,80</td>
+              <td>R$ 2.268,88</td><td>R$ 2.336,95</td><td>R$ 2.407,06</td>
+            </tr>
+
+            <tr>
+              <td class="cargo strong">Analista Administrativo</td>
+              <td>R$ 2.407,06</td><td>R$ 2.479,27</td><td>R$ 2.553,65</td>
+              <td>R$ 2.630,26</td><td>R$ 2.709,17</td><td>R$ 2.790,44</td>
+              <td>R$ 2.874,16</td><td>R$ 2.960,38</td><td>R$ 3.049,19</td>
+            </tr>
+
+            <tr>
+              <td class="cargo strong">Supervisor Administrativo</td>
+              <td>R$ 3.049,19</td><td>R$ 3.140,67</td><td>R$ 3.234,89</td>
+              <td>R$ 3.331,93</td><td>R$ 3.431,89</td><td>R$ 3.534,84</td>
+              <td>R$ 3.640,89</td><td>R$ 3.750,12</td><td>R$ 3.862,62</td>
+            </tr>
+
+            <tr>
+              <td class="cargo strong">Coordenador Administrativo</td>
+              <td>R$ 3.862,62</td><td>R$ 3.978,50</td><td>R$ 4.097,86</td>
+              <td>R$ 4.220,79</td><td>R$ 4.347,42</td><td>R$ 4.477,84</td>
+              <td>R$ 4.612,18</td><td>R$ 4.750,54</td><td>R$ 4.893,06</td>
+            </tr>
+
+            <tr>
+              <td class="cargo strong">Gerente Administrativo</td>
+              <td>R$ 4.893,06</td><td>R$ 5.039,85</td><td>R$ 5.191,04</td>
+              <td>R$ 5.346,78</td><td>R$ 5.507,18</td><td>R$ 5.672,39</td>
+              <td>R$ 5.842,57</td><td>R$ 6.017,84</td><td>R$ 6.198,38</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="footnote">
+        * Valores ilustrativos (protótipo). Você pode substituir pelos valores reais depois.
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Busca simples por cargo
+    (function () {
+      const input = document.getElementById("searchInput");
+      const rows = () => document.querySelectorAll("#tsBody tr");
+
+      input.addEventListener("input", () => {
+        const q = (input.value || "").toLowerCase().trim();
+        rows().forEach(tr => {
+          const cargo = (tr.querySelector(".cargo")?.innerText || "").toLowerCase();
+          tr.style.display = cargo.includes(q) ? "" : "none";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

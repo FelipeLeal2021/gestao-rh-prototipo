@@ -1,0 +1,75 @@
+<!-- components/menu.html -->
+
+<!-- Toggle do menu (CSS-only) -->
+<input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+<header class="topbar">
+  <div class="topbar-inner">
+
+    <!-- Botão menu -->
+    <label for="nav-toggle" class="menu-btn" aria-label="Abrir menu">
+      <span></span><span></span><span></span>
+    </label>
+
+    <!-- Título -->
+    <div class="title-wrap">
+      <h1 class="title">GESTÃO DE RH</h1>
+    </div>
+
+    <!-- Logo topo -->
+    <div class="brand">
+      <img src="img/logo-topo.png" alt="Estratégia Consultoria" />
+    </div>
+
+  </div>
+</header>
+
+<!-- MENU LATERAL -->
+<div class="nav-overlay" aria-hidden="true">
+  <!-- clicar fora fecha -->
+  <label for="nav-toggle" class="nav-backdrop" aria-label="Fechar menu"></label>
+
+  <aside class="nav-drawer" role="dialog" aria-label="Menu lateral">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <span class="drawer-dot"></span>
+        <div>
+          <strong>Menu</strong>
+          <span class="drawer-sub">Gestão de RH</span>
+        </div>
+      </div>
+
+      <label for="nav-toggle" class="close-btn" aria-label="Fechar menu">✕</label>
+    </div>
+
+    <nav class="drawer-links" aria-label="Links do menu">
+      <!-- HOME -->
+      <a href="index.html">INÍCIO</a>
+
+      <!-- INFORMAÇÕES DA EMPRESA -->
+      <details class="drawer-group">
+        <summary>Informações da Empresa</summary>
+        <div class="drawer-submenu">
+          <a href="dados-gerais.html">DADOS GERAIS</a>
+          <a href="estrutura.html">ESTRUTURA</a>
+          <a href="identidade-organizacional.html">IDENTIDADE ORGANIZACIONAL</a>
+        </div>
+      </details>
+
+      <!-- CARGOS E SALÁRIOS -->
+      <details class="drawer-group">
+        <summary>Cargos e Salários</summary>
+        <div class="drawer-submenu">
+          <a href="competencias.html">COMPETÊNCIAS</a>
+          <a href="cargos.html">CARGOS</a>
+          <a href="beneficios.html">BENEFÍCIOS</a>
+          <a href="tabela-salarial.html">TABELA SALARIAL</a>
+        </div>
+      </details>
+    </nav>
+
+    <div class="drawer-footer">
+      <small>Protótipo • HTML + CSS</small>
+    </div>
+  </aside>
+</div>

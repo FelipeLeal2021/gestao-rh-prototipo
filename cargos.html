@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cargos • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="cargos.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+</head>
+
+<body>
+  <!-- Menu/Header (vem do components/menu.html) -->
+  <div id="app-menu"></div>
+
+  <main class="cargos-page">
+    <!-- ====== VIEW: LISTA ====== -->
+    <section id="view-list" class="cargos-view is-active" aria-label="Lista de Cargos">
+      <header class="page-head">
+        <div>
+          <h2 class="page-title">Cargos</h2>
+          <p class="page-subtitle">Gerencie os cargos da empresa e seus vínculos com estrutura, salário e competências.</p>
+        </div>
+
+        <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+          <span class="btn__icon" aria-hidden="true">+</span>
+          Incluir
+        </button>
+      </header>
+
+      <div class="card">
+        <div class="toolbar">
+          <div class="search">
+            <span class="search__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
+            </span>
+            <input id="searchInput" class="search__input" type="text" placeholder="Pesquisar..." />
+          </div>
+
+          <span class="hint">Clique no <strong>Nome do Cargo</strong> para abrir o cadastro.</span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table" aria-label="Tabela de cargos">
+            <thead>
+              <tr>
+                <th>Nome do Cargo</th>
+                <th>Área</th>
+                <th>Departamento</th>
+                <th>Centro de Custo</th>
+                <th>Salário</th>
+                <th class="col-status">Status</th>
+              </tr>
+            </thead>
+
+            <tbody id="cargosTbody">
+              <tr>
+                <td>
+                  <button class="row-link" type="button" data-id="auxiliar-administrativo">Auxiliar Administrativo</button>
+                </td>
+                <td>Administrativo</td>
+                <td>Financeiro</td>
+                <td>1.1 Financeiro</td>
+                <td>R$ 2.500,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button class="row-link" type="button" data-id="analista-financeiro">Analista Financeiro</button>
+                </td>
+                <td>Administrativo</td>
+                <td>Financeiro</td>
+                <td>1.1 Financeiro</td>
+                <td>R$ 5.800,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button class="row-link" type="button" data-id="assistente-rh">Assistente de RH</button>
+                </td>
+                <td>Administrativo</td>
+                <td>Recursos Humanos</td>
+                <td>1.2 RH</td>
+                <td>R$ 3.400,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button class="row-link" type="button" data-id="operador-producao">Operador de Produção</button>
+                </td>
+                <td>Operacional</td>
+                <td>Produção</td>
+                <td>2.1 Produção</td>
+                <td>R$ 2.200,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button class="row-link" type="button" data-id="supervisor-producao">Supervisor de Produção</button>
+                </td>
+                <td>Operacional</td>
+                <td>Produção</td>
+                <td>2.2 Supervisão</td>
+                <td>R$ 4.800,00</td>
+                <td class="col-status"><span class="badge badge--inactive">Inativo</span></td>
+              </tr>
+
+              <tr>
+                <td>
+                  <button class="row-link" type="button" data-id="supervisor-producao-2">Supervisor de Produção</button>
+                </td>
+                <td>Operacional</td>
+                <td>Produção</td>
+                <td>2.2 Supervisão</td>
+                <td>R$ 4.800,00</td>
+                <td class="col-status"><span class="badge badge--inactive">Inativo</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== VIEW: CADASTRO (DETALHE) ====== -->
+    <section id="view-detail" class="cargos-view" aria-label="Cadastro do Cargo">
+      <header class="detail-head">
+        <button id="btnBack" class="back-link" type="button">← Voltar</button>
+        <h2 id="cargoTitle" class="detail-title">Cargo</h2>
+      </header>
+
+      <nav class="tabs" aria-label="Abas do Cadastro de Cargo">
+        <button class="tabs__tab is-active" type="button" data-tab="dados">Dados Gerais</button>
+        <button class="tabs__tab" type="button" data-tab="responsabilidades">Responsabilidades</button>
+        <button class="tabs__tab" type="button" data-tab="tecnicas">Competências Técnicas</button>
+        <button class="tabs__tab" type="button" data-tab="comportamentais">Competências Comportamentais</button>
+      </nav>
+
+      <section class="tabpanels">
+        <!-- DADOS -->
+        <div class="tabpanel is-active" id="tab-dados">
+          <div class="card">
+            <div class="form-grid">
+              <div class="field">
+                <label for="f_nome">Nome do cargo</label>
+                <input id="f_nome" type="text" value="" />
+              </div>
+
+              <div class="field">
+                <label for="f_cbo">CBO</label>
+                <input id="f_cbo" type="text" value="" />
+              </div>
+
+              <div class="field">
+                <label for="f_salario">Salário</label>
+                <input id="f_salario" type="text" value="" />
+              </div>
+
+              <div class="field">
+                <label>É cargo de liderança:</label>
+                <div class="segmented" role="group" aria-label="Cargo de liderança">
+                  <button id="leadSim" class="segmented__btn" type="button">Sim</button>
+                  <button id="leadNao" class="segmented__btn is-active" type="button">Não</button>
+                </div>
+              </div>
+
+              <div class="field">
+                <label for="f_area">Área vinculada</label>
+                <select id="f_area">
+                  <option>Administrativo</option>
+                  <option>Operacional</option>
+                  <option>Comercial</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="f_depto">Departamento vinculado</label>
+                <select id="f_depto">
+                  <option>Financeiro</option>
+                  <option>Recursos Humanos</option>
+                  <option>Produção</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="f_ccusto">Centro de custo vinculado</label>
+                <select id="f_ccusto">
+                  <option>1.1 Financeiro</option>
+                  <option>1.2 RH</option>
+                  <option>2.1 Produção</option>
+                  <option>2.2 Supervisão</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="f_superior">Cargo superior</label>
+                <select id="f_superior">
+                  <option>Selecione...</option>
+                  <option>Supervisor de Produção</option>
+                  <option>Gerente Administrativo</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label>Status</label>
+                <div class="radio-row">
+                  <label class="radio">
+                    <input type="radio" name="status" checked />
+                    <span>Ativo</span>
+                  </label>
+                  <label class="radio">
+                    <input type="radio" name="status" />
+                    <span>Inativo</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="field">
+                <label>Número de pessoas vinculadas</label>
+                <div id="f_vinculados" class="readonly">—</div>
+              </div>
+            </div>
+
+            <div class="card-actions">
+              <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- RESPONSABILIDADES -->
+        <div class="tabpanel" id="tab-responsabilidades">
+          <div class="card">
+            <h3 class="section-title">Missão do Cargo</h3>
+            <p id="missaoText" class="text">
+              —
+            </p>
+
+            <h3 class="section-title">Principais Responsabilidades</h3>
+            <ul id="respList" class="checklist">
+              <!-- preenchido via JS -->
+            </ul>
+
+            <div class="card-actions">
+              <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TÉCNICAS -->
+        <div class="tabpanel" id="tab-tecnicas">
+          <div class="card">
+            <div class="panel-head">
+              <h3 class="section-title">Competências Técnicas</h3>
+              <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Descrição</th>
+                    <th>Nível de Exigência</th>
+                    <th>Grupo</th>
+                    <th>Indicadores</th>
+                  </tr>
+                </thead>
+                <tbody id="tecTbody">
+                  <!-- preenchido via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- COMPORTAMENTAIS -->
+        <div class="tabpanel" id="tab-comportamentais">
+          <div class="card">
+            <div class="panel-head">
+              <h3 class="section-title">Competências Comportamentais</h3>
+              <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Descrição</th>
+                    <th>Nível de Exigência</th>
+                    <th>Grupo</th>
+                    <th>Grau</th>
+                    <th>Indicadores</th>
+                  </tr>
+                </thead>
+                <tbody id="compTbody">
+                  <!-- preenchido via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </section>
+    </section>
+  </main>
+
+  <script>
+    // ===== Dados (mock) =====
+    const cargoData = {
+      "analista-financeiro": {
+        title: "Analista Financeiro",
+        cbo: "252315",
+        salario: "R$ 5.800,00",
+        area: "Administrativo",
+        depto: "Financeiro",
+        ccusto: "1.1 Financeiro",
+        vinculados: "2 pessoas",
+        missao:
+          "O Analista Financeiro tem a missão de analisar, controlar e planejar as atividades financeiras da empresa, garantindo a saúde financeira do negócio e auxiliando na tomada de decisões estratégicas.",
+        responsabilidades: [
+          "Elaborar e analisar relatórios financeiros",
+          "Realizar o controle de contas a pagar e a receber",
+          "Monitorar o fluxo de caixa e realizar projeções financeiras",
+          "Auxiliar na preparação de orçamentos e no planejamento financeiro anual",
+          "Realizar a análise de custos, despesas e receitas",
+          "Conduzir conciliações bancárias e acompanhar auditorias",
+          "Auxiliar na elaboração de relatórios gerenciais para a diretoria",
+          "Garantir o cumprimento das normas e procedimentos financeiros",
+          "Analisar e propor melhorias nos processos financeiros"
+        ],
+        tecnicas: [
+          {
+            competencia: "Análise Financeira",
+            descricao: "Habilitar a analisar relatórios financeiros (como indicadores de desempenho econômico e financeiro).",
+            nivel: "Avançado",
+            grupo: "Orientadas para Comunicação",
+            indicadores: "Qualidade e precisão das análises financeiras; Uso de indicadores financeiros no planejamento"
+          },
+          {
+            competencia: "Contabilidade",
+            descricao: "Compreender os princípios contábeis e estabelecimentos financeiros competentes.",
+            nivel: "Intermediário",
+            grupo: "Intermediário",
+            indicadores: "Correção nas classificações contábeis; Precisão nos lançamentos; Conformidade com normas contábeis"
+          },
+          {
+            competencia: "Controle de Fluxo de Caixa",
+            descricao: "Gerenciamento de caixa, projeções e controles financeiros.",
+            nivel: "Avançado",
+            grupo: "Orientadas para Resultados",
+            indicadores: "Atualidade e precisão das análises; Redução de riscos financeiros"
+          },
+          {
+            competencia: "Orçamento e Planejamento Financeiro",
+            descricao: "Ajudar na preparação do orçamento e no planejamento financeiro anual.",
+            nivel: "Intermediário",
+            grupo: "Orientadas para Resultados",
+            indicadores: "Participação ativa; Precisão das projeções; Adesão ao planejamento aprovado"
+          }
+        ],
+        comportamentais: [
+          {
+            competencia: "Comunicação",
+            descricao: "Capacidade de transmitir informações de maneira clara e eficaz.",
+            nivel: "Avançado",
+            grupo: "Orientadas para Comunicação",
+            grau: "3",
+            indicadores: "Clareza na apresentação de dados; Redução de dúvidas; Qualidade das explicações prestadas"
+          },
+          {
+            competencia: "Trabalho em Equipe",
+            descricao: "Habilidade de trabalhar em colaboração com outras áreas e colegas.",
+            nivel: "Avançado",
+            grupo: "Orientadas para o Cliente (interno e externo)",
+            grau: "2",
+            indicadores: "Relacionamento com áreas internas; Cooperação em demandas compartilhadas"
+          },
+          {
+            competencia: "Resiliência",
+            descricao: "Capacidade de lidar com pressão e adversidades sem perder a eficácia.",
+            nivel: "Avançado",
+            grupo: "Orientadas para Resultados",
+            grau: "3",
+            indicadores: "Manutenção de performance em picos; Postura sob pressão"
+          }
+        ]
+      }
+    };
+
+    // ===== Helpers de UI =====
+    const $ = (s) => document.querySelector(s);
+    const $$ = (s) => document.querySelectorAll(s);
+
+    const viewList = $("#view-list");
+    const viewDetail = $("#view-detail");
+
+    const cargoTitle = $("#cargoTitle");
+    const f_nome = $("#f_nome");
+    const f_cbo = $("#f_cbo");
+    const f_salario = $("#f_salario");
+    const f_area = $("#f_area");
+    const f_depto = $("#f_depto");
+    const f_ccusto = $("#f_ccusto");
+    const f_vinc = $("#f_vinculados");
+    const missaoText = $("#missaoText");
+    const respList = $("#respList");
+    const tecTbody = $("#tecTbody");
+    const compTbody = $("#compTbody");
+
+    function setActiveView(detailOn) {
+      viewList.classList.toggle("is-active", !detailOn);
+      viewDetail.classList.toggle("is-active", detailOn);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function clearChildren(el) {
+      while (el.firstChild) el.removeChild(el.firstChild);
+    }
+
+    function openCargo(id) {
+      const data = cargoData[id] || {
+        title: "Cargo",
+        cbo: "",
+        salario: "",
+        area: "Administrativo",
+        depto: "Financeiro",
+        ccusto: "1.1 Financeiro",
+        vinculados: "—",
+        missao: "—",
+        responsabilidades: [],
+        tecnicas: [],
+        comportamentais: []
+      };
+
+      cargoTitle.textContent = data.title;
+      f_nome.value = data.title;
+      f_cbo.value = data.cbo || "";
+      f_salario.value = data.salario || "";
+      f_area.value = data.area || "Administrativo";
+      f_depto.value = data.depto || "Financeiro";
+      f_ccusto.value = data.ccusto || "1.1 Financeiro";
+      f_vinc.textContent = data.vinculados || "—";
+
+      missaoText.textContent = data.missao || "—";
+
+      clearChildren(respList);
+      data.responsabilidades.forEach((item) => {
+        const li = document.createElement("li");
+        li.innerHTML = `
+          <span class="check" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
+          </span>
+          <span>${item}</span>
+        `;
+        respList.appendChild(li);
+      });
+
+      clearChildren(tecTbody);
+      data.tecnicas.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="strong">${row.competencia}</td>
+          <td>${row.descricao}</td>
+          <td>${row.nivel}</td>
+          <td>${row.grupo}</td>
+          <td>${row.indicadores}</td>
+        `;
+        tecTbody.appendChild(tr);
+      });
+
+      clearChildren(compTbody);
+      data.comportamentais.forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="strong">${row.competencia}</td>
+          <td>${row.descricao}</td>
+          <td>${row.nivel}</td>
+          <td>${row.grupo}</td>
+          <td>${row.grau}</td>
+          <td>${row.indicadores}</td>
+        `;
+        compTbody.appendChild(tr);
+      });
+
+      // sempre abre na aba "Dados Gerais"
+      activateTab("dados");
+      setActiveView(true);
+    }
+
+    // Clique no nome do cargo
+    $$(".row-link").forEach(btn => {
+      btn.addEventListener("click", () => openCargo(btn.dataset.id));
+    });
+
+    // Voltar
+    $("#btnBack").addEventListener("click", () => setActiveView(false));
+
+    // Busca simples
+    $("#searchInput").addEventListener("input", (e) => {
+      const q = (e.target.value || "").toLowerCase();
+      $$("#cargosTbody tr").forEach(tr => {
+        const text = tr.innerText.toLowerCase();
+        tr.style.display = text.includes(q) ? "" : "none";
+      });
+    });
+
+    // Tabs
+    const tabs = $$(".tabs__tab");
+    const panels = {
+      dados: $("#tab-dados"),
+      responsabilidades: $("#tab-responsabilidades"),
+      tecnicas: $("#tab-tecnicas"),
+      comportamentais: $("#tab-comportamentais"),
+    };
+
+    function activateTab(key) {
+      tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
+      Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
+    }
+
+    tabs.forEach(btn => btn.addEventListener("click", () => activateTab(btn.dataset.tab)));
+
+    // Abrir um exemplo por URL: cargos.html#analista-financeiro
+    const hash = (location.hash || "").replace("#", "").trim();
+    if (hash) openCargo(hash);
+  </script>
+</body>
+</html>

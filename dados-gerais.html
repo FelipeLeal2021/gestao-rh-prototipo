@@ -10,80 +10,14 @@
 
   <!-- CSS somente desta página -->
   <link rel="stylesheet" href="dados-gerais.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
 </head>
 
 <body>
-  <!-- Toggle do menu (CSS-only) -->
-  <input type="checkbox" id="nav-toggle" class="nav-toggle" />
-
-  <header class="topbar">
-    <div class="topbar-inner">
-
-      <!-- Botão menu -->
-      <label for="nav-toggle" class="menu-btn" aria-label="Abrir menu">
-        <span></span><span></span><span></span>
-      </label>
-
-      <!-- Título -->
-      <div class="title-wrap">
-        <h1 class="title">GESTÃO DE RH</h1>
-      </div>
-
-      <!-- Logo topo -->
-      <div class="brand">
-        <img src="img/logo-topo.png" alt="Estratégia Consultoria" />
-      </div>
-
-    </div>
-  </header>
-
-  <!-- MENU LATERAL -->
-  <div class="nav-overlay" aria-hidden="true">
-    <!-- clicar fora fecha -->
-    <label for="nav-toggle" class="nav-backdrop" aria-label="Fechar menu"></label>
-
-    <aside class="nav-drawer" role="dialog" aria-label="Menu lateral">
-      <div class="drawer-header">
-        <div class="drawer-title">
-          <span class="drawer-dot"></span>
-          <div>
-            <strong>Menu</strong>
-            <span class="drawer-sub">Gestão de RH</span>
-          </div>
-        </div>
-
-        <label for="nav-toggle" class="close-btn" aria-label="Fechar menu">✕</label>
-      </div>
-
-      <nav class="drawer-links" aria-label="Links do menu">
-        <details class="drawer-group" open>
-          <summary>Identidade Organizacional</summary>
-          <div class="drawer-submenu">
-            <a href="dados-gerais.html">DADOS GERAIS</a>
-            <a href="estrutura.html">ESTRUTURA</a>
-            <a href="identidade-organizacional.html">IDENTIDADE ORGANIZACIONAL</a>
-          </div>
-        </details>
-
-        <a href="#">Cargos, Salários & Cultura</a>
-        <a href="#">Recrutamento & Seleção</a>
-        <a href="#">Jornada do Colaborador</a>
-        <a href="#">Treinamentos Empresa</a>
-        <a href="#">Gestão de Liderança</a>
-        <a href="#">Pesquisas Internas</a>
-        <a href="#">Marketing & Endomarketing</a>
-        <a href="#">Reuniões & Alinhamentos</a>
-        <a href="#">Documentos & Políticas</a>
-        <a href="#">Indicadores & Relatórios</a>
-        <a href="#">Tirar Dúvidas</a>
-        <a href="#">Suporte</a>
-      </nav>
-
-      <div class="drawer-footer">
-        <small>Protótipo • HTML + CSS</small>
-      </div>
-    </aside>
-  </div>
+  <!-- Menu/Header (vem do components/menu.html) -->
+  <div id="app-menu"></div>
 
   <!-- CONTEÚDO DA PÁGINA -->
   <main class="content">

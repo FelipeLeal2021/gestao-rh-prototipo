@@ -259,9 +259,10 @@ body{
   transform: translateY(-1px);
 }
 
-/* ===== AQUI: área rolável ===== */
+/* ===== LINKS DO MENU (ARRUMADO: flex, sem buracão) ===== */
 .drawer-links{
-  display: grid;
+  display: flex;              /* antes era grid */
+  flex-direction: column;
   gap: 10px;
 
   overflow-y: auto;
@@ -270,6 +271,8 @@ body{
 
   padding-right: 6px;
   padding-bottom: 10px;
+
+  justify-content: flex-start; /* garante que não espalhe itens */
 }
 
 /* scrollbar (Chrome/Edge) */
@@ -288,6 +291,7 @@ body{
 
 /* links padrão do menu */
 .drawer-links a{
+  display: block;
   text-decoration: none;
   color: rgba(15, 20, 40, .92);
 
@@ -305,11 +309,16 @@ body{
   transform: translateY(-1px);
 }
 
-/* ===== SUBMENU (Identidade Organizacional) ===== */
+/* ===== GRUPO PRINCIPAL (ex: Informações da Empresa, Cargos e Salários) ===== */
 .drawer-group{
   border-radius: 14px;
 }
 
+/* remove marcador padrão do summary (todos navegadores) */
+.drawer-group summary::-webkit-details-marker{ display: none; }
+.drawer-group summary::marker{ content: ""; }
+
+/* summary do grupo principal */
 .drawer-group summary{
   cursor: pointer;
   user-select: none;
@@ -328,9 +337,6 @@ body{
   list-style: none;
 }
 
-/* remove marcador padrão */
-.drawer-group summary::-webkit-details-marker{ display: none; }
-
 .drawer-group summary::after{
   content: "▸";
   opacity: .75;
@@ -346,6 +352,7 @@ body{
   transform: rotate(90deg);
 }
 
+/* submenu interno do grupo principal */
 .drawer-submenu{
   margin-top: 10px;
   display: grid;
@@ -353,12 +360,72 @@ body{
   padding-left: 14px;
 }
 
+/* links do submenu */
 .drawer-submenu a{
   padding: 11px 12px;
   border-radius: 14px;
   background: rgba(5, 13, 141, .04);
   border: 1px solid rgba(5, 13, 141, .10);
   font-size: 13px;
+}
+
+/* ===== SUBGRUPO (Competências) ===== */
+/* Use: <details class="drawer-subgroup"> ... */
+.drawer-subgroup{
+  border-radius: 14px;
+}
+
+/* remove marcador padrão do summary do subgrupo */
+.drawer-subgroup summary::-webkit-details-marker{ display: none; }
+.drawer-subgroup summary::marker{ content: ""; }
+
+/* summary do subgrupo (menor, mais interno) */
+.drawer-subgroup summary{
+  cursor: pointer;
+  user-select: none;
+
+  padding: 11px 12px;
+  border-radius: 14px;
+
+  background: rgba(5, 13, 141, .04);
+  border: 1px solid rgba(5, 13, 141, .10);
+  color: rgba(15, 20, 40, .92);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-size: 13px;
+  list-style: none;
+
+  transition: transform .12s ease, background .12s ease, border-color .12s ease;
+}
+
+.drawer-subgroup summary::after{
+  content: "▸";
+  opacity: .70;
+  transition: transform .15s ease;
+}
+
+.drawer-subgroup[open] summary{
+  background: rgba(5, 13, 141, .08);
+  border-color: rgba(5, 13, 141, .14);
+}
+
+.drawer-subgroup[open] summary::after{
+  transform: rotate(90deg);
+}
+
+/* submenu dentro do subgrupo (mais recuado) */
+.drawer-subgroup .drawer-submenu{
+  padding-left: 14px;
+}
+
+/* links dentro do subgrupo ainda menores */
+.drawer-subgroup .drawer-submenu a{
+  background: rgba(5, 13, 141, .03);
+  border: 1px solid rgba(5, 13, 141, .08);
+  font-size: 12.5px;
 }
 
 /* rodapé */

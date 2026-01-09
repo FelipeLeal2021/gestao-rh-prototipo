@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Benefícios • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="beneficios.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+</head>
+
+<body>
+  <!-- Menu/Header (vem do components/menu.html) -->
+  <div id="app-menu"></div>
+
+  <main class="beneficios-page">
+    <header class="page-head">
+      <div>
+        <h2 class="page-title">Benefícios</h2>
+        <p class="page-subtitle">Cadastre e gerencie os benefícios oferecidos pela empresa.</p>
+      </div>
+
+      <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+        <span class="btn__icon" aria-hidden="true">+</span>
+        Incluir
+      </button>
+    </header>
+
+    <section class="card" aria-label="Tabela de Benefícios">
+      <div class="toolbar">
+        <div class="search">
+          <span class="search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+            </svg>
+          </span>
+          <input id="searchInput" class="search__input" type="text" placeholder="Pesquisar..." />
+        </div>
+
+        <span class="hint">Clique em <strong>Editar</strong> para abrir o cadastro (mock).</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table" aria-label="Benefícios cadastrados">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Tipo</th>
+              <th>Descrição do Benefício</th>
+              <th>A quem se aplica</th>
+              <th class="col-status">Status</th>
+              <th class="col-actions">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody id="beneficiosTbody">
+            <tr>
+              <td class="strong">Plano de Saúde</td>
+              <td>Não Financeiro</td>
+              <td>Cobertura de 30% do valor da mensalidade para titulares e 10% para dependentes.</td>
+              <td>Setor Administrativo</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Plano Odontológico</td>
+              <td>Não Financeiro</td>
+              <td>Plano odontológico 100% gratuito.</td>
+              <td>Setor Administrativo</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Vale Alimentação</td>
+              <td>Financeiro</td>
+              <td>Benefício mensal de alimentação no valor de R$ 500,00.</td>
+              <td>Todos os funcionários</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Day Off</td>
+              <td>Não Financeiro</td>
+              <td>Folga no mês do aniversário.</td>
+              <td>Setor de Produção</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Cesta Básica</td>
+              <td>Financeiro</td>
+              <td>Distribuição mensal de cesta básica.</td>
+              <td>Funcionários com baixa renda</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Busca simples (front apenas)
+    (function () {
+      const input = document.getElementById("searchInput");
+      const rows = () => document.querySelectorAll("#beneficiosTbody tr");
+
+      input.addEventListener("input", () => {
+        const q = (input.value || "").toLowerCase();
+        rows().forEach(tr => {
+          const text = tr.innerText.toLowerCase();
+          tr.style.display = text.includes(q) ? "" : "none";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
