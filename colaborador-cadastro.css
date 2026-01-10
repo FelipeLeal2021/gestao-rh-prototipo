@@ -1,0 +1,258 @@
+/* colaborador-cadastro.css */
+
+.cad-page{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px 20px 60px;
+}
+
+.back-link{
+  display: inline-block;
+  text-decoration: none;
+  margin: 6px 0 14px;
+  font-weight: 800;
+  opacity: .8;
+  color: rgba(15, 20, 40, .9);
+}
+
+.back-link:hover{ opacity: 1; }
+
+.cad-card{
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(15, 20, 40, .10);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.08);
+  padding: 16px;
+}
+
+.cad-top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15, 20, 40, .08);
+  flex-wrap: wrap;
+}
+
+.profile{
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+}
+
+.avatar{
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(5,13,141,.12), rgba(73,150,232,.18));
+  border: 1px solid rgba(15, 20, 40, .10);
+}
+
+.cad-title{
+  margin: 0;
+  font-size: 18px;
+  letter-spacing: .2px;
+}
+
+.cad-role{
+  margin: 3px 0 0;
+  font-size: 12px;
+  opacity: .7;
+}
+
+.cad-actions{
+  display: inline-flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Tabs */
+.tabs{
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 12px 0 2px;
+  margin: 0;
+}
+
+.tab{
+  appearance: none;
+  border: 1px solid rgba(15, 20, 40, .12);
+  background: rgba(5, 13, 141, .03);
+  padding: 9px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 12px;
+  opacity: .9;
+}
+
+.tab:hover{ background: rgba(5, 13, 141, .05); }
+
+.tab.is-active{
+  background: rgba(37, 99, 235, .14);
+  border-color: rgba(37, 99, 235, .26);
+}
+
+/* Panels */
+.panels{ padding-top: 10px; }
+
+.panel{
+  display: none;
+  padding: 14px 4px 6px;
+}
+
+.panel.is-active{ display: block; }
+
+.panel-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+.panel-title{
+  margin: 0 0 10px;
+  font-size: 16px;
+}
+
+/* Form */
+.form-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 12px 14px;
+}
+
+.field label{
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  margin-bottom: 6px;
+  opacity: .9;
+}
+
+.field input, .field select, .textarea{
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(5, 13, 141, .03);
+  outline: none;
+}
+
+.field input:focus, .field select:focus, .textarea:focus{
+  border-color: rgba(5, 13, 141, .28);
+  background: rgba(5, 13, 141, .05);
+}
+
+.help{
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: .65;
+}
+
+.textarea{ resize: vertical; }
+
+/* Table */
+.table-wrap{
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .08);
+}
+
+.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 860px;
+  background: rgba(255,255,255,.92);
+}
+
+.table thead th{
+  text-align: left;
+  font-size: 12px;
+  padding: 12px 12px;
+  background: rgba(5, 13, 141, .06);
+  border-bottom: 1px solid rgba(15, 20, 40, .10);
+}
+
+.table tbody td{
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(15, 20, 40, .08);
+  font-size: 13px;
+  vertical-align: top;
+}
+
+.table tbody tr:nth-child(even) td{
+  background: rgba(5, 13, 141, .02);
+}
+
+.strong{ font-weight: 900; }
+
+/* Pills */
+.pill{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 20, 40, .12);
+  font-size: 12px;
+  font-weight: 900;
+  background: rgba(5, 13, 141, .04);
+}
+
+.pill--warn{
+  background: rgba(245, 158, 11, .14);
+  border-color: rgba(245, 158, 11, .24);
+}
+
+/* Badges (reuso do padrão) */
+.badge{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(15, 20, 40, .12);
+  font-weight: 900;
+}
+
+.badge--active{
+  background: rgba(34, 197, 94, .12);
+  border-color: rgba(34, 197, 94, .22);
+  color: rgba(22, 101, 52, .95);
+}
+
+/* Botões fallback */
+.btn{
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(255,255,255,.86);
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.btn--ghost{ background: rgba(5, 13, 141, .04); }
+.btn--primary{
+  background: rgba(37, 99, 235, .14);
+  border-color: rgba(37, 99, 235, .24);
+}
+
+.btn--sm{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* Responsivo */
+@media (max-width: 900px){
+  .form-grid{ grid-template-columns: 1fr; }
+}

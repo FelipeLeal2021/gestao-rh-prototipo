@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Feedbacks • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="feedbacks.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+  <script src="js/feedbacks.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="fb-page">
+    <header class="fb-head">
+      <div>
+        <h2 class="fb-title">Feedbacks</h2>
+        <p class="fb-subtitle">Registre feedbacks e acompanhe status e histórico por colaborador.</p>
+      </div>
+
+      <button id="btnOpenCreate" class="btn btn--primary" type="button">
+        <span class="btn__icon" aria-hidden="true">+</span>
+        Incluir
+      </button>
+    </header>
+
+    <section class="fb-card">
+      <div class="fb-toolbar">
+        <div class="search">
+          <span class="search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+            </svg>
+          </span>
+          <input id="globalSearch" class="search__input" type="text" placeholder="Pesquisar feedback..." />
+        </div>
+
+        <div class="fb-toolbar__right">
+          <button id="btnClearFilters" class="btn btn--ghost btn--sm" type="button">Limpar filtros</button>
+        </div>
+      </div>
+
+      <div class="table-wrap" role="region" aria-label="Tabela de feedbacks" tabindex="0">
+        <table class="table">
+          <thead>
+            <tr class="head-row">
+              <th data-sort="data">Data <span class="sort">↕</span></th>
+              <th data-sort="colaborador">Colaborador <span class="sort">↕</span></th>
+              <th data-sort="cargo">Cargo <span class="sort">↕</span></th>
+              <th data-sort="departamento">Departamento <span class="sort">↕</span></th>
+              <th data-sort="tipo">Tipo <span class="sort">↕</span></th>
+              <th data-sort="assunto">Assunto <span class="sort">↕</span></th>
+              <th data-sort="responsavel">Responsável <span class="sort">↕</span></th>
+              <th data-sort="status" class="col-status">Status <span class="sort">↕</span></th>
+              <th class="col-actions">Ações</th>
+            </tr>
+
+            <!-- filtros por coluna -->
+            <tr class="filter-row">
+              <th>
+                <input id="fData" class="filter" type="date" />
+              </th>
+              <th>
+                <input id="fColaborador" class="filter" type="text" placeholder="Filtrar..." />
+              </th>
+              <th>
+                <input id="fCargo" class="filter" type="text" placeholder="Filtrar..." />
+              </th>
+              <th>
+                <input id="fDepartamento" class="filter" type="text" placeholder="Filtrar..." />
+              </th>
+              <th>
+                <select id="fTipo" class="filter">
+                  <option value="">Todos</option>
+                  <option value="Orientativo">Orientativo</option>
+                  <option value="Positivo">Positivo</option>
+                  <option value="Corretivo">Corretivo</option>
+                </select>
+              </th>
+              <th>
+                <input id="fAssunto" class="filter" type="text" placeholder="Filtrar..." />
+              </th>
+              <th>
+                <input id="fResponsavel" class="filter" type="text" placeholder="Filtrar..." />
+              </th>
+              <th class="col-status">
+                <select id="fStatus" class="filter">
+                  <option value="">Todos</option>
+                  <option value="Em acompanhamento">Em acompanhamento</option>
+                  <option value="Encerrado">Encerrado</option>
+                </select>
+              </th>
+              <th class="col-actions">
+                <span class="muted">—</span>
+              </th>
+            </tr>
+          </thead>
+
+          <tbody id="fbTbody"></tbody>
+        </table>
+      </div>
+
+      <footer class="fb-footer">
+        <span id="fbCount" class="muted">Mostrando 0 resultados</span>
+      </footer>
+    </section>
+  </main>
+
+  <!-- MODAL: incluir/editar -->
+  <div id="modalForm" class="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Formulário de feedback">
+      <header class="modal__head">
+        <div>
+          <h3 id="modalFormTitle" class="modal__title">Incluir Feedback</h3>
+          <p class="modal__subtitle">Preencha as informações do feedback.</p>
+        </div>
+        <button class="icon-btn" type="button" data-close aria-label="Fechar">✕</button>
+      </header>
+
+      <form id="fbForm" class="form-grid">
+        <input type="hidden" id="fbId" />
+
+        <div class="field">
+          <label for="fbData">Data</label>
+          <input id="fbData" type="date" required />
+        </div>
+
+        <div class="field">
+          <label for="fbColaborador">Colaborador</label>
+          <input id="fbColaborador" type="text" placeholder="Ex.: Ana Paula Souza" required />
+        </div>
+
+        <div class="field">
+          <label for="fbCargo">Cargo</label>
+          <input id="fbCargo" type="text" placeholder="Ex.: Assistente Administrativo" required />
+        </div>
+
+        <div class="field">
+          <label for="fbDepartamento">Departamento</label>
+          <input id="fbDepartamento" type="text" placeholder="Ex.: Financeiro" required />
+        </div>
+
+        <div class="field">
+          <label for="fbTipo">Tipo</label>
+          <select id="fbTipo" required>
+            <option value="">Selecione...</option>
+            <option>Orientativo</option>
+            <option>Positivo</option>
+            <option>Corretivo</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="fbAssunto">Assunto</label>
+          <input id="fbAssunto" type="text" placeholder="Ex.: Organização / Metas / Pontualidade..." required />
+        </div>
+
+        <div class="field field--full">
+          <label for="fbDetalhamento">Detalhamento</label>
+          <textarea id="fbDetalhamento" class="textarea" rows="5" placeholder="Descreva o feedback..." required></textarea>
+        </div>
+
+        <div class="field">
+          <label for="fbResponsavel">Responsável</label>
+          <input id="fbResponsavel" type="text" placeholder="Ex.: Mariana Teixeira" required />
+        </div>
+
+        <div class="field">
+          <label for="fbStatus">Status</label>
+          <select id="fbStatus" required>
+            <option value="">Selecione...</option>
+            <option>Em acompanhamento</option>
+            <option>Encerrado</option>
+          </select>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-close>Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ver mais -->
+  <div id="modalView" class="modal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Detalhes do feedback">
+      <header class="modal__head">
+        <div>
+          <h3 class="modal__title">Detalhes do Feedback</h3>
+          <p class="modal__subtitle">Visualize todas as informações.</p>
+        </div>
+        <button class="icon-btn" type="button" data-close aria-label="Fechar">✕</button>
+      </header>
+
+      <div class="detail">
+        <div class="detail__grid">
+          <div class="detail__item">
+            <span class="detail__label">Data</span>
+            <span id="vData" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Colaborador</span>
+            <span id="vColaborador" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Cargo</span>
+            <span id="vCargo" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Departamento</span>
+            <span id="vDepartamento" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Tipo</span>
+            <span id="vTipo" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Assunto</span>
+            <span id="vAssunto" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Responsável</span>
+            <span id="vResponsavel" class="detail__value">—</span>
+          </div>
+          <div class="detail__item">
+            <span class="detail__label">Status</span>
+            <span id="vStatus" class="detail__value">—</span>
+          </div>
+
+          <div class="detail__item detail__item--full">
+            <span class="detail__label">Detalhamento</span>
+            <p id="vDetalhamento" class="detail__text">—</p>
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-close>Fechar</button>
+          <button id="btnEditFromView" class="btn btn--primary" type="button">Editar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,882 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Avaliação de Desempenho • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="avaliacao-desempenho.css" />
+
+  <!-- inclui menu/header -->
+  <script src="js/include-menu.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="ad">
+    <!-- =========================
+      VIEW 1: LISTA DE CICLOS
+    ========================== -->
+    <section class="ad-view is-active" id="view-ciclos" aria-label="Lista de ciclos">
+      <header class="ad-head">
+        <div>
+          <h2 class="ad-title">Avaliações de Desempenho</h2>
+          <p class="ad-sub">Gerencie ciclos, status e avaliações por colaborador.</p>
+        </div>
+
+        <button class="ad-btn ad-btn--primary" type="button" data-action="novo-ciclo">
+          <span class="ad-btn__icon" aria-hidden="true">＋</span>
+          Novo ciclo
+        </button>
+      </header>
+
+      <div class="ad-card">
+        <div class="ad-toolbar">
+          <div class="ad-search">
+            <span class="ad-search__icon" aria-hidden="true">🔎</span>
+            <input id="searchCiclo" class="ad-search__input" type="text" placeholder="Pesquisar ciclo..." />
+          </div>
+        </div>
+
+        <div class="ad-table-wrap" role="region" aria-label="Tabela de ciclos" tabindex="0">
+          <table class="ad-table" id="tableCiclos">
+            <thead>
+              <tr>
+                <th>Período <span class="ad-sort">▾</span></th>
+                <th>Tipo <span class="ad-sort">▾</span></th>
+                <th>Dpo <span class="ad-sort">▾</span></th>
+                <th>Data início <span class="ad-sort">▾</span></th>
+                <th>Status <span class="ad-sort">▾</span></th>
+                <th class="ad-col-actions">Ação</th>
+              </tr>
+
+              <!-- filtros -->
+              <tr class="ad-filters">
+                <th><input class="ad-filter" data-col="periodo" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="tipo" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="dpo" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="data" type="text" placeholder="Filtrar" /></th>
+                <th>
+                  <select class="ad-filter ad-filter--select" data-col="status">
+                    <option value="">Todos</option>
+                    <option value="Não iniciado">Não iniciado</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Encerrado">Encerrado</option>
+                  </select>
+                </th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr data-cycle="2025-1s">
+                <td data-col="periodo">2025 - 1º Semestre</td>
+                <td data-col="tipo">Semestral</td>
+                <td data-col="dpo">Semestral</td>
+                <td data-col="data">01/06/2025</td>
+                <td data-col="status">
+                  <span class="ad-pill ad-pill--warn">🟡 Não iniciado</span>
+                </td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small" type="button" data-action="acessar-ciclo" data-cycle-id="2025-1s">
+                    Acessar
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-cycle="2024-2s">
+                <td data-col="periodo">2024 - 2º Semestre</td>
+                <td data-col="tipo">Semestral</td>
+                <td data-col="dpo">Semestral</td>
+                <td data-col="data">01/11/2024</td>
+                <td data-col="status">
+                  <span class="ad-pill ad-pill--info">🟣 Em andamento</span>
+                </td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small" type="button" data-action="acessar-ciclo" data-cycle-id="2024-2s">
+                    Acessar
+                  </button>
+                </td>
+              </tr>
+
+              <tr data-cycle="2024-1s">
+                <td data-col="periodo">2024 - 1º Semestre</td>
+                <td data-col="tipo">Semestral</td>
+                <td data-col="dpo">Semestral</td>
+                <td data-col="data">01/05/2024</td>
+                <td data-col="status">
+                  <span class="ad-pill ad-pill--danger">🔴 Encerrado</span>
+                </td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small ad-btn--ghost" type="button" data-action="ver-resultados" data-cycle-id="2024-1s">
+                    Ver resultados
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+      VIEW 2: COLABORADORES DO CICLO
+    ========================== -->
+    <section class="ad-view" id="view-colaboradores" aria-label="Colaboradores do ciclo">
+      <header class="ad-head">
+        <div>
+          <h2 class="ad-title" id="cycleTitle">Avaliação de Desempenho</h2>
+          <p class="ad-sub">Selecione um colaborador para avaliar, continuar ou visualizar.</p>
+        </div>
+
+        <button class="ad-btn ad-btn--ghost" type="button" data-action="voltar-ciclos">← Voltar</button>
+      </header>
+
+      <div class="ad-card">
+        <div class="ad-toolbar">
+          <div class="ad-search">
+            <span class="ad-search__icon" aria-hidden="true">🔎</span>
+            <input id="searchColab" class="ad-search__input" type="text" placeholder="Pesquisar colaborador..." />
+          </div>
+        </div>
+
+        <div class="ad-table-wrap" role="region" aria-label="Tabela de colaboradores" tabindex="0">
+          <table class="ad-table" id="tableColabs">
+            <thead>
+              <tr>
+                <th>Colaborador <span class="ad-sort">▾</span></th>
+                <th>Cargo <span class="ad-sort">▾</span></th>
+                <th>Departamento <span class="ad-sort">▾</span></th>
+                <th>Admissão <span class="ad-sort">▾</span></th>
+                <th>Status <span class="ad-sort">▾</span></th>
+                <th>Data da Avaliação</th>
+                <th class="ad-col-actions">Ações</th>
+              </tr>
+
+              <tr class="ad-filters">
+                <th><input class="ad-filter" data-col="colaborador" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="cargo" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="depto" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="admissao" type="text" placeholder="Filtrar" /></th>
+                <th>
+                  <select class="ad-filter ad-filter--select" data-col="status">
+                    <option value="">Todos</option>
+                    <option value="Não avaliado">Não avaliado</option>
+                    <option value="Em andamento">Em andamento</option>
+                    <option value="Avaliado">Avaliado</option>
+                  </select>
+                </th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td data-col="colaborador">Ana Paula Souza</td>
+                <td data-col="cargo">Assistente Adm</td>
+                <td data-col="depto">Financeiro</td>
+                <td data-col="admissao">10/02/2023</td>
+                <td data-col="status"><span class="ad-pill ad-pill--danger">🔴 Não avaliado</span></td>
+                <td>—</td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small" type="button"
+                    data-action="abrir-avaliacao"
+                    data-colab="Ana Paula Souza"
+                    data-cargo="Assistente Administrativo"
+                    data-depto="Financeiro"
+                    data-lider="Mariana Teixeira"
+                    data-status="avaliar">
+                    Avaliar
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-col="colaborador">João Victor Martins</td>
+                <td data-col="cargo">Operador Produção</td>
+                <td data-col="depto">Produção</td>
+                <td data-col="admissao">05/05/2021</td>
+                <td data-col="status"><span class="ad-pill ad-pill--warn">🟡 Em andamento</span></td>
+                <td>—</td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small" type="button"
+                    data-action="abrir-avaliacao"
+                    data-colab="João Victor Martins"
+                    data-cargo="Operador de Produção"
+                    data-depto="Produção"
+                    data-lider="Mariana Teixeira"
+                    data-status="continuar">
+                    Continuar
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-col="colaborador">Fernanda Rocha</td>
+                <td data-col="cargo">Analista Financeiro</td>
+                <td data-col="depto">Financeiro</td>
+                <td data-col="admissao">15/10/2020</td>
+                <td data-col="status"><span class="ad-pill ad-pill--ok">🟢 Avaliado</span></td>
+                <td>08/05/2024</td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small ad-btn--success" type="button"
+                    data-action="abrir-avaliacao"
+                    data-colab="Fernanda Rocha"
+                    data-cargo="Analista Financeiro"
+                    data-depto="Financeiro"
+                    data-lider="Mariana Teixeira"
+                    data-status="visualizar">
+                    Visualizar
+                  </button>
+                </td>
+              </tr>
+
+              <tr>
+                <td data-col="colaborador">Marcos Oliveira</td>
+                <td data-col="cargo">Supervisor Vendas</td>
+                <td data-col="depto">Comercial</td>
+                <td data-col="admissao">12/01/2019</td>
+                <td data-col="status"><span class="ad-pill ad-pill--danger">🔴 Não avaliado</span></td>
+                <td>—</td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small" type="button"
+                    data-action="abrir-avaliacao"
+                    data-colab="Marcos Oliveira"
+                    data-cargo="Supervisor de Vendas"
+                    data-depto="Comercial"
+                    data-lider="Mariana Teixeira"
+                    data-status="avaliar">
+                    Avaliar
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================
+      VIEW 3: FORMULÁRIO DA AVALIAÇÃO (ABAS)
+    ========================== -->
+    <section class="ad-view" id="view-avaliacao" aria-label="Formulário de avaliação">
+      <header class="ad-head">
+        <div>
+          <h2 class="ad-title" id="avaliacaoTitle">Avaliação de Desempenho</h2>
+          <p class="ad-sub">Preencha as abas e finalize nos resultados.</p>
+        </div>
+
+        <button class="ad-btn ad-btn--ghost" type="button" data-action="voltar-colaboradores">← Voltar</button>
+      </header>
+
+      <div class="ad-card ad-card--pad">
+        <div class="ad-meta">
+          <div class="ad-avatar" aria-hidden="true">👤</div>
+
+          <div class="ad-meta__grid">
+            <div class="ad-meta__item"><strong>Colaborador:</strong> <span id="metaColab">—</span></div>
+            <div class="ad-meta__item"><strong>Cargo:</strong> <span id="metaCargo">—</span></div>
+            <div class="ad-meta__item"><strong>Líder:</strong> <span id="metaLider">—</span></div>
+            <div class="ad-meta__item"><strong>Departamento:</strong> <span id="metaDepto">—</span></div>
+
+            <div class="ad-meta__item">
+              <strong>Data da avaliação:</strong>
+              <input class="ad-input" type="text" value="18/04/2024" />
+            </div>
+
+            <div class="ad-meta__item">
+              <strong>Data da avaliação:</strong>
+              <input class="ad-input" type="text" placeholder="dd/mm/aaaa" />
+            </div>
+          </div>
+        </div>
+
+        <nav class="ad-tabs" aria-label="Abas da avaliação">
+          <button class="ad-tab is-active" type="button" data-tab="orientacoes">Orientações</button>
+          <button class="ad-tab" type="button" data-tab="org">Competências Organizacionais</button>
+          <button class="ad-tab" type="button" data-tab="comp">Competências Comportamentais</button>
+          <button class="ad-tab" type="button" data-tab="perf">Performance</button>
+          <button class="ad-tab" type="button" data-tab="res">Resultados</button>
+        </nav>
+
+        <!-- ====== ORIENTAÇÕES ====== -->
+        <section class="ad-panel is-active" id="tab-orientacoes">
+          <h3 class="ad-h3">Orientações</h3>
+          <div class="ad-box">
+            <p>
+              A Avaliação de Desempenho é um momento de diálogo entre líder e colaborador, com foco no desenvolvimento
+              profissional, alinhamento de expectativas e melhoria contínua. O líder deve conduzir este processo com
+              imparcialidade, respeito e responsabilidade.
+            </p>
+            <p class="ad-muted">
+              Recomendação: realize em momento reservado, promova conversa clara, transparente e construtiva,
+              utilizando registros de feedbacks e observações para orientar o crescimento.
+            </p>
+          </div>
+
+          <div class="ad-actions">
+            <button class="ad-btn ad-btn--primary" type="button" data-action="proximo-tab" data-next="org">
+              Continuar avaliação
+            </button>
+          </div>
+        </section>
+
+        <!-- ====== COMPETÊNCIAS ORGANIZACIONAIS ====== -->
+        <section class="ad-panel" id="tab-org">
+          <div class="ad-panel__top">
+            <h3 class="ad-h3">Avaliação das Competências Organizacionais</h3>
+            <a class="ad-link" href="#" onclick="alert('Exemplo: competências organizacionais = valores/forma de atuar na empresa.'); return false;">
+              ? O que são competências organizacionais?
+            </a>
+          </div>
+
+          <div class="ad-scorecard">
+            <div class="ad-scorecard__label">Resultado (Organizacionais)</div>
+            <div class="ad-scorecard__value">
+              <span id="scoreOrgPct">0%</span>
+              <span class="ad-scorecard__sep">|</span>
+              <span id="scoreOrgNota">0,00 / 10</span>
+            </div>
+          </div>
+
+          <div class="ad-table-wrap">
+            <table class="ad-table ad-table--form" data-calc="org">
+              <thead>
+                <tr>
+                  <th style="width:46%">Competência</th>
+                  <th style="width:18%">Nível Requerido</th>
+                  <th style="width:18%">Nível atingido</th>
+                  <th style="width:18%">Desempenho</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="ad-group">
+                  <td colspan="4"><strong>INOVAÇÃO</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Costuma apresentar sugestões inovadoras para resolver problemas.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Cria novas formas de executar tarefas antigas com melhorias.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Contribui com ideias para aprimorar processos e resultados.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-divider">
+                  <td colspan="4">
+                    <div class="ad-avg">
+                      <span>Desempenho Médio da Competência:</span>
+                      <strong id="avgOrg">0%</strong>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="ad-group">
+                  <td colspan="4"><strong>RESILIÊNCIA</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Recupera-se rapidamente após dificuldades ou impacto negativo.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>2</option><option>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Mantém estabilidade e foco em situações de pressão.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Adapta-se a mudanças sem perder efetividade.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-divider">
+                  <td colspan="4">
+                    <div class="ad-avg">
+                      <span>Desempenho Médio da Competência:</span>
+                      <strong id="avgOrg2">0%</strong>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <label class="ad-label" for="obs-org">Observações (opcional)</label>
+          <textarea id="obs-org" class="ad-textarea" rows="3" placeholder="Digite observações..."></textarea>
+
+          <div class="ad-actions">
+            <button class="ad-btn ad-btn--primary" type="button" data-action="salvar-tab" data-next="comp">
+              Salvar e continuar
+            </button>
+          </div>
+        </section>
+
+        <!-- ====== COMPETÊNCIAS COMPORTAMENTAIS ====== -->
+        <section class="ad-panel" id="tab-comp">
+          <h3 class="ad-h3">Avaliação das Competências Comportamentais</h3>
+
+          <div class="ad-scorecard">
+            <div class="ad-scorecard__label">Resultado (Comportamentais)</div>
+            <div class="ad-scorecard__value">
+              <span id="scoreCompPct">0%</span>
+              <span class="ad-scorecard__sep">|</span>
+              <span id="scoreCompNota">0,00 / 10</span>
+            </div>
+          </div>
+
+          <div class="ad-table-wrap">
+            <table class="ad-table ad-table--form" data-calc="comp">
+              <thead>
+                <tr>
+                  <th style="width:46%">Competência</th>
+                  <th style="width:18%">Nível Requerido</th>
+                  <th style="width:18%">Nível atingido</th>
+                  <th style="width:18%">Desempenho</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="ad-group">
+                  <td colspan="4"><strong>TRABALHO EM EQUIPE</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Colabora com colegas e compartilha informações.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>4</option><option>5</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Mantém postura respeitosa e cooperativa.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-divider">
+                  <td colspan="4">
+                    <div class="ad-avg">
+                      <span>Desempenho Médio da Competência:</span>
+                      <strong id="avgComp">0%</strong>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <label class="ad-label" for="obs-comp">Observações (opcional)</label>
+          <textarea id="obs-comp" class="ad-textarea" rows="3" placeholder="Digite observações..."></textarea>
+
+          <div class="ad-actions">
+            <button class="ad-btn ad-btn--primary" type="button" data-action="salvar-tab" data-next="perf">
+              Salvar e continuar
+            </button>
+          </div>
+        </section>
+
+        <!-- ====== PERFORMANCE ====== -->
+        <section class="ad-panel" id="tab-perf">
+          <h3 class="ad-h3">Avaliação de Performance</h3>
+
+          <div class="ad-scorecard">
+            <div class="ad-scorecard__label">Resultado (Performance)</div>
+            <div class="ad-scorecard__value">
+              <span id="scorePerfPct">0%</span>
+              <span class="ad-scorecard__sep">|</span>
+              <span id="scorePerfNota">0,00 / 10</span>
+            </div>
+          </div>
+
+          <div class="ad-table-wrap">
+            <table class="ad-table ad-table--form" data-calc="perf">
+              <thead>
+                <tr>
+                  <th style="width:46%">Indicadores de Performance</th>
+                  <th style="width:18%">Nível Requerido</th>
+                  <th style="width:18%">Nível atingido</th>
+                  <th style="width:18%">Desempenho</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Cumprimento de prazos e rotinas conforme procedimento.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>4</option><option>5</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Qualidade nas entregas e redução de retrabalho.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td class="ad-q">Alinhamento com metas e resultados da área.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-divider">
+                  <td colspan="4">
+                    <div class="ad-avg">
+                      <span>Desempenho Médio dos Indicadores:</span>
+                      <strong id="avgPerf">0%</strong>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <label class="ad-label" for="obs-perf">Observações (opcional)</label>
+          <textarea id="obs-perf" class="ad-textarea" rows="3" placeholder="Digite observações..."></textarea>
+
+          <div class="ad-actions">
+            <button class="ad-btn ad-btn--primary" type="button" data-action="salvar-tab" data-next="res">
+              Salvar e continuar
+            </button>
+          </div>
+        </section>
+
+        <!-- ====== RESULTADOS ====== -->
+        <section class="ad-panel" id="tab-res">
+          <div class="ad-panel__top">
+            <h3 class="ad-h3">Resultado Final</h3>
+            <a class="ad-link" href="#" onclick="alert('Exemplo: nota final = média simples das três notas.'); return false;">
+              ? Como foi calculada a Nota FINAL?
+            </a>
+          </div>
+
+          <div class="ad-final">
+            <div class="ad-final__row ad-final__row--org">
+              <span>Nota Competências Organizacionais</span>
+              <strong id="finalOrg">0,00</strong>
+            </div>
+            <div class="ad-final__row ad-final__row--comp">
+              <span>Nota Competências Comportamentais</span>
+              <strong id="finalComp">0,00</strong>
+            </div>
+            <div class="ad-final__row ad-final__row--perf">
+              <span>Nota Indicadores de Performance</span>
+              <strong id="finalPerf">0,00</strong>
+            </div>
+            <div class="ad-final__row ad-final__row--total">
+              <span>Nota FINAL</span>
+              <strong id="finalTotal">0,00</strong>
+            </div>
+          </div>
+
+          <label class="ad-label" for="parecer">Parecer do Líder (obrigatório)</label>
+          <textarea id="parecer" class="ad-textarea" rows="4" placeholder="Digite observações sobre o desempenho do colaborador e recomendações..."></textarea>
+
+          <div class="ad-actions ad-actions--between">
+            <button class="ad-btn ad-btn--ghost" type="button" data-action="voltar-tab" data-prev="perf">← Voltar</button>
+
+            <button class="ad-btn ad-btn--primary" type="button" data-action="concluir">
+              Concluir Avaliação
+            </button>
+          </div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const views = {
+        ciclos: document.getElementById("view-ciclos"),
+        colabs: document.getElementById("view-colaboradores"),
+        avaliacao: document.getElementById("view-avaliacao"),
+      };
+
+      function showView(key) {
+        Object.values(views).forEach(v => v.classList.remove("is-active"));
+        views[key].classList.add("is-active");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // ---------- Tabs ----------
+      const tabs = document.querySelectorAll(".ad-tab");
+      const panels = {
+        orientacoes: document.getElementById("tab-orientacoes"),
+        org: document.getElementById("tab-org"),
+        comp: document.getElementById("tab-comp"),
+        perf: document.getElementById("tab-perf"),
+        res: document.getElementById("tab-res"),
+      };
+
+      function activateTab(key) {
+        tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
+        Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
+      }
+
+      tabs.forEach(btn => btn.addEventListener("click", () => activateTab(btn.dataset.tab)));
+
+      // ---------- Header meta ----------
+      const meta = {
+        colab: document.getElementById("metaColab"),
+        cargo: document.getElementById("metaCargo"),
+        depto: document.getElementById("metaDepto"),
+        lider: document.getElementById("metaLider"),
+      };
+
+      const cycleTitle = document.getElementById("cycleTitle");
+      const avaliacaoTitle = document.getElementById("avaliacaoTitle");
+
+      // ---------- Calculo ----------
+      function calcTable(tableEl) {
+        const rows = tableEl.querySelectorAll(".ad-row");
+        let sumPct = 0;
+        let count = 0;
+
+        rows.forEach(r => {
+          const req = Number(r.dataset.req || 5);
+          const attSel = r.querySelector('[data-role="att"]');
+          const pctEl = r.querySelector('[data-role="pct"]');
+          const att = Number(attSel.value || 1);
+
+          const pct = Math.max(0, Math.min(100, (att / req) * 100));
+          pctEl.textContent = `${Math.round(pct)}%`;
+
+          sumPct += pct;
+          count++;
+        });
+
+        const avg = count ? (sumPct / count) : 0;
+        const nota10 = avg / 10; // 0..10 (já que 100% -> 10)
+        return { avgPct: avg, nota10 };
+      }
+
+      function formatPt(n) {
+        return n.toFixed(2).replace(".", ",");
+      }
+
+      function recalcAll() {
+        const orgTable = document.querySelector('table[data-calc="org"]');
+        const compTable = document.querySelector('table[data-calc="comp"]');
+        const perfTable = document.querySelector('table[data-calc="perf"]');
+
+        const org = calcTable(orgTable);
+        const comp = calcTable(compTable);
+        const perf = calcTable(perfTable);
+
+        // cards
+        document.getElementById("avgOrg").textContent = `${Math.round(org.avgPct)}%`;
+        document.getElementById("avgOrg2").textContent = `${Math.round(org.avgPct)}%`;
+        document.getElementById("scoreOrgPct").textContent = `${formatPt(org.avgPct)}%`;
+        document.getElementById("scoreOrgNota").textContent = `${formatPt(org.nota10)} / 10`;
+
+        document.getElementById("avgComp").textContent = `${Math.round(comp.avgPct)}%`;
+        document.getElementById("scoreCompPct").textContent = `${formatPt(comp.avgPct)}%`;
+        document.getElementById("scoreCompNota").textContent = `${formatPt(comp.nota10)} / 10`;
+
+        document.getElementById("avgPerf").textContent = `${Math.round(perf.avgPct)}%`;
+        document.getElementById("scorePerfPct").textContent = `${formatPt(perf.avgPct)}%`;
+        document.getElementById("scorePerfNota").textContent = `${formatPt(perf.nota10)} / 10`;
+
+        // final
+        const final = (org.nota10 + comp.nota10 + perf.nota10) / 3;
+        document.getElementById("finalOrg").textContent = formatPt(org.nota10);
+        document.getElementById("finalComp").textContent = formatPt(comp.nota10);
+        document.getElementById("finalPerf").textContent = formatPt(perf.nota10);
+        document.getElementById("finalTotal").textContent = formatPt(final);
+      }
+
+      document.addEventListener("change", (e) => {
+        if (e.target.matches(".ad-select")) recalcAll();
+      });
+
+      // ---------- Ações ----------
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-action]");
+        if (!btn) return;
+
+        const action = btn.dataset.action;
+
+        if (action === "acessar-ciclo") {
+          const cycleId = btn.dataset.cycleId;
+          const label = cycleId === "2024-2s" ? "Avaliação de Desempenho - 2024 - 2º Semestre"
+                     : cycleId === "2025-1s" ? "Avaliação de Desempenho - 2025 - 1º Semestre"
+                     : "Avaliação de Desempenho";
+          cycleTitle.textContent = label;
+          showView("colabs");
+        }
+
+        if (action === "voltar-ciclos") {
+          showView("ciclos");
+        }
+
+        if (action === "abrir-avaliacao") {
+          const colab = btn.dataset.colab || "—";
+          const cargo = btn.dataset.cargo || "—";
+          const depto = btn.dataset.depto || "—";
+          const lider = btn.dataset.lider || "—";
+          const status = btn.dataset.status || "";
+
+          meta.colab.textContent = colab;
+          meta.cargo.textContent = cargo;
+          meta.depto.textContent = depto;
+          meta.lider.textContent = lider;
+
+          avaliacaoTitle.textContent = `Avaliações de Desempenho`;
+
+          // protótipo: se for visualizar, trava campos (só aparência)
+          const readonly = (status === "visualizar");
+          document.querySelectorAll("#view-avaliacao .ad-select, #view-avaliacao .ad-input, #view-avaliacao .ad-textarea")
+            .forEach(el => el.disabled = readonly);
+
+          showView("avaliacao");
+          activateTab("orientacoes");
+          recalcAll();
+        }
+
+        if (action === "voltar-colaboradores") {
+          showView("colabs");
+        }
+
+        if (action === "proximo-tab") {
+          activateTab(btn.dataset.next);
+        }
+
+        if (action === "salvar-tab") {
+          recalcAll();
+          activateTab(btn.dataset.next);
+        }
+
+        if (action === "voltar-tab") {
+          activateTab(btn.dataset.prev);
+        }
+
+        if (action === "concluir") {
+          const parecer = document.getElementById("parecer").value.trim();
+          if (!parecer) {
+            alert("Parecer do líder é obrigatório (protótipo).");
+            return;
+          }
+          alert("Avaliação concluída (protótipo).");
+          showView("colabs");
+        }
+
+        if (action === "novo-ciclo") {
+          alert("Novo ciclo ainda não implementado (protótipo).");
+        }
+
+        if (action === "ver-resultados") {
+          alert("Resultados do ciclo ainda não implementados (protótipo).");
+        }
+      });
+
+      // ---------- Filtros: ciclos ----------
+      function bindTableFilters(tableId, searchId) {
+        const table = document.getElementById(tableId);
+        const search = document.getElementById(searchId);
+        const filters = table.querySelectorAll(".ad-filter");
+
+        function apply() {
+          const q = (search?.value || "").toLowerCase().trim();
+          const filterValues = {};
+          filters.forEach(f => filterValues[f.dataset.col] = (f.value || "").toLowerCase().trim());
+
+          table.querySelectorAll("tbody tr").forEach(tr => {
+            const text = tr.innerText.toLowerCase();
+            const matchSearch = !q || text.includes(q);
+
+            let matchFilters = true;
+            Object.entries(filterValues).forEach(([col, val]) => {
+              if (!val) return;
+              const cell = tr.querySelector(`[data-col="${col}"]`);
+              const cellText = (cell?.innerText || "").toLowerCase();
+              if (!cellText.includes(val)) matchFilters = false;
+            });
+
+            tr.style.display = (matchSearch && matchFilters) ? "" : "none";
+          });
+        }
+
+        search?.addEventListener("input", apply);
+        filters.forEach(f => f.addEventListener("input", apply));
+        filters.forEach(f => f.addEventListener("change", apply));
+      }
+
+      bindTableFilters("tableCiclos", "searchCiclo");
+      bindTableFilters("tableColabs", "searchColab");
+
+      // inicializa cálculos
+      recalcAll();
+    })();
+  </script>
+</body>
+</html>

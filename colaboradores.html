@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Colaboradores • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="colaboradores.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="colab-page">
+    <header class="colab-head">
+      <div>
+        <h2 class="colab-title">Colaboradores — Cadastro</h2>
+        <p class="colab-subtitle">Gerencie o cadastro de colaboradores, vínculo, estrutura, benefícios e histórico.</p>
+      </div>
+
+      <button class="btn btn--primary" type="button" onclick="alert('Incluir ainda não implementado')">
+        <span class="btn__icon" aria-hidden="true">+</span>
+        Incluir
+      </button>
+    </header>
+
+    <section class="card">
+      <div class="toolbar">
+        <div class="search">
+          <span class="search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+            </svg>
+          </span>
+          <input id="searchInput" class="search__input" type="text" placeholder="Pesquisar colaborador..." />
+        </div>
+
+        <span class="hint">Dica: clique na linha para abrir o cadastro.</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table" aria-label="Lista de colaboradores">
+          <thead>
+            <tr>
+              <th>Nome Completo</th>
+              <th>Cargo</th>
+              <th>Área</th>
+              <th>Departamento</th>
+              <th>Centro de Custo</th>
+              <th>Admissão</th>
+              <th class="col-status">Status</th>
+              <th class="col-actions">Ações</th>
+            </tr>
+          </thead>
+
+          <tbody id="colabBody">
+            <tr data-id="1">
+              <td class="strong">Ana Paula Souza</td>
+              <td>Assistente Administrativo</td>
+              <td>Administrativo</td>
+              <td>Administrativo</td>
+              <td>1.1 Financeiro</td>
+              <td>15/03/2022</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-open="1">Editar</button>
+              </td>
+            </tr>
+
+            <tr data-id="2">
+              <td class="strong">Carlos Henrique Lima</td>
+              <td>Analista Administrativo</td>
+              <td>Administrativo</td>
+              <td>Administrativo</td>
+              <td>1.2 Compras</td>
+              <td>10/01/2021</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-open="2">Editar</button>
+              </td>
+            </tr>
+
+            <tr data-id="3">
+              <td class="strong">Fernanda Rocha</td>
+              <td>Analista Financeiro</td>
+              <td>Administrativo</td>
+              <td>Financeiro</td>
+              <td>1.1 Financeiro</td>
+              <td>08/08/2020</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-open="3">Editar</button>
+              </td>
+            </tr>
+
+            <tr data-id="4">
+              <td class="strong">João Victor Martins</td>
+              <td>Operador de Produção</td>
+              <td>Administrativo</td>
+              <td>Produção</td>
+              <td>2.1 Produção</td>
+              <td>22/06/2023</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-open="4">Editar</button>
+              </td>
+            </tr>
+
+            <tr data-id="5">
+              <td class="strong">Thiago Moreira</td>
+              <td>Operador de Produção</td>
+              <td>Operacional</td>
+              <td>Produção</td>
+              <td>2.1 Supervisão</td>
+              <td>18/09/2021</td>
+              <td class="col-status"><span class="badge badge--warn">Afastado</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-open="5">Editar</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const input = document.getElementById("searchInput");
+      const tbody = document.getElementById("colabBody");
+
+      function openCadastro(id){
+        window.location.href = `colaborador-cadastro.html?id=${encodeURIComponent(id)}`;
+      }
+
+      // clique na linha abre cadastro
+      tbody.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-open]");
+        if (btn) {
+          e.preventDefault();
+          openCadastro(btn.getAttribute("data-open"));
+          return;
+        }
+
+        const tr = e.target.closest("tr[data-id]");
+        if (tr) openCadastro(tr.getAttribute("data-id"));
+      });
+
+      // filtro simples
+      input.addEventListener("input", () => {
+        const q = (input.value || "").toLowerCase().trim();
+        [...tbody.querySelectorAll("tr")].forEach(tr => {
+          const text = tr.innerText.toLowerCase();
+          tr.style.display = text.includes(q) ? "" : "none";
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

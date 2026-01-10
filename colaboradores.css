@@ -1,0 +1,181 @@
+/* colaboradores.css */
+
+.colab-page{
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 26px 20px 60px;
+}
+
+.colab-head{
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 10px 0 16px;
+}
+
+.colab-title{
+  margin: 0;
+  font-size: 28px;
+}
+
+.colab-subtitle{
+  margin: 8px 0 0;
+  opacity: .75;
+  max-width: 820px;
+}
+
+/* Card */
+.card{
+  background: rgba(255,255,255,.96);
+  border: 1px solid rgba(15, 20, 40, .10);
+  border-radius: 18px;
+  box-shadow: 0 14px 34px rgba(0,0,0,.08);
+  padding: 14px;
+}
+
+/* Toolbar */
+.toolbar{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 6px 14px;
+  flex-wrap: wrap;
+}
+
+.hint{
+  font-size: 12px;
+  opacity: .7;
+  white-space: nowrap;
+}
+
+/* Busca */
+.search{
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+  max-width: 520px;
+}
+
+.search__icon{
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 18px;
+  height: 18px;
+  opacity: .55;
+}
+
+.search__icon svg{ width: 18px; height: 18px; display: block; }
+
+.search__input{
+  width: 100%;
+  padding: 10px 12px 10px 40px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(5, 13, 141, .03);
+  outline: none;
+}
+
+.search__input:focus{
+  border-color: rgba(5, 13, 141, .28);
+  background: rgba(5, 13, 141, .05);
+}
+
+/* Tabela */
+.table-wrap{
+  overflow: auto;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .08);
+}
+
+.table{
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 980px;
+  background: rgba(255,255,255,.92);
+}
+
+.table thead th{
+  text-align: left;
+  font-size: 12px;
+  letter-spacing: .2px;
+  padding: 12px 12px;
+  background: rgba(5, 13, 141, .06);
+  border-bottom: 1px solid rgba(15, 20, 40, .10);
+}
+
+.table tbody td{
+  padding: 12px 12px;
+  border-bottom: 1px solid rgba(15, 20, 40, .08);
+  vertical-align: middle;
+  font-size: 13px;
+}
+
+.table tbody tr:hover td{
+  background: rgba(5, 13, 141, .03);
+  cursor: pointer;
+}
+
+.strong{ font-weight: 800; }
+
+.col-status{ width: 120px; }
+.col-actions{ width: 120px; }
+
+/* Badges */
+.badge{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  border: 1px solid rgba(15, 20, 40, .12);
+  font-weight: 800;
+}
+
+.badge--active{
+  background: rgba(34, 197, 94, .12);
+  border-color: rgba(34, 197, 94, .22);
+  color: rgba(22, 101, 52, .95);
+}
+
+.badge--warn{
+  background: rgba(245, 158, 11, .14);
+  border-color: rgba(245, 158, 11, .24);
+  color: rgba(146, 64, 14, .95);
+}
+
+/* Botões (fallback) */
+.btn{
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(255,255,255,.86);
+  padding: 10px 14px;
+  border-radius: 14px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.btn--ghost{ background: rgba(5, 13, 141, .04); }
+.btn--primary{
+  background: rgba(37, 99, 235, .14);
+  border-color: rgba(37, 99, 235, .24);
+}
+
+.btn--sm{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+/* Responsivo */
+@media (max-width: 900px){
+  .colab-head{
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .hint{ display: none; }
+}

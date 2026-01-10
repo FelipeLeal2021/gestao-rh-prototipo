@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cadastro do Colaborador • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="colaborador-cadastro.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="cad-page">
+    <a class="back-link" href="colaboradores.html">← Voltar para Colaboradores</a>
+
+    <section class="cad-card">
+      <header class="cad-top">
+        <div class="profile">
+          <div class="avatar" aria-hidden="true"></div>
+          <div>
+            <h2 class="cad-title" id="cadTitle">Cadastro — Colaborador</h2>
+            <p class="cad-role" id="cadRole">—</p>
+          </div>
+        </div>
+
+        <div class="cad-actions">
+          <button class="btn btn--ghost" type="button" onclick="history.back()">Cancelar</button>
+          <button class="btn btn--primary" type="button" onclick="alert('Salvar ainda não implementado')">Salvar</button>
+        </div>
+      </header>
+
+      <nav class="tabs" aria-label="Abas do cadastro">
+        <button class="tab is-active" type="button" data-tab="pessoais">Dados Pessoais</button>
+        <button class="tab" type="button" data-tab="vinculo">Vínculo com a Empresa</button>
+        <button class="tab" type="button" data-tab="estrutura">Cargo e Estrutura</button>
+        <button class="tab" type="button" data-tab="beneficios">Benefícios</button>
+        <button class="tab" type="button" data-tab="ferias">Férias</button>
+        <button class="tab" type="button" data-tab="afastamentos">Afastamentos</button>
+        <button class="tab" type="button" data-tab="advertencias">Advertências</button>
+        <button class="tab" type="button" data-tab="observacoes">Observações</button>
+      </nav>
+
+      <!-- PANELS -->
+      <section class="panels">
+        <!-- Dados Pessoais -->
+        <div class="panel is-active" id="panel-pessoais">
+          <h3 class="panel-title">Dados Pessoais</h3>
+
+          <form class="form-grid">
+            <div class="field">
+              <label>Nome Completo</label>
+              <input id="nome" type="text" />
+            </div>
+
+            <div class="field">
+              <label>CPF</label>
+              <input id="cpf" type="text" placeholder="000.000.000-00" />
+              <small class="help">Campo obrigatório, único e exclusivo para cada colaborador.</small>
+            </div>
+
+            <div class="field">
+              <label>Data de Nascimento</label>
+              <input id="nascimento" type="date" />
+            </div>
+
+            <div class="field">
+              <label>Sexo</label>
+              <select id="sexo">
+                <option>Feminino</option>
+                <option>Masculino</option>
+                <option>Outro</option>
+                <option>Prefiro não informar</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Telefone / WhatsApp</label>
+              <input id="telefone" type="tel" placeholder="(00) 90000-0000" />
+            </div>
+
+            <div class="field">
+              <label>E-mail (opcional)</label>
+              <input id="email" type="email" placeholder="email@exemplo.com" />
+            </div>
+          </form>
+        </div>
+
+        <!-- Vínculo -->
+        <div class="panel" id="panel-vinculo">
+          <h3 class="panel-title">Vínculo com a Empresa</h3>
+
+          <form class="form-grid">
+            <div class="field">
+              <label>Tipo de Vínculo</label>
+              <select id="tipoVinculo">
+                <option>CLT</option>
+                <option>PJ</option>
+                <option>Estágio</option>
+                <option>Temporário</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Data de Admissão</label>
+              <input id="admissao" type="date" />
+            </div>
+
+            <div class="field">
+              <label>Status</label>
+              <select id="status">
+                <option>Ativo</option>
+                <option>Afastado</option>
+                <option>Inativo</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label>Data de Desligamento</label>
+              <input id="desligamento" type="date" />
+            </div>
+          </form>
+        </div>
+
+        <!-- Cargo e Estrutura -->
+        <div class="panel" id="panel-estrutura">
+          <div class="panel-head">
+            <h3 class="panel-title">Cargo e Estrutura</h3>
+            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir novo cargo ainda não implementado')">
+              <span class="btn__icon" aria-hidden="true">+</span>
+              Incluir Novo Cargo
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Motivo</th>
+                  <th>Cargo</th>
+                  <th>Salário</th>
+                  <th>Departamento</th>
+                  <th>Gestor Direto</th>
+                </tr>
+              </thead>
+              <tbody id="histCargo"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Benefícios -->
+        <div class="panel" id="panel-beneficios">
+          <div class="panel-head">
+            <h3 class="panel-title">Benefícios</h3>
+            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir benefício ainda não implementado')">
+              <span class="btn__icon" aria-hidden="true">+</span>
+              Incluir Benefício
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Benefício</th>
+                  <th>Valor</th>
+                  <th>Empresa paga</th>
+                  <th>Colaborador paga</th>
+                  <th>Exceção?</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="tabBeneficios"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Férias -->
+        <div class="panel" id="panel-ferias">
+          <div class="panel-head">
+            <h3 class="panel-title">Férias</h3>
+            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir período de férias ainda não implementado')">
+              <span class="btn__icon" aria-hidden="true">+</span>
+              Incluir Período de Férias
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Período aquisitivo</th>
+                  <th>Status</th>
+                  <th>Dias de direito</th>
+                  <th>Gozadas</th>
+                  <th>Vendeu dias?</th>
+                  <th>Dias pendentes</th>
+                  <th>Data limite</th>
+                </tr>
+              </thead>
+              <tbody id="tabFerias"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Afastamentos -->
+        <div class="panel" id="panel-afastamentos">
+          <div class="panel-head">
+            <h3 class="panel-title">Afastamentos</h3>
+            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir afastamento ainda não implementado')">
+              <span class="btn__icon" aria-hidden="true">+</span>
+              Incluir Afastamento
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Tipo</th>
+                  <th>Data inicial</th>
+                  <th>Data final</th>
+                  <th>Nº de dias</th>
+                  <th>Observação</th>
+                </tr>
+              </thead>
+              <tbody id="tabAfast"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Advertências -->
+        <div class="panel" id="panel-advertencias">
+          <div class="panel-head">
+            <h3 class="panel-title">Advertências</h3>
+            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir advertência ainda não implementado')">
+              <span class="btn__icon" aria-hidden="true">+</span>
+              Incluir Advertência
+            </button>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Data</th>
+                  <th>Responsável</th>
+                  <th>Tipo</th>
+                  <th>Motivo</th>
+                  <th>Orientação aplicada</th>
+                </tr>
+              </thead>
+              <tbody id="tabAdv"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Observações -->
+        <div class="panel" id="panel-observacoes">
+          <h3 class="panel-title">Observações</h3>
+
+          <div class="field">
+            <label>Observações gerais</label>
+            <textarea class="textarea" rows="8" placeholder="Digite observações sobre o colaborador..."></textarea>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const DB = {
+        1: {
+          nome: "Ana Paula Souza",
+          cargo: "Assistente Administrativo",
+          cpf: "123.456.789-09",
+          nascimento: "1990-09-15",
+          sexo: "Feminino",
+          telefone: "+55 11 9865-4321",
+          email: "ana.paula@email.com",
+          tipoVinculo: "CLT",
+          admissao: "2022-03-15",
+          status: "Ativo",
+          desligamento: "",
+          historicoCargo: [
+            {data:"2024-03-05", motivo:"Promoção — mudança de nível", cargo:"Analista Pleno Administrativo", salario:"R$ 3.800,00", depto:"Compras", gestor:"Marcelo Ribeiro"},
+            {data:"2023-01-10", motivo:"Promoção — mudança de cargo", cargo:"Analista Administrativo", salario:"R$ 3.200,00", depto:"Compras", gestor:"Marcelo Ribeiro"},
+            {data:"2022-03-15", motivo:"Admissão", cargo:"Assistente Administrativo", salario:"R$ 2.500,00", depto:"Financeiro", gestor:"Marcelo Ribeiro"},
+          ],
+          beneficios: [
+            {nome:"Vale Refeição", valor:"R$ 700,00", empresa:"R$ 699,00", colab:"R$ 300,00", excecao:"Sim", status:"Ativo"},
+            {nome:"Plano de Saúde", valor:"R$ 300,00", empresa:"R$ 200,00", colab:"R$ 100,00", excecao:"Não", status:"Ativo"},
+            {nome:"Plano Odontológico", valor:"R$ 80,00", empresa:"R$ 30,00", colab:"R$ 50,00", excecao:"Não", status:"Ativo"},
+            {nome:"Day Off", valor:"—", empresa:"—", colab:"—", excecao:"Não", status:"Ativo"},
+          ],
+          ferias: [
+            {aq:"2023-03-01 a 2024-02-29", status:"Completo", direito:"30", gozadas:"10/01/2025 a 29/01/2025", vendeu:"0", pend:"10", limite:"2026-02-28"},
+            {aq:"2024-03-01 a 2025-02-28", status:"Em aquisição", direito:"0", gozadas:"—", vendeu:"0", pend:"0", limite:"2027-02-28"},
+          ],
+          afast: [
+            {tipo:"Atestado Médico", ini:"2026-01-09", fim:"2026-01-11", dias:"3", obs:"CID A09"},
+          ],
+          adv: [
+            {data:"2024-03-05", resp:"Lucas Andrade (RH)", tipo:"Escrita", motivo:"Atrasos frequentes", orient:"Orientado a ajustar os horários de chegada e cumprir o expediente."}
+          ],
+        },
+        2: { nome:"Carlos Henrique Lima", cargo:"Analista Administrativo" },
+        3: { nome:"Fernanda Rocha", cargo:"Analista Financeiro" },
+        4: { nome:"João Victor Martins", cargo:"Operador de Produção" },
+        5: { nome:"Thiago Moreira", cargo:"Operador de Produção" },
+      };
+
+      const params = new URLSearchParams(window.location.search);
+      const id = params.get("id") || "1";
+      const data = DB[id] || DB["1"];
+
+      // topo
+      document.getElementById("cadTitle").textContent = `Cadastro — ${data.nome || "Colaborador"}`;
+      document.getElementById("cadRole").textContent = data.cargo || "—";
+
+      // dados pessoais (se existir)
+      const set = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.value = val; };
+      set("nome", data.nome || "");
+      set("cpf", data.cpf || "");
+      set("nascimento", data.nascimento || "");
+      set("telefone", data.telefone || "");
+      set("email", data.email || "");
+      if (data.sexo) set("sexo", data.sexo);
+      if (data.tipoVinculo) set("tipoVinculo", data.tipoVinculo);
+      if (data.admissao) set("admissao", data.admissao);
+      if (data.status) set("status", data.status);
+      if (data.desligamento !== undefined) set("desligamento", data.desligamento);
+
+      // tabelas
+      const hist = document.getElementById("histCargo");
+      if (hist && data.historicoCargo) {
+        hist.innerHTML = data.historicoCargo.map(r => `
+          <tr>
+            <td>${fmtDate(r.data)}</td>
+            <td>${r.motivo}</td>
+            <td class="strong">${r.cargo}</td>
+            <td>${r.salario}</td>
+            <td>${r.depto}</td>
+            <td>${r.gestor}</td>
+          </tr>
+        `).join("");
+      }
+
+      const ben = document.getElementById("tabBeneficios");
+      if (ben && data.beneficios) {
+        ben.innerHTML = data.beneficios.map(r => `
+          <tr>
+            <td class="strong">${r.nome}</td>
+            <td>${r.valor}</td>
+            <td>${r.empresa}</td>
+            <td>${r.colab}</td>
+            <td><span class="pill ${r.excecao === "Sim" ? "pill--warn" : ""}">${r.excecao}</span></td>
+            <td><span class="badge badge--active">${r.status}</span></td>
+          </tr>
+        `).join("");
+      }
+
+      const fer = document.getElementById("tabFerias");
+      if (fer && data.ferias) {
+        fer.innerHTML = data.ferias.map(r => `
+          <tr>
+            <td>${r.aq}</td>
+            <td>${r.status}</td>
+            <td>${r.direito}</td>
+            <td>${r.gozadas}</td>
+            <td>${r.vendeu}</td>
+            <td>${r.pend}</td>
+            <td>${fmtDate(r.limite)}</td>
+          </tr>
+        `).join("");
+      }
+
+      const af = document.getElementById("tabAfast");
+      if (af && data.afast) {
+        af.innerHTML = data.afast.map(r => `
+          <tr>
+            <td class="strong">${r.tipo}</td>
+            <td>${fmtDate(r.ini)}</td>
+            <td>${fmtDate(r.fim)}</td>
+            <td>${r.dias}</td>
+            <td>${r.obs}</td>
+          </tr>
+        `).join("");
+      }
+
+      const adv = document.getElementById("tabAdv");
+      if (adv && data.adv) {
+        adv.innerHTML = data.adv.map(r => `
+          <tr>
+            <td>${fmtDate(r.data)}</td>
+            <td>${r.resp}</td>
+            <td><span class="pill">${r.tipo}</span></td>
+            <td>${r.motivo}</td>
+            <td>${r.orient}</td>
+          </tr>
+        `).join("");
+      }
+
+      // tabs
+      const tabs = document.querySelectorAll(".tab");
+      const panels = {
+        pessoais: document.getElementById("panel-pessoais"),
+        vinculo: document.getElementById("panel-vinculo"),
+        estrutura: document.getElementById("panel-estrutura"),
+        beneficios: document.getElementById("panel-beneficios"),
+        ferias: document.getElementById("panel-ferias"),
+        afastamentos: document.getElementById("panel-afastamentos"),
+        advertencias: document.getElementById("panel-advertencias"),
+        observacoes: document.getElementById("panel-observacoes"),
+      };
+
+      function activate(key){
+        tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
+        Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
+      }
+
+      tabs.forEach(t => t.addEventListener("click", () => activate(t.dataset.tab)));
+
+      function fmtDate(iso){
+        if (!iso || iso === "—") return "—";
+        // aceita yyyy-mm-dd
+        const parts = String(iso).split("-");
+        if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        return iso;
+      }
+    })();
+  </script>
+</body>
+</html>
