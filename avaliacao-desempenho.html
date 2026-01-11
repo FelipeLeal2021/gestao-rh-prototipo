@@ -46,8 +46,7 @@
               <tr>
                 <th>Período <span class="ad-sort">▾</span></th>
                 <th>Tipo <span class="ad-sort">▾</span></th>
-                <th>Dpo <span class="ad-sort">▾</span></th>
-                <th>Data início <span class="ad-sort">▾</span></th>
+                <th>Período para avaliação <span class="ad-sort">▾</span></th>
                 <th>Status <span class="ad-sort">▾</span></th>
                 <th class="ad-col-actions">Ação</th>
               </tr>
@@ -56,8 +55,7 @@
               <tr class="ad-filters">
                 <th><input class="ad-filter" data-col="periodo" type="text" placeholder="Filtrar" /></th>
                 <th><input class="ad-filter" data-col="tipo" type="text" placeholder="Filtrar" /></th>
-                <th><input class="ad-filter" data-col="dpo" type="text" placeholder="Filtrar" /></th>
-                <th><input class="ad-filter" data-col="data" type="text" placeholder="Filtrar" /></th>
+                <th><input class="ad-filter" data-col="janela" type="text" placeholder="Filtrar" /></th>
                 <th>
                   <select class="ad-filter ad-filter--select" data-col="status">
                     <option value="">Todos</option>
@@ -71,46 +69,77 @@
             </thead>
 
             <tbody>
-              <tr data-cycle="2025-1s">
-                <td data-col="periodo">2025 - 1º Semestre</td>
+              <!-- 2026 – 2º Semestre (Não iniciado) -->
+              <tr data-cycle="2026-2s">
+                <td data-col="periodo">2026 - 2º Semestre</td>
                 <td data-col="tipo">Semestral</td>
-                <td data-col="dpo">Semestral</td>
-                <td data-col="data">01/06/2025</td>
+                <td data-col="janela">01/01/2026 a 15/01/2026</td>
                 <td data-col="status">
                   <span class="ad-pill ad-pill--warn">🟡 Não iniciado</span>
                 </td>
                 <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small" type="button" data-action="acessar-ciclo" data-cycle-id="2025-1s">
+                  <button class="ad-btn ad-btn--small" type="button"
+                    data-action="acessar-ciclo"
+                    data-cycle-id="2026-2s"
+                    data-cycle-label="2026 - 2º Semestre"
+                    data-cycle-status="Não iniciado">
                     Acessar
                   </button>
                 </td>
               </tr>
 
-              <tr data-cycle="2024-2s">
-                <td data-col="periodo">2024 - 2º Semestre</td>
+              <!-- 2026 – 1º Semestre (Não iniciado) -->
+              <tr data-cycle="2026-1s">
+                <td data-col="periodo">2026 - 1º Semestre</td>
                 <td data-col="tipo">Semestral</td>
-                <td data-col="dpo">Semestral</td>
-                <td data-col="data">01/11/2024</td>
+                <td data-col="janela">01/07/2026 a 15/07/2026</td>
+                <td data-col="status">
+                  <span class="ad-pill ad-pill--warn">🟡 Não iniciado</span>
+                </td>
+                <td class="ad-col-actions">
+                  <button class="ad-btn ad-btn--small" type="button"
+                    data-action="acessar-ciclo"
+                    data-cycle-id="2026-1s"
+                    data-cycle-label="2026 - 1º Semestre"
+                    data-cycle-status="Não iniciado">
+                    Acessar
+                  </button>
+                </td>
+              </tr>
+
+              <!-- 2025 – 2º Semestre (Em andamento) -->
+              <tr data-cycle="2025-2s">
+                <td data-col="periodo">2025 - 2º Semestre</td>
+                <td data-col="tipo">Semestral</td>
+                <td data-col="janela">01/01/2026 a 15/01/2026</td>
                 <td data-col="status">
                   <span class="ad-pill ad-pill--info">🟣 Em andamento</span>
                 </td>
                 <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small" type="button" data-action="acessar-ciclo" data-cycle-id="2024-2s">
+                  <button class="ad-btn ad-btn--small" type="button"
+                    data-action="acessar-ciclo"
+                    data-cycle-id="2025-2s"
+                    data-cycle-label="2025 - 2º Semestre"
+                    data-cycle-status="Em andamento">
                     Acessar
                   </button>
                 </td>
               </tr>
 
-              <tr data-cycle="2024-1s">
-                <td data-col="periodo">2024 - 1º Semestre</td>
+              <!-- 2025 – 1º Semestre (Encerrado) -->
+              <tr data-cycle="2025-1s">
+                <td data-col="periodo">2025 - 1º Semestre</td>
                 <td data-col="tipo">Semestral</td>
-                <td data-col="dpo">Semestral</td>
-                <td data-col="data">01/05/2024</td>
+                <td data-col="janela">01/07/2025 a 15/07/2025</td>
                 <td data-col="status">
                   <span class="ad-pill ad-pill--danger">🔴 Encerrado</span>
                 </td>
                 <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small ad-btn--ghost" type="button" data-action="ver-resultados" data-cycle-id="2024-1s">
+                  <button class="ad-btn ad-btn--small ad-btn--ghost" type="button"
+                    data-action="ver-resultados"
+                    data-cycle-id="2025-1s"
+                    data-cycle-label="2025 - 1º Semestre"
+                    data-cycle-status="Encerrado">
                     Ver resultados
                   </button>
                 </td>
@@ -128,7 +157,7 @@
       <header class="ad-head">
         <div>
           <h2 class="ad-title" id="cycleTitle">Avaliação de Desempenho</h2>
-          <p class="ad-sub">Selecione um colaborador para avaliar, continuar ou visualizar.</p>
+          <p class="ad-sub" id="cycleSub">Lista de colaboradores do ciclo.</p>
         </div>
 
         <button class="ad-btn ad-btn--ghost" type="button" data-action="voltar-ciclos">← Voltar</button>
@@ -164,7 +193,6 @@
                   <select class="ad-filter ad-filter--select" data-col="status">
                     <option value="">Todos</option>
                     <option value="Não avaliado">Não avaliado</option>
-                    <option value="Em andamento">Em andamento</option>
                     <option value="Avaliado">Avaliado</option>
                   </select>
                 </th>
@@ -173,86 +201,8 @@
               </tr>
             </thead>
 
-            <tbody>
-              <tr>
-                <td data-col="colaborador">Ana Paula Souza</td>
-                <td data-col="cargo">Assistente Adm</td>
-                <td data-col="depto">Financeiro</td>
-                <td data-col="admissao">10/02/2023</td>
-                <td data-col="status"><span class="ad-pill ad-pill--danger">🔴 Não avaliado</span></td>
-                <td>—</td>
-                <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small" type="button"
-                    data-action="abrir-avaliacao"
-                    data-colab="Ana Paula Souza"
-                    data-cargo="Assistente Administrativo"
-                    data-depto="Financeiro"
-                    data-lider="Mariana Teixeira"
-                    data-status="avaliar">
-                    Avaliar
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td data-col="colaborador">João Victor Martins</td>
-                <td data-col="cargo">Operador Produção</td>
-                <td data-col="depto">Produção</td>
-                <td data-col="admissao">05/05/2021</td>
-                <td data-col="status"><span class="ad-pill ad-pill--warn">🟡 Em andamento</span></td>
-                <td>—</td>
-                <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small" type="button"
-                    data-action="abrir-avaliacao"
-                    data-colab="João Victor Martins"
-                    data-cargo="Operador de Produção"
-                    data-depto="Produção"
-                    data-lider="Mariana Teixeira"
-                    data-status="continuar">
-                    Continuar
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td data-col="colaborador">Fernanda Rocha</td>
-                <td data-col="cargo">Analista Financeiro</td>
-                <td data-col="depto">Financeiro</td>
-                <td data-col="admissao">15/10/2020</td>
-                <td data-col="status"><span class="ad-pill ad-pill--ok">🟢 Avaliado</span></td>
-                <td>08/05/2024</td>
-                <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small ad-btn--success" type="button"
-                    data-action="abrir-avaliacao"
-                    data-colab="Fernanda Rocha"
-                    data-cargo="Analista Financeiro"
-                    data-depto="Financeiro"
-                    data-lider="Mariana Teixeira"
-                    data-status="visualizar">
-                    Visualizar
-                  </button>
-                </td>
-              </tr>
-
-              <tr>
-                <td data-col="colaborador">Marcos Oliveira</td>
-                <td data-col="cargo">Supervisor Vendas</td>
-                <td data-col="depto">Comercial</td>
-                <td data-col="admissao">12/01/2019</td>
-                <td data-col="status"><span class="ad-pill ad-pill--danger">🔴 Não avaliado</span></td>
-                <td>—</td>
-                <td class="ad-col-actions">
-                  <button class="ad-btn ad-btn--small" type="button"
-                    data-action="abrir-avaliacao"
-                    data-colab="Marcos Oliveira"
-                    data-cargo="Supervisor de Vendas"
-                    data-depto="Comercial"
-                    data-lider="Mariana Teixeira"
-                    data-status="avaliar">
-                    Avaliar
-                  </button>
-                </td>
-              </tr>
+            <tbody id="colabsBody">
+              <!-- preenchido via JS conforme status do ciclo -->
             </tbody>
           </table>
         </div>
@@ -284,12 +234,7 @@
 
             <div class="ad-meta__item">
               <strong>Data da avaliação:</strong>
-              <input class="ad-input" type="text" value="18/04/2024" />
-            </div>
-
-            <div class="ad-meta__item">
-              <strong>Data da avaliação:</strong>
-              <input class="ad-input" type="text" placeholder="dd/mm/aaaa" />
+              <input id="metaDataAvaliacao" class="ad-input" type="text" placeholder="dd/mm/aaaa" />
             </div>
           </div>
         </div>
@@ -328,7 +273,7 @@
         <section class="ad-panel" id="tab-org">
           <div class="ad-panel__top">
             <h3 class="ad-h3">Avaliação das Competências Organizacionais</h3>
-            <a class="ad-link" href="#" onclick="alert('Exemplo: competências organizacionais = valores/forma de atuar na empresa.'); return false;">
+            <a class="ad-link" href="#" onclick="alert('Competências organizacionais: valores e forma de atuar na empresa.'); return false;">
               ? O que são competências organizacionais?
             </a>
           </div>
@@ -342,45 +287,47 @@
             </div>
           </div>
 
+          <div class="ad-box ad-muted" style="margin-top:12px;">
+            <strong>Referência (1 a 5):</strong>
+            <div style="display:grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap:8px; margin-top:8px;">
+              <div><strong>1</strong> = Raramente (20%)</div>
+              <div><strong>2</strong> = Poucas vezes (40%)</div>
+              <div><strong>3</strong> = Com frequência (60%)</div>
+              <div><strong>4</strong> = Muitas vezes (80%)</div>
+              <div><strong>5</strong> = Todas as vezes (100%)</div>
+            </div>
+          </div>
+
           <div class="ad-table-wrap">
             <table class="ad-table ad-table--form" data-calc="org">
               <thead>
                 <tr>
-                  <th style="width:46%">Competência</th>
-                  <th style="width:18%">Nível Requerido</th>
-                  <th style="width:18%">Nível atingido</th>
-                  <th style="width:18%">Desempenho</th>
+                  <th style="width:46%">Competência Organizacional</th>
+                  <th style="width:14%">Nível Requerido</th>
+                  <th style="width:14%">Nível Atingido</th>
+                  <th style="width:14%">Desempenho</th>
+                  <th style="width:12%">Média</th>
                 </tr>
               </thead>
+
               <tbody>
-                <tr class="ad-group">
-                  <td colspan="4"><strong>INOVAÇÃO</strong></td>
-                </tr>
+                <!-- ÉTICA -->
+                <tr class="ad-group"><td colspan="5"><strong>ÉTICA E RESPONSABILIDADE PROFISSIONAL</strong></td></tr>
 
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Costuma apresentar sugestões inovadoras para resolver problemas.</td>
+                <tr class="ad-row" data-group="org-etica" data-req="5">
+                  <td class="ad-q">• Cumpre normas internas e políticas da empresa sem necessidade de reforço constante.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
                     </select>
                   </td>
                   <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-etica">0%</strong></td>
                 </tr>
 
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Cria novas formas de executar tarefas antigas com melhorias.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
-
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Contribui com ideias para aprimorar processos e resultados.</td>
+                <tr class="ad-row" data-group="org-etica" data-req="5">
+                  <td class="ad-q">• Demonstra postura ética no tratamento de informações e nas relações profissionais.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
@@ -390,59 +337,163 @@
                   <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
                 </tr>
 
-                <tr class="ad-divider">
-                  <td colspan="4">
-                    <div class="ad-avg">
-                      <span>Desempenho Médio da Competência:</span>
-                      <strong id="avgOrg">0%</strong>
-                    </div>
-                  </td>
-                </tr>
-
-                <tr class="ad-group">
-                  <td colspan="4"><strong>RESILIÊNCIA</strong></td>
-                </tr>
-
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Recupera-se rapidamente após dificuldades ou impacto negativo.</td>
+                <tr class="ad-row" data-group="org-etica" data-req="5">
+                  <td class="ad-q">• Assume responsabilidades e responde adequadamente por suas entregas.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>2</option><option>4</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
                     </select>
                   </td>
                   <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
                 </tr>
 
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Mantém estabilidade e foco em situações de pressão.</td>
+                <!-- CLIENTE -->
+                <tr class="ad-group"><td colspan="5"><strong>COMPROMISSO COM O CLIENTE</strong></td></tr>
+
+                <tr class="ad-row" data-group="org-cliente" data-req="5">
+                  <td class="ad-q">• Demonstra atenção e cordialidade no atendimento a clientes internos e externos.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-cliente">0%</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-cliente" data-req="5">
+                  <td class="ad-q">• Busca compreender as demandas antes de executar ou encaminhar soluções.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
                     </select>
                   </td>
                   <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
                 </tr>
 
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Adapta-se a mudanças sem perder efetividade.</td>
+                <tr class="ad-row" data-group="org-cliente" data-req="5">
+                  <td class="ad-q">• Preocupa-se com a qualidade e clareza das entregas realizadas.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option selected>2</option><option>3</option><option>4</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
                     </select>
                   </td>
                   <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
                 </tr>
 
-                <tr class="ad-divider">
-                  <td colspan="4">
-                    <div class="ad-avg">
-                      <span>Desempenho Médio da Competência:</span>
-                      <strong id="avgOrg2">0%</strong>
-                    </div>
+                <!-- PRAZOS -->
+                <tr class="ad-group"><td colspan="5"><strong>ORGANIZAÇÃO E CUMPRIMENTO DE PRAZOS</strong></td></tr>
+
+                <tr class="ad-row" data-group="org-prazos" data-req="5">
+                  <td class="ad-q">• Mantém controle das próprias atividades e documentos sob sua responsabilidade.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
                   </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-prazos">0%</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-prazos" data-req="5">
+                  <td class="ad-q">• Cumpre prazos estabelecidos ou sinaliza previamente possíveis atrasos.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-prazos" data-req="5">
+                  <td class="ad-q">• Segue processos e padrões definidos pela empresa.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <!-- APRENDIZADO -->
+                <tr class="ad-group"><td colspan="5"><strong>APRENDIZADO E EVOLUÇÃO CONTÍNUA</strong></td></tr>
+
+                <tr class="ad-row" data-group="org-aprend" data-req="5">
+                  <td class="ad-q">• Demonstra interesse em aprender novas rotinas, sistemas ou processos.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-aprend">0%</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-aprend" data-req="5">
+                  <td class="ad-q">• Aplica aprendizados no dia a dia de trabalho.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-aprend" data-req="5">
+                  <td class="ad-q">• Busca evoluir tecnicamente e profissionalmente dentro da função.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <!-- RESPEITO -->
+                <tr class="ad-group"><td colspan="5"><strong>RESPEITO E COLABORAÇÃO</strong></td></tr>
+
+                <tr class="ad-row" data-group="org-respeito" data-req="5">
+                  <td class="ad-q">• Mantém relacionamento respeitoso com colegas, líderes e clientes.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-respeito">0%</strong></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-respeito" data-req="5">
+                  <td class="ad-q">• Colabora com a equipe quando solicitado ou quando identifica necessidade.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                </tr>
+
+                <tr class="ad-row" data-group="org-respeito" data-req="5">
+                  <td class="ad-q">• Contribui para um ambiente de trabalho positivo e cooperativo.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                  </td>
+                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
                 </tr>
               </tbody>
             </table>
@@ -471,50 +522,308 @@
             </div>
           </div>
 
+          <div class="ad-box ad-muted" style="margin-top:12px;">
+            <strong>Referência (1 a 5):</strong>
+            <div style="display:grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap:8px; margin-top:8px;">
+              <div><strong>1</strong> = Raramente (20%)</div>
+              <div><strong>2</strong> = Poucas vezes (40%)</div>
+              <div><strong>3</strong> = Com frequência (60%)</div>
+              <div><strong>4</strong> = Muitas vezes (80%)</div>
+              <div><strong>5</strong> = Todas as vezes (100%)</div>
+            </div>
+          </div>
+
           <div class="ad-table-wrap">
             <table class="ad-table ad-table--form" data-calc="comp">
               <thead>
                 <tr>
-                  <th style="width:46%">Competência</th>
-                  <th style="width:18%">Nível Requerido</th>
-                  <th style="width:18%">Nível atingido</th>
-                  <th style="width:18%">Desempenho</th>
+                  <th style="width:18%">Competência</th>
+                  <th style="width:26%">Conceito</th>
+                  <th style="width:32%">Indicadores</th>
+                  <th style="width:8%">Grau</th>
+                  <th style="width:10%">Desempenho</th>
+                  <th style="width:6%">Média</th>
                 </tr>
               </thead>
 
               <tbody>
-                <tr class="ad-group">
-                  <td colspan="4"><strong>TRABALHO EM EQUIPE</strong></td>
-                </tr>
-
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Colabora com colegas e compartilha informações.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>4</option><option>5</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
-
-                <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Mantém postura respeitosa e cooperativa.</td>
-                  <td class="ad-center">5</td>
+                <!-- Organização (4) -->
+                <tr class="ad-row" data-group="comp-org" data-req="4">
+                  <td rowspan="3"><strong>Organização</strong></td>
+                  <td rowspan="3">Capacidade de estruturar e controlar atividades e rotinas.</td>
+                  <td class="ad-q">• Mantém documentos físicos e digitais organizados e atualizados.</td>
+                  <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
                       <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
                     </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-org">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-org" data-req="4">
+                  <td class="ad-q">• Segue rotinas administrativas sem gerar retrabalho.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-org" data-req="4">
+                  <td class="ad-q">• Demonstra facilidade para localizar informações quando solicitado.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
                 </tr>
 
-                <tr class="ad-divider">
-                  <td colspan="4">
-                    <div class="ad-avg">
-                      <span>Desempenho Médio da Competência:</span>
-                      <strong id="avgComp">0%</strong>
-                    </div>
+                <!-- Responsabilidade (5) -->
+                <tr class="ad-row" data-group="comp-resp" data-req="5">
+                  <td rowspan="3"><strong>Responsabilidade</strong></td>
+                  <td rowspan="3">Assumir consequências dos próprios atos e compromissos.</td>
+                  <td class="ad-q">• Cumpre prazos e acordos assumidos com autonomia.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-resp">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-resp" data-req="5">
+                  <td class="ad-q">• Assume suas tarefas sem necessidade de cobranças constantes.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-resp" data-req="5">
+                  <td class="ad-q">• Comunica dificuldades ou imprevistos de forma antecipada.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+
+                <!-- Precisão (3) -->
+                <tr class="ad-row" data-group="comp-prec" data-req="3">
+                  <td rowspan="3"><strong>Precisão</strong></td>
+                  <td rowspan="3">Rigor e cuidado na execução das tarefas, com atenção aos detalhes.</td>
+                  <td class="ad-q">• Executa tarefas com atenção, reduzindo erros operacionais.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-prec">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-prec" data-req="3">
+                  <td class="ad-q">• Realiza conferências básicas antes de finalizar entregas.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-prec" data-req="3">
+                  <td class="ad-q">• Demonstra cuidado com dados, informações e registros.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+
+                <!-- Foco (4) -->
+                <tr class="ad-row" data-group="comp-foco" data-req="4">
+                  <td rowspan="3"><strong>Foco</strong></td>
+                  <td rowspan="3">Manter atenção direcionada para objetivos e prioridades.</td>
+                  <td class="ad-q">• Mantém atenção nas atividades prioritárias do dia a dia.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-foco">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-foco" data-req="4">
+                  <td class="ad-q">• Consegue concluir tarefas sem dispersões frequentes.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-foco" data-req="4">
+                  <td class="ad-q">• Organiza seu tempo para finalizar as demandas propostas.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+
+                <!-- Trabalho em Equipe (5) -->
+                <tr class="ad-row" data-group="comp-time" data-req="5">
+                  <td rowspan="3"><strong>Trabalho em Equipe</strong></td>
+                  <td rowspan="3">Capacidade de cooperar com outras pessoas em prol de objetivos comuns.</td>
+                  <td class="ad-q">• Coopera com colegas, oferecendo apoio quando necessário.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-time">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-time" data-req="5">
+                  <td class="ad-q">• Mantém relacionamento respeitoso e colaborativo com o time.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-time" data-req="5">
+                  <td class="ad-q">• Contribui para o alcance dos objetivos coletivos da área.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+
+                <!-- Flexibilidade (3) -->
+                <tr class="ad-row" data-group="comp-flex" data-req="3">
+                  <td rowspan="3"><strong>Flexibilidade</strong></td>
+                  <td rowspan="3">Facilidade de adaptação a mudanças e novos cenários.</td>
+                  <td class="ad-q">• Aceita ajustes nas rotinas e demandas quando necessário.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-flex">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-flex" data-req="3">
+                  <td class="ad-q">• Demonstra abertura para mudanças de processos e prioridades.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-flex" data-req="3">
+                  <td class="ad-q">• Consegue se adaptar gradualmente a novos contextos de trabalho.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+
+                <!-- Comprometimento (4) -->
+                <tr class="ad-row" data-group="comp-comp" data-req="4">
+                  <td rowspan="3"><strong>Comprometimento</strong></td>
+                  <td rowspan="3">Honrar acordos e dedicar-se com responsabilidade às tarefas.</td>
+                  <td class="ad-q">• Demonstra envolvimento com as atividades sob sua responsabilidade.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-comp">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-comp" data-req="4">
+                  <td class="ad-q">• Cumpre o que foi combinado com a liderança e a equipe.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-comp" data-req="4">
+                  <td class="ad-q">• Mostra interesse em contribuir para os resultados da área.</td>
+                  <td class="ad-center">4</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+
+                <!-- Resiliência (3) -->
+                <tr class="ad-row" data-group="comp-resil" data-req="3">
+                  <td rowspan="3"><strong>Resiliência</strong></td>
+                  <td rowspan="3">Capacidade de manter equilíbrio diante de pressão e adversidades.</td>
+                  <td class="ad-q">• Mantém postura equilibrada em momentos de maior demanda.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="comp-resil">0%</strong></td>
+                </tr>
+                <tr class="ad-row" data-group="comp-resil" data-req="3">
+                  <td class="ad-q">• Consegue lidar com pressões sem comprometer totalmente o desempenho.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                </tr>
+                <tr class="ad-row" data-group="comp-resil" data-req="3">
+                  <td class="ad-q">• Demonstra esforço para manter o controle emocional diante de dificuldades.</td>
+                  <td class="ad-center">3</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
                 </tr>
               </tbody>
@@ -544,58 +853,168 @@
             </div>
           </div>
 
+          <div class="ad-box ad-muted" style="margin-top:12px;">
+            <strong>Referência (1 a 5):</strong>
+            <div style="display:grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap:8px; margin-top:8px;">
+              <div><strong>1</strong> = Raramente (20%)</div>
+              <div><strong>2</strong> = Poucas vezes (40%)</div>
+              <div><strong>3</strong> = Com frequência (60%)</div>
+              <div><strong>4</strong> = Muitas vezes (80%)</div>
+              <div><strong>5</strong> = Todas as vezes (100%)</div>
+            </div>
+          </div>
+
           <div class="ad-table-wrap">
             <table class="ad-table ad-table--form" data-calc="perf">
               <thead>
                 <tr>
-                  <th style="width:46%">Indicadores de Performance</th>
-                  <th style="width:18%">Nível Requerido</th>
-                  <th style="width:18%">Nível atingido</th>
-                  <th style="width:18%">Desempenho</th>
+                  <th style="width:22%">Indicador</th>
+                  <th style="width:52%">Descrição</th>
+                  <th style="width:8%">Grau</th>
+                  <th style="width:12%">Desempenho</th>
+                  <th style="width:6%">Média</th>
                 </tr>
               </thead>
 
               <tbody>
                 <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Cumprimento de prazos e rotinas conforme procedimento.</td>
+                  <td><strong>Organização de documentos</strong></td>
+                  <td>Mantém arquivos físicos e digitais organizados, facilitando a localização das informações quando solicitadas.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>4</option><option>5</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
                     </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center">—</td>
                 </tr>
 
                 <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Qualidade nas entregas e redução de retrabalho.</td>
+                  <td><strong>Cumprimento de prazos</strong></td>
+                  <td>Entrega as atividades dentro dos prazos combinados, sem necessidade de cobranças constantes.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
                     </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center">—</td>
                 </tr>
 
                 <tr class="ad-row" data-req="5">
-                  <td class="ad-q">Alinhamento com metas e resultados da área.</td>
+                  <td><strong>Qualidade das entregas</strong></td>
+                  <td>Executa as tarefas com atenção, reduzindo erros e retrabalho nas rotinas administrativas.</td>
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
                     </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Responsabilidade com as tarefas</strong></td>
+                  <td>Assume as demandas recebidas e acompanha até a conclusão, demonstrando comprometimento.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Apoio às rotinas do setor</strong></td>
+                  <td>Contribui com as demandas da equipe, oferecendo suporte sempre que solicitado.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Organização da rotina de trabalho</strong></td>
+                  <td>Consegue manter uma rotina organizada, priorizando atividades e evitando acúmulo de tarefas.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Atenção às orientações</strong></td>
+                  <td>Executa as atividades conforme instruções recebidas, respeitando processos e padrões.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Postura profissional</strong></td>
+                  <td>Mantém comportamento adequado, respeito com colegas e cuidado com o ambiente de trabalho.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Evolução no aprendizado</strong></td>
+                  <td>Demonstra evolução ao longo do tempo, reduzindo dúvidas e ganhando mais autonomia.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
+                </tr>
+
+                <tr class="ad-row" data-req="5">
+                  <td><strong>Compromisso com o trabalho</strong></td>
+                  <td>Demonstra interesse, envolvimento e disposição para contribuir com o funcionamento da área.</td>
+                  <td class="ad-center">5</td>
+                  <td class="ad-center">
+                    <select class="ad-select" data-role="att">
+                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                    </select>
+                    <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
+                  </td>
+                  <td class="ad-center">—</td>
                 </tr>
 
                 <tr class="ad-divider">
                   <td colspan="4">
                     <div class="ad-avg">
-                      <span>Desempenho Médio dos Indicadores:</span>
-                      <strong id="avgPerf">0%</strong>
+                      <span>Média dos Indicadores:</span>
+                      <strong id="avgPerfTable">0%</strong>
                     </div>
                   </td>
+                  <td class="ad-center"><strong id="avgPerfTable2">0%</strong></td>
                 </tr>
               </tbody>
             </table>
@@ -615,7 +1034,7 @@
         <section class="ad-panel" id="tab-res">
           <div class="ad-panel__top">
             <h3 class="ad-h3">Resultado Final</h3>
-            <a class="ad-link" href="#" onclick="alert('Exemplo: nota final = média simples das três notas.'); return false;">
+            <a class="ad-link" href="#" onclick="alert('Exemplo: nota final = média simples das três notas (Org + Comp + Perf) / 3.'); return false;">
               ? Como foi calculada a Nota FINAL?
             </a>
           </div>
@@ -691,33 +1110,201 @@
         cargo: document.getElementById("metaCargo"),
         depto: document.getElementById("metaDepto"),
         lider: document.getElementById("metaLider"),
+        data: document.getElementById("metaDataAvaliacao"),
       };
 
       const cycleTitle = document.getElementById("cycleTitle");
+      const cycleSub = document.getElementById("cycleSub");
       const avaliacaoTitle = document.getElementById("avaliacaoTitle");
+
+      // ---------- Dados (conforme documento) ----------
+      const COLABS_ANDAMENTO = [
+        {
+          colaborador: "Ana Paula Souza",
+          cargo: "Auxiliar Administrativo",
+          depto: "Financeiro",
+          admissao: "10/02/2023",
+          status: "Não avaliado",
+          data: "—",
+          acaoLabel: "Avaliar",
+          acaoHabilitada: false
+        },
+        {
+          colaborador: "João Victor Martins",
+          cargo: "Operador Produção",
+          depto: "Produção",
+          admissao: "05/05/2021",
+          status: "Não avaliado",
+          data: "—",
+          acaoLabel: "Avaliar",
+          acaoHabilitada: false
+        },
+        {
+          colaborador: "Fernanda Rocha",
+          cargo: "Analista Financeiro",
+          depto: "Financeiro",
+          admissao: "15/10/2020",
+          status: "Avaliado",
+          data: "08/05/2024",
+          acaoLabel: "Visualizar",
+          acaoHabilitada: false
+        },
+        {
+          colaborador: "Marcos Oliveira",
+          cargo: "Supervisor Vendas",
+          depto: "Comercial",
+          admissao: "12/01/2019",
+          status: "Não avaliado",
+          data: "—",
+          acaoLabel: "Avaliar",
+          acaoHabilitada: false
+        },
+      ];
+
+      const COLABS_ENCERRADO = [
+        {
+          colaborador: "Ana Paula Souza",
+          cargo: "Auxiliar Administrativo",
+          depto: "Financeiro",
+          admissao: "10/02/2023",
+          status: "Avaliado",
+          data: "09/07/2025",
+          acaoLabel: "Visualizar",
+          acaoHabilitada: true,
+          avaliacao: {
+            lider: "Mariana Teixeira"
+          }
+        },
+        {
+          colaborador: "João Victor Martins",
+          cargo: "Operador Produção",
+          depto: "Produção",
+          admissao: "05/05/2021",
+          status: "Avaliado",
+          data: "11/07/2025",
+          acaoLabel: "Visualizar",
+          acaoHabilitada: false,
+          avaliacao: { lider: "Mariana Teixeira" }
+        },
+        {
+          colaborador: "Fernanda Rocha",
+          cargo: "Analista Financeiro",
+          depto: "Financeiro",
+          admissao: "15/10/2020",
+          status: "Avaliado",
+          data: "12/07/2025",
+          acaoLabel: "Visualizar",
+          acaoHabilitada: false,
+          avaliacao: { lider: "Mariana Teixeira" }
+        },
+        {
+          colaborador: "Marcos Oliveira",
+          cargo: "Supervisor Vendas",
+          depto: "Comercial",
+          admissao: "12/01/2019",
+          status: "Avaliado",
+          data: "13/07/2025",
+          acaoLabel: "Visualizar",
+          acaoHabilitada: false,
+          avaliacao: { lider: "Mariana Teixeira" }
+        },
+      ];
+
+      let currentCycleMode = "andamento"; // andamento | encerrado
+      let currentCycleLabel = "";
+
+      function pillHTML(status) {
+        if (status === "Avaliado") return '<span class="ad-pill ad-pill--ok">🟢 Avaliado</span>';
+        return '<span class="ad-pill ad-pill--danger">🔴 Não avaliado</span>';
+      }
+
+      function renderColabs(list) {
+        const tbody = document.getElementById("colabsBody");
+        tbody.innerHTML = "";
+
+        list.forEach((c) => {
+          const tr = document.createElement("tr");
+
+          tr.innerHTML = `
+            <td data-col="colaborador">${c.colaborador}</td>
+            <td data-col="cargo">${c.cargo}</td>
+            <td data-col="depto">${c.depto}</td>
+            <td data-col="admissao">${c.admissao}</td>
+            <td data-col="status">${pillHTML(c.status)}</td>
+            <td>${c.data}</td>
+            <td class="ad-col-actions"></td>
+          `;
+
+          const actionsTd = tr.querySelector(".ad-col-actions");
+
+          // Em andamento: sem cliques (modelo)
+          // Encerrado: só Ana Paula habilitada para abrir a avaliação
+          if (!c.acaoHabilitada) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "ad-btn ad-btn--small ad-btn--ghost";
+            btn.textContent = c.acaoLabel;
+            btn.disabled = true;
+            actionsTd.appendChild(btn);
+          } else {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "ad-btn ad-btn--small ad-btn--success";
+            btn.textContent = c.acaoLabel;
+
+            btn.dataset.action = "abrir-avaliacao";
+            btn.dataset.colab = c.colaborador;
+            btn.dataset.cargo = c.cargo;
+            btn.dataset.depto = c.depto;
+            btn.dataset.lider = (c.avaliacao?.lider || "—");
+            btn.dataset.status = "visualizar";
+            btn.dataset.dataAvaliacao = c.data;
+
+            actionsTd.appendChild(btn);
+          }
+
+          tbody.appendChild(tr);
+        });
+      }
 
       // ---------- Calculo ----------
       function calcTable(tableEl) {
+        if (!tableEl) return { avgPct: 0, nota10: 0 };
+
         const rows = tableEl.querySelectorAll(".ad-row");
         let sumPct = 0;
         let count = 0;
+
+        const groups = {}; // groupKey -> {sum, count}
 
         rows.forEach(r => {
           const req = Number(r.dataset.req || 5);
           const attSel = r.querySelector('[data-role="att"]');
           const pctEl = r.querySelector('[data-role="pct"]');
-          const att = Number(attSel.value || 1);
+          const att = Number(attSel?.value || 1);
 
           const pct = Math.max(0, Math.min(100, (att / req) * 100));
-          pctEl.textContent = `${Math.round(pct)}%`;
+          if (pctEl) pctEl.textContent = `${Math.round(pct)}%`;
+
+          const g = r.dataset.group || "__all__";
+          groups[g] = groups[g] || { sum: 0, count: 0 };
+          groups[g].sum += pct;
+          groups[g].count += 1;
 
           sumPct += pct;
           count++;
         });
 
-        const avg = count ? (sumPct / count) : 0;
-        const nota10 = avg / 10; // 0..10 (já que 100% -> 10)
-        return { avgPct: avg, nota10 };
+        // atualiza médias por grupo (quando existir)
+        Object.entries(groups).forEach(([g, v]) => {
+          const avg = v.count ? (v.sum / v.count) : 0;
+          const avgEl = tableEl.querySelector(`[data-avg-for="${g}"]`);
+          if (avgEl) avgEl.textContent = `${Math.round(avg)}%`;
+        });
+
+        const avgPct = count ? (sumPct / count) : 0;
+        const nota10 = avgPct / 10; // 100% -> 10
+        return { avgPct, nota10 };
       }
 
       function formatPt(n) {
@@ -734,18 +1321,20 @@
         const perf = calcTable(perfTable);
 
         // cards
-        document.getElementById("avgOrg").textContent = `${Math.round(org.avgPct)}%`;
-        document.getElementById("avgOrg2").textContent = `${Math.round(org.avgPct)}%`;
         document.getElementById("scoreOrgPct").textContent = `${formatPt(org.avgPct)}%`;
         document.getElementById("scoreOrgNota").textContent = `${formatPt(org.nota10)} / 10`;
 
-        document.getElementById("avgComp").textContent = `${Math.round(comp.avgPct)}%`;
         document.getElementById("scoreCompPct").textContent = `${formatPt(comp.avgPct)}%`;
         document.getElementById("scoreCompNota").textContent = `${formatPt(comp.nota10)} / 10`;
 
-        document.getElementById("avgPerf").textContent = `${Math.round(perf.avgPct)}%`;
         document.getElementById("scorePerfPct").textContent = `${formatPt(perf.avgPct)}%`;
         document.getElementById("scorePerfNota").textContent = `${formatPt(perf.nota10)} / 10`;
+
+        // média perf na tabela
+        const avgPerfTable = document.getElementById("avgPerfTable");
+        const avgPerfTable2 = document.getElementById("avgPerfTable2");
+        if (avgPerfTable) avgPerfTable.textContent = `${Math.round(perf.avgPct)}%`;
+        if (avgPerfTable2) avgPerfTable2.textContent = `${Math.round(perf.avgPct)}%`;
 
         // final
         const final = (org.nota10 + comp.nota10 + perf.nota10) / 3;
@@ -767,16 +1356,42 @@
         const action = btn.dataset.action;
 
         if (action === "acessar-ciclo") {
-          const cycleId = btn.dataset.cycleId;
-          const label = cycleId === "2024-2s" ? "Avaliação de Desempenho - 2024 - 2º Semestre"
-                     : cycleId === "2025-1s" ? "Avaliação de Desempenho - 2025 - 1º Semestre"
-                     : "Avaliação de Desempenho";
-          cycleTitle.textContent = label;
+          const cycleStatus = btn.dataset.cycleStatus || "";
+          const cycleLabel = btn.dataset.cycleLabel || "Avaliação de Desempenho";
+          currentCycleLabel = cycleLabel;
+
+          // Não iniciado: mensagem fora do período (não abre lista)
+          if (cycleStatus === "Não iniciado") {
+            alert("Fora do período de avaliação.");
+            return;
+          }
+
+          // Em andamento: abre lista, mas sem ações
+          if (cycleStatus === "Em andamento") {
+            currentCycleMode = "andamento";
+            cycleTitle.textContent = `Avaliação de Desempenho — ${cycleLabel}`;
+            cycleSub.textContent = "Em andamento (modelo): sem cliques em Avaliar/Visualizar.";
+            renderColabs(COLABS_ANDAMENTO);
+            showView("colabs");
+            return;
+          }
+        }
+
+        if (action === "ver-resultados") {
+          const cycleLabel = btn.dataset.cycleLabel || "Ciclo Encerrado";
+          currentCycleMode = "encerrado";
+          currentCycleLabel = cycleLabel;
+
+          cycleTitle.textContent = `Avaliação de Desempenho — ${cycleLabel}`;
+          cycleSub.textContent = "Encerrado: apenas o Visualizar de Ana Paula Souza está habilitado (protótipo).";
+          renderColabs(COLABS_ENCERRADO);
           showView("colabs");
+          return;
         }
 
         if (action === "voltar-ciclos") {
           showView("ciclos");
+          return;
         }
 
         if (action === "abrir-avaliacao") {
@@ -785,15 +1400,17 @@
           const depto = btn.dataset.depto || "—";
           const lider = btn.dataset.lider || "—";
           const status = btn.dataset.status || "";
+          const dataAvaliacao = btn.dataset.dataAvaliacao || "";
 
           meta.colab.textContent = colab;
           meta.cargo.textContent = cargo;
           meta.depto.textContent = depto;
           meta.lider.textContent = lider;
+          meta.data.value = dataAvaliacao;
 
-          avaliacaoTitle.textContent = `Avaliações de Desempenho`;
+          avaliacaoTitle.textContent = `Avaliação de Desempenho — ${currentCycleLabel}`;
 
-          // protótipo: se for visualizar, trava campos (só aparência)
+          // protótipo: se for visualizar, trava campos
           const readonly = (status === "visualizar");
           document.querySelectorAll("#view-avaliacao .ad-select, #view-avaliacao .ad-input, #view-avaliacao .ad-textarea")
             .forEach(el => el.disabled = readonly);
@@ -801,23 +1418,28 @@
           showView("avaliacao");
           activateTab("orientacoes");
           recalcAll();
+          return;
         }
 
         if (action === "voltar-colaboradores") {
           showView("colabs");
+          return;
         }
 
         if (action === "proximo-tab") {
           activateTab(btn.dataset.next);
+          return;
         }
 
         if (action === "salvar-tab") {
           recalcAll();
           activateTab(btn.dataset.next);
+          return;
         }
 
         if (action === "voltar-tab") {
           activateTab(btn.dataset.prev);
+          return;
         }
 
         if (action === "concluir") {
@@ -828,21 +1450,21 @@
           }
           alert("Avaliação concluída (protótipo).");
           showView("colabs");
+          return;
         }
 
         if (action === "novo-ciclo") {
           alert("Novo ciclo ainda não implementado (protótipo).");
-        }
-
-        if (action === "ver-resultados") {
-          alert("Resultados do ciclo ainda não implementados (protótipo).");
+          return;
         }
       });
 
-      // ---------- Filtros: ciclos ----------
+      // ---------- Filtros ----------
       function bindTableFilters(tableId, searchId) {
         const table = document.getElementById(tableId);
         const search = document.getElementById(searchId);
+        if (!table) return;
+
         const filters = table.querySelectorAll(".ad-filter");
 
         function apply() {
@@ -874,7 +1496,7 @@
       bindTableFilters("tableCiclos", "searchCiclo");
       bindTableFilters("tableColabs", "searchColab");
 
-      // inicializa cálculos
+      // inicial: não renderiza colabs até selecionar ciclo
       recalcAll();
     })();
   </script>

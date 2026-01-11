@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PDI • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="pdi.css" />
+
+  <!-- Carrega o menu/header automaticamente -->
+  <script src="js/include-menu.js" defer></script>
+  <script src="js/pdi.js" defer></script>
+</head>
+
+<body>
+  <!-- Menu/Header injetado aqui -->
+  <div id="app-menu"></div>
+
+  <main class="pdi-page">
+    <!-- =========================
+         VIEW 1: LISTA DE COLABORADORES
+    ========================== -->
+    <section id="view-lista" class="pdi-card">
+      <header class="pdi-card__head">
+        <div>
+          <h2 class="pdi-title">Plano de Desenvolvimento Individual (PDI)</h2>
+          <p class="pdi-subtitle">Acompanhe atividades do PDI por colaborador.</p>
+        </div>
+
+        <button class="btnp btnp--primary" type="button" id="btn-novo-colab" title="Protótipo">
+          + Incluir
+        </button>
+      </header>
+
+      <div class="pdi-toolbar">
+        <div class="pdi-search">
+          <span class="pdi-search__icon" aria-hidden="true">🔎</span>
+          <input id="search-colab" class="pdi-search__input" type="text" placeholder="Pesquisar colaborador..." />
+        </div>
+
+        <div class="pdi-filters">
+          <label class="chip">
+            <input type="checkbox" class="filter-status" value="Não iniciado" checked>
+            <span>Não iniciado</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" class="filter-status" value="Em andamento" checked>
+            <span>Em andamento</span>
+          </label>
+          <label class="chip">
+            <input type="checkbox" class="filter-status" value="Concluído" checked>
+            <span>Concluído</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="pdi-table-wrap">
+        <table class="pdi-table" aria-label="Lista de PDIs por colaborador">
+          <thead>
+            <tr>
+              <th>Colaborador</th>
+              <th>Cargo</th>
+              <th>Departamento</th>
+              <th>Status do PDI</th>
+              <th>Última atualização</th>
+              <th class="col-actions">Ações</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-colaboradores">
+            <!-- preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pdi-footer muted">
+        <span id="total-colab">Total: 0 colaboradores</span>
+      </div>
+    </section>
+
+    <!-- =========================
+         VIEW 2: DETALHE DO PDI DO COLABORADOR
+    ========================== -->
+    <section id="view-detalhe" class="pdi-card is-hidden" aria-label="Detalhe do PDI">
+      <header class="pdi-card__head">
+        <div class="pdi-person">
+          <button class="btnp btnp--ghost" id="btn-voltar" type="button">← Voltar</button>
+
+          <div class="pdi-person__info">
+            <div class="avatar" id="detalhe-avatar">A</div>
+            <div>
+              <h2 class="pdi-title" id="detalhe-nome">Colaborador</h2>
+              <p class="pdi-subtitle">
+                <span id="detalhe-cargo">Cargo</span> • <span id="detalhe-depto">Departamento</span>
+              </p>
+              <p class="muted">Líder responsável: <strong id="detalhe-lider">—</strong></p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btnp btnp--primary" type="button" id="btn-incluir-atividade">
+          + Incluir atividade
+        </button>
+      </header>
+
+      <div class="pdi-toolbar pdi-toolbar--detail">
+        <div class="pdi-search">
+          <span class="pdi-search__icon" aria-hidden="true">🔎</span>
+          <input id="search-ativ" class="pdi-search__input" type="text" placeholder="Pesquisar atividade..." />
+        </div>
+
+        <div class="status-legend">
+          <span class="badge badge--neutral">Não iniciado</span>
+          <span class="badge badge--warn">Em andamento</span>
+          <span class="badge badge--ok">Concluído</span>
+        </div>
+      </div>
+
+      <div class="pdi-table-wrap">
+        <table class="pdi-table" aria-label="Atividades do PDI">
+          <thead>
+            <tr>
+              <th>Ciclo</th>
+              <th>Competência a se melhorar</th>
+              <th>Início</th>
+              <th>Prazo</th>
+              <th>Status</th>
+              <th class="col-actions">Ação</th>
+            </tr>
+          </thead>
+          <tbody id="tbody-atividades">
+            <!-- preenchido via JS -->
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pdi-footer muted">
+        <span id="total-ativ">Total: 0 atividades</span>
+      </div>
+    </section>
+
+    <!-- =========================
+         MODAL: INCLUIR / EDITAR ATIVIDADE
+    ========================== -->
+    <div id="modal" class="modal is-hidden" aria-hidden="true">
+      <div class="modal__backdrop" data-close="1"></div>
+
+      <div class="modal__panel" role="dialog" aria-modal="true" aria-label="Incluir atividade do PDI">
+        <div class="modal__head">
+          <div>
+            <h3 class="modal__title" id="modal-title">Incluir atividade</h3>
+            <p class="modal__subtitle">Preencha os campos abaixo (protótipo).</p>
+          </div>
+          <button class="modal__close" type="button" data-close="1" aria-label="Fechar">✕</button>
+        </div>
+
+        <form id="form-atividade" class="form-grid">
+          <div class="field">
+            <label for="f-data-cadastro">Data do cadastro</label>
+            <input id="f-data-cadastro" name="dataCadastro" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="f-ciclo">Ciclo</label>
+            <input id="f-ciclo" name="ciclo" type="text" placeholder="Ex: 2024 - 2º Semestre" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="f-competencia">Competência a se melhorar</label>
+            <input id="f-competencia" name="competencia" type="text" placeholder="Ex: Comunicação" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="f-porque">Por quê</label>
+            <textarea id="f-porque" name="porque" rows="3" placeholder="Explique o motivo..."></textarea>
+          </div>
+
+          <div class="field field--full">
+            <label for="f-onde">Onde</label>
+            <input id="f-onde" name="onde" type="text" placeholder="Ex: Reuniões, atendimento ao cliente..." />
+          </div>
+
+          <div class="field field--full">
+            <label for="f-oque">O que fazer para melhorar</label>
+            <textarea id="f-oque" name="oque" rows="3" placeholder="Descreva a ação..."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="f-responsavel">Quem será responsável</label>
+            <input id="f-responsavel" name="responsavel" type="text" placeholder="Ex: Mariana Teixeira" />
+          </div>
+
+          <div class="field">
+            <label for="f-quanto">Quanto</label>
+            <input id="f-quanto" name="quanto" type="text" placeholder="Ex: 2h/semana, R$ 300..." />
+          </div>
+
+          <div class="field">
+            <label for="f-inicio">Início</label>
+            <input id="f-inicio" name="inicio" type="date" />
+          </div>
+
+          <div class="field">
+            <label for="f-prazo">Prazo de finalização</label>
+            <input id="f-prazo" name="prazo" type="date" />
+          </div>
+
+          <div class="field">
+            <label for="f-conclusao">Data de conclusão</label>
+            <input id="f-conclusao" name="conclusao" type="date" />
+          </div>
+
+          <div class="field">
+            <label for="f-status">Status</label>
+            <select id="f-status" name="status" required>
+              <option value="Não iniciado">Não iniciado</option>
+              <option value="Em andamento">Em andamento</option>
+              <option value="Concluído">Concluído</option>
+            </select>
+          </div>
+
+          <div class="form-actions">
+            <button class="btnp btnp--ghost" type="button" data-close="1">Cancelar</button>
+            <button class="btnp btnp--primary" type="submit">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </main>
+</body>
+</html>

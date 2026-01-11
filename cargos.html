@@ -50,78 +50,256 @@
                 <th>Nome do Cargo</th>
                 <th>Área</th>
                 <th>Departamento</th>
-                <th>Centro de Custo</th>
-                <th>Salário</th>
+                <th class="col-date">Data da última alteração</th>
+                <th class="col-salary">Salário</th>
                 <th class="col-status">Status</th>
               </tr>
             </thead>
 
             <tbody id="cargosTbody">
               <tr>
-                <td>
-                  <button class="row-link" type="button" data-id="auxiliar-administrativo">Auxiliar Administrativo</button>
-                </td>
+                <td><button class="row-link" type="button" data-id="diretor">Diretor(a)</button></td>
+                <td>Diretoria</td>
+                <td>Diretoria</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 12.000,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="auxiliar-administrativo">Auxiliar Administrativo</button></td>
+                <td>Administrativo</td>
+                <td>Administrativo</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 1.500,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="assistente-administrativo">Assistente Administrativo</button></td>
+                <td>Administrativo</td>
+                <td>Administrativo</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.000,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="analista-adm-jr">Analista Administrativo Júnior</button></td>
+                <td>Administrativo</td>
+                <td>Administrativo</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.800,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="supervisor-administrativo">Supervisor Administrativo</button></td>
+                <td>Administrativo</td>
+                <td>Administrativo</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 4.500,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="auxiliar-financeiro">Auxiliar Financeiro</button></td>
                 <td>Administrativo</td>
                 <td>Financeiro</td>
-                <td>1.1 Financeiro</td>
-                <td>R$ 2.500,00</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 1.600,00</td>
                 <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               </tr>
 
               <tr>
-                <td>
-                  <button class="row-link" type="button" data-id="analista-financeiro">Analista Financeiro</button>
-                </td>
+                <td><button class="row-link" type="button" data-id="assistente-financeiro">Assistente Financeiro</button></td>
                 <td>Administrativo</td>
                 <td>Financeiro</td>
-                <td>1.1 Financeiro</td>
-                <td>R$ 5.800,00</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.200,00</td>
                 <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               </tr>
 
               <tr>
-                <td>
-                  <button class="row-link" type="button" data-id="assistente-rh">Assistente de RH</button>
-                </td>
+                <td><button class="row-link" type="button" data-id="analista-fin-jr">Analista Financeiro Júnior</button></td>
                 <td>Administrativo</td>
-                <td>Recursos Humanos</td>
-                <td>1.2 RH</td>
-                <td>R$ 3.400,00</td>
+                <td>Financeiro</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 3.000,00</td>
                 <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               </tr>
 
               <tr>
-                <td>
-                  <button class="row-link" type="button" data-id="operador-producao">Operador de Produção</button>
-                </td>
-                <td>Operacional</td>
-                <td>Produção</td>
-                <td>2.1 Produção</td>
-                <td>R$ 2.200,00</td>
+                <td><button class="row-link" type="button" data-id="supervisor-financeiro">Supervisor Financeiro</button></td>
+                <td>Administrativo</td>
+                <td>Financeiro</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 4.800,00</td>
                 <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               </tr>
 
               <tr>
-                <td>
-                  <button class="row-link" type="button" data-id="supervisor-producao">Supervisor de Produção</button>
-                </td>
+                <td><button class="row-link" type="button" data-id="auxiliar-contabil">Auxiliar Contábil</button></td>
                 <td>Operacional</td>
-                <td>Produção</td>
-                <td>2.2 Supervisão</td>
-                <td>R$ 4.800,00</td>
-                <td class="col-status"><span class="badge badge--inactive">Inativo</span></td>
+                <td>Contábil</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 1.600,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               </tr>
 
               <tr>
-                <td>
-                  <button class="row-link" type="button" data-id="supervisor-producao-2">Supervisor de Produção</button>
-                </td>
+                <td><button class="row-link" type="button" data-id="assistente-contabil">Assistente Contábil</button></td>
                 <td>Operacional</td>
-                <td>Produção</td>
-                <td>2.2 Supervisão</td>
-                <td>R$ 4.800,00</td>
-                <td class="col-status"><span class="badge badge--inactive">Inativo</span></td>
+                <td>Contábil</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.300,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="analista-cont-jr">Analista Contábil Júnior</button></td>
+                <td>Operacional</td>
+                <td>Contábil</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 3.200,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="supervisor-contabil">Supervisor Contábil</button></td>
+                <td>Operacional</td>
+                <td>Contábil</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 5.000,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="coordenador-contabil">Coordenador Contábil</button></td>
+                <td>Operacional</td>
+                <td>Contábil</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 6.500,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="auxiliar-fiscal">Auxiliar Fiscal</button></td>
+                <td>Operacional</td>
+                <td>Fiscal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 1.600,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="assistente-fiscal">Assistente Fiscal</button></td>
+                <td>Operacional</td>
+                <td>Fiscal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.300,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="analista-fisc-jr">Analista Fiscal Júnior</button></td>
+                <td>Operacional</td>
+                <td>Fiscal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 3.200,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="supervisor-fiscal">Supervisor Fiscal</button></td>
+                <td>Operacional</td>
+                <td>Fiscal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 5.000,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="coordenador-fiscal">Coordenador Fiscal</button></td>
+                <td>Operacional</td>
+                <td>Fiscal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 6.500,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="auxiliar-dp">Auxiliar de DP</button></td>
+                <td>Operacional</td>
+                <td>Departamento Pessoal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 1.600,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="assistente-dp">Assistente de DP</button></td>
+                <td>Operacional</td>
+                <td>Departamento Pessoal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.300,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="analista-dp-jr">Analista de DP Júnior</button></td>
+                <td>Operacional</td>
+                <td>Departamento Pessoal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 3.200,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="supervisor-dp">Supervisor de DP</button></td>
+                <td>Operacional</td>
+                <td>Departamento Pessoal</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 4.800,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="consultor-comercial-i">Consultor Comercial I</button></td>
+                <td>Comercial</td>
+                <td>Vendas</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 1.800,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="consultor-comercial-ii">Consultor Comercial II</button></td>
+                <td>Comercial</td>
+                <td>Vendas</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.300,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="consultor-comercial-iii">Consultor Comercial III</button></td>
+                <td>Comercial</td>
+                <td>Vendas</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 2.800,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
+              <tr>
+                <td><button class="row-link" type="button" data-id="supervisor-comercial">Supervisor Comercial</button></td>
+                <td>Comercial</td>
+                <td>Vendas</td>
+                <td class="col-date">10/01/2026</td>
+                <td class="col-salary">R$ 4.500,00</td>
+                <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              </tr>
+
             </tbody>
           </table>
         </div>
@@ -140,6 +318,7 @@
         <button class="tabs__tab" type="button" data-tab="responsabilidades">Responsabilidades</button>
         <button class="tabs__tab" type="button" data-tab="tecnicas">Competências Técnicas</button>
         <button class="tabs__tab" type="button" data-tab="comportamentais">Competências Comportamentais</button>
+        <button class="tabs__tab" type="button" data-tab="indicadores">Indicadores de Performance</button>
       </nav>
 
       <section class="tabpanels">
@@ -163,6 +342,11 @@
               </div>
 
               <div class="field">
+                <label for="f_ultima">Data da última alteração</label>
+                <div id="f_ultima" class="readonly">—</div>
+              </div>
+
+              <div class="field">
                 <label>É cargo de liderança:</label>
                 <div class="segmented" role="group" aria-label="Cargo de liderança">
                   <button id="leadSim" class="segmented__btn" type="button">Sim</button>
@@ -173,6 +357,7 @@
               <div class="field">
                 <label for="f_area">Área vinculada</label>
                 <select id="f_area">
+                  <option>Diretoria</option>
                   <option>Administrativo</option>
                   <option>Operacional</option>
                   <option>Comercial</option>
@@ -182,15 +367,20 @@
               <div class="field">
                 <label for="f_depto">Departamento vinculado</label>
                 <select id="f_depto">
+                  <option>Diretoria</option>
+                  <option>Administrativo</option>
                   <option>Financeiro</option>
-                  <option>Recursos Humanos</option>
-                  <option>Produção</option>
+                  <option>Contábil</option>
+                  <option>Fiscal</option>
+                  <option>Departamento Pessoal</option>
+                  <option>Vendas</option>
                 </select>
               </div>
 
               <div class="field">
                 <label for="f_ccusto">Centro de custo vinculado</label>
                 <select id="f_ccusto">
+                  <option>N/A</option>
                   <option>1.1 Financeiro</option>
                   <option>1.2 RH</option>
                   <option>2.1 Produção</option>
@@ -199,11 +389,16 @@
               </div>
 
               <div class="field">
-                <label for="f_superior">Cargo superior</label>
-                <select id="f_superior">
+                <label for="f_lideranca">Cargo de liderança</label>
+                <select id="f_lideranca">
                   <option>Selecione...</option>
-                  <option>Supervisor de Produção</option>
-                  <option>Gerente Administrativo</option>
+                  <option>Supervisor Administrativo</option>
+                  <option>Supervisor Financeiro</option>
+                  <option>Supervisor Contábil</option>
+                  <option>Supervisor Fiscal</option>
+                  <option>Supervisor de DP</option>
+                  <option>Supervisor Comercial</option>
+                  <option>Diretor(a)</option>
                 </select>
               </div>
 
@@ -211,11 +406,11 @@
                 <label>Status</label>
                 <div class="radio-row">
                   <label class="radio">
-                    <input type="radio" name="status" checked />
+                    <input type="radio" name="status" value="Ativo" checked />
                     <span>Ativo</span>
                   </label>
                   <label class="radio">
-                    <input type="radio" name="status" />
+                    <input type="radio" name="status" value="Inativo" />
                     <span>Inativo</span>
                   </label>
                 </div>
@@ -237,14 +432,10 @@
         <div class="tabpanel" id="tab-responsabilidades">
           <div class="card">
             <h3 class="section-title">Missão do Cargo</h3>
-            <p id="missaoText" class="text">
-              —
-            </p>
+            <p id="missaoText" class="text">—</p>
 
             <h3 class="section-title">Principais Responsabilidades</h3>
-            <ul id="respList" class="checklist">
-              <!-- preenchido via JS -->
-            </ul>
+            <ul id="respList" class="checklist"></ul>
 
             <div class="card-actions">
               <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
@@ -257,7 +448,7 @@
           <div class="card">
             <div class="panel-head">
               <h3 class="section-title">Competências Técnicas</h3>
-              <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+              <button id="btnAddTec" class="btn btn--success" type="button">
                 <span class="btn__icon" aria-hidden="true">+</span>
                 Incluir
               </button>
@@ -269,14 +460,10 @@
                   <tr>
                     <th>Competência</th>
                     <th>Descrição</th>
-                    <th>Nível de Exigência</th>
-                    <th>Grupo</th>
-                    <th>Indicadores</th>
+                    <th class="col-small">Nível de Exigência</th>
                   </tr>
                 </thead>
-                <tbody id="tecTbody">
-                  <!-- preenchido via JS -->
-                </tbody>
+                <tbody id="tecTbody"></tbody>
               </table>
             </div>
           </div>
@@ -287,7 +474,7 @@
           <div class="card">
             <div class="panel-head">
               <h3 class="section-title">Competências Comportamentais</h3>
-              <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+              <button id="btnAddComp" class="btn btn--success" type="button">
                 <span class="btn__icon" aria-hidden="true">+</span>
                 Incluir
               </button>
@@ -299,15 +486,34 @@
                   <tr>
                     <th>Competência</th>
                     <th>Descrição</th>
-                    <th>Nível de Exigência</th>
-                    <th>Grupo</th>
-                    <th>Grau</th>
+                    <th class="col-small">Grupo</th>
+                    <th class="col-mini">Grau</th>
                     <th>Indicadores</th>
                   </tr>
                 </thead>
-                <tbody id="compTbody">
-                  <!-- preenchido via JS -->
-                </tbody>
+                <tbody id="compTbody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- INDICADORES -->
+        <div class="tabpanel" id="tab-indicadores">
+          <div class="card">
+            <div class="panel-head">
+              <h3 class="section-title">Indicadores de Performance</h3>
+              <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
+            </div>
+
+            <div class="table-wrap">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Indicador</th>
+                    <th>Descrição</th>
+                  </tr>
+                </thead>
+                <tbody id="perfTbody"></tbody>
               </table>
             </div>
           </div>
@@ -317,90 +523,235 @@
     </section>
   </main>
 
+  <!-- Modal simples (mock) -->
+  <div class="modal" id="pickerModal" hidden>
+    <div class="modal__backdrop" data-close="1"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-label="Selecionar itens">
+      <div class="modal__head">
+        <h3 class="modal__title" id="pickerTitle">Selecionar</h3>
+        <button class="modal__close" type="button" data-close="1">Fechar</button>
+      </div>
+      <p class="modal__hint">Mock: aqui apareceria a lista cadastrada na tela de Competências para selecionar e adicionar.</p>
+      <div class="modal__body">
+        <div class="table-wrap">
+          <table class="table">
+            <thead id="pickerThead"></thead>
+            <tbody id="pickerTbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // ===== Dados (mock) =====
+    // ===== Dados (mock) - conforme documento =====
     const cargoData = {
-      "analista-financeiro": {
-        title: "Analista Financeiro",
-        cbo: "252315",
-        salario: "R$ 5.800,00",
+      "diretor": {
+        title: "Diretor(a)",
+        cbo: "",
+        salario: "R$ 12.000,00",
+        ultima: "10/01/2026",
+        area: "Diretoria",
+        depto: "Diretoria",
+        ccusto: "N/A",
+        lideranca: "Selecione...",
+        isLideranca: true,
+        status: "Ativo",
+        vinculados: "—",
+        missao: "—",
+        responsabilidades: [],
+        tecnicas: [],
+        comportamentais: [],
+        indicadores: []
+      },
+
+      "auxiliar-administrativo": {
+        title: "Auxiliar Administrativo",
+        cbo: "4110-05 — Auxiliar de escritório",
+        salario: "R$ 1.500,00",
+        ultima: "10/01/2026",
         area: "Administrativo",
-        depto: "Financeiro",
-        ccusto: "1.1 Financeiro",
-        vinculados: "2 pessoas",
+        depto: "Administrativo",
+        ccusto: "N/A",
+        lideranca: "Supervisor Administrativo",
+        isLideranca: false,
+        status: "Ativo",
+        vinculados: "2",
         missao:
-          "O Analista Financeiro tem a missão de analisar, controlar e planejar as atividades financeiras da empresa, garantindo a saúde financeira do negócio e auxiliando na tomada de decisões estratégicas.",
+          "Apoiar as rotinas administrativas da empresa, assegurando a organização de documentos, o controle adequado das informações e o suporte aos processos internos, contribuindo para a eficiência das atividades e o cumprimento dos prazos estabelecidos.",
         responsabilidades: [
-          "Elaborar e analisar relatórios financeiros",
-          "Realizar o controle de contas a pagar e a receber",
-          "Monitorar o fluxo de caixa e realizar projeções financeiras",
-          "Auxiliar na preparação de orçamentos e no planejamento financeiro anual",
-          "Realizar a análise de custos, despesas e receitas",
-          "Conduzir conciliações bancárias e acompanhar auditorias",
-          "Auxiliar na elaboração de relatórios gerenciais para a diretoria",
-          "Garantir o cumprimento das normas e procedimentos financeiros",
-          "Analisar e propor melhorias nos processos financeiros"
+          "Realizar a organização, o arquivamento e a atualização de documentos físicos e digitais da área.",
+          "Apoiar o controle e a atualização de planilhas, relatórios e registros administrativos.",
+          "Prestar suporte às demandas administrativas internas, atendendo solicitações de diferentes setores.",
+          "Efetuar lançamentos e conferências de informações em sistemas internos e controles operacionais.",
+          "Auxiliar no acompanhamento de prazos, agendas e atividades administrativas.",
+          "Contribuir para a organização do ambiente de trabalho e para a padronização dos processos da área.",
+          "Cumprir normas, procedimentos internos e diretrizes estabelecidas pela empresa."
         ],
         tecnicas: [
-          {
-            competencia: "Análise Financeira",
-            descricao: "Habilitar a analisar relatórios financeiros (como indicadores de desempenho econômico e financeiro).",
-            nivel: "Avançado",
-            grupo: "Orientadas para Comunicação",
-            indicadores: "Qualidade e precisão das análises financeiras; Uso de indicadores financeiros no planejamento"
-          },
-          {
-            competencia: "Contabilidade",
-            descricao: "Compreender os princípios contábeis e estabelecimentos financeiros competentes.",
-            nivel: "Intermediário",
-            grupo: "Intermediário",
-            indicadores: "Correção nas classificações contábeis; Precisão nos lançamentos; Conformidade com normas contábeis"
-          },
-          {
-            competencia: "Controle de Fluxo de Caixa",
-            descricao: "Gerenciamento de caixa, projeções e controles financeiros.",
-            nivel: "Avançado",
-            grupo: "Orientadas para Resultados",
-            indicadores: "Atualidade e precisão das análises; Redução de riscos financeiros"
-          },
-          {
-            competencia: "Orçamento e Planejamento Financeiro",
-            descricao: "Ajudar na preparação do orçamento e no planejamento financeiro anual.",
-            nivel: "Intermediário",
-            grupo: "Orientadas para Resultados",
-            indicadores: "Participação ativa; Precisão das projeções; Adesão ao planejamento aprovado"
-          }
+          { competencia: "Escolaridade", descricao: "Grau de escolaridade exigido para o cargo.", nivel: "Médio" },
+          { competencia: "Área de Formação", descricao: "Área de formação compatível com o cargo. Campo pode ser editável conforme necessidade.", nivel: "Administração ou Outras" },
+          { competencia: "Experiência na Função", descricao: "Tempo de experiência prática exigido na função.", nivel: "Sem experiência ou até 1 ano" },
+          { competencia: "Experiência em Escritório Contábil", descricao: "Vivência anterior em rotinas de escritório contábil.", nivel: "Nenhuma" },
+          { competencia: "Excel", descricao: "Nível de domínio de planilhas e recursos do Excel.", nivel: "Básico" },
+          { competencia: "Sistemas Contábeis", descricao: "Grau de familiaridade com sistemas contábeis utilizados na rotina.", nivel: "Básico" }
         ],
         comportamentais: [
           {
-            competencia: "Comunicação",
-            descricao: "Capacidade de transmitir informações de maneira clara e eficaz.",
-            nivel: "Avançado",
-            grupo: "Orientadas para Comunicação",
+            competencia: "Organização",
+            descricao: "Capacidade de estruturar e controlar atividades e rotinas.",
+            grupo: "Execução",
+            grau: "4",
+            indicadores: [
+              "Mantém documentos físicos e digitais organizados e atualizados.",
+              "Segue rotinas administrativas sem gerar retrabalho.",
+              "Demonstra facilidade para localizar informações quando solicitado."
+            ]
+          },
+          {
+            competencia: "Responsabilidade",
+            descricao: "Assumir consequências dos próprios atos e compromissos.",
+            grupo: "Execução",
+            grau: "5",
+            indicadores: [
+              "Cumpre prazos e acordos assumidos com autonomia.",
+              "Assume suas tarefas sem necessidade de cobranças constantes.",
+              "Comunica dificuldades ou imprevistos de forma antecipada."
+            ]
+          },
+          {
+            competencia: "Precisão",
+            descricao: "Rigor e cuidado na execução das tarefas, com atenção aos detalhes.",
+            grupo: "Execução",
             grau: "3",
-            indicadores: "Clareza na apresentação de dados; Redução de dúvidas; Qualidade das explicações prestadas"
+            indicadores: [
+              "Executa tarefas com atenção, reduzindo erros operacionais.",
+              "Realiza conferências básicas antes de finalizar entregas.",
+              "Demonstra cuidado com dados, informações e registros."
+            ]
+          },
+          {
+            competencia: "Foco",
+            descricao: "Manter atenção direcionada para objetivos e prioridades.",
+            grupo: "Execução",
+            grau: "4",
+            indicadores: [
+              "Mantém atenção nas atividades prioritárias do dia a dia.",
+              "Consegue concluir tarefas sem dispersões frequentes.",
+              "Organiza seu tempo para finalizar as demandas propostas."
+            ]
           },
           {
             competencia: "Trabalho em Equipe",
-            descricao: "Habilidade de trabalhar em colaboração com outras áreas e colegas.",
-            nivel: "Avançado",
-            grupo: "Orientadas para o Cliente (interno e externo)",
-            grau: "2",
-            indicadores: "Relacionamento com áreas internas; Cooperação em demandas compartilhadas"
+            descricao: "Capacidade de cooperar com outras pessoas em prol de objetivos comuns.",
+            grupo: "Relacional",
+            grau: "5",
+            indicadores: [
+              "Coopera com colegas, oferecendo apoio quando necessário.",
+              "Mantém relacionamento respeitoso e colaborativo com o time.",
+              "Contribui para o alcance dos objetivos coletivos da área."
+            ]
+          },
+          {
+            competencia: "Flexibilidade",
+            descricao: "Facilidade de adaptação a mudanças e novos cenários.",
+            grupo: "Relacional",
+            grau: "3",
+            indicadores: [
+              "Aceita ajustes nas rotinas e demandas quando necessário.",
+              "Demonstra abertura para mudanças de processos e prioridades.",
+              "Consegue se adaptar gradualmente a novos contextos de trabalho."
+            ]
+          },
+          {
+            competencia: "Comprometimento",
+            descricao: "Honrar acordos e dedicar-se com responsabilidade às tarefas.",
+            grupo: "Emocional",
+            grau: "4",
+            indicadores: [
+              "Demonstra envolvimento com as atividades sob sua responsabilidade.",
+              "Cumpre o que foi combinado com a liderança e a equipe.",
+              "Mostra interesse em contribuir para os resultados da área."
+            ]
           },
           {
             competencia: "Resiliência",
-            descricao: "Capacidade de lidar com pressão e adversidades sem perder a eficácia.",
-            nivel: "Avançado",
-            grupo: "Orientadas para Resultados",
+            descricao: "Capacidade de manter equilíbrio diante de pressão e adversidades.",
+            grupo: "Emocional",
             grau: "3",
-            indicadores: "Manutenção de performance em picos; Postura sob pressão"
+            indicadores: [
+              "Mantém postura equilibrada em momentos de maior demanda.",
+              "Consegue lidar com pressões sem comprometer totalmente o desempenho.",
+              "Demonstra esforço para manter o controle emocional diante de dificuldades."
+            ]
           }
+        ],
+        indicadores: [
+          { ind: "Organização de documentos", desc: "Mantém arquivos físicos e digitais organizados, facilitando a localização das informações quando solicitadas." },
+          { ind: "Cumprimento de prazos", desc: "Entrega as atividades dentro dos prazos combinados, sem necessidade de cobranças constantes." },
+          { ind: "Qualidade das entregas", desc: "Executa as tarefas com atenção, reduzindo erros e retrabalho nas rotinas administrativas." },
+          { ind: "Responsabilidade com as tarefas", desc: "Assume as demandas recebidas e acompanha até a conclusão, demonstrando comprometimento." },
+          { ind: "Apoio às rotinas do setor", desc: "Contribui com as demandas da equipe, oferecendo suporte sempre que solicitado." },
+          { ind: "Organização da rotina de trabalho", desc: "Consegue manter uma rotina organizada, priorizando atividades e evitando acúmulo de tarefas." },
+          { ind: "Atenção às orientações", desc: "Executa as atividades conforme instruções recebidas, respeitando processos e padrões." },
+          { ind: "Postura profissional", desc: "Mantém comportamento adequado, respeito com colegas e cuidado com o ambiente de trabalho." },
+          { ind: "Evolução no aprendizado", desc: "Demonstra evolução ao longo do tempo, reduzindo dúvidas e ganhando mais autonomia." },
+          { ind: "Compromisso com o trabalho", desc: "Demonstra interesse, envolvimento e disposição para contribuir com o funcionamento da área." }
         ]
       }
     };
 
-    // ===== Helpers de UI =====
+    // Completa demais cargos (somente dados gerais do documento)
+    const defaultsFromList = {
+      "assistente-administrativo": { title:"Assistente Administrativo", area:"Administrativo", depto:"Administrativo", ultima:"10/01/2026", salario:"R$ 2.000,00", status:"Ativo" },
+      "analista-adm-jr": { title:"Analista Administrativo Júnior", area:"Administrativo", depto:"Administrativo", ultima:"10/01/2026", salario:"R$ 2.800,00", status:"Ativo" },
+      "supervisor-administrativo": { title:"Supervisor Administrativo", area:"Administrativo", depto:"Administrativo", ultima:"10/01/2026", salario:"R$ 4.500,00", status:"Ativo", isLideranca:true },
+      "auxiliar-financeiro": { title:"Auxiliar Financeiro", area:"Administrativo", depto:"Financeiro", ultima:"10/01/2026", salario:"R$ 1.600,00", status:"Ativo" },
+      "assistente-financeiro": { title:"Assistente Financeiro", area:"Administrativo", depto:"Financeiro", ultima:"10/01/2026", salario:"R$ 2.200,00", status:"Ativo" },
+      "analista-fin-jr": { title:"Analista Financeiro Júnior", area:"Administrativo", depto:"Financeiro", ultima:"10/01/2026", salario:"R$ 3.000,00", status:"Ativo" },
+      "supervisor-financeiro": { title:"Supervisor Financeiro", area:"Administrativo", depto:"Financeiro", ultima:"10/01/2026", salario:"R$ 4.800,00", status:"Ativo", isLideranca:true },
+      "auxiliar-contabil": { title:"Auxiliar Contábil", area:"Operacional", depto:"Contábil", ultima:"10/01/2026", salario:"R$ 1.600,00", status:"Ativo" },
+      "assistente-contabil": { title:"Assistente Contábil", area:"Operacional", depto:"Contábil", ultima:"10/01/2026", salario:"R$ 2.300,00", status:"Ativo" },
+      "analista-cont-jr": { title:"Analista Contábil Júnior", area:"Operacional", depto:"Contábil", ultima:"10/01/2026", salario:"R$ 3.200,00", status:"Ativo" },
+      "supervisor-contabil": { title:"Supervisor Contábil", area:"Operacional", depto:"Contábil", ultima:"10/01/2026", salario:"R$ 5.000,00", status:"Ativo", isLideranca:true },
+      "coordenador-contabil": { title:"Coordenador Contábil", area:"Operacional", depto:"Contábil", ultima:"10/01/2026", salario:"R$ 6.500,00", status:"Ativo", isLideranca:true },
+      "auxiliar-fiscal": { title:"Auxiliar Fiscal", area:"Operacional", depto:"Fiscal", ultima:"10/01/2026", salario:"R$ 1.600,00", status:"Ativo" },
+      "assistente-fiscal": { title:"Assistente Fiscal", area:"Operacional", depto:"Fiscal", ultima:"10/01/2026", salario:"R$ 2.300,00", status:"Ativo" },
+      "analista-fisc-jr": { title:"Analista Fiscal Júnior", area:"Operacional", depto:"Fiscal", ultima:"10/01/2026", salario:"R$ 3.200,00", status:"Ativo" },
+      "supervisor-fiscal": { title:"Supervisor Fiscal", area:"Operacional", depto:"Fiscal", ultima:"10/01/2026", salario:"R$ 5.000,00", status:"Ativo", isLideranca:true },
+      "coordenador-fiscal": { title:"Coordenador Fiscal", area:"Operacional", depto:"Fiscal", ultima:"10/01/2026", salario:"R$ 6.500,00", status:"Ativo", isLideranca:true },
+      "auxiliar-dp": { title:"Auxiliar de DP", area:"Operacional", depto:"Departamento Pessoal", ultima:"10/01/2026", salario:"R$ 1.600,00", status:"Ativo" },
+      "assistente-dp": { title:"Assistente de DP", area:"Operacional", depto:"Departamento Pessoal", ultima:"10/01/2026", salario:"R$ 2.300,00", status:"Ativo" },
+      "analista-dp-jr": { title:"Analista de DP Júnior", area:"Operacional", depto:"Departamento Pessoal", ultima:"10/01/2026", salario:"R$ 3.200,00", status:"Ativo" },
+      "supervisor-dp": { title:"Supervisor de DP", area:"Operacional", depto:"Departamento Pessoal", ultima:"10/01/2026", salario:"R$ 4.800,00", status:"Ativo", isLideranca:true },
+      "consultor-comercial-i": { title:"Consultor Comercial I", area:"Comercial", depto:"Vendas", ultima:"10/01/2026", salario:"R$ 1.800,00", status:"Ativo" },
+      "consultor-comercial-ii": { title:"Consultor Comercial II", area:"Comercial", depto:"Vendas", ultima:"10/01/2026", salario:"R$ 2.300,00", status:"Ativo" },
+      "consultor-comercial-iii": { title:"Consultor Comercial III", area:"Comercial", depto:"Vendas", ultima:"10/01/2026", salario:"R$ 2.800,00", status:"Ativo" },
+      "supervisor-comercial": { title:"Supervisor Comercial", area:"Comercial", depto:"Vendas", ultima:"10/01/2026", salario:"R$ 4.500,00", status:"Ativo", isLideranca:true }
+    };
+
+    Object.entries(defaultsFromList).forEach(([k, v]) => {
+      if (!cargoData[k]) cargoData[k] = {
+        title: v.title,
+        cbo: "",
+        salario: v.salario,
+        ultima: v.ultima,
+        area: v.area,
+        depto: v.depto,
+        ccusto: "N/A",
+        lideranca: "Selecione...",
+        isLideranca: !!v.isLideranca,
+        status: v.status,
+        vinculados: "—",
+        missao: "—",
+        responsabilidades: [],
+        tecnicas: [],
+        comportamentais: [],
+        indicadores: []
+      };
+    });
+
+    // ===== Helpers UI =====
     const $ = (s) => document.querySelector(s);
     const $$ = (s) => document.querySelectorAll(s);
 
@@ -411,14 +762,20 @@
     const f_nome = $("#f_nome");
     const f_cbo = $("#f_cbo");
     const f_salario = $("#f_salario");
+    const f_ultima = $("#f_ultima");
     const f_area = $("#f_area");
     const f_depto = $("#f_depto");
     const f_ccusto = $("#f_ccusto");
+    const f_lideranca = $("#f_lideranca");
     const f_vinc = $("#f_vinculados");
     const missaoText = $("#missaoText");
     const respList = $("#respList");
     const tecTbody = $("#tecTbody");
     const compTbody = $("#compTbody");
+    const perfTbody = $("#perfTbody");
+
+    const leadSim = $("#leadSim");
+    const leadNao = $("#leadNao");
 
     function setActiveView(detailOn) {
       viewList.classList.toggle("is-active", !detailOn);
@@ -430,34 +787,41 @@
       while (el.firstChild) el.removeChild(el.firstChild);
     }
 
+    function setStatusRadio(status){
+      const radios = $$('input[name="status"]');
+      radios.forEach(r => r.checked = (r.value === status));
+      if (![...radios].some(r => r.checked)) radios[0].checked = true;
+    }
+
+    function setLeaderToggle(isLeader){
+      leadSim.classList.toggle("is-active", !!isLeader);
+      leadNao.classList.toggle("is-active", !isLeader);
+    }
+
+    leadSim.addEventListener("click", () => setLeaderToggle(true));
+    leadNao.addEventListener("click", () => setLeaderToggle(false));
+
     function openCargo(id) {
-      const data = cargoData[id] || {
-        title: "Cargo",
-        cbo: "",
-        salario: "",
-        area: "Administrativo",
-        depto: "Financeiro",
-        ccusto: "1.1 Financeiro",
-        vinculados: "—",
-        missao: "—",
-        responsabilidades: [],
-        tecnicas: [],
-        comportamentais: []
-      };
+      const data = cargoData[id] || cargoData["auxiliar-administrativo"];
 
       cargoTitle.textContent = data.title;
-      f_nome.value = data.title;
+      f_nome.value = data.title || "";
       f_cbo.value = data.cbo || "";
       f_salario.value = data.salario || "";
+      f_ultima.textContent = data.ultima || "—";
       f_area.value = data.area || "Administrativo";
-      f_depto.value = data.depto || "Financeiro";
-      f_ccusto.value = data.ccusto || "1.1 Financeiro";
+      f_depto.value = data.depto || "Administrativo";
+      f_ccusto.value = data.ccusto || "N/A";
+      f_lideranca.value = data.lideranca || "Selecione...";
       f_vinc.textContent = data.vinculados || "—";
+
+      setLeaderToggle(!!data.isLideranca);
+      setStatusRadio(data.status || "Ativo");
 
       missaoText.textContent = data.missao || "—";
 
       clearChildren(respList);
-      data.responsabilidades.forEach((item) => {
+      (data.responsabilidades || []).forEach((item) => {
         const li = document.createElement("li");
         li.innerHTML = `
           <span class="check" aria-hidden="true">
@@ -469,41 +833,47 @@
       });
 
       clearChildren(tecTbody);
-      data.tecnicas.forEach((row) => {
+      (data.tecnicas || []).forEach((row) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="strong">${row.competencia}</td>
           <td>${row.descricao}</td>
-          <td>${row.nivel}</td>
-          <td>${row.grupo}</td>
-          <td>${row.indicadores}</td>
+          <td class="col-small">${row.nivel}</td>
         `;
         tecTbody.appendChild(tr);
       });
 
       clearChildren(compTbody);
-      data.comportamentais.forEach((row) => {
+      (data.comportamentais || []).forEach((row) => {
+        const indicators = (row.indicadores || [])
+          .map(i => `<li>${i}</li>`).join("");
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td class="strong">${row.competencia}</td>
           <td>${row.descricao}</td>
-          <td>${row.nivel}</td>
-          <td>${row.grupo}</td>
-          <td>${row.grau}</td>
-          <td>${row.indicadores}</td>
+          <td class="col-small">${row.grupo}</td>
+          <td class="col-mini">${row.grau}</td>
+          <td><ul class="mini-list">${indicators}</ul></td>
         `;
         compTbody.appendChild(tr);
       });
 
-      // sempre abre na aba "Dados Gerais"
+      clearChildren(perfTbody);
+      (data.indicadores || []).forEach((row) => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td class="strong">${row.ind}</td>
+          <td>${row.desc}</td>
+        `;
+        perfTbody.appendChild(tr);
+      });
+
       activateTab("dados");
       setActiveView(true);
     }
 
     // Clique no nome do cargo
-    $$(".row-link").forEach(btn => {
-      btn.addEventListener("click", () => openCargo(btn.dataset.id));
-    });
+    $$(".row-link").forEach(btn => btn.addEventListener("click", () => openCargo(btn.dataset.id)));
 
     // Voltar
     $("#btnBack").addEventListener("click", () => setActiveView(false));
@@ -524,16 +894,56 @@
       responsabilidades: $("#tab-responsabilidades"),
       tecnicas: $("#tab-tecnicas"),
       comportamentais: $("#tab-comportamentais"),
+      indicadores: $("#tab-indicadores"),
     };
 
     function activateTab(key) {
       tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
       Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
     }
-
     tabs.forEach(btn => btn.addEventListener("click", () => activateTab(btn.dataset.tab)));
 
-    // Abrir um exemplo por URL: cargos.html#analista-financeiro
+    // Modal (mock)
+    const modal = $("#pickerModal");
+    const pickerTitle = $("#pickerTitle");
+    const pickerThead = $("#pickerThead");
+    const pickerTbody = $("#pickerTbody");
+
+    function openPicker(kind){
+      pickerTitle.textContent = (kind === "tec")
+        ? "Adicionar Competências Técnicas"
+        : "Adicionar Competências Comportamentais";
+
+      pickerThead.innerHTML = (kind === "tec")
+        ? `<tr><th>Competência</th><th>Descrição</th><th>Nível</th></tr>`
+        : `<tr><th>Competência</th><th>Descrição</th><th>Grupo</th></tr>`;
+
+      // catálogo mock (na prática viria do cadastro de competências)
+      const catTec = cargoData["auxiliar-administrativo"].tecnicas;
+      const catComp = cargoData["auxiliar-administrativo"].comportamentais;
+
+      pickerTbody.innerHTML = (kind === "tec"
+        ? catTec.map(i => `<tr><td class="strong">${i.competencia}</td><td>${i.descricao}</td><td class="col-small">${i.nivel}</td></tr>`).join("")
+        : catComp.map(i => `<tr><td class="strong">${i.competencia}</td><td>${i.descricao}</td><td class="col-small">${i.grupo}</td></tr>`).join("")
+      );
+
+      modal.hidden = false;
+      document.body.classList.add("modal-open");
+    }
+
+    function closePicker(){
+      modal.hidden = true;
+      document.body.classList.remove("modal-open");
+    }
+
+    $("#btnAddTec").addEventListener("click", () => openPicker("tec"));
+    $("#btnAddComp").addEventListener("click", () => openPicker("comp"));
+
+    modal.addEventListener("click", (e) => {
+      if (e.target && e.target.getAttribute("data-close")) closePicker();
+    });
+
+    // Abrir um exemplo por URL: cargos.html#auxiliar-administrativo
     const hash = (location.hash || "").replace("#", "").trim();
     if (hash) openCargo(hash);
   </script>

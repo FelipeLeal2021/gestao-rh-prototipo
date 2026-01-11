@@ -19,14 +19,18 @@
   <main class="ts-page">
     <header class="page-head">
       <div>
-        <h2 class="page-title">Tabela Salarial</h2>
-        <p class="page-subtitle">Visualize faixas salariais por cargo e nível (Júnior, Pleno e Sênior).</p>
+        <h2 class="page-title">TABELA SALARIAL</h2>
+        <p class="page-subtitle">Visualize faixas salariais por cargo e departamento (Step 1 a Step 6).</p>
       </div>
 
       <div class="head-actions">
-        <button class="btn btn--ghost" type="button" onclick="window.print()">
-          Imprimir
+        <!-- IMPORTAR (protótipo) -->
+        <button class="btn btn--ghost" type="button" id="importBtn">
+          Importar
         </button>
+        <input id="importFile" type="file" hidden accept=".csv,.xlsx,.xls" />
+
+        <!-- EXPORTAR (mantido) -->
         <button class="btn btn--success" type="button" onclick="alert('Exportar ainda não implementado')">
           Exportar
         </button>
@@ -35,110 +39,292 @@
 
     <section class="card" aria-label="Tabela salarial">
       <div class="toolbar">
-        <div class="search">
-          <span class="search__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
-            </svg>
-          </span>
-          <input id="searchInput" class="search__input" type="text" placeholder="Pesquisar cargo..." />
+        <div class="filters">
+          <div class="search">
+            <span class="search__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
+              </svg>
+            </span>
+            <input id="searchInput" class="search__input" type="text" placeholder="Filtrar por cargo..." />
+          </div>
+
+          <div class="select-wrap">
+            <label class="select-label" for="deptSelect">Departamento</label>
+            <select id="deptSelect" class="select">
+              <option value="">Todos</option>
+              <!-- preenchido via JS -->
+            </select>
+          </div>
         </div>
 
-        <div class="chips" role="group" aria-label="Legenda de níveis">
-          <span class="chip chip--junior">Júnior</span>
-          <span class="chip chip--pleno">Pleno</span>
-          <span class="chip chip--senior">Sênior</span>
-        </div>
+        <span class="hint">Filtros: <strong>Cargo</strong> e <strong>Departamento</strong>.</span>
       </div>
 
       <div class="table-wrap" role="region" aria-label="Tabela salarial rolável" tabindex="0">
         <table class="table" aria-label="Tabela Salarial">
           <thead>
-            <tr class="thead-top">
-              <th class="th-cargo" rowspan="2">Cargo</th>
-              <th class="th-group th-junior" colspan="3">Júnior</th>
-              <th class="th-group th-pleno" colspan="3">Pleno</th>
-              <th class="th-group th-senior" colspan="3">Sênior</th>
-            </tr>
-            <tr class="thead-sub">
-              <th class="th-junior">1</th>
-              <th class="th-junior">2</th>
-              <th class="th-junior">3</th>
-
-              <th class="th-pleno">1</th>
-              <th class="th-pleno">2</th>
-              <th class="th-pleno">3</th>
-
-              <th class="th-senior">1</th>
-              <th class="th-senior">2</th>
-              <th class="th-senior">3</th>
+            <tr>
+              <th class="th-left th-cargo">Nome do Cargo</th>
+              <th class="th-left th-dept">Departamento</th>
+              <th>Step 1</th>
+              <th>Step 2</th>
+              <th>Step 3</th>
+              <th>Step 4</th>
+              <th>Step 5</th>
+              <th>Step 6</th>
             </tr>
           </thead>
 
           <tbody id="tsBody">
-            <tr>
+            <tr data-cargo="Diretor(a)" data-dept="Diretoria">
+              <td class="cargo strong">Diretor(a)</td>
+              <td class="dept">Diretoria</td>
+              <td>R$ 10.920,00</td><td>R$ 11.280,00</td><td>R$ 11.640,00</td>
+              <td>R$ 12.000,00</td><td>R$ 12.360,00</td><td>R$ 12.720,00</td>
+            </tr>
+
+            <tr data-cargo="Auxiliar Administrativo" data-dept="Administrativo">
               <td class="cargo strong">Auxiliar Administrativo</td>
-              <td>R$ 1.500,00</td><td>R$ 1.545,00</td><td>R$ 1.591,35</td>
-              <td>R$ 1.639,09</td><td>R$ 1.688,26</td><td>R$ 1.738,91</td>
-              <td>R$ 1.791,08</td><td>R$ 1.844,81</td><td>R$ 1.900,16</td>
+              <td class="dept">Administrativo</td>
+              <td>R$ 1.365,00</td><td>R$ 1.410,00</td><td>R$ 1.455,00</td>
+              <td>R$ 1.500,00</td><td>R$ 1.545,00</td><td>R$ 1.590,00</td>
             </tr>
 
-            <tr>
+            <tr data-cargo="Assistente Administrativo" data-dept="Administrativo">
               <td class="cargo strong">Assistente Administrativo</td>
-              <td>R$ 1.900,16</td><td>R$ 1.957,16</td><td>R$ 2.015,87</td>
-              <td>R$ 2.076,35</td><td>R$ 2.138,64</td><td>R$ 2.202,80</td>
-              <td>R$ 2.268,88</td><td>R$ 2.336,95</td><td>R$ 2.407,06</td>
+              <td class="dept">Administrativo</td>
+              <td>R$ 1.820,00</td><td>R$ 1.880,00</td><td>R$ 1.940,00</td>
+              <td>R$ 2.000,00</td><td>R$ 2.060,00</td><td>R$ 2.120,00</td>
             </tr>
 
-            <tr>
-              <td class="cargo strong">Analista Administrativo</td>
-              <td>R$ 2.407,06</td><td>R$ 2.479,27</td><td>R$ 2.553,65</td>
-              <td>R$ 2.630,26</td><td>R$ 2.709,17</td><td>R$ 2.790,44</td>
-              <td>R$ 2.874,16</td><td>R$ 2.960,38</td><td>R$ 3.049,19</td>
+            <tr data-cargo="Analista Administrativo Júnior" data-dept="Administrativo">
+              <td class="cargo strong">Analista Administrativo Júnior</td>
+              <td class="dept">Administrativo</td>
+              <td>R$ 2.548,00</td><td>R$ 2.632,00</td><td>R$ 2.716,00</td>
+              <td>R$ 2.800,00</td><td>R$ 2.884,00</td><td>R$ 2.968,00</td>
             </tr>
 
-            <tr>
+            <tr data-cargo="Supervisor Administrativo" data-dept="Administrativo">
               <td class="cargo strong">Supervisor Administrativo</td>
-              <td>R$ 3.049,19</td><td>R$ 3.140,67</td><td>R$ 3.234,89</td>
-              <td>R$ 3.331,93</td><td>R$ 3.431,89</td><td>R$ 3.534,84</td>
-              <td>R$ 3.640,89</td><td>R$ 3.750,12</td><td>R$ 3.862,62</td>
+              <td class="dept">Administrativo</td>
+              <td>R$ 4.095,00</td><td>R$ 4.230,00</td><td>R$ 4.365,00</td>
+              <td>R$ 4.500,00</td><td>R$ 4.635,00</td><td>R$ 4.770,00</td>
             </tr>
 
-            <tr>
-              <td class="cargo strong">Coordenador Administrativo</td>
-              <td>R$ 3.862,62</td><td>R$ 3.978,50</td><td>R$ 4.097,86</td>
-              <td>R$ 4.220,79</td><td>R$ 4.347,42</td><td>R$ 4.477,84</td>
-              <td>R$ 4.612,18</td><td>R$ 4.750,54</td><td>R$ 4.893,06</td>
+            <tr data-cargo="Auxiliar Financeiro" data-dept="Financeiro">
+              <td class="cargo strong">Auxiliar Financeiro</td>
+              <td class="dept">Financeiro</td>
+              <td>R$ 1.456,00</td><td>R$ 1.504,00</td><td>R$ 1.552,00</td>
+              <td>R$ 1.600,00</td><td>R$ 1.648,00</td><td>R$ 1.696,00</td>
             </tr>
 
-            <tr>
-              <td class="cargo strong">Gerente Administrativo</td>
-              <td>R$ 4.893,06</td><td>R$ 5.039,85</td><td>R$ 5.191,04</td>
-              <td>R$ 5.346,78</td><td>R$ 5.507,18</td><td>R$ 5.672,39</td>
-              <td>R$ 5.842,57</td><td>R$ 6.017,84</td><td>R$ 6.198,38</td>
+            <tr data-cargo="Assistente Financeiro" data-dept="Financeiro">
+              <td class="cargo strong">Assistente Financeiro</td>
+              <td class="dept">Financeiro</td>
+              <td>R$ 2.002,00</td><td>R$ 2.068,00</td><td>R$ 2.134,00</td>
+              <td>R$ 2.200,00</td><td>R$ 2.266,00</td><td>R$ 2.332,00</td>
+            </tr>
+
+            <tr data-cargo="Analista Financeiro Júnior" data-dept="Financeiro">
+              <td class="cargo strong">Analista Financeiro Júnior</td>
+              <td class="dept">Financeiro</td>
+              <td>R$ 2.730,00</td><td>R$ 2.820,00</td><td>R$ 2.910,00</td>
+              <td>R$ 3.000,00</td><td>R$ 3.090,00</td><td>R$ 3.180,00</td>
+            </tr>
+
+            <tr data-cargo="Supervisor Financeiro" data-dept="Financeiro">
+              <td class="cargo strong">Supervisor Financeiro</td>
+              <td class="dept">Financeiro</td>
+              <td>R$ 4.368,00</td><td>R$ 4.512,00</td><td>R$ 4.656,00</td>
+              <td>R$ 4.800,00</td><td>R$ 4.944,00</td><td>R$ 5.088,00</td>
+            </tr>
+
+            <tr data-cargo="Auxiliar Contábil" data-dept="Contábil">
+              <td class="cargo strong">Auxiliar Contábil</td>
+              <td class="dept">Contábil</td>
+              <td>R$ 1.456,00</td><td>R$ 1.504,00</td><td>R$ 1.552,00</td>
+              <td>R$ 1.600,00</td><td>R$ 1.648,00</td><td>R$ 1.696,00</td>
+            </tr>
+
+            <tr data-cargo="Assistente Contábil" data-dept="Contábil">
+              <td class="cargo strong">Assistente Contábil</td>
+              <td class="dept">Contábil</td>
+              <td>R$ 2.093,00</td><td>R$ 2.162,00</td><td>R$ 2.231,00</td>
+              <td>R$ 2.300,00</td><td>R$ 2.369,00</td><td>R$ 2.438,00</td>
+            </tr>
+
+            <tr data-cargo="Analista Contábil Júnior" data-dept="Contábil">
+              <td class="cargo strong">Analista Contábil Júnior</td>
+              <td class="dept">Contábil</td>
+              <td>R$ 2.912,00</td><td>R$ 3.008,00</td><td>R$ 3.104,00</td>
+              <td>R$ 3.200,00</td><td>R$ 3.296,00</td><td>R$ 3.392,00</td>
+            </tr>
+
+            <tr data-cargo="Supervisor Contábil" data-dept="Contábil">
+              <td class="cargo strong">Supervisor Contábil</td>
+              <td class="dept">Contábil</td>
+              <td>R$ 4.550,00</td><td>R$ 4.700,00</td><td>R$ 4.850,00</td>
+              <td>R$ 5.000,00</td><td>R$ 5.150,00</td><td>R$ 5.300,00</td>
+            </tr>
+
+            <tr data-cargo="Coordenador Contábil" data-dept="Contábil">
+              <td class="cargo strong">Coordenador Contábil</td>
+              <td class="dept">Contábil</td>
+              <td>R$ 5.915,00</td><td>R$ 6.110,00</td><td>R$ 6.305,00</td>
+              <td>R$ 6.500,00</td><td>R$ 6.695,00</td><td>R$ 6.890,00</td>
+            </tr>
+
+            <tr data-cargo="Auxiliar Fiscal" data-dept="Fiscal">
+              <td class="cargo strong">Auxiliar Fiscal</td>
+              <td class="dept">Fiscal</td>
+              <td>R$ 1.456,00</td><td>R$ 1.504,00</td><td>R$ 1.552,00</td>
+              <td>R$ 1.600,00</td><td>R$ 1.648,00</td><td>R$ 1.696,00</td>
+            </tr>
+
+            <tr data-cargo="Assistente Fiscal" data-dept="Fiscal">
+              <td class="cargo strong">Assistente Fiscal</td>
+              <td class="dept">Fiscal</td>
+              <td>R$ 2.093,00</td><td>R$ 2.162,00</td><td>R$ 2.231,00</td>
+              <td>R$ 2.300,00</td><td>R$ 2.369,00</td><td>R$ 2.438,00</td>
+            </tr>
+
+            <tr data-cargo="Analista Fiscal Júnior" data-dept="Fiscal">
+              <td class="cargo strong">Analista Fiscal Júnior</td>
+              <td class="dept">Fiscal</td>
+              <td>R$ 2.912,00</td><td>R$ 3.008,00</td><td>R$ 3.104,00</td>
+              <td>R$ 3.200,00</td><td>R$ 3.296,00</td><td>R$ 3.392,00</td>
+            </tr>
+
+            <tr data-cargo="Supervisor Fiscal" data-dept="Fiscal">
+              <td class="cargo strong">Supervisor Fiscal</td>
+              <td class="dept">Fiscal</td>
+              <td>R$ 4.550,00</td><td>R$ 4.700,00</td><td>R$ 4.850,00</td>
+              <td>R$ 5.000,00</td><td>R$ 5.150,00</td><td>R$ 5.300,00</td>
+            </tr>
+
+            <tr data-cargo="Coordenador Fiscal" data-dept="Fiscal">
+              <td class="cargo strong">Coordenador Fiscal</td>
+              <td class="dept">Fiscal</td>
+              <td>R$ 5.915,00</td><td>R$ 6.110,00</td><td>R$ 6.305,00</td>
+              <td>R$ 6.500,00</td><td>R$ 6.695,00</td><td>R$ 6.890,00</td>
+            </tr>
+
+            <tr data-cargo="Auxiliar de DP" data-dept="Departamento Pessoal">
+              <td class="cargo strong">Auxiliar de DP</td>
+              <td class="dept">Departamento Pessoal</td>
+              <td>R$ 1.456,00</td><td>R$ 1.504,00</td><td>R$ 1.552,00</td>
+              <td>R$ 1.600,00</td><td>R$ 1.648,00</td><td>R$ 1.696,00</td>
+            </tr>
+
+            <tr data-cargo="Assistente de DP" data-dept="Departamento Pessoal">
+              <td class="cargo strong">Assistente de DP</td>
+              <td class="dept">Departamento Pessoal</td>
+              <td>R$ 2.093,00</td><td>R$ 2.162,00</td><td>R$ 2.231,00</td>
+              <td>R$ 2.300,00</td><td>R$ 2.369,00</td><td>R$ 2.438,00</td>
+            </tr>
+
+            <tr data-cargo="Analista de DP Júnior" data-dept="Departamento Pessoal">
+              <td class="cargo strong">Analista de DP Júnior</td>
+              <td class="dept">Departamento Pessoal</td>
+              <td>R$ 2.912,00</td><td>R$ 3.008,00</td><td>R$ 3.104,00</td>
+              <td>R$ 3.200,00</td><td>R$ 3.296,00</td><td>R$ 3.392,00</td>
+            </tr>
+
+            <tr data-cargo="Supervisor de DP" data-dept="Departamento Pessoal">
+              <td class="cargo strong">Supervisor de DP</td>
+              <td class="dept">Departamento Pessoal</td>
+              <td>R$ 4.368,00</td><td>R$ 4.512,00</td><td>R$ 4.656,00</td>
+              <td>R$ 4.800,00</td><td>R$ 4.944,00</td><td>R$ 5.088,00</td>
+            </tr>
+
+            <tr data-cargo="Consultor Comercial I" data-dept="Vendas">
+              <td class="cargo strong">Consultor Comercial I</td>
+              <td class="dept">Vendas</td>
+              <td>R$ 1.638,00</td><td>R$ 1.692,00</td><td>R$ 1.746,00</td>
+              <td>R$ 1.800,00</td><td>R$ 1.854,00</td><td>R$ 1.908,00</td>
+            </tr>
+
+            <tr data-cargo="Consultor Comercial II" data-dept="Vendas">
+              <td class="cargo strong">Consultor Comercial II</td>
+              <td class="dept">Vendas</td>
+              <td>R$ 2.093,00</td><td>R$ 2.162,00</td><td>R$ 2.231,00</td>
+              <td>R$ 2.300,00</td><td>R$ 2.369,00</td><td>R$ 2.438,00</td>
+            </tr>
+
+            <tr data-cargo="Consultor Comercial III" data-dept="Vendas">
+              <td class="cargo strong">Consultor Comercial III</td>
+              <td class="dept">Vendas</td>
+              <td>R$ 2.548,00</td><td>R$ 2.632,00</td><td>R$ 2.716,00</td>
+              <td>R$ 2.800,00</td><td>R$ 2.884,00</td><td>R$ 2.968,00</td>
+            </tr>
+
+            <tr data-cargo="Supervisor Comercial" data-dept="Vendas">
+              <td class="cargo strong">Supervisor Comercial</td>
+              <td class="dept">Vendas</td>
+              <td>R$ 4.095,00</td><td>R$ 4.230,00</td><td>R$ 4.365,00</td>
+              <td>R$ 4.500,00</td><td>R$ 4.635,00</td><td>R$ 4.770,00</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <p class="footnote">
-        * Valores ilustrativos (protótipo). Você pode substituir pelos valores reais depois.
+        * Valores ilustrativos (protótipo). Importação/Exportação ainda não gravam em banco.
       </p>
     </section>
   </main>
 
   <script>
-    // Busca simples por cargo
     (function () {
-      const input = document.getElementById("searchInput");
-      const rows = () => document.querySelectorAll("#tsBody tr");
+      const tbody = document.getElementById("tsBody");
+      const searchInput = document.getElementById("searchInput");
+      const deptSelect = document.getElementById("deptSelect");
 
-      input.addEventListener("input", () => {
-        const q = (input.value || "").toLowerCase().trim();
-        rows().forEach(tr => {
-          const cargo = (tr.querySelector(".cargo")?.innerText || "").toLowerCase();
-          tr.style.display = cargo.includes(q) ? "" : "none";
+      // ===== Popular departamentos no select =====
+      const deptSet = new Set();
+      Array.from(tbody.querySelectorAll("tr")).forEach(tr => {
+        const dept = (tr.dataset.dept || "").trim();
+        if (dept) deptSet.add(dept);
+      });
+
+      Array.from(deptSet).sort((a,b) => a.localeCompare(b, "pt-BR")).forEach(dep => {
+        const opt = document.createElement("option");
+        opt.value = dep;
+        opt.textContent = dep;
+        deptSelect.appendChild(opt);
+      });
+
+      // ===== Filtro combinado (cargo + depto) =====
+      function applyFilters() {
+        const q = (searchInput.value || "").toLowerCase().trim();
+        const dep = (deptSelect.value || "").trim();
+
+        Array.from(tbody.querySelectorAll("tr")).forEach(tr => {
+          const cargo = (tr.dataset.cargo || "").toLowerCase();
+          const dept = (tr.dataset.dept || "").trim();
+
+          const okCargo = !q || cargo.includes(q);
+          const okDept = !dep || dept === dep;
+
+          tr.style.display = (okCargo && okDept) ? "" : "none";
         });
+      }
+
+      searchInput.addEventListener("input", applyFilters);
+      deptSelect.addEventListener("change", applyFilters);
+
+      // ===== Importar (protótipo) =====
+      const importBtn = document.getElementById("importBtn");
+      const importFile = document.getElementById("importFile");
+
+      importBtn.addEventListener("click", () => importFile.click());
+
+      importFile.addEventListener("change", () => {
+        const file = importFile.files && importFile.files[0];
+        if (!file) return;
+        alert(`Arquivo selecionado: ${file.name}\n\n(Protótipo) Importação ainda não implementada.`);
+        importFile.value = "";
       });
     })();
   </script>

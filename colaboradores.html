@@ -39,88 +39,145 @@
           <input id="searchInput" class="search__input" type="text" placeholder="Pesquisar colaborador..." />
         </div>
 
-        <span class="hint">Dica: clique na linha para abrir o cadastro.</span>
+        <div class="filters">
+          <label class="filter" for="statusFilter">
+            <span class="filter__label">Status</span>
+            <select id="statusFilter" class="filter__select">
+              <option value="todos">Todos</option>
+              <option value="Ativo">Ativo</option>
+              <option value="Afastado">Afastado</option>
+              <option value="Desligado">Desligado</option>
+            </select>
+          </label>
+
+          <span class="hint">Dica: clique na linha para abrir o cadastro.</span>
+        </div>
       </div>
 
       <div class="table-wrap">
         <table class="table" aria-label="Lista de colaboradores">
           <thead>
             <tr>
-              <th>Nome Completo</th>
-              <th>Cargo</th>
               <th>Área</th>
               <th>Departamento</th>
-              <th>Centro de Custo</th>
+              <th>Nome Completo</th>
+              <th>Cargo</th>
               <th>Admissão</th>
+              <th>Salário</th>
               <th class="col-status">Status</th>
               <th class="col-actions">Ações</th>
             </tr>
           </thead>
 
           <tbody id="colabBody">
-            <tr data-id="1">
+            <tr data-id="1" data-status="Ativo">
+              <td>Administrativo</td>
+              <td>Administrativo</td>
               <td class="strong">Ana Paula Souza</td>
+              <td>Auxiliar Administrativo</td>
+              <td>05/02/2025</td>
+              <td>R$ 1.500,00</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="1">Editar</button></td>
+            </tr>
+
+            <tr data-id="2" data-status="Afastado">
+              <td>Administrativo</td>
+              <td>Administrativo</td>
+              <td class="strong">Rafael Costa Almeida</td>
               <td>Assistente Administrativo</td>
-              <td>Administrativo</td>
-              <td>Administrativo</td>
-              <td>1.1 Financeiro</td>
-              <td>15/03/2022</td>
-              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-              <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" data-open="1">Editar</button>
-              </td>
+              <td>10/03/2024</td>
+              <td>R$ 2.000,00</td>
+              <td class="col-status"><span class="badge badge--warn">Afastado</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="2">Editar</button></td>
             </tr>
 
-            <tr data-id="2">
-              <td class="strong">Carlos Henrique Lima</td>
-              <td>Analista Administrativo</td>
+            <tr data-id="3" data-status="Ativo">
               <td>Administrativo</td>
               <td>Administrativo</td>
-              <td>1.2 Compras</td>
-              <td>10/01/2021</td>
+              <td class="strong">Juliana Martins Rocha</td>
+              <td>Analista Administrativo Júnior</td>
+              <td>15/08/2023</td>
+              <td>R$ 2.800,00</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-              <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" data-open="2">Editar</button>
-              </td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="3">Editar</button></td>
             </tr>
 
-            <tr data-id="3">
-              <td class="strong">Fernanda Rocha</td>
-              <td>Analista Financeiro</td>
+            <tr data-id="4" data-status="Ativo">
+              <td>Administrativo</td>
+              <td>Administrativo</td>
+              <td class="strong">Marcelo Ribeiro</td>
+              <td>Supervisor Administrativo</td>
+              <td>02/01/2022</td>
+              <td>R$ 4.500,00</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="4">Editar</button></td>
+            </tr>
+
+            <tr data-id="5" data-status="Ativo">
               <td>Administrativo</td>
               <td>Financeiro</td>
-              <td>1.1 Financeiro</td>
-              <td>08/08/2020</td>
+              <td class="strong">Fernanda Oliveira Pires</td>
+              <td>Assistente Financeiro</td>
+              <td>12/06/2024</td>
+              <td>R$ 2.200,00</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-              <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" data-open="3">Editar</button>
-              </td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="5">Editar</button></td>
             </tr>
 
-            <tr data-id="4">
-              <td class="strong">João Victor Martins</td>
-              <td>Operador de Produção</td>
+            <tr data-id="6" data-status="Ativo">
               <td>Administrativo</td>
-              <td>Produção</td>
-              <td>2.1 Produção</td>
-              <td>22/06/2023</td>
+              <td>Financeiro</td>
+              <td class="strong">Diego Santos Ribeiro</td>
+              <td>Analista Financeiro Júnior</td>
+              <td>20/09/2023</td>
+              <td>R$ 3.000,00</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-              <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" data-open="4">Editar</button>
-              </td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="6">Editar</button></td>
             </tr>
 
-            <tr data-id="5">
-              <td class="strong">Thiago Moreira</td>
-              <td>Operador de Produção</td>
+            <tr data-id="7" data-status="Desligado">
               <td>Operacional</td>
-              <td>Produção</td>
-              <td>2.1 Supervisão</td>
-              <td>18/09/2021</td>
-              <td class="col-status"><span class="badge badge--warn">Afastado</span></td>
-              <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" data-open="5">Editar</button>
-              </td>
+              <td>Contábil</td>
+              <td class="strong">Patrícia Gomes Nogueira</td>
+              <td>Assistente Contábil</td>
+              <td>03/04/2024</td>
+              <td>R$ 2.300,00</td>
+              <td class="col-status"><span class="badge badge--off">Desligado</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="7">Editar</button></td>
+            </tr>
+
+            <tr data-id="8" data-status="Ativo">
+              <td>Operacional</td>
+              <td>Fiscal</td>
+              <td class="strong">Lucas Andrade Teixeira</td>
+              <td>Analista Fiscal Júnior</td>
+              <td>11/07/2023</td>
+              <td>R$ 3.200,00</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="8">Editar</button></td>
+            </tr>
+
+            <tr data-id="9" data-status="Ativo">
+              <td>Operacional</td>
+              <td>Departamento Pessoal</td>
+              <td class="strong">Camila Torres Figueiredo</td>
+              <td>Assistente de DP</td>
+              <td>22/05/2024</td>
+              <td>R$ 2.300,00</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="9">Editar</button></td>
+            </tr>
+
+            <tr data-id="10" data-status="Ativo">
+              <td>Comercial</td>
+              <td>Vendas</td>
+              <td class="strong">Bruno Azevedo Moreira</td>
+              <td>Consultor Comercial II</td>
+              <td>08/01/2024</td>
+              <td>R$ 2.300,00</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-open="10">Editar</button></td>
             </tr>
           </tbody>
         </table>
@@ -131,17 +188,19 @@
   <script>
     (function () {
       const input = document.getElementById("searchInput");
+      const statusFilter = document.getElementById("statusFilter");
       const tbody = document.getElementById("colabBody");
 
       function openCadastro(id){
         window.location.href = `colaborador-cadastro.html?id=${encodeURIComponent(id)}`;
       }
 
-      // clique na linha abre cadastro
+      // clique na linha ou no botão
       tbody.addEventListener("click", (e) => {
         const btn = e.target.closest("[data-open]");
         if (btn) {
           e.preventDefault();
+          e.stopPropagation();
           openCadastro(btn.getAttribute("data-open"));
           return;
         }
@@ -150,14 +209,23 @@
         if (tr) openCadastro(tr.getAttribute("data-id"));
       });
 
-      // filtro simples
-      input.addEventListener("input", () => {
+      function applyFilters(){
         const q = (input.value || "").toLowerCase().trim();
-        [...tbody.querySelectorAll("tr")].forEach(tr => {
+        const status = statusFilter.value;
+
+        [...tbody.querySelectorAll("tr[data-id]")].forEach(tr => {
           const text = tr.innerText.toLowerCase();
-          tr.style.display = text.includes(q) ? "" : "none";
+          const matchText = text.includes(q);
+
+          const rowStatus = tr.getAttribute("data-status") || "";
+          const matchStatus = (status === "todos") ? true : rowStatus === status;
+
+          tr.style.display = (matchText && matchStatus) ? "" : "none";
         });
-      });
+      }
+
+      input.addEventListener("input", applyFilters);
+      statusFilter.addEventListener("change", applyFilters);
     })();
   </script>
 </body>

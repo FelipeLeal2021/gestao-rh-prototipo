@@ -25,109 +25,172 @@
       <a class="back-link" href="index.html">← Voltar</a>
 
       <h2 class="page-title">DADOS GERAIS</h2>
-      <p class="page-subtitle">Preencha as informações gerais da empresa.</p>
+      <p class="page-subtitle">Preencha as informações da empresa por abas.</p>
 
       <section class="form-card" aria-label="Formulário de dados gerais">
-        <form class="form-grid">
-          <div class="field">
-            <label for="razao">Razão social</label>
-            <input id="razao" name="razao_social" type="text" placeholder="Digite a razão social" />
+        <form class="form-root">
+
+          <!-- TABS (CSS-only) -->
+          <div class="tabs" aria-label="Abas de dados gerais">
+            <!-- Radios (controle) -->
+            <input class="tab-input" type="radio" name="dg-tabs" id="tab-info" checked />
+            <input class="tab-input" type="radio" name="dg-tabs" id="tab-endereco" />
+            <input class="tab-input" type="radio" name="dg-tabs" id="tab-contatos" />
+            <input class="tab-input" type="radio" name="dg-tabs" id="tab-config" />
+
+            <!-- Botões/labels das abas -->
+            <div class="tab-list" role="tablist" aria-label="Navegação por abas">
+              <label id="label-tab-info" class="tab-label" for="tab-info" role="tab">
+                Informações Gerais
+              </label>
+
+              <label id="label-tab-endereco" class="tab-label" for="tab-endereco" role="tab">
+                Endereço
+              </label>
+
+              <label id="label-tab-contatos" class="tab-label" for="tab-contatos" role="tab">
+                Contatos
+              </label>
+
+              <label id="label-tab-config" class="tab-label" for="tab-config" role="tab">
+                Configurações
+              </label>
+            </div>
+
+            <!-- Conteúdo das abas -->
+            <div class="tab-panels">
+              <!-- ABA 1 -->
+              <section class="tab-panel" id="panel-info" role="tabpanel" aria-labelledby="label-tab-info">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="razao">Razão social</label>
+                    <input id="razao" name="razao_social" type="text" placeholder="Digite a razão social" />
+                  </div>
+
+                  <div class="field">
+                    <label for="fantasia">Nome fantasia</label>
+                    <input id="fantasia" name="nome_fantasia" type="text" placeholder="Digite o nome fantasia" />
+                  </div>
+
+                  <div class="field">
+                    <label for="cnpj">CNPJ</label>
+                    <input id="cnpj" name="cnpj" type="text" placeholder="00.000.000/0000-00" />
+                  </div>
+
+                  <div class="field">
+                    <label for="ie">Inscrição estadual</label>
+                    <input id="ie" name="inscricao_estadual" type="text" placeholder="Digite a inscrição estadual" />
+                  </div>
+
+                  <div class="field">
+                    <label for="im">Inscrição municipal</label>
+                    <input id="im" name="inscricao_municipal" type="text" placeholder="Digite a inscrição municipal" />
+                  </div>
+
+                  <div class="field">
+                    <label for="abertura">Data de abertura</label>
+                    <input id="abertura" name="data_abertura" type="date" />
+                  </div>
+
+                  <div class="field">
+                    <label for="cnae-principal">CNAE principal</label>
+                    <input id="cnae-principal" name="cnae_principal" type="text" placeholder="Digite o CNAE principal" />
+                  </div>
+
+                  <div class="field">
+                    <label for="cnae-secundario">CNAE(s) secundário(s)</label>
+                    <input
+                      id="cnae-secundario"
+                      name="cnae_secundarios"
+                      type="text"
+                      placeholder="Digite os CNAEs secundários (separados por vírgula)"
+                    />
+                  </div>
+                </div>
+              </section>
+
+              <!-- ABA 2 -->
+              <section class="tab-panel" id="panel-endereco" role="tabpanel" aria-labelledby="label-tab-endereco">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="logradouro">Logradouro</label>
+                    <input id="logradouro" name="logradouro" type="text" placeholder="Rua / Avenida / Travessa..." />
+                  </div>
+
+                  <div class="field">
+                    <label for="numero">Número</label>
+                    <input id="numero" name="numero" type="text" placeholder="Número" />
+                  </div>
+
+                  <div class="field">
+                    <label for="complemento">Complemento</label>
+                    <input id="complemento" name="complemento" type="text" placeholder="Apto / Sala / Bloco..." />
+                  </div>
+
+                  <div class="field">
+                    <label for="bairro">Bairro</label>
+                    <input id="bairro" name="bairro" type="text" placeholder="Digite o bairro" />
+                  </div>
+
+                  <div class="field">
+                    <label for="cidade">Cidade</label>
+                    <input id="cidade" name="cidade" type="text" placeholder="Digite a cidade" />
+                  </div>
+
+                  <div class="field">
+                    <label for="estado">Estado</label>
+                    <input id="estado" name="estado" type="text" placeholder="UF" />
+                  </div>
+
+                  <div class="field">
+                    <label for="cep">CEP</label>
+                    <input id="cep" name="cep" type="text" placeholder="00000-000" />
+                  </div>
+                </div>
+              </section>
+
+              <!-- ABA 3 -->
+              <section class="tab-panel" id="panel-contatos" role="tabpanel" aria-labelledby="label-tab-contatos">
+                <div class="form-grid">
+                  <div class="field">
+                    <label for="tel-fixo">Telefone fixo</label>
+                    <input id="tel-fixo" name="telefone_fixo" type="tel" placeholder="(00) 0000-0000" />
+                  </div>
+
+                  <div class="field">
+                    <label for="whatsapp">WhatsApp</label>
+                    <input id="whatsapp" name="whatsapp" type="tel" placeholder="(00) 90000-0000" />
+                  </div>
+
+                  <div class="field">
+                    <label for="email">E-mail da empresa</label>
+                    <input id="email" name="email_empresa" type="email" placeholder="email@empresa.com" />
+                  </div>
+
+                  <div class="field">
+                    <label for="site">Site</label>
+                    <input id="site" name="site" type="url" placeholder="https://www.empresa.com" />
+                  </div>
+                </div>
+              </section>
+
+              <!-- ABA 4 -->
+              <section class="tab-panel" id="panel-config" role="tabpanel" aria-labelledby="label-tab-config">
+                <div class="tab-placeholder">
+                  <h3 class="tab-title">Configurações</h3>
+                  <p class="tab-help">
+                    Esta aba ficará pronta no final. Já deixei aqui para manter o layout organizado.
+                  </p>
+                </div>
+              </section>
+            </div>
           </div>
 
-          <div class="field">
-            <label for="fantasia">Nome fantasia</label>
-            <input id="fantasia" name="nome_fantasia" type="text" placeholder="Digite o nome fantasia" />
-          </div>
-
-          <div class="field">
-            <label for="cnpj">CNPJ</label>
-            <input id="cnpj" name="cnpj" type="text" placeholder="00.000.000/0000-00" />
-          </div>
-
-          <div class="field">
-            <label for="ie">Inscrição estadual</label>
-            <input id="ie" name="inscricao_estadual" type="text" placeholder="Digite a inscrição estadual" />
-          </div>
-
-          <div class="field">
-            <label for="im">Inscrição municipal</label>
-            <input id="im" name="inscricao_municipal" type="text" placeholder="Digite a inscrição municipal" />
-          </div>
-
-          <div class="field">
-            <label for="abertura">Data de abertura</label>
-            <input id="abertura" name="data_abertura" type="date" />
-          </div>
-
-          <div class="field">
-            <label for="cnae-principal">CNAE principal</label>
-            <input id="cnae-principal" name="cnae_principal" type="text" placeholder="Digite o CNAE principal" />
-          </div>
-
-          <div class="field">
-            <label for="cnae-secundario">CNAE(s) secundário(s)</label>
-            <input id="cnae-secundario" name="cnae_secundarios" type="text" placeholder="Digite os CNAEs secundários (separados por vírgula)" />
-          </div>
-
-          <div class="field">
-            <label for="logradouro">Logradouro</label>
-            <input id="logradouro" name="logradouro" type="text" placeholder="Rua / Avenida / Travessa..." />
-          </div>
-
-          <div class="field">
-            <label for="numero">Número</label>
-            <input id="numero" name="numero" type="text" placeholder="Número" />
-          </div>
-
-          <div class="field">
-            <label for="complemento">Complemento</label>
-            <input id="complemento" name="complemento" type="text" placeholder="Apto / Sala / Bloco..." />
-          </div>
-
-          <div class="field">
-            <label for="bairro">Bairro</label>
-            <input id="bairro" name="bairro" type="text" placeholder="Digite o bairro" />
-          </div>
-
-          <div class="field">
-            <label for="cidade">Cidade</label>
-            <input id="cidade" name="cidade" type="text" placeholder="Digite a cidade" />
-          </div>
-
-          <div class="field">
-            <label for="estado">Estado</label>
-            <input id="estado" name="estado" type="text" placeholder="UF" />
-          </div>
-
-          <div class="field">
-            <label for="cep">CEP</label>
-            <input id="cep" name="cep" type="text" placeholder="00000-000" />
-          </div>
-
-          <div class="field">
-            <label for="tel-fixo">Telefone fixo</label>
-            <input id="tel-fixo" name="telefone_fixo" type="tel" placeholder="(00) 0000-0000" />
-          </div>
-
-          <div class="field">
-            <label for="whatsapp">WhatsApp</label>
-            <input id="whatsapp" name="whatsapp" type="tel" placeholder="(00) 90000-0000" />
-          </div>
-
-          <div class="field">
-            <label for="email">E-mail da empresa</label>
-            <input id="email" name="email_empresa" type="email" placeholder="email@empresa.com" />
-          </div>
-
-          <div class="field">
-            <label for="site">Site</label>
-            <input id="site" name="site" type="url" placeholder="https://www.empresa.com" />
-          </div>
-
-          <!-- AÇÕES -->
+          <!-- AÇÕES (sempre visível) -->
           <div class="form-actions">
             <button type="button" class="btn-primary">Salvar</button>
           </div>
+
         </form>
       </section>
     </div>

@@ -19,9 +19,12 @@
   <!-- CONTEÚDO -->
   <main>
     <div class="competencias">
+
       <header class="competencias__header">
-        <h2 class="competencias__title">Competências</h2>
-        <p class="competencias__subtitle">Gerencie competências técnicas, comportamentais e organizacionais.</p>
+        <div>
+          <h2 class="competencias__title">Competências</h2>
+          <p class="competencias__subtitle">Gerencie competências técnicas, comportamentais e organizacionais.</p>
+        </div>
       </header>
 
       <nav class="tabs" aria-label="Abas de Competências">
@@ -43,109 +46,138 @@
                     <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
                   </svg>
                 </span>
-                <input class="search__input" type="text" placeholder="Pesquisar..." />
+                <input class="search__input" type="text" placeholder="Pesquisar..." data-search="tecnicas" />
               </div>
 
               <div class="toolbar__actions">
-                <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                <button class="btn btn--success" type="button" data-action="open-incluir" data-type="tecnicas">
                   <span class="btn__icon" aria-hidden="true">+</span>
                   Incluir
-                </button>
-
-                <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                  </svg>
-                  Editar
                 </button>
               </div>
             </div>
 
             <div class="table-wrap">
-              <table class="table">
+              <table class="table" aria-label="Competências técnicas">
                 <thead>
                   <tr>
-                    <th>Nome da Competência <span class="sort">↕</span></th>
+                    <th>Nome da Competência</th>
                     <th>Categoria</th>
-                    <th>Níveis de Exigência <span class="sort">↕</span></th>
+                    <th>Níveis de Exigência</th>
                     <th>Descrição</th>
-                    <th class="col-status">Status <span class="sort">↕</span></th>
+                    <th class="col-status">Status</th>
+                    <th class="col-actions">Ações</th>
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="tbody-tecnicas">
                   <tr>
                     <td class="strong">Escolaridade</td>
-                    <td>Formação / Escolaridade</td>
-                    <td>Em andamento, Completo, Incompleto</td>
-                    <td>Formação em nível superior ou técnico.</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
+                    <td>Formação</td>
+                    <td>Sem escolaridade, Fundamental, Médio, Técnico, Superior, Pós-graduação, Mestrado, Doutorado</td>
+                    <td>Grau de escolaridade exigido para o cargo.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Área de Formação</td>
+                    <td>Formação</td>
+                    <td>Administração, Ciências Contábeis, Gestão de RH, Direito, Economia, Outras</td>
+                    <td>Área de formação compatível com o cargo. Campo pode ser editável conforme necessidade.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Experiência na Função</td>
+                    <td>Experiência</td>
+                    <td>Sem experiência, Até 1 ano, 1 a 3 anos, 3 a 5 anos, Acima de 5 anos</td>
+                    <td>Tempo de experiência prática exigido na função.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Experiência em Escritório Contábil</td>
+                    <td>Experiência</td>
+                    <td>Nenhuma, Até 1 ano, 1 a 3 anos, Acima de 3 anos</td>
+                    <td>Vivência anterior em rotinas de escritório contábil.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
                     </td>
                   </tr>
 
                   <tr>
                     <td class="strong">Excel</td>
-                    <td>Ferramentas / Sistemas</td>
-                    <td>Indiferente, Básico, Intermediário, Avançado</td>
-                    <td>Domínio de planilhas eletrônicas para controles e análises.</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
+                    <td>Ferramentas</td>
+                    <td>Básico, Intermediário, Avançado</td>
+                    <td>Nível de domínio de planilhas e recursos do Excel.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
                     </td>
                   </tr>
 
                   <tr>
-                    <td class="strong">Inglês</td>
-                    <td>Idiomas</td>
-                    <td>Indiferente, Básico, Intermediário, Avançado, Fluente</td>
-                    <td>Conhecimento em idioma inglês para conversação e escrita.</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
+                    <td class="strong">Sistemas Contábeis</td>
+                    <td>Ferramentas</td>
+                    <td>Nenhum, Básico, Intermediário, Avançado</td>
+                    <td>Grau de familiaridade com sistemas contábeis utilizados na rotina.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
                     </td>
                   </tr>
 
                   <tr>
-                    <td class="strong">NR-11</td>
-                    <td>Certificações / Cursos</td>
-                    <td>Obrigatório, Desejável</td>
-                    <td>Treinamento obrigatório para operação de empilhadeira.</td>
-                    <td class="col-status">
-                      <span class="status status--neutral">Ativo</span>
+                    <td class="strong">eSocial</td>
+                    <td>Ferramentas</td>
+                    <td>Nenhum, Básico, Intermediário, Avançado</td>
+                    <td>Conhecimento para operar e conferir eventos no eSocial.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
                     </td>
                   </tr>
 
                   <tr>
-                    <td class="strong">Experiência na função</td>
-                    <td>Experiência Profissional</td>
-                    <td>Sem experiência, Até 6 meses, Até 1 ano, De 1 a 3 anos, De 3 a 5 anos, Acima</td>
-                    <td>Tempo mínimo de atuação prática na função.</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
+                    <td class="strong">Legislação Trabalhista</td>
+                    <td>Conhecimento Técnico</td>
+                    <td>Básico, Intermediário, Avançado</td>
+                    <td>Conhecimento sobre CLT, rotinas trabalhistas e obrigações legais.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
                     </td>
                   </tr>
 
                   <tr>
-                    <td class="strong">Power BI</td>
-                    <td>Ferramentas / Sistemas</td>
-                    <td>Indiferente, Básico, Intermediário, Avançado</td>
-                    <td>Análise de dados e construção de dashboards.</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
+                    <td class="strong">Legislação Previdenciária</td>
+                    <td>Conhecimento Técnico</td>
+                    <td>Básico, Intermediário, Avançado</td>
+                    <td>Conhecimento sobre INSS, benefícios e normas previdenciárias.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="strong">Registro Profissional (CRC)</td>
+                    <td>Requisito Legal</td>
+                    <td>Não exigido, Desejável, Obrigatório</td>
+                    <td>Exigência ou não de registro profissional no conselho da categoria.</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions">
+                      <button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button>
                     </td>
                   </tr>
                 </tbody>
@@ -167,177 +199,64 @@
                     <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
                   </svg>
                 </span>
-                <input class="search__input" type="text" placeholder="Pesquisar..." />
+                <input class="search__input" type="text" placeholder="Pesquisar..." data-search="comportamentais" />
               </div>
 
               <div class="toolbar__actions">
-                <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                <button class="btn btn--success" type="button" data-action="open-incluir" data-type="comportamentais">
                   <span class="btn__icon" aria-hidden="true">+</span>
                   Incluir
-                </button>
-
-                <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                  </svg>
-                  Editar
                 </button>
               </div>
             </div>
 
             <div class="table-wrap">
-              <table class="table">
+              <table class="table table--compact" aria-label="Competências comportamentais">
                 <thead>
                   <tr>
-                    <th>Fator Comportamental <span class="sort">↕</span></th>
-                    <th>Nome da Competência</th>
-                    <th>Descrição</th>
-                    <th class="col-scale">Escala de Grau</th>
+                    <th>Competência</th>
+                    <th>Conceito</th>
+                    <th class="col-group">Grupo</th>
                     <th class="col-status">Status</th>
-                    <th class="col-edit">Editar</th>
+                    <th class="col-actions">Ações</th>
                   </tr>
                 </thead>
 
-                <tbody>
-                  <tr>
-                    <td class="pill">Emocional</td>
-                    <td class="strong">Autoconfiança</td>
-                    <td>Segurança para agir, expor ideias e tomar decisões, mesmo diante de desafios.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
+                <tbody id="tbody-comportamentais">
+                  <tr><td class="strong">Autoconfiança</td><td>Ter confiança em si próprio e segurança nas próprias habilidades.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Autoconsciência</td><td>Conhecer a si mesmo, emoções, pontos fortes e pontos a desenvolver.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Autocontrole</td><td>Controlar impulsos e reagir com equilíbrio emocional.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Automotivação</td><td>Capacidade de estimular a si próprio para alcançar metas.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Comprometimento</td><td>Honrar acordos e dedicar-se com responsabilidade às tarefas.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Empatia</td><td>Capacidade de se colocar no lugar do outro.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Mentalidade Positiva</td><td>Manter otimismo e enxergar alternativas positivas nas situações.</td><td class="col-group">Emocional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
 
-                  <tr>
-                    <td class="pill">Emocional</td>
-                    <td class="strong">Autoconsciência</td>
-                    <td>Capacidade de reconhecer emoções, limites e impactos do próprio comportamento.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
+                  <tr><td class="strong">Autonomia</td><td>Capacidade de agir com independência e autogestão.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Flexibilidade</td><td>Facilidade de adaptação a mudanças e novos cenários.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Iniciativa</td><td>Capacidade de agir de forma proativa e antecipar ações.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Inquietude</td><td>Energia interna voltada para ação e realização.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Mentalidade Colaborativa</td><td>Pensar coletivamente, cocriar e respeitar a diversidade de ideias.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Reservado</td><td>Tendência à introspecção e preferência por atividades mais individuais.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Trabalho em Equipe</td><td>Capacidade de cooperar com outras pessoas em prol de objetivos comuns.</td><td class="col-group">Relacional</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
 
-                  <tr>
-                    <td class="pill">Emocional</td>
-                    <td class="strong">Autocontrole</td>
-                    <td>Capacidade de controlar emoções e reações em situações de pressão ou conflito.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
+                  <tr><td class="strong">Comunicação Efetiva</td><td>Transmitir ideias com clareza, objetividade e respeito.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Delegação</td><td>Capacidade de confiar tarefas e responsabilidades a outras pessoas.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Dominância</td><td>Habilidade de exercer autoridade e posicionamento com firmeza.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Influência</td><td>Capacidade de impactar pessoas e gerar adesão às ideias.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Integridade</td><td>Atuar com honestidade, ética e coerência entre discurso e ação.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Mediação de Conflitos</td><td>Habilidade de lidar com divergências e facilitar o diálogo.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Perfil Generalista</td><td>Interesse e facilidade em transitar por diversas áreas.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Resiliência</td><td>Capacidade de manter equilíbrio diante de pressão e adversidades.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Tomada de Decisão</td><td>Capacidade de decidir com clareza e firmeza.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Visão de Dono</td><td>Agir com responsabilidade e mentalidade de proprietário do negócio.</td><td class="col-group">Liderança</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
 
-                  <tr>
-                    <td class="pill">Execução</td>
-                    <td class="strong">Planejamento</td>
-                    <td>Capacidade de organizar atividades, definir prioridades e estruturar ações.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="pill">Execução</td>
-                    <td class="strong">Responsabilidade</td>
-                    <td>Compromisso com resultados, prazos e qualidade do trabalho entregue.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="pill">Relacional</td>
-                    <td class="strong">Trabalho em equipe</td>
-                    <td>Disposição para colaborar, compartilhar e contribuir com objetivos comuns.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="pill">Relacional</td>
-                    <td class="strong">Mentalidade colaborativa</td>
-                    <td>Disposição para ajudar, apoiar e construir soluções em conjunto.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="pill">Relacional</td>
-                    <td class="strong">Autonomia</td>
-                    <td>Capacidade de atuar com independência, sem necessidade de supervisão constante.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="pill">Liderança</td>
-                    <td class="strong">Flexibilidade</td>
-                    <td>Capacidade de se adaptar a mudanças, ajustes e novos cenários.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
-
-                  <tr>
-                    <td class="pill">Liderança</td>
-                    <td class="strong">Integridade</td>
-                    <td>Atuação ética, coerente e alinhada a valores e princípios.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
-                    <td class="col-edit"><a class="link" href="#" onclick="alert('Editar ainda não implementado')">Editar</a></td>
-                  </tr>
+                  <tr><td class="strong">Determinação</td><td>Persistência para alcançar objetivos, mesmo diante de dificuldades.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Foco</td><td>Manter atenção direcionada para objetivos e prioridades.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Organização</td><td>Capacidade de estruturar e controlar atividades e rotinas.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Planejamento</td><td>Capacidade de estruturar etapas e ações para atingir objetivos.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Precisão</td><td>Rigor e cuidado na execução das tarefas, com atenção aos detalhes.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Realizador</td><td>Orientação para a prática e execução concreta das ações.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
+                  <tr><td class="strong">Responsabilidade</td><td>Assumir consequências dos próprios atos e compromissos.</td><td class="col-group">Execução</td><td class="col-status"><span class="badge badge--active">Ativo</span></td><td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td></tr>
                 </tbody>
               </table>
             </div>
@@ -357,109 +276,159 @@
                     <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
                   </svg>
                 </span>
-                <input class="search__input" type="text" placeholder="Pesquisar..." />
+                <input class="search__input" type="text" placeholder="Pesquisar..." data-search="organizacionais" />
               </div>
 
               <div class="toolbar__actions">
-                <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+                <button class="btn btn--success" type="button" data-action="open-incluir" data-type="organizacionais">
                   <span class="btn__icon" aria-hidden="true">+</span>
                   Incluir
-                </button>
-
-                <button class="btn btn--ghost" type="button" onclick="alert('Editar ainda não implementado')">
-                  <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                  </svg>
-                  Editar
                 </button>
               </div>
             </div>
 
             <div class="table-wrap">
-              <table class="table">
+              <table class="table" aria-label="Competências organizacionais">
                 <thead>
                   <tr>
-                    <th>Nome da Competência</th>
-                    <th>Descrição</th>
-                    <th class="col-scale">Escala de Grau</th>
+                    <th>Competência Organizacional</th>
+                    <th>Conceito</th>
+                    <th>Indicadores</th>
+                    <th class="col-grade">Grau</th>
                     <th class="col-status">Status</th>
+                    <th class="col-actions">Ações</th>
                   </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="tbody-organizacionais">
+                  <!-- Ética e Responsabilidade Profissional -->
                   <tr>
-                    <td class="name-with-icon">
-                      <span class="dot dot--red" aria-hidden="true">✦</span>
-                      <span class="strong">Respeito às pessoas</span>
-                    </td>
-                    <td>Capacidade de agir com respeito, consideração e sensibilidade nas relações profissionais, compreendendo diferentes realidades e pontos de vista.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
+                    <td class="strong">Ética e Responsabilidade Profissional</td>
+                    <td>Age com honestidade, cumpre normas e executa suas atividades com rigor técnico e responsabilidade.</td>
+                    <td>• Cumpre normas internas e políticas da empresa sem necessidade de reforço constante.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Ética e Responsabilidade Profissional</td>
+                    <td>Age com honestidade, cumpre normas e executa suas atividades com rigor técnico e responsabilidade.</td>
+                    <td>• Demonstra postura ética no tratamento de informações e nas relações profissionais.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Ética e Responsabilidade Profissional</td>
+                    <td>Age com honestidade, cumpre normas e executa suas atividades com rigor técnico e responsabilidade.</td>
+                    <td>• Assume responsabilidades e responde adequadamente por suas entregas.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
+                  <!-- Compromisso com o Cliente -->
                   <tr>
-                    <td class="name-with-icon">
-                      <span class="dot dot--yellow" aria-hidden="true">✦</span>
-                      <span class="strong">Conduta ética</span>
-                    </td>
-                    <td>Atuação íntegra, honesta e responsável, alinhada às normas, princípios e valores da organização.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
+                    <td class="strong">Compromisso com o Cliente</td>
+                    <td>Atua com postura de atendimento, buscando compreender necessidades e entregar soluções com qualidade.</td>
+                    <td>• Demonstra atenção e cordialidade no atendimento a clientes internos e externos.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Compromisso com o Cliente</td>
+                    <td>Atua com postura de atendimento, buscando compreender necessidades e entregar soluções com qualidade.</td>
+                    <td>• Busca compreender as demandas antes de executar ou encaminhar soluções.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Compromisso com o Cliente</td>
+                    <td>Atua com postura de atendimento, buscando compreender necessidades e entregar soluções com qualidade.</td>
+                    <td>• Preocupa-se com a qualidade e clareza das entregas realizadas.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
+                  <!-- Organização e Cumprimento de Prazos -->
                   <tr>
-                    <td class="name-with-icon">
-                      <span class="dot dot--blue" aria-hidden="true">✦</span>
-                      <span class="strong">Trabalho colaborativo</span>
-                    </td>
-                    <td>Disposição para cooperar, compartilhar informações e contribuir ativamente para o alcance dos objetivos comuns.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
+                    <td class="strong">Organização e Cumprimento de Prazos</td>
+                    <td>Mantém rotinas organizadas, segue processos e cumpre prazos com responsabilidade.</td>
+                    <td>• Mantém controle das próprias atividades e documentos sob sua responsabilidade.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Organização e Cumprimento de Prazos</td>
+                    <td>Mantém rotinas organizadas, segue processos e cumpre prazos com responsabilidade.</td>
+                    <td>• Cumpre prazos estabelecidos ou sinaliza previamente possíveis atrasos.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Organização e Cumprimento de Prazos</td>
+                    <td>Mantém rotinas organizadas, segue processos e cumpre prazos com responsabilidade.</td>
+                    <td>• Segue processos e padrões definidos pela empresa.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
+                  <!-- Aprendizado e Evolução Contínua -->
                   <tr>
-                    <td class="name-with-icon">
-                      <span class="dot dot--green" aria-hidden="true">✦</span>
-                      <span class="strong">Foco na excelência</span>
-                    </td>
-                    <td>Busca constante por qualidade, eficiência e melhoria contínua nas entregas e resultados.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
+                    <td class="strong">Aprendizado e Evolução Contínua</td>
+                    <td>Demonstra abertura para aprender, busca atualização e melhoria constante.</td>
+                    <td>• Demonstra interesse em aprender novas rotinas, sistemas ou processos.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Aprendizado e Evolução Contínua</td>
+                    <td>Demonstra abertura para aprender, busca atualização e melhoria constante.</td>
+                    <td>• Aplica aprendizados no dia a dia de trabalho.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Aprendizado e Evolução Contínua</td>
+                    <td>Demonstra abertura para aprender, busca atualização e melhoria constante.</td>
+                    <td>• Busca evoluir tecnicamente e profissionalmente dentro da função.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
+                  <!-- Respeito e Colaboração -->
                   <tr>
-                    <td class="name-with-icon">
-                      <span class="dot dot--indigo" aria-hidden="true">✦</span>
-                      <span class="strong">Perfil generalista</span>
-                    </td>
-                    <td>Capacidade de atuar de forma ampla, conectando áreas e temas diferentes, com visão sistêmica.</td>
-                    <td class="col-scale">1 a 5</td>
-                    <td class="col-status">
-                      <span class="status status--active">
-                        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 16.2 4.8 12 3.4 13.4 9 19l12-12-1.4-1.4z"/></svg>
-                        Ativo
-                      </span>
-                    </td>
+                    <td class="strong">Respeito e Colaboração</td>
+                    <td>Contribui para um ambiente saudável, respeitando as pessoas e colaborando com o time.</td>
+                    <td>• Mantém relacionamento respeitoso com colegas, líderes e clientes.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Respeito e Colaboração</td>
+                    <td>Contribui para um ambiente saudável, respeitando as pessoas e colaborando com o time.</td>
+                    <td>• Colabora com a equipe quando solicitado ou quando identifica necessidade.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                  </tr>
+                  <tr>
+                    <td class="strong">Respeito e Colaboração</td>
+                    <td>Contribui para um ambiente saudável, respeitando as pessoas e colaborando com o time.</td>
+                    <td>• Contribui para um ambiente de trabalho positivo e cooperativo.</td>
+                    <td class="col-grade">5</td>
+                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -468,11 +437,125 @@
           </div>
         </div>
       </section>
+
+      <!-- MODAL (Incluir/Editar) -->
+      <div class="comp-modal" id="comp-modal" hidden>
+        <div class="modal__backdrop" data-action="close"></div>
+
+        <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="comp-modal-title">
+          <div class="modal__header">
+            <h3 class="modal__title" id="comp-modal-title">Cadastro</h3>
+            <button class="modal__close" type="button" data-action="close" aria-label="Fechar">✕</button>
+          </div>
+
+          <form class="modal__form" id="comp-form">
+            <input type="hidden" id="form-type" value="tecnicas" />
+            <input type="hidden" id="form-mode" value="create" />
+
+            <div class="modal__grid">
+              <!-- Técnicas -->
+              <div class="field" data-show="tecnicas">
+                <label for="t-nome">Nome da Competência</label>
+                <input id="t-nome" type="text" placeholder="Ex: Escolaridade" />
+              </div>
+
+              <div class="field" data-show="tecnicas">
+                <label for="t-categoria">Categoria</label>
+                <input id="t-categoria" type="text" placeholder="Ex: Formação" />
+              </div>
+
+              <div class="field field--full" data-show="tecnicas">
+                <label for="t-niveis">Níveis de Exigência</label>
+                <textarea id="t-niveis" rows="3" placeholder="Liste as opções separadas por vírgula..."></textarea>
+              </div>
+
+              <div class="field field--full" data-show="tecnicas">
+                <label for="t-desc">Descrição</label>
+                <textarea id="t-desc" rows="3" placeholder="Descreva a competência..."></textarea>
+              </div>
+
+              <div class="field" data-show="tecnicas">
+                <label for="t-status">Status</label>
+                <select id="t-status">
+                  <option>Ativo</option>
+                  <option>Inativo</option>
+                </select>
+              </div>
+
+              <!-- Comportamentais -->
+              <div class="field" data-show="comportamentais">
+                <label for="c-nome">Nome da Competência</label>
+                <input id="c-nome" type="text" placeholder="Ex: Autoconfiança" />
+              </div>
+
+              <div class="field" data-show="comportamentais">
+                <label for="c-grupo">Grupo</label>
+                <select id="c-grupo">
+                  <option>Emocional</option>
+                  <option>Relacional</option>
+                  <option>Liderança</option>
+                  <option>Execução</option>
+                </select>
+              </div>
+
+              <div class="field field--full" data-show="comportamentais">
+                <label for="c-conceito">Conceito</label>
+                <textarea id="c-conceito" rows="3" placeholder="Descreva o conceito..."></textarea>
+              </div>
+
+              <div class="field" data-show="comportamentais">
+                <label for="c-status">Status</label>
+                <select id="c-status">
+                  <option>Ativo</option>
+                  <option>Inativo</option>
+                </select>
+              </div>
+
+              <!-- Organizacionais -->
+              <div class="field" data-show="organizacionais">
+                <label for="o-nome">Nome da Competência</label>
+                <input id="o-nome" type="text" placeholder="Ex: Compromisso com o Cliente" />
+              </div>
+
+              <div class="field" data-show="organizacionais">
+                <label for="o-grau">Grau</label>
+                <input id="o-grau" type="number" min="1" max="5" step="1" value="5" />
+              </div>
+
+              <div class="field field--full" data-show="organizacionais">
+                <label for="o-conceito">Conceito</label>
+                <textarea id="o-conceito" rows="3" placeholder="Descreva o conceito..."></textarea>
+              </div>
+
+              <div class="field field--full" data-show="organizacionais">
+                <label for="o-indicadores">Indicadores</label>
+                <textarea id="o-indicadores" rows="4" placeholder="Um por linha. Ex: • Mantém relacionamento respeitoso..."></textarea>
+                <small class="help">Dica: no protótipo, cada indicador vira uma linha na tabela.</small>
+              </div>
+
+              <div class="field" data-show="organizacionais">
+                <label for="o-status">Status</label>
+                <select id="o-status">
+                  <option>Ativo</option>
+                  <option>Inativo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="modal__actions">
+              <button class="btn btn--ghost" type="button" data-action="close">Cancelar</button>
+              <button class="btn btn--success" type="submit">Salvar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     </div>
   </main>
 
   <script>
     (function () {
+      // ===== TABS =====
       const tabs = document.querySelectorAll(".tabs__tab");
       const panels = {
         tecnicas: document.getElementById("tab-tecnicas"),
@@ -480,29 +563,273 @@
         organizacionais: document.getElementById("tab-organizacionais"),
       };
 
+      let activeTab = "tecnicas";
+
       function activate(key) {
         if (!panels[key]) key = "tecnicas";
+        activeTab = key;
         tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
         Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
       }
 
-      // Clique nas abas
       tabs.forEach(btn => btn.addEventListener("click", () => {
-        const key = btn.dataset.tab;
-        activate(key);
-        // Atualiza a hash pra permitir link direto
-        history.replaceState(null, "", "#" + key);
+        activate(btn.dataset.tab);
+        history.replaceState(null, "", "#" + btn.dataset.tab);
       }));
 
-      // Carrega a aba pela hash (ex: competencias.html#comportamentais)
       const hashKey = (location.hash || "").replace("#", "").trim();
       if (hashKey) activate(hashKey);
 
-      // Se mudar a hash
       window.addEventListener("hashchange", () => {
         const k = (location.hash || "").replace("#", "").trim();
         activate(k || "tecnicas");
       });
+
+      // ===== SEARCH (por aba) =====
+      document.querySelectorAll("[data-search]").forEach(input => {
+        input.addEventListener("input", () => {
+          const type = input.getAttribute("data-search");
+          const q = (input.value || "").toLowerCase().trim();
+          const tbody = document.getElementById("tbody-" + type);
+          if (!tbody) return;
+
+          [...tbody.querySelectorAll("tr")].forEach(tr => {
+            const text = tr.innerText.toLowerCase();
+            tr.style.display = text.includes(q) ? "" : "none";
+          });
+        });
+      });
+
+      // ===== MODAL (Incluir / Editar) =====
+      const modal = document.getElementById("comp-modal");
+      const form = document.getElementById("comp-form");
+      const formType = document.getElementById("form-type");
+      const formMode = document.getElementById("form-mode");
+      const modalTitle = document.getElementById("comp-modal-title");
+      const showBlocks = modal.querySelectorAll("[data-show]");
+
+      let editingRow = null;
+
+      function showOnly(type){
+        showBlocks.forEach(el => {
+          const allowed = (el.dataset.show || "").split(" ");
+          el.hidden = !allowed.includes(type);
+        });
+      }
+
+      function openModal({ mode, type, row }){
+        editingRow = row || null;
+        formType.value = type;
+        formMode.value = mode;
+
+        modalTitle.textContent =
+          mode === "edit" ? "Editar Competência" : "Incluir Competência";
+
+        showOnly(type);
+
+        // reset
+        form.reset();
+
+        if (type === "organizacionais") {
+          document.getElementById("o-grau").value = "5";
+        }
+
+        // preencher se for editar
+        if (mode === "edit" && row) {
+          const tds = row.querySelectorAll("td");
+          if (type === "tecnicas") {
+            document.getElementById("t-nome").value = tds[0]?.innerText.trim() || "";
+            document.getElementById("t-categoria").value = tds[1]?.innerText.trim() || "";
+            document.getElementById("t-niveis").value = tds[2]?.innerText.trim() || "";
+            document.getElementById("t-desc").value = tds[3]?.innerText.trim() || "";
+            document.getElementById("t-status").value = (tds[4]?.innerText.trim() || "Ativo");
+          }
+
+          if (type === "comportamentais") {
+            document.getElementById("c-nome").value = tds[0]?.innerText.trim() || "";
+            document.getElementById("c-conceito").value = tds[1]?.innerText.trim() || "";
+            document.getElementById("c-grupo").value = tds[2]?.innerText.trim() || "Emocional";
+            document.getElementById("c-status").value = (tds[3]?.innerText.trim() || "Ativo");
+          }
+
+          if (type === "organizacionais") {
+            document.getElementById("o-nome").value = tds[0]?.innerText.trim() || "";
+            document.getElementById("o-conceito").value = tds[1]?.innerText.trim() || "";
+            // no protótipo, cada linha é um indicador (vira 1 linha no textarea)
+            document.getElementById("o-indicadores").value = (tds[2]?.innerText.trim() || "").replace(/^•\s?/gm, "• ");
+            document.getElementById("o-grau").value = tds[3]?.innerText.trim() || "5";
+            document.getElementById("o-status").value = (tds[4]?.innerText.trim() || "Ativo");
+          }
+        }
+
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal(){
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+        editingRow = null;
+      }
+
+      // Ações: abrir incluir
+      document.querySelectorAll('[data-action="open-incluir"]').forEach(btn => {
+        btn.addEventListener("click", () => {
+          openModal({ mode:"create", type: btn.dataset.type, row: null });
+        });
+      });
+
+      // Ações: editar linha
+      document.addEventListener("click", (e) => {
+        const editBtn = e.target.closest('[data-action="edit-row"]');
+        if (!editBtn) return;
+
+        const tr = editBtn.closest("tr");
+        const type = editBtn.dataset.type;
+        openModal({ mode:"edit", type, row: tr });
+      });
+
+      // Fechar modal
+      modal.addEventListener("click", (e) => {
+        const close = e.target.closest('[data-action="close"]');
+        if (close) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.hidden) closeModal();
+      });
+
+      // Submit (protótipo): atualiza tabela (edit) ou adiciona (create)
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const type = formType.value;
+        const mode = formMode.value;
+
+        if (type === "tecnicas") {
+          const nome = document.getElementById("t-nome").value.trim();
+          const categoria = document.getElementById("t-categoria").value.trim();
+          const niveis = document.getElementById("t-niveis").value.trim();
+          const desc = document.getElementById("t-desc").value.trim();
+          const status = document.getElementById("t-status").value.trim() || "Ativo";
+
+          if (mode === "edit" && editingRow) {
+            const tds = editingRow.querySelectorAll("td");
+            tds[0].innerText = nome;
+            tds[1].innerText = categoria;
+            tds[2].innerText = niveis;
+            tds[3].innerText = desc;
+            tds[4].innerHTML = `<span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${status}</span>`;
+          } else {
+            const tbody = document.getElementById("tbody-tecnicas");
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="strong">${escapeHtml(nome)}</td>
+              <td>${escapeHtml(categoria)}</td>
+              <td>${escapeHtml(niveis)}</td>
+              <td>${escapeHtml(desc)}</td>
+              <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="tecnicas">Editar</button></td>
+            `;
+            tbody.prepend(tr);
+          }
+        }
+
+        if (type === "comportamentais") {
+          const nome = document.getElementById("c-nome").value.trim();
+          const conceito = document.getElementById("c-conceito").value.trim();
+          const grupo = document.getElementById("c-grupo").value.trim();
+          const status = document.getElementById("c-status").value.trim() || "Ativo";
+
+          if (mode === "edit" && editingRow) {
+            const tds = editingRow.querySelectorAll("td");
+            tds[0].innerText = nome;
+            tds[1].innerText = conceito;
+            tds[2].innerText = grupo;
+            tds[3].innerHTML = `<span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${status}</span>`;
+          } else {
+            const tbody = document.getElementById("tbody-comportamentais");
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="strong">${escapeHtml(nome)}</td>
+              <td>${escapeHtml(conceito)}</td>
+              <td class="col-group">${escapeHtml(grupo)}</td>
+              <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="comportamentais">Editar</button></td>
+            `;
+            tbody.prepend(tr);
+          }
+        }
+
+        if (type === "organizacionais") {
+          const nome = document.getElementById("o-nome").value.trim();
+          const conceito = document.getElementById("o-conceito").value.trim();
+          const grau = (document.getElementById("o-grau").value || "5").trim();
+          const status = document.getElementById("o-status").value.trim() || "Ativo";
+          const indicadoresRaw = document.getElementById("o-indicadores").value || "";
+
+          // transforma em linhas
+          const indicadores = indicadoresRaw
+            .split("\n")
+            .map(s => s.trim())
+            .filter(Boolean)
+            .map(s => s.startsWith("•") ? s : "• " + s);
+
+          if (mode === "edit" && editingRow) {
+            const tds = editingRow.querySelectorAll("td");
+            tds[0].innerText = nome;
+            tds[1].innerText = conceito;
+            tds[2].innerText = (indicadores[0] || "• ");
+            tds[3].innerText = grau;
+            tds[4].innerHTML = `<span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${status}</span>`;
+
+            // se tiver mais indicadores, cria novas linhas (protótipo)
+            if (indicadores.length > 1) {
+              const tbody = document.getElementById("tbody-organizacionais");
+              for (let i = 1; i < indicadores.length; i++) {
+                const tr = document.createElement("tr");
+                tr.innerHTML = `
+                  <td class="strong">${escapeHtml(nome)}</td>
+                  <td>${escapeHtml(conceito)}</td>
+                  <td>${escapeHtml(indicadores[i])}</td>
+                  <td class="col-grade">${escapeHtml(grau)}</td>
+                  <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
+                  <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+                `;
+                tbody.insertBefore(tr, editingRow.nextSibling);
+              }
+            }
+          } else {
+            const tbody = document.getElementById("tbody-organizacionais");
+            const list = indicadores.length ? indicadores : ["• "];
+
+            list.forEach(ind => {
+              const tr = document.createElement("tr");
+              tr.innerHTML = `
+                <td class="strong">${escapeHtml(nome)}</td>
+                <td>${escapeHtml(conceito)}</td>
+                <td>${escapeHtml(ind)}</td>
+                <td class="col-grade">${escapeHtml(grau)}</td>
+                <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
+                <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+              `;
+              tbody.prepend(tr);
+            });
+          }
+        }
+
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+        closeModal();
+      });
+
+      function escapeHtml(str){
+        return String(str || "")
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
     })();
   </script>
 </body>

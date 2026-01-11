@@ -19,11 +19,11 @@
   <main class="beneficios-page">
     <header class="page-head">
       <div>
-        <h2 class="page-title">Benefícios</h2>
+        <h2 class="page-title">BENEFÍCIOS</h2>
         <p class="page-subtitle">Cadastre e gerencie os benefícios oferecidos pela empresa.</p>
       </div>
 
-      <button class="btn btn--success" type="button" onclick="alert('Incluir ainda não implementado')">
+      <button class="btn btn--success" type="button" data-action="open-incluir">
         <span class="btn__icon" aria-hidden="true">+</span>
         Incluir
       </button>
@@ -58,13 +58,13 @@
 
           <tbody id="beneficiosTbody">
             <tr>
-              <td class="strong">Plano de Saúde</td>
-              <td>Não Financeiro</td>
-              <td>Cobertura de 30% do valor da mensalidade para titulares e 10% para dependentes.</td>
-              <td>Setor Administrativo</td>
+              <td class="strong">Vale Alimentação</td>
+              <td>Financeiro</td>
+              <td>Valor concedido conforme previsto em convenção coletiva da categoria.</td>
+              <td>Todos os colaboradores</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
                   <span class="icon-pencil" aria-hidden="true">✎</span>
                   Editar
                 </button>
@@ -73,12 +73,12 @@
 
             <tr>
               <td class="strong">Plano Odontológico</td>
-              <td>Não Financeiro</td>
-              <td>Plano odontológico 100% gratuito.</td>
-              <td>Setor Administrativo</td>
+              <td>Saúde</td>
+              <td>Plano Odontológico Odontoprev, sem desconto na mensalidade para o colaborador.</td>
+              <td>Todos os colaboradores</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
                   <span class="icon-pencil" aria-hidden="true">✎</span>
                   Editar
                 </button>
@@ -86,13 +86,41 @@
             </tr>
 
             <tr>
-              <td class="strong">Vale Alimentação</td>
+              <td class="strong">Plano de Saúde</td>
+              <td>Saúde</td>
+              <td>Plano UNIMED com 30% da mensalidade paga pela empresa e 70% pelo colaborador. Coparticipação integral paga pelo colaborador.</td>
+              <td>Todos os colaboradores</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Auxílio Faculdade</td>
+              <td>Educacional</td>
+              <td>Ajuda de custo de até R$ 150,00 para apoio em cursos de graduação ou formação relacionada à área de atuação.</td>
+              <td>Colaboradores elegíveis conforme política interna</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Comissão por Indicação de Cliente</td>
               <td>Financeiro</td>
-              <td>Benefício mensal de alimentação no valor de R$ 500,00.</td>
-              <td>Todos os funcionários</td>
+              <td>Pagamento de 10% do valor do honorário mensal do contrato fechado por indicação do colaborador, enquanto o cliente permanecer ativo e o colaborador estiver na empresa.</td>
+              <td>Colaboradores que indicarem clientes</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
                   <span class="icon-pencil" aria-hidden="true">✎</span>
                   Editar
                 </button>
@@ -100,13 +128,13 @@
             </tr>
 
             <tr>
-              <td class="strong">Day Off</td>
-              <td>Não Financeiro</td>
-              <td>Folga no mês do aniversário.</td>
-              <td>Setor de Produção</td>
+              <td class="strong">Day Off de Aniversário</td>
+              <td>Qualidade de vida</td>
+              <td>Um dia de folga dentro do mês de aniversário, mediante alinhamento prévio com a liderança.</td>
+              <td>Todos os colaboradores</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
                   <span class="icon-pencil" aria-hidden="true">✎</span>
                   Editar
                 </button>
@@ -114,13 +142,55 @@
             </tr>
 
             <tr>
-              <td class="strong">Cesta Básica</td>
+              <td class="strong">Auxílio Transporte</td>
+              <td>Legal</td>
+              <td>Concessão de vale-transporte conforme legislação vigente.</td>
+              <td>Colaboradores que optarem pelo benefício</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Auxílio Combustível</td>
               <td>Financeiro</td>
-              <td>Distribuição mensal de cesta básica.</td>
-              <td>Funcionários com baixa renda</td>
+              <td>Ajuda de custo destinada ao deslocamento do colaborador, concedida em substituição ao vale-transporte, conforme legislação vigente.</td>
+              <td>Colaboradores que optarem pelo benefício</td>
               <td class="col-status"><span class="badge badge--active">Ativo</span></td>
               <td class="col-actions">
-                <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Seguro de Vida</td>
+              <td>Proteção</td>
+              <td>Seguro de vida concedido conforme previsto em convenção coletiva da categoria.</td>
+              <td>Todos os colaboradores</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
+                  <span class="icon-pencil" aria-hidden="true">✎</span>
+                  Editar
+                </button>
+              </td>
+            </tr>
+
+            <tr>
+              <td class="strong">Parceria Gympass</td>
+              <td>Qualidade de vida</td>
+              <td>Acesso à plataforma Gympass com academias, estúdios e aplicativos de saúde, mediante pagamento de valor mensal reduzido pelo colaborador.</td>
+              <td>Todos os colaboradores</td>
+              <td class="col-status"><span class="badge badge--active">Ativo</span></td>
+              <td class="col-actions">
+                <button class="btn btn--ghost btn--sm" type="button" data-action="editar">
                   <span class="icon-pencil" aria-hidden="true">✎</span>
                   Editar
                 </button>
@@ -132,18 +202,142 @@
     </section>
   </main>
 
+  <!-- MODAL (Cadastro Benefício) -->
+  <div class="beneficios-modal" id="beneficios-modal" hidden>
+    <div class="modal__backdrop" data-action="close"></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modal-title">Cadastro de Benefício</h3>
+
+        <button class="modal__close" type="button" data-action="close" aria-label="Fechar">
+          ✕
+        </button>
+      </div>
+
+      <form class="modal__form" id="beneficio-form">
+        <div class="modal__grid">
+          <div class="field">
+            <label for="b-nome">Nome</label>
+            <input id="b-nome" name="nome" type="text" placeholder="Ex: Vale Alimentação" required />
+          </div>
+
+          <div class="field">
+            <label for="b-tipo">Tipo</label>
+            <select id="b-tipo" name="tipo" required>
+              <option value="" selected disabled>Selecione</option>
+              <option>Financeiro</option>
+              <option>Saúde</option>
+              <option>Educacional</option>
+              <option>Qualidade de vida</option>
+              <option>Legal</option>
+              <option>Proteção</option>
+            </select>
+          </div>
+
+          <div class="field field--full">
+            <label for="b-descricao">Descrição do Benefício</label>
+            <textarea id="b-descricao" name="descricao" rows="4" placeholder="Descreva o benefício..." required></textarea>
+          </div>
+
+          <div class="field field--full">
+            <label for="b-aplica">A quem se aplica</label>
+            <input id="b-aplica" name="aplica" type="text" placeholder="Ex: Todos os colaboradores" required />
+          </div>
+
+          <div class="field">
+            <label for="b-status">Status</label>
+            <select id="b-status" name="status" required>
+              <option>Ativo</option>
+              <option>Inativo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-action="close">Cancelar</button>
+          <button class="btn btn--success" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // Busca simples (front apenas)
     (function () {
+      // ===== Busca simples (front apenas) =====
       const input = document.getElementById("searchInput");
-      const rows = () => document.querySelectorAll("#beneficiosTbody tr");
+      const tbody = document.getElementById("beneficiosTbody");
 
       input.addEventListener("input", () => {
         const q = (input.value || "").toLowerCase();
-        rows().forEach(tr => {
+        Array.from(tbody.querySelectorAll("tr")).forEach(tr => {
           const text = tr.innerText.toLowerCase();
           tr.style.display = text.includes(q) ? "" : "none";
         });
+      });
+
+      // ===== Modal =====
+      const modal = document.getElementById("beneficios-modal");
+      const form = document.getElementById("beneficio-form");
+
+      const nome = document.getElementById("b-nome");
+      const tipo = document.getElementById("b-tipo");
+      const descricao = document.getElementById("b-descricao");
+      const aplica = document.getElementById("b-aplica");
+      const status = document.getElementById("b-status");
+
+      function openModal() {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+        form.reset();
+      }
+
+      // Abrir incluir (vazio)
+      document.querySelector('[data-action="open-incluir"]').addEventListener("click", () => {
+        form.reset();
+        openModal();
+      });
+
+      // Editar (preenche com a linha)
+      tbody.addEventListener("click", (e) => {
+        const btn = e.target.closest('[data-action="editar"]');
+        if (!btn) return;
+
+        const tr = btn.closest("tr");
+        const tds = tr.querySelectorAll("td");
+
+        // colunas: 0 Nome, 1 Tipo, 2 Descrição, 3 Aplica, 4 Status (badge)
+        nome.value = (tds[0]?.innerText || "").trim();
+        tipo.value = (tds[1]?.innerText || "").trim();
+        descricao.value = (tds[2]?.innerText || "").trim();
+        aplica.value = (tds[3]?.innerText || "").trim();
+
+        const st = (tds[4]?.innerText || "Ativo").trim();
+        status.value = st;
+
+        openModal();
+      });
+
+      // Fechar modal
+      modal.addEventListener("click", (e) => {
+        const close = e.target.closest('[data-action="close"]');
+        if (close) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.hidden) closeModal();
+      });
+
+      // Submit (protótipo)
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+        closeModal();
       });
     })();
   </script>

@@ -1,10 +1,8 @@
 /* =========================
    ESTRUTURA - estilo "Dados Gerais"
-   (CSS na raiz do projeto)
    ========================= */
 
 .estrutura{
-  /* Paleta semelhante ao topo azul do projeto */
   --brand: #0b1e78;
   --brand-2: #1736b6;
 
@@ -14,28 +12,30 @@
   --muted: #64748b;
   --border: #dfe7f6;
 
-  /* dimensões */
   --radius: 16px;
   --radius-sm: 12px;
 
-  min-height: calc(100vh - 80px); /* ajuda quando existe header azul */
+  min-height: calc(100vh - 80px);
   background: var(--bg);
   padding: 28px 18px 40px;
   color: var(--text);
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
-/* Container central (igual sensação do Dados Gerais) */
-.estrutura__header,
-.tabs,
-.tabpanels{
+.estrutura,
+.estrutura *{ box-sizing: border-box; }
+
+/* Container central */
+.estrutura .estrutura__header,
+.estrutura .tabs,
+.estrutura .tabpanels{
   max-width: 980px;
   margin-left: auto;
   margin-right: auto;
 }
 
-/* Título */
-.estrutura__header{
+/* Header */
+.estrutura .estrutura__header{
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -43,7 +43,7 @@
   margin-bottom: 14px;
 }
 
-.estrutura__title{
+.estrutura .estrutura__title{
   margin: 0;
   font-size: 26px;
   font-weight: 800;
@@ -51,14 +51,14 @@
   text-transform: uppercase;
 }
 
-.estrutura__subtitle{
+.estrutura .estrutura__subtitle{
   margin: 6px 0 0 0;
   color: var(--muted);
   font-size: 14px;
 }
 
 /* =========================
-   Botões (escopado só pra página)
+   Botões
    ========================= */
 .estrutura .btn{
   border: 0;
@@ -70,11 +70,15 @@
   align-items: center;
   gap: 10px;
   user-select: none;
-  transition: transform 0.06s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.06s ease, background 0.2s ease, box-shadow 0.2s ease, opacity .15s ease;
 }
 
-.estrutura .btn:active{
-  transform: translateY(1px);
+.estrutura .btn:active{ transform: translateY(1px); }
+
+.estrutura .btn:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .estrutura .btn__icon{
@@ -95,9 +99,7 @@
   box-shadow: 0 10px 22px rgba(11, 30, 120, 0.18);
 }
 
-.estrutura .btn--primary:hover{
-  background: var(--brand-2);
-}
+.estrutura .btn--primary:hover{ background: var(--brand-2); }
 
 .estrutura .btn--secondary{
   background: #eef2ff;
@@ -105,9 +107,7 @@
   border: 1px solid #dbe5ff;
 }
 
-.estrutura .btn--secondary:hover{
-  background: #e7edff;
-}
+.estrutura .btn--secondary:hover{ background: #e7edff; }
 
 .estrutura .btn--ghost{
   background: #f1f5ff;
@@ -116,9 +116,7 @@
   border-radius: 12px;
 }
 
-.estrutura .btn--ghost:hover{
-  background: #e9efff;
-}
+.estrutura .btn--ghost:hover{ background: #e9efff; }
 
 .estrutura .btn--sm{
   padding: 8px 12px;
@@ -126,7 +124,6 @@
   font-weight: 800;
 }
 
-/* ícone do lápis */
 .estrutura .icon{
   width: 16px;
   height: 16px;
@@ -136,13 +133,13 @@
 /* =========================
    Abas
    ========================= */
-.tabs{
+.estrutura .tabs{
   display: flex;
   gap: 10px;
   margin-bottom: 14px;
 }
 
-.tabs__tab{
+.estrutura .tabs__tab{
   flex: 1;
   border: 1px solid #dbe5ff;
   background: #ffffff;
@@ -154,15 +151,10 @@
   transition: background 0.2s ease, transform 0.06s ease, box-shadow 0.2s ease;
 }
 
-.tabs__tab:hover{
-  background: #f3f6ff;
-}
+.estrutura .tabs__tab:hover{ background: #f3f6ff; }
+.estrutura .tabs__tab:active{ transform: translateY(1px); }
 
-.tabs__tab:active{
-  transform: translateY(1px);
-}
-
-.tabs__tab.is-active{
+.estrutura .tabs__tab.is-active{
   background: var(--brand);
   color: #fff;
   border-color: transparent;
@@ -172,11 +164,9 @@
 /* =========================
    Card / Conteúdo
    ========================= */
-.tabpanels{
-  margin-top: 0;
-}
+.estrutura .tabpanels{ margin-top: 0; }
 
-.card{
+.estrutura .card{
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -184,29 +174,23 @@
   padding: 14px;
 }
 
-.card--empty{
-  padding: 18px;
-}
+.estrutura .card--empty{ padding: 18px; }
 
-.card__title{
+.estrutura .card__title{
   margin: 0 0 6px 0;
   font-size: 18px;
   font-weight: 900;
   color: var(--text);
 }
 
-.muted{
-  color: var(--muted);
-}
+.estrutura .muted{ color: var(--muted); }
 
 /* Painéis */
-.tabpanel{ display: none; }
-.tabpanel.is-active{ display: block; }
+.estrutura .tabpanel{ display: none; }
+.estrutura .tabpanel.is-active{ display: block; }
 
-/* =========================
-   Botão "Incluir" dentro de cada aba
-   ========================= */
-.panel-actions{
+/* Botão "Incluir" dentro da aba */
+.estrutura .panel-actions{
   display: flex;
   justify-content: flex-end;
   margin-bottom: 12px;
@@ -215,20 +199,20 @@
 /* =========================
    Tabela
    ========================= */
-.table-wrap{
+.estrutura .table-wrap{
   width: 100%;
   overflow-x: auto;
   border-radius: var(--radius-sm);
 }
 
-.table{
+.estrutura .table{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
   min-width: 720px;
 }
 
-.table thead th{
+.estrutura .table thead th{
   text-align: left;
   font-size: 12px;
   color: #475569;
@@ -238,26 +222,23 @@
   border-bottom: 1px solid var(--border);
 }
 
-.table tbody td{
+.estrutura .table tbody td{
   padding: 14px;
   border-bottom: 1px solid var(--border);
   vertical-align: middle;
 }
 
-.table tbody tr:last-child td{
-  border-bottom: 0;
-}
+.estrutura .table tbody tr:last-child td{ border-bottom: 0; }
 
-/* coluna do botão editar */
-.table__actions-col{
-  width: 160px;
+.estrutura .table__actions-col{
+  width: 180px;
   text-align: right;
 }
 
 /* =========================
    Badge (Status)
    ========================= */
-.badge{
+.estrutura .badge{
   display: inline-flex;
   align-items: center;
   padding: 6px 12px;
@@ -267,36 +248,178 @@
   border: 1px solid transparent;
 }
 
-.badge--active{
+.estrutura .badge--active{
   background: #dcfce7;
   color: #166534;
   border-color: #bbf7d0;
 }
 
-.badge--inactive{
+.estrutura .badge--inactive{
   background: #eef2ff;
   color: #1d4ed8;
   border-color: #dbe5ff;
 }
 
+.estrutura .badge--disabled{
+  background: #f1f5f9;
+  color: #475569;
+  border-color: #e2e8f0;
+}
+
 /* =========================
-   Responsivo
+   Centros de custo inativado (cinza)
    ========================= */
+.estrutura .card.is-disabled{
+  opacity: .72;
+  filter: grayscale(0.2);
+}
+
+.estrutura .notice{
+  margin-top: 10px;
+  border: 1px dashed #dbe5ff;
+  background: #f6f8ff;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.estrutura .notice p{
+  margin: 6px 0 10px;
+}
+
+/* =========================
+   ORGANOGRAMA (preview da imagem)
+   ========================= */
+.estrutura .org-preview{
+  margin-top: 12px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: rgba(255,255,255,.96);
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  padding: 12px;
+
+  /* se a imagem for grande, permite rolar */
+  overflow: auto;
+}
+
+.estrutura .org-preview img{
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+}
+
+/* botão embaixo da imagem */
+.estrutura .org-actions{
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* =========================
+   MODAL
+   ========================= */
+body.modal-open{ overflow: hidden; }
+
+.estrutura-modal[hidden]{ display: none; }
+
+.estrutura-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.estrutura-modal .modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.estrutura-modal .modal__dialog{
+  position: relative;
+  width: min(720px, 100%);
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(15, 20, 40, .12);
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(0,0,0,.22);
+  padding: 14px;
+}
+
+.estrutura-modal .modal__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.estrutura-modal .modal__title{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.estrutura-modal .modal__close{
+  border: 1px solid rgba(15, 20, 40, .12);
+  background: rgba(5, 13, 141, .06);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.estrutura-modal .modal__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.estrutura-modal .field label{
+  display: block;
+  font-size: 12px;
+  letter-spacing: .4px;
+  opacity: .78;
+  margin: 0 0 6px;
+}
+
+.estrutura-modal .field input,
+.estrutura-modal .field select{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(255,255,255,.96);
+  outline: none;
+}
+
+.estrutura-modal .modal__actions{
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 @media (max-width: 800px){
-  .estrutura__header{
+  .estrutura .estrutura__header{
     flex-direction: column;
     align-items: flex-start;
   }
 
-  .tabs{
+  .estrutura .tabs{
     flex-direction: column;
   }
 
-  .tabs__tab{
+  .estrutura .tabs__tab{
     text-align: left;
   }
 
-  .table{
+  .estrutura .table{
     min-width: 680px;
+  }
+
+  .estrutura-modal .modal__grid{
+    grid-template-columns: 1fr;
   }
 }

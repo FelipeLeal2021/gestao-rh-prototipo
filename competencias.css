@@ -1,6 +1,5 @@
 /* =========================
    COMPETÊNCIAS
-   (CSS na raiz do projeto)
    ========================= */
 
 .competencias{
@@ -23,10 +22,13 @@
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
+.competencias,
+.competencias *{ box-sizing: border-box; }
+
 /* Container central */
 .competencias__header,
-.tabs,
-.tabpanels{
+.competencias .tabs,
+.competencias .tabpanels{
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
@@ -50,18 +52,18 @@
 }
 
 /* =========================
-   Tabs (pílulas)
+   Tabs
    ========================= */
-.tabs{
+.competencias .tabs{
   display: flex;
   gap: 10px;
   margin-bottom: 14px;
   flex-wrap: wrap;
 }
 
-.tabs__tab{
+.competencias .tabs__tab{
   flex: 1;
-  min-width: 220px;
+  min-width: 240px;
   border: 1px solid #dbe5ff;
   background: #ffffff;
   padding: 12px 12px;
@@ -72,10 +74,10 @@
   transition: background 0.2s ease, transform 0.06s ease, box-shadow 0.2s ease;
 }
 
-.tabs__tab:hover{ background: #f3f6ff; }
-.tabs__tab:active{ transform: translateY(1px); }
+.competencias .tabs__tab:hover{ background: #f3f6ff; }
+.competencias .tabs__tab:active{ transform: translateY(1px); }
 
-.tabs__tab.is-active{
+.competencias .tabs__tab.is-active{
   background: var(--brand);
   color: #fff;
   border-color: transparent;
@@ -83,13 +85,13 @@
 }
 
 /* Painéis */
-.tabpanel{ display: none; }
-.tabpanel.is-active{ display: block; }
+.competencias .tabpanel{ display: none; }
+.competencias .tabpanel.is-active{ display: block; }
 
 /* =========================
    Card / toolbar
    ========================= */
-.card{
+.competencias .card{
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
@@ -97,15 +99,16 @@
   padding: 12px;
 }
 
-.toolbar{
+.competencias .toolbar{
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
-.toolbar__actions{
+.competencias .toolbar__actions{
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -113,13 +116,14 @@
 }
 
 /* Busca */
-.search{
+.competencias .search{
   position: relative;
   flex: 1;
-  min-width: 240px;
+  min-width: 260px;
+  max-width: 520px;
 }
 
-.search__icon{
+.competencias .search__icon{
   position: absolute;
   left: 12px;
   top: 50%;
@@ -129,23 +133,23 @@
   color: #94a3b8;
 }
 
-.search__icon svg{
+.competencias .search__icon svg{
   width: 18px;
   height: 18px;
   fill: currentColor;
 }
 
-.search__input{
+.competencias .search__input{
   width: 100%;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 14px;
   border: 1px solid #dbe5ff;
   background: #fff;
   padding: 0 12px 0 38px;
   outline: none;
 }
 
-.search__input:focus{
+.competencias .search__input:focus{
   border-color: #b9ccff;
   box-shadow: 0 0 0 4px rgba(11, 30, 120, 0.08);
 }
@@ -155,7 +159,7 @@
    ========================= */
 .competencias .btn{
   border: 0;
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 10px 14px;
   font-weight: 900;
   cursor: pointer;
@@ -163,16 +167,22 @@
   align-items: center;
   gap: 10px;
   user-select: none;
-  transition: transform 0.06s ease, background 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.06s ease, background 0.2s ease, box-shadow 0.2s ease, opacity .15s ease;
   white-space: nowrap;
 }
 
 .competencias .btn:active{ transform: translateY(1px); }
 
+.competencias .btn:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
 .competencias .btn__icon{
   width: 26px;
   height: 26px;
-  border-radius: 8px;
+  border-radius: 10px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -187,9 +197,7 @@
   box-shadow: 0 10px 22px rgba(34, 197, 94, 0.18);
 }
 
-.competencias .btn--success:hover{
-  background: #16a34a;
-}
+.competencias .btn--success:hover{ background: #16a34a; }
 
 .competencias .btn--ghost{
   background: #f1f5ff;
@@ -197,33 +205,36 @@
   border: 1px solid #dbe5ff;
 }
 
-.competencias .btn--ghost:hover{
-  background: #e9efff;
-}
+.competencias .btn--ghost:hover{ background: #e9efff; }
 
-.competencias .icon{
-  width: 16px;
-  height: 16px;
-  fill: currentColor;
+.competencias .btn--sm{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 12px;
 }
 
 /* =========================
    Tabela
    ========================= */
-.table-wrap{
+.competencias .table-wrap{
   width: 100%;
   overflow-x: auto;
   border-radius: var(--radius-sm);
+  border: 1px solid rgba(15, 20, 40, .08);
+  background: rgba(255,255,255,.75);
 }
 
-.table{
+.competencias .table{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 900px;
+  min-width: 980px;
+  background: rgba(255,255,255,.92);
 }
 
-.table thead th{
+.competencias .table--compact{ min-width: 1050px; }
+
+.competencias .table thead th{
   text-align: left;
   font-size: 12px;
   color: #475569;
@@ -232,118 +243,170 @@
   background: #f6f8ff;
   border-bottom: 1px solid var(--border);
   vertical-align: middle;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
-.table tbody td{
+.competencias .table tbody td{
   padding: 12px 12px;
   border-bottom: 1px solid var(--border);
   vertical-align: top;
   color: #334155;
   font-size: 13px;
+  line-height: 1.45;
 }
 
-.table tbody tr:hover td{
+.competencias .table tbody tr:hover td{
   background: #fbfcff;
 }
 
-.sort{
-  color: #94a3b8;
+.competencias .strong{
   font-weight: 900;
-  margin-left: 6px;
-  font-size: 11px;
+  color: #0f172a;
 }
 
-.strong{ font-weight: 900; color: #0f172a; }
+/* colunas */
+.competencias .col-status{ width: 120px; white-space: nowrap; }
+.competencias .col-actions{ width: 120px; white-space: nowrap; text-align: right; }
+.competencias .col-grade{ width: 70px; text-align: center; white-space: nowrap; }
+.competencias .col-group{ width: 140px; white-space: nowrap; }
 
-/* colunas especiais */
-.col-status{ width: 120px; white-space: nowrap; }
-.col-scale{ width: 110px; white-space: nowrap; }
-.col-edit{ width: 90px; white-space: nowrap; }
-
-/* status badge */
-.status{
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 6px 10px;
-  border-radius: 8px;
-  font-weight: 900;
-  font-size: 12px;
-  border: 1px solid transparent;
-}
-
-.status svg{
-  width: 14px;
-  height: 14px;
-  fill: currentColor;
-}
-
-.status--active{
-  background: #dcfce7;
-  color: #166534;
-  border-color: #bbf7d0;
-}
-
-.status--neutral{
-  background: #eef2ff;
-  color: #1d4ed8;
-  border-color: #dbe5ff;
-}
-
-/* pill do fator */
-.pill{
-  font-weight: 900;
-  color: #0b1e78;
-}
-
-/* link editar */
-.link{
-  color: #1d4ed8;
-  font-weight: 900;
-  text-decoration: none;
-}
-
-.link:hover{
-  text-decoration: underline;
-}
-
-/* nome com ícone (organizacionais) */
-.name-with-icon{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.dot{
-  width: 22px;
-  height: 22px;
-  border-radius: 999px;
+/* Badge */
+.competencias .badge{
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  padding: 4px 10px;
+  border-radius: 999px;
   font-size: 12px;
+  border: 1px solid rgba(15, 20, 40, .12);
   font-weight: 900;
-  color: #fff;
 }
 
-.dot--red{ background: #ef4444; }
-.dot--yellow{ background: #f59e0b; }
-.dot--blue{ background: #3b82f6; }
-.dot--green{ background: #22c55e; }
-.dot--indigo{ background: #6366f1; }
+.competencias .badge--active{
+  background: rgba(34, 197, 94, .12);
+  border-color: rgba(34, 197, 94, .22);
+  color: rgba(22, 101, 52, .95);
+}
 
-/* responsivo */
+.competencias .badge--inactive{
+  background: rgba(99, 102, 241, .10);
+  border-color: rgba(99, 102, 241, .22);
+  color: rgba(49, 46, 129, .95);
+}
+
+/* =========================
+   MODAL
+   ========================= */
+body.modal-open{ overflow: hidden; }
+
+.comp-modal[hidden]{ display: none; }
+
+.comp-modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.comp-modal .modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.comp-modal .modal__dialog{
+  position: relative;
+  width: min(820px, 100%);
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(15, 20, 40, .12);
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(0,0,0,.22);
+  padding: 14px;
+}
+
+.comp-modal .modal__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.comp-modal .modal__title{
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.comp-modal .modal__close{
+  border: 1px solid rgba(15, 20, 40, .12);
+  background: rgba(5, 13, 141, .06);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.comp-modal .modal__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.comp-modal .field label{
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  opacity: .88;
+}
+
+.comp-modal .field input,
+.comp-modal .field select,
+.comp-modal .field textarea{
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(5, 13, 141, .03);
+  outline: none;
+  resize: vertical;
+}
+
+.comp-modal .field input:focus,
+.comp-modal .field select:focus,
+.comp-modal .field textarea:focus{
+  border-color: rgba(5, 13, 141, .28);
+  background: rgba(5, 13, 141, .05);
+}
+
+.comp-modal .field--full{
+  grid-column: 1 / -1;
+}
+
+.comp-modal .help{
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  opacity: .7;
+}
+
+.comp-modal .modal__actions{
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Responsivo */
 @media (max-width: 980px){
-  .toolbar{
-    flex-direction: column;
-    align-items: stretch;
-  }
+  .competencias .tabs__tab{ min-width: 0; }
+}
 
-  .toolbar__actions{
-    justify-content: flex-start;
-  }
-
-  .tabs__tab{
-    min-width: 0;
-  }
+@media (max-width: 800px){
+  .comp-modal .modal__grid{ grid-template-columns: 1fr; }
 }

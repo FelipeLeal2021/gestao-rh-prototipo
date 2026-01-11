@@ -21,7 +21,10 @@
     <div class="estrutura">
 
       <header class="estrutura__header">
-        <h2 class="estrutura__title">Estrutura</h2>
+        <div>
+          <h2 class="estrutura__title">Estrutura</h2>
+          <p class="estrutura__subtitle">Cadastre Áreas e Departamentos da empresa.</p>
+        </div>
       </header>
 
       <nav class="tabs" aria-label="Abas de Estrutura">
@@ -35,10 +38,8 @@
         <!-- ÁREAS -->
         <div class="tabpanel is-active" id="tab-areas">
           <div class="card">
-
-            <!-- botão incluir DENTRO da aba -->
             <div class="panel-actions">
-              <button class="btn btn--primary" type="button" onclick="alert('Incluir (Áreas) ainda não implementado')">
+              <button class="btn btn--primary" type="button" data-action="open-incluir" data-type="areas">
                 <span class="btn__icon" aria-hidden="true">+</span>
                 Incluir
               </button>
@@ -48,18 +49,16 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>Nome da Área</th>
+                    <th>Área</th>
                     <th>Status</th>
-                    <th>Ações</th>
                     <th class="table__actions-col">Ação</th>
                   </tr>
                 </thead>
 
                 <tbody>
                   <tr>
-                    <td>Administrativo</td>
+                    <td>Diretoria</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -71,9 +70,8 @@
                   </tr>
 
                   <tr>
-                    <td>Produção</td>
+                    <td>Administrativo</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -84,19 +82,43 @@
                     </td>
                   </tr>
 
+                  <tr>
+                    <td>Operacional</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Comercial</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
                 </tbody>
               </table>
             </div>
+
           </div>
         </div>
 
         <!-- DEPARTAMENTOS -->
         <div class="tabpanel" id="tab-departamentos">
           <div class="card">
-
-            <!-- botão incluir DENTRO da aba -->
             <div class="panel-actions">
-              <button class="btn btn--primary" type="button" onclick="alert('Incluir (Departamentos) ainda não implementado')">
+              <button class="btn btn--primary" type="button" data-action="open-incluir" data-type="departamentos">
                 <span class="btn__icon" aria-hidden="true">+</span>
                 Incluir
               </button>
@@ -106,20 +128,32 @@
               <table class="table">
                 <thead>
                   <tr>
-                    <th>Nome do Departamento</th>
+                    <th>Departamento</th>
                     <th>Área</th>
                     <th>Status</th>
-                    <th>Ações</th>
                     <th class="table__actions-col">Ação</th>
                   </tr>
                 </thead>
 
                 <tbody>
                   <tr>
-                    <td>RH</td>
+                    <td>Diretoria</td>
+                    <td>Diretoria</td>
+                    <td><span class="badge badge--active">Ativo</span></td>
+                    <td class="table__actions-col">
+                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
+                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
+                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
+                        </svg>
+                        Editar
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>Administrativo</td>
                     <td>Administrativo</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -134,7 +168,6 @@
                     <td>Financeiro</td>
                     <td>Administrativo</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -146,10 +179,9 @@
                   </tr>
 
                   <tr>
-                    <td>Compras</td>
-                    <td>Administrativo</td>
+                    <td>Contábil</td>
+                    <td>Operacional</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -161,10 +193,9 @@
                   </tr>
 
                   <tr>
-                    <td>Montagem</td>
-                    <td>Produção</td>
+                    <td>Fiscal</td>
+                    <td>Operacional</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -176,10 +207,9 @@
                   </tr>
 
                   <tr>
-                    <td>Embalagem</td>
-                    <td>Produção</td>
+                    <td>Departamento Pessoal</td>
+                    <td>Operacional</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -191,10 +221,9 @@
                   </tr>
 
                   <tr>
-                    <td>Controle de Qualidade</td>
-                    <td>Produção</td>
+                    <td>Vendas</td>
+                    <td>Comercial</td>
                     <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
                     <td class="table__actions-col">
                       <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
                         <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
@@ -211,130 +240,22 @@
           </div>
         </div>
 
-        <!-- CENTROS DE CUSTO -->
+        <!-- CENTROS DE CUSTO (INATIVADO) -->
         <div class="tabpanel" id="tab-centros">
-          <div class="card">
-
-            <!-- botão incluir DENTRO da aba -->
+          <div class="card is-disabled">
             <div class="panel-actions">
-              <button class="btn btn--primary" type="button" onclick="alert('Incluir (Centros de Custo) ainda não implementado')">
+              <button class="btn btn--primary" type="button" disabled aria-disabled="true">
                 <span class="btn__icon" aria-hidden="true">+</span>
-                Incluir
+                Incluir (indisponível)
               </button>
             </div>
 
-            <div class="table-wrap">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th>Nome do Centro de Custo</th>
-                    <th>Área</th>
-                    <th>Departamento</th>
-                    <th>Status</th>
-                    <th>Ações</th>
-                    <th class="table__actions-col">Ação</th>
-                  </tr>
-                </thead>
-
-                <tbody>
-                  <tr>
-                    <td>RH</td>
-                    <td>Administrativo</td>
-                    <td>RH</td>
-                    <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
-                    <td class="table__actions-col">
-                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                        </svg>
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Contabilidade</td>
-                    <td>Administrativo</td>
-                    <td>Financeiro</td>
-                    <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
-                    <td class="table__actions-col">
-                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                        </svg>
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Compras</td>
-                    <td>Administrativo</td>
-                    <td>Compras</td>
-                    <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
-                    <td class="table__actions-col">
-                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                        </svg>
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Montagem</td>
-                    <td>Administrativo</td>
-                    <td>Montagem</td>
-                    <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
-                    <td class="table__actions-col">
-                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                        </svg>
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Embalagem</td>
-                    <td>Produção</td>
-                    <td>Embalagem</td>
-                    <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
-                    <td class="table__actions-col">
-                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                        </svg>
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>Controle de Qualidade</td>
-                    <td>Produção</td>
-                    <td>Controle de Qualidade</td>
-                    <td><span class="badge badge--active">Ativo</span></td>
-                    <td class="muted">Editar</td>
-                    <td class="table__actions-col">
-                      <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">
-                        <svg class="icon" viewBox="0 0 24 24" aria-hidden="true">
-                          <path d="M3 17.25V21h3.75L17.81 9.94l-3.75-3.75L3 17.25zm14.71-9.04a1.003 1.003 0 0 0 0-1.42l-2.5-2.5a1.003 1.003 0 0 0-1.42 0l-1.96 1.96 3.75 3.75 2.13-1.79z"/>
-                        </svg>
-                        Editar
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-
-              </table>
+            <div class="notice">
+              <strong>Centros de Custo</strong>
+              <p class="muted">
+                Nesta fase você informou que não vai usar. Deixei esta aba inativada (cinza) como “não disponível”.
+              </p>
+              <span class="badge badge--disabled">Indisponível</span>
             </div>
           </div>
         </div>
@@ -343,11 +264,18 @@
         <div class="tabpanel" id="tab-organograma">
           <div class="card card--empty">
             <h3 class="card__title">Organograma</h3>
-            <p class="muted">Aqui você pode exibir uma imagem do organograma ou montar cards/níveis futuramente.</p>
+            <p class="muted">Visualização do organograma cadastrado.</p>
 
-            <button class="btn btn--secondary" type="button" onclick="alert('Upload ainda não implementado')">
-              Enviar organograma
-            </button>
+            <!-- IMAGEM DO ORGANOGRAMA -->
+            <div class="org-preview" aria-label="Imagem do organograma">
+              <img src="img/Organograma.png" alt="Organograma da empresa" loading="lazy" />
+            </div>
+
+            <div class="org-actions">
+              <button class="btn btn--secondary" type="button" onclick="alert('Upload ainda não implementado')">
+                Trocar organograma
+              </button>
+            </div>
           </div>
         </div>
       </section>
@@ -355,8 +283,62 @@
     </div>
   </main>
 
+  <!-- MODAL (Incluir) -->
+  <div class="estrutura-modal" id="estrutura-modal" hidden>
+    <div class="modal__backdrop" data-action="close"></div>
+
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal__header">
+        <h3 class="modal__title" id="modal-title" data-modal-title>Incluir</h3>
+
+        <button class="modal__close" type="button" data-action="close" aria-label="Fechar">
+          ✕
+        </button>
+      </div>
+
+      <form class="modal__form" id="modal-form">
+        <div class="modal__grid">
+          <!-- Campo: Área (ABA ÁREAS) -->
+          <div class="field" data-show="areas">
+            <label for="in-area">Área</label>
+            <input id="in-area" name="area" type="text" placeholder="Ex: Administrativo" />
+          </div>
+
+          <!-- Campo: Departamento (ABA DEPARTAMENTOS) -->
+          <div class="field" data-show="departamentos">
+            <label for="in-departamento">Departamento</label>
+            <input id="in-departamento" name="departamento" type="text" placeholder="Ex: Financeiro" />
+          </div>
+
+          <!-- Campo: Área (select) (ABA DEPARTAMENTOS) -->
+          <div class="field" data-show="departamentos">
+            <label for="in-area-select">Área</label>
+            <select id="in-area-select" name="area_select">
+              <!-- preenchido via JS -->
+            </select>
+          </div>
+
+          <!-- Status (ÁREAS e DEPARTAMENTOS) -->
+          <div class="field" data-show="areas departamentos">
+            <label for="in-status">Status</label>
+            <select id="in-status" name="status">
+              <option value="Ativo">Ativo</option>
+              <option value="Inativo">Inativo</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--secondary" type="button" data-action="close">Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     (function () {
+      // ===== TABS =====
       const tabs = document.querySelectorAll(".tabs__tab");
       const panels = {
         areas: document.getElementById("tab-areas"),
@@ -370,8 +352,72 @@
         Object.entries(panels).forEach(([key, el]) => el.classList.toggle("is-active", key === tabKey));
       }
 
-      tabs.forEach(btn => {
-        btn.addEventListener("click", () => activate(btn.dataset.tab));
+      tabs.forEach(btn => btn.addEventListener("click", () => activate(btn.dataset.tab)));
+
+      // ===== MODAL "INCLUIR" =====
+      const modal = document.getElementById("estrutura-modal");
+      const modalTitle = modal.querySelector("[data-modal-title]");
+      const modalForm = document.getElementById("modal-form");
+      const showBlocks = modal.querySelectorAll("[data-show]");
+      const areaSelect = document.getElementById("in-area-select");
+
+      function getAreasFromTable() {
+        const tds = document.querySelectorAll("#tab-areas tbody td:first-child");
+        const values = Array.from(tds).map(td => td.textContent.trim()).filter(Boolean);
+        return Array.from(new Set(values));
+      }
+
+      function fillAreaSelect() {
+        const areas = getAreasFromTable();
+        areaSelect.innerHTML = "";
+        areas.forEach(a => {
+          const opt = document.createElement("option");
+          opt.value = a;
+          opt.textContent = a;
+          areaSelect.appendChild(opt);
+        });
+      }
+
+      function openModal(type) {
+        fillAreaSelect();
+
+        modalTitle.textContent = type === "areas"
+          ? "Incluir Área"
+          : "Incluir Departamento";
+
+        showBlocks.forEach(el => {
+          const allowed = (el.dataset.show || "").split(" ");
+          el.hidden = !allowed.includes(type);
+        });
+
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+        modalForm.reset();
+      }
+
+      document.querySelectorAll('[data-action="open-incluir"]').forEach(btn => {
+        btn.addEventListener("click", () => openModal(btn.dataset.type));
+      });
+
+      modal.addEventListener("click", (e) => {
+        const close = e.target.closest('[data-action="close"]');
+        if (close) closeModal();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.hidden) closeModal();
+      });
+
+      // Protótipo: não grava ainda, só confirma
+      modalForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+        closeModal();
       });
     })();
   </script>

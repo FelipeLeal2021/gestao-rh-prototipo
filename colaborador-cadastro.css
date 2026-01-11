@@ -179,6 +179,7 @@
   padding: 12px 12px;
   background: rgba(5, 13, 141, .06);
   border-bottom: 1px solid rgba(15, 20, 40, .10);
+  white-space: nowrap;
 }
 
 .table tbody td{
@@ -193,6 +194,14 @@
 }
 
 .strong{ font-weight: 900; }
+
+.table--beneficios{ min-width: 1180px; }
+.table--ferias{ min-width: 980px; }
+
+.col-actions{
+  width: 120px;
+  text-align: right;
+}
 
 /* Pills */
 .pill{
@@ -212,7 +221,7 @@
   border-color: rgba(245, 158, 11, .24);
 }
 
-/* Badges (reuso do padrão) */
+/* Badges */
 .badge{
   display: inline-flex;
   align-items: center;
@@ -252,7 +261,94 @@
   font-size: 12px;
 }
 
+.btn__icon{
+  display: inline-flex;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: rgba(255,255,255,.35);
+}
+
+/* Treinamentos em branco */
+.blank{
+  height: 120px;
+}
+
+/* ===== MODAL ===== */
+body.modal-open{ overflow: hidden; }
+
+.modal[hidden]{ display: none; }
+
+.modal{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+.modal__backdrop{
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+}
+
+.modal__dialog{
+  position: relative;
+  width: min(760px, 100%);
+  background: rgba(255,255,255,.98);
+  border: 1px solid rgba(15, 20, 40, .12);
+  border-radius: 18px;
+  box-shadow: 0 18px 55px rgba(0,0,0,.22);
+  padding: 14px;
+}
+
+.modal__header{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.modal__title{
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.modal__close{
+  border: 1px solid rgba(15, 20, 40, .12);
+  background: rgba(5, 13, 141, .06);
+  border-radius: 12px;
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.modal__grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.field--full{
+  grid-column: 1 / -1;
+}
+
+.modal__actions{
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
 /* Responsivo */
 @media (max-width: 900px){
   .form-grid{ grid-template-columns: 1fr; }
+  .modal__grid{ grid-template-columns: 1fr; }
+  .col-actions{ text-align: left; }
 }

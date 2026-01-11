@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Treinamentos • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="treinamentos.css" />
+
+  <!-- Menu/Header via include -->
+  <script src="js/include-menu.js" defer></script>
+
+  <!-- JS da página -->
+  <script src="js/treinamentos.js" defer></script>
+</head>
+
+<body>
+  <!-- Menu/Header entra aqui -->
+  <div id="app-menu"></div>
+
+  <main class="trainings">
+    <div class="trainings__wrap">
+
+      <header class="trainings__header">
+        <div>
+          <h2 class="trainings__title">Treinamentos</h2>
+          <p class="trainings__subtitle">Cadastre treinamentos e controle a aplicação por colaborador.</p>
+        </div>
+        <a class="trainings__back" href="index.html">← Voltar</a>
+      </header>
+
+      <nav class="t-tabs" aria-label="Abas de Treinamentos">
+        <button class="t-tabs__tab is-active" type="button" data-tab="cadastro">Cadastro</button>
+        <button class="t-tabs__tab" type="button" data-tab="controle">Controle de Treinamentos</button>
+      </nav>
+
+      <section class="t-panels">
+        <!-- =========================
+             ABA 1 — CADASTRO
+        ========================== -->
+        <div class="t-panel is-active" id="tab-cadastro">
+          <div class="t-card">
+            <div class="t-toolbar">
+              <div class="t-search">
+                <span class="t-search__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
+                </span>
+                <input class="t-search__input" type="text" placeholder="Pesquisar treinamento..." />
+              </div>
+
+              <div class="t-toolbar__actions">
+                <button class="t-btn t-btn--primary" type="button" data-open="#modal-cadastro">
+                  <span class="t-btn__icon" aria-hidden="true">＋</span>
+                  Incluir treinamento
+                </button>
+              </div>
+            </div>
+
+            <div class="t-tablewrap">
+              <table class="t-table">
+                <thead>
+                  <tr>
+                    <th>Tipo <span class="t-sort">▾</span></th>
+                    <th>Treinamento <span class="t-sort">▾</span></th>
+                    <th>Categoria <span class="t-sort">▾</span></th>
+                    <th>Modelo <span class="t-sort">▾</span></th>
+                    <th>Carga horária <span class="t-sort">▾</span></th>
+                    <th>Status <span class="t-sort">▾</span></th>
+                    <th class="t-col-actions">Ações</th>
+                  </tr>
+
+                  <!-- filtros (visual) -->
+                  <tr class="t-filters">
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Interno</option>
+                        <option>Externo</option>
+                      </select>
+                    </th>
+                    <th><input class="t-filter" type="text" placeholder="Filtrar" /></th>
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Técnico</option>
+                        <option>Comportamental</option>
+                        <option>Organizacional</option>
+                      </select>
+                    </th>
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Curso</option>
+                        <option>Workshop</option>
+                        <option>Palestra</option>
+                      </select>
+                    </th>
+                    <th><input class="t-filter" type="text" placeholder="Filtrar" /></th>
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Ativo</option>
+                        <option>Inativo</option>
+                      </select>
+                    </th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td class="t-type">
+                      <span class="t-type__dot t-type__dot--int" aria-hidden="true"></span>
+                      Interno
+                    </td>
+                    <td class="t-strong">Curso de Excel Avançado</td>
+                    <td>Técnico</td>
+                    <td>Curso</td>
+                    <td>20 horas</td>
+                    <td><span class="t-pill t-pill--ok">Ativo</span></td>
+                    <td class="t-col-actions">
+                      <button class="t-btn t-btn--ghost t-btn--sm" type="button" onclick="alert('Consultar ainda não implementado')">Consultar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="t-type">
+                      <span class="t-type__dot t-type__dot--ext" aria-hidden="true"></span>
+                      Externo
+                    </td>
+                    <td class="t-strong">Comunicação Eficaz</td>
+                    <td>Comportamental</td>
+                    <td>Workshop</td>
+                    <td>15 horas</td>
+                    <td><span class="t-pill t-pill--ok">Ativo</span></td>
+                    <td class="t-col-actions">
+                      <button class="t-btn t-btn--ghost t-btn--sm" type="button" onclick="alert('Consultar ainda não implementado')">Consultar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td class="t-type">
+                      <span class="t-type__dot t-type__dot--int" aria-hidden="true"></span>
+                      Interno
+                    </td>
+                    <td class="t-strong">Gestão de Tempo e Produtividade</td>
+                    <td>Organizacional</td>
+                    <td>Palestra</td>
+                    <td>10 horas</td>
+                    <td><span class="t-pill t-pill--off">Inativo</span></td>
+                    <td class="t-col-actions">
+                      <button class="t-btn t-btn--ghost t-btn--sm" type="button" onclick="alert('Consultar ainda não implementado')">Consultar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="t-footnote">Total: 3 treinamentos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =========================
+             ABA 2 — CONTROLE
+        ========================== -->
+        <div class="t-panel" id="tab-controle">
+          <div class="t-card">
+            <div class="t-toolbar">
+              <div class="t-search">
+                <span class="t-search__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
+                </span>
+                <input class="t-search__input" type="text" placeholder="Pesquisar treinamento..." />
+              </div>
+
+              <div class="t-toolbar__actions">
+                <button class="t-btn t-btn--primary" type="button" data-open="#modal-controle">
+                  <span class="t-btn__icon" aria-hidden="true">＋</span>
+                  Incluir treinamento
+                </button>
+              </div>
+            </div>
+
+            <div class="t-tablewrap">
+              <table class="t-table">
+                <thead>
+                  <tr>
+                    <th>Data prevista <span class="t-sort">▾</span></th>
+                    <th>Data realização <span class="t-sort">▾</span></th>
+                    <th>Participante <span class="t-sort">▾</span></th>
+                    <th>Tipo <span class="t-sort">▾</span></th>
+                    <th>Título <span class="t-sort">▾</span></th>
+                    <th>Categoria <span class="t-sort">▾</span></th>
+                    <th>Status <span class="t-sort">▾</span></th>
+                    <th class="t-col-actions">Ações</th>
+                  </tr>
+
+                  <!-- filtros (visual) -->
+                  <tr class="t-filters">
+                    <th><input class="t-filter" type="text" placeholder="Filtrar" /></th>
+                    <th><input class="t-filter" type="text" placeholder="Filtrar" /></th>
+                    <th><input class="t-filter" type="text" placeholder="Filtrar" /></th>
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Interno</option>
+                        <option>Externo</option>
+                      </select>
+                    </th>
+                    <th><input class="t-filter" type="text" placeholder="Filtrar" /></th>
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Técnico</option>
+                        <option>Comportamental</option>
+                        <option>Organizacional</option>
+                      </select>
+                    </th>
+                    <th>
+                      <select class="t-filter">
+                        <option value="">Filtrar</option>
+                        <option>Não iniciado</option>
+                        <option>Em andamento</option>
+                        <option>Concluído</option>
+                      </select>
+                    </th>
+                    <th></th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr>
+                    <td>22/06/2024</td>
+                    <td>05/06/2024</td>
+                    <td class="t-strong">Ana Paula Souza</td>
+                    <td>Interno</td>
+                    <td>Curso de Excel Avançado</td>
+                    <td>Técnico</td>
+                    <td><span class="t-pill t-pill--ok">Concluído</span></td>
+                    <td class="t-col-actions">
+                      <button class="t-btn t-btn--ghost t-btn--sm" type="button" onclick="alert('Consultar ainda não implementado')">Consultar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>10/03/2024</td>
+                    <td>12/03/2024</td>
+                    <td class="t-strong">Diego Fernandes</td>
+                    <td>Externo</td>
+                    <td>Comunicação Eficaz</td>
+                    <td>Comportamental</td>
+                    <td><span class="t-pill t-pill--warn">Em andamento</span></td>
+                    <td class="t-col-actions">
+                      <button class="t-btn t-btn--ghost t-btn--sm" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>15/04/2024</td>
+                    <td>—</td>
+                    <td class="t-strong">João Santos</td>
+                    <td>Interno</td>
+                    <td>Gestão de Tempo e Produtividade</td>
+                    <td>Organizacional</td>
+                    <td><span class="t-pill t-pill--neutral">Não iniciado</span></td>
+                    <td class="t-col-actions">
+                      <button class="t-btn t-btn--ghost t-btn--sm" type="button" onclick="alert('Consultar ainda não implementado')">Consultar</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div class="t-footnote">Total: 3 participações</div>
+            </div>
+          </div>
+        </div>
+      </_toggle>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- =========================
+       MODAL — CADASTRO
+  ========================== -->
+  <div class="t-modal" id="modal-cadastro" aria-hidden="true">
+    <div class="t-modal__backdrop" data-close></div>
+
+    <div class="t-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-cadastro-title">
+      <header class="t-modal__header">
+        <h3 class="t-modal__title" id="modal-cadastro-title">Incluir treinamento</h3>
+        <button class="t-iconbtn" type="button" data-close aria-label="Fechar">✕</button>
+      </header>
+
+      <form class="t-form" onsubmit="event.preventDefault(); alert('Salvar (protótipo)');">
+        <div class="t-grid">
+          <div class="t-field">
+            <label for="cad-tipo">Tipo</label>
+            <select id="cad-tipo" required>
+              <option value="">Selecione...</option>
+              <option>Interno</option>
+              <option>Externo</option>
+            </select>
+          </div>
+
+          <div class="t-field">
+            <label for="cad-titulo">Título</label>
+            <input id="cad-titulo" type="text" placeholder="Ex: Curso de Excel Avançado" required />
+          </div>
+
+          <div class="t-field">
+            <label for="cad-modelo">Modelo de apresentação</label>
+            <select id="cad-modelo" required>
+              <option value="">Selecione...</option>
+              <option>Curso</option>
+              <option>Workshop</option>
+              <option>Palestra</option>
+            </select>
+          </div>
+
+          <div class="t-field">
+            <label for="cad-categoria">Categoria</label>
+            <select id="cad-categoria" required>
+              <option value="">Selecione...</option>
+              <option>Técnico</option>
+              <option>Comportamental</option>
+              <option>Organizacional</option>
+            </select>
+          </div>
+
+          <div class="t-field t-field--full">
+            <label for="cad-objetivo">Objetivo</label>
+            <textarea id="cad-objetivo" rows="3" placeholder="Descreva o objetivo do treinamento"></textarea>
+          </div>
+
+          <div class="t-field">
+            <label for="cad-competencia">Competência relacionada</label>
+            <input id="cad-competencia" type="text" placeholder="Ex: Excel / Comunicação / Organização" />
+          </div>
+
+          <div class="t-field">
+            <label for="cad-carga">Carga horária</label>
+            <div class="t-inline">
+              <input id="cad-carga" type="number" min="1" placeholder="Ex: 20" />
+              <span class="t-suffix">horas</span>
+            </div>
+          </div>
+
+          <div class="t-field t-field--full">
+            <label>Aplicabilidade</label>
+
+            <div class="t-radio">
+              <label class="t-radio__item">
+                <input type="radio" name="aplic" value="todos" checked />
+                Todos os departamentos
+              </label>
+
+              <label class="t-radio__item">
+                <input type="radio" name="aplic" value="especificos" />
+                Departamentos específicos
+              </label>
+            </div>
+
+            <div class="t-depts" data-depts hidden>
+              <label class="t-small">Selecione departamentos (multi-seleção)</label>
+              <select multiple>
+                <option>Administrativo</option>
+                <option>Financeiro</option>
+                <option>Recursos Humanos</option>
+                <option>Produção</option>
+                <option>Comercial</option>
+              </select>
+              <div class="t-hint">Dica: segure Ctrl (Windows) ou Cmd (Mac) para selecionar vários.</div>
+            </div>
+          </div>
+
+          <div class="t-field">
+            <label for="cad-status">Status</label>
+            <select id="cad-status">
+              <option>Ativo</option>
+              <option>Inativo</option>
+            </select>
+          </div>
+        </div>
+
+        <footer class="t-modal__footer">
+          <button class="t-btn t-btn--ghost" type="button" data-close>Cancelar</button>
+          <button class="t-btn t-btn--primary" type="submit">Salvar</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+
+  <!-- =========================
+       MODAL — CONTROLE
+  ========================== -->
+  <div class="t-modal" id="modal-controle" aria-hidden="true">
+    <div class="t-modal__backdrop" data-close></div>
+
+    <div class="t-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="modal-controle-title">
+      <header class="t-modal__header">
+        <h3 class="t-modal__title" id="modal-controle-title">Incluir treinamento (controle)</h3>
+        <button class="t-iconbtn" type="button" data-close aria-label="Fechar">✕</button>
+      </header>
+
+      <form class="t-form" onsubmit="event.preventDefault(); alert('Salvar (protótipo)');">
+        <div class="t-grid">
+          <div class="t-field t-field--full">
+            <label for="ctl-participantes">Participantes</label>
+            <select id="ctl-participantes" multiple>
+              <option>Ana Paula Souza</option>
+              <option>Diego Fernandes</option>
+              <option>Mariana Oliveira</option>
+              <option>João Santos</option>
+            </select>
+            <div class="t-hint">Multi-seleção: Ctrl (Windows) / Cmd (Mac).</div>
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-treinamento">Treinamento</label>
+            <select id="ctl-treinamento" required>
+              <option value="">Selecione...</option>
+              <option>Curso de Excel Avançado</option>
+              <option>Comunicação Eficaz</option>
+              <option>Gestão de Tempo e Produtividade</option>
+            </select>
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-tipo">Tipo</label>
+            <select id="ctl-tipo">
+              <option>Interno</option>
+              <option>Externo</option>
+            </select>
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-categoria">Categoria</label>
+            <select id="ctl-categoria">
+              <option>Técnico</option>
+              <option>Comportamental</option>
+              <option>Organizacional</option>
+            </select>
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-competencia">Competência relacionada</label>
+            <input id="ctl-competencia" type="text" placeholder="Ex: Comunicação" />
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-origem">Origem</label>
+            <select id="ctl-origem">
+              <option>PDI</option>
+              <option>Avaliação de desempenho</option>
+              <option>Feedback</option>
+              <option>Obrigatório (ex: integração)</option>
+            </select>
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-inicio">Data início</label>
+            <input id="ctl-inicio" type="date" />
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-conclusao">Data conclusão</label>
+            <input id="ctl-conclusao" type="date" />
+          </div>
+
+          <div class="t-field">
+            <label for="ctl-status">Status</label>
+            <select id="ctl-status">
+              <option>Não iniciado</option>
+              <option>Em andamento</option>
+              <option>Concluído</option>
+            </select>
+          </div>
+        </div>
+
+        <footer class="t-modal__footer">
+          <button class="t-btn t-btn--ghost" type="button" data-close>Cancelar</button>
+          <button class="t-btn t-btn--primary" type="submit">Salvar</button>
+        </footer>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

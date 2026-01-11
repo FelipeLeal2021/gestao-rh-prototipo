@@ -42,7 +42,7 @@
         <button class="tab" type="button" data-tab="ferias">Férias</button>
         <button class="tab" type="button" data-tab="afastamentos">Afastamentos</button>
         <button class="tab" type="button" data-tab="advertencias">Advertências</button>
-        <button class="tab" type="button" data-tab="observacoes">Observações</button>
+        <button class="tab" type="button" data-tab="treinamentos">Treinamentos</button>
       </nav>
 
       <!-- PANELS -->
@@ -130,14 +130,14 @@
         <div class="panel" id="panel-estrutura">
           <div class="panel-head">
             <h3 class="panel-title">Cargo e Estrutura</h3>
-            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir novo cargo ainda não implementado')">
+            <button class="btn btn--primary btn--sm" type="button" data-action="open-cargo">
               <span class="btn__icon" aria-hidden="true">+</span>
               Incluir Novo Cargo
             </button>
           </div>
 
           <div class="table-wrap">
-            <table class="table">
+            <table class="table table--estrutura">
               <thead>
                 <tr>
                   <th>Data</th>
@@ -157,22 +157,25 @@
         <div class="panel" id="panel-beneficios">
           <div class="panel-head">
             <h3 class="panel-title">Benefícios</h3>
-            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir benefício ainda não implementado')">
+            <button class="btn btn--primary btn--sm" type="button" data-action="open-beneficio">
               <span class="btn__icon" aria-hidden="true">+</span>
               Incluir Benefício
             </button>
           </div>
 
           <div class="table-wrap">
-            <table class="table">
+            <table class="table table--beneficios">
               <thead>
                 <tr>
-                  <th>Benefício</th>
-                  <th>Valor</th>
-                  <th>Empresa paga</th>
-                  <th>Colaborador paga</th>
-                  <th>Exceção?</th>
+                  <th>Nome</th>
+                  <th>Tipo</th>
+                  <th>Valor do Benefício</th>
+                  <th>Empresa Paga</th>
+                  <th>Colaborador Paga</th>
+                  <th>Pessoa</th>
+                  <th>Observação</th>
                   <th>Status</th>
+                  <th class="col-actions">Ações</th>
                 </tr>
               </thead>
               <tbody id="tabBeneficios"></tbody>
@@ -184,20 +187,16 @@
         <div class="panel" id="panel-ferias">
           <div class="panel-head">
             <h3 class="panel-title">Férias</h3>
-            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir período de férias ainda não implementado')">
-              <span class="btn__icon" aria-hidden="true">+</span>
-              Incluir Período de Férias
-            </button>
           </div>
 
           <div class="table-wrap">
-            <table class="table">
+            <table class="table table--ferias">
               <thead>
                 <tr>
                   <th>Período aquisitivo</th>
                   <th>Status</th>
                   <th>Dias de direito</th>
-                  <th>Gozadas</th>
+                  <th>Gozadas (data)</th>
                   <th>Vendeu dias?</th>
                   <th>Dias pendentes</th>
                   <th>Data limite</th>
@@ -260,62 +259,229 @@
           </div>
         </div>
 
-        <!-- Observações -->
-        <div class="panel" id="panel-observacoes">
-          <h3 class="panel-title">Observações</h3>
-
-          <div class="field">
-            <label>Observações gerais</label>
-            <textarea class="textarea" rows="8" placeholder="Digite observações sobre o colaborador..."></textarea>
-          </div>
+        <!-- Treinamentos (em branco) -->
+        <div class="panel" id="panel-treinamentos">
+          <h3 class="panel-title">Treinamentos</h3>
+          <!-- em branco por enquanto -->
+          <div class="blank"></div>
         </div>
       </section>
     </section>
   </main>
 
+  <!-- MODAL: NOVO CARGO -->
+  <div class="modal" id="cargoModal" hidden>
+    <div class="modal__backdrop" data-action="close-cargo"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cargoModalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="cargoModalTitle">Incluir Novo Cargo</h3>
+        <button class="modal__close" type="button" data-action="close-cargo" aria-label="Fechar">✕</button>
+      </div>
+
+      <form class="modal__form" id="cargoForm">
+        <div class="modal__grid">
+          <div class="field">
+            <label for="cData">Data</label>
+            <input id="cData" name="data" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="cMotivo">Motivo</label>
+            <select id="cMotivo" name="motivo" required>
+              <option value="">Selecione...</option>
+              <option>Admissão</option>
+              <option>Promoção – mudança de nível</option>
+              <option>Promoção – mudança de cargo</option>
+              <option>Enquadramento cargo</option>
+              <option>Enquadramento salarial</option>
+              <option>Convenção coletiva / dissídio</option>
+              <option>Ajuste por salário mínimo</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cCargo">Cargo</label>
+            <select id="cCargo" name="cargo" required>
+              <!-- preenchido via JS -->
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cSalario">Salário</label>
+            <input id="cSalario" name="salario" type="text" placeholder="R$ 1.500,00" required />
+          </div>
+
+          <div class="field">
+            <label for="cDepto">Departamento</label>
+            <select id="cDepto" name="depto" required>
+              <!-- preenchido via JS -->
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="cGestor">Gestor Direto</label>
+            <input id="cGestor" name="gestor" type="text" placeholder="Ex: Diretoria" />
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-action="close-cargo">Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: INCLUIR BENEFÍCIO -->
+  <div class="modal" id="beneficioModal" hidden>
+    <div class="modal__backdrop" data-action="close-beneficio"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="beneficioModalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="beneficioModalTitle">Incluir Benefício</h3>
+        <button class="modal__close" type="button" data-action="close-beneficio" aria-label="Fechar">✕</button>
+      </div>
+
+      <form class="modal__form" id="beneficioForm">
+        <div class="modal__grid">
+          <div class="field">
+            <label for="bNome">Nome</label>
+            <select id="bNome" name="nome" required>
+              <!-- preenchido via JS -->
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="bTipo">Tipo (automático)</label>
+            <input id="bTipo" name="tipo" type="text" disabled />
+          </div>
+
+          <div class="field">
+            <label for="bValor">Valor do Benefício</label>
+            <input id="bValor" name="valor" type="text" placeholder="R$ 0,00" required />
+          </div>
+
+          <div class="field">
+            <label for="bEmpresa">Empresa Paga</label>
+            <input id="bEmpresa" name="empresa" type="text" placeholder="R$ 0,00" required />
+          </div>
+
+          <div class="field">
+            <label for="bColab">Colaborador Paga</label>
+            <input id="bColab" name="colab" type="text" placeholder="R$ 0,00" required />
+          </div>
+
+          <div class="field">
+            <label for="bPessoa">Pessoa</label>
+            <select id="bPessoa" name="pessoa" required>
+              <option value="">Selecione...</option>
+              <option>Titular</option>
+              <option>Dependente</option>
+            </select>
+          </div>
+
+          <div class="field field--full">
+            <label for="bObs">Observação</label>
+            <input id="bObs" name="obs" type="text" placeholder="Ex: Pedro Henrique Souza / Maria Luisa Souza" />
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-action="close-beneficio">Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     (function () {
+      // ====== Catálogo (para listas/auto preencher) ======
+      const DEPARTAMENTOS = [
+        "Diretoria",
+        "Administrativo",
+        "Financeiro",
+        "Contábil",
+        "Fiscal",
+        "Departamento Pessoal",
+        "Vendas",
+      ];
+
+      const CARGOS_CATALOGO = [
+        { nome: "Auxiliar Administrativo", salario: "R$ 1.500,00", depto: "Administrativo" },
+        { nome: "Assistente Administrativo", salario: "R$ 2.000,00", depto: "Administrativo" },
+        { nome: "Analista Administrativo Júnior", salario: "R$ 2.800,00", depto: "Administrativo" },
+        { nome: "Supervisor Administrativo", salario: "R$ 4.500,00", depto: "Administrativo" },
+      ];
+
+      const BENEFICIOS_CATALOGO = [
+        { nome: "Vale Alimentação", tipo: "Financeiro" },
+        { nome: "Plano Odontológico", tipo: "Saúde" },
+        { nome: "Plano de Saúde", tipo: "Saúde" },
+        { nome: "Auxílio Faculdade", tipo: "Educacional" },
+        { nome: "Auxílio Transporte", tipo: "Legal" },
+        { nome: "Seguro de Vida", tipo: "Proteção" },
+        { nome: "Parceria Gympass", tipo: "Qualidade de vida" },
+      ];
+
+      // ====== DB mock (ajustado conforme seu modelo) ======
       const DB = {
         1: {
           nome: "Ana Paula Souza",
-          cargo: "Assistente Administrativo",
+          cargo: "Auxiliar Administrativo",
           cpf: "123.456.789-09",
           nascimento: "1990-09-15",
           sexo: "Feminino",
-          telefone: "+55 11 9865-4321",
+          telefone: "(11) 99999-9999",
           email: "ana.paula@email.com",
           tipoVinculo: "CLT",
           admissao: "2022-03-15",
           status: "Ativo",
           desligamento: "",
+
+          // ✅ Somente 1 linha conforme pedido
           historicoCargo: [
-            {data:"2024-03-05", motivo:"Promoção — mudança de nível", cargo:"Analista Pleno Administrativo", salario:"R$ 3.800,00", depto:"Compras", gestor:"Marcelo Ribeiro"},
-            {data:"2023-01-10", motivo:"Promoção — mudança de cargo", cargo:"Analista Administrativo", salario:"R$ 3.200,00", depto:"Compras", gestor:"Marcelo Ribeiro"},
-            {data:"2022-03-15", motivo:"Admissão", cargo:"Assistente Administrativo", salario:"R$ 2.500,00", depto:"Financeiro", gestor:"Marcelo Ribeiro"},
+            {
+              data: "2022-03-15",
+              motivo: "Admissão",
+              cargo: "Auxiliar Administrativo",
+              salario: "R$ 1.500,00",
+              depto: "Administrativo",
+              gestor: "Diretoria"
+            }
           ],
+
+          // ✅ Tabela conforme imagem
           beneficios: [
-            {nome:"Vale Refeição", valor:"R$ 700,00", empresa:"R$ 699,00", colab:"R$ 300,00", excecao:"Sim", status:"Ativo"},
-            {nome:"Plano de Saúde", valor:"R$ 300,00", empresa:"R$ 200,00", colab:"R$ 100,00", excecao:"Não", status:"Ativo"},
-            {nome:"Plano Odontológico", valor:"R$ 80,00", empresa:"R$ 30,00", colab:"R$ 50,00", excecao:"Não", status:"Ativo"},
-            {nome:"Day Off", valor:"—", empresa:"—", colab:"—", excecao:"Não", status:"Ativo"},
+            { nome:"Vale Alimentação", tipo:"Financeiro", valor:"R$ 700,00", empresa:"R$ 699,00", colab:"R$ 1,00", pessoa:"Titular", obs:"", status:"Ativo" },
+            { nome:"Plano Odontológico", tipo:"Saúde", valor:"R$ 35,00", empresa:"R$ 35,00", colab:"R$ -", pessoa:"Titular", obs:"", status:"Ativo" },
+            { nome:"Plano de Saúde", tipo:"Saúde", valor:"R$ 700,00", empresa:"R$ 210,00", colab:"R$ 490,00", pessoa:"Titular", obs:"", status:"Ativo" },
+            { nome:"Plano de Saúde", tipo:"Saúde", valor:"R$ 400,00", empresa:"R$ 120,00", colab:"R$ 280,00", pessoa:"Dependente", obs:"Pedro Henrique Souza", status:"Ativo" },
+            { nome:"Plano de Saúde", tipo:"Saúde", valor:"R$ 400,00", empresa:"R$ 120,00", colab:"R$ 280,00", pessoa:"Dependente", obs:"Maria Luisa Souza", status:"Ativo" },
+            { nome:"Auxílio Faculdade", tipo:"Educacional", valor:"R$ 150,00", empresa:"R$ 150,00", colab:"R$ -", pessoa:"Titular", obs:"", status:"Ativo" },
+            { nome:"Auxílio Transporte", tipo:"Legal", valor:"R$ 200,00", empresa:"R$ 90,00", colab:"R$ 110,00", pessoa:"Titular", obs:"", status:"Ativo" },
+            { nome:"Seguro de Vida", tipo:"Proteção", valor:"R$ 22,00", empresa:"R$ 22,00", colab:"R$ -", pessoa:"Titular", obs:"", status:"Ativo" },
+            { nome:"Parceria Gympass", tipo:"Qualidade de vida", valor:"R$ 30,00", empresa:"R$ 30,00", colab:"R$ -", pessoa:"Titular", obs:"", status:"Ativo" },
           ],
+
+          // ✅ Férias conforme exemplo
           ferias: [
-            {aq:"2023-03-01 a 2024-02-29", status:"Completo", direito:"30", gozadas:"10/01/2025 a 29/01/2025", vendeu:"0", pend:"10", limite:"2026-02-28"},
-            {aq:"2024-03-01 a 2025-02-28", status:"Em aquisição", direito:"0", gozadas:"—", vendeu:"0", pend:"0", limite:"2027-02-28"},
+            { aq:"15/03/2022 a 14/03/2023", status:"Gozadas", direito:"30", gozadas:"10/04/2023 a 09/05/2023", vendeu:"Não", pend:"0", limite:"14/03/2024" },
+            { aq:"15/03/2023 a 14/03/2024", status:"Gozadas", direito:"30", gozadas:"05/06/2024 a 04/07/2024", vendeu:"Não", pend:"0", limite:"14/03/2025" },
+            { aq:"15/03/2024 a 14/03/2025", status:"Vencida", direito:"30", gozadas:"—", vendeu:"Não", pend:"30", limite:"14/03/2026" },
+            { aq:"15/03/2025 a 14/03/2026", status:"Em aquisição", direito:"25", gozadas:"—", vendeu:"Não", pend:"25", limite:"14/03/2027" },
           ],
+
           afast: [
             {tipo:"Atestado Médico", ini:"2026-01-09", fim:"2026-01-11", dias:"3", obs:"CID A09"},
           ],
+
           adv: [
             {data:"2024-03-05", resp:"Lucas Andrade (RH)", tipo:"Escrita", motivo:"Atrasos frequentes", orient:"Orientado a ajustar os horários de chegada e cumprir o expediente."}
           ],
-        },
-        2: { nome:"Carlos Henrique Lima", cargo:"Analista Administrativo" },
-        3: { nome:"Fernanda Rocha", cargo:"Analista Financeiro" },
-        4: { nome:"João Victor Martins", cargo:"Operador de Produção" },
-        5: { nome:"Thiago Moreira", cargo:"Operador de Produção" },
+        }
       };
 
+      // ====== Carregar colaborador ======
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id") || "1";
       const data = DB[id] || DB["1"];
@@ -324,7 +490,7 @@
       document.getElementById("cadTitle").textContent = `Cadastro — ${data.nome || "Colaborador"}`;
       document.getElementById("cadRole").textContent = data.cargo || "—";
 
-      // dados pessoais (se existir)
+      // dados pessoais
       const set = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.value = val; };
       set("nome", data.nome || "");
       set("cpf", data.cpf || "");
@@ -337,35 +503,48 @@
       if (data.status) set("status", data.status);
       if (data.desligamento !== undefined) set("desligamento", data.desligamento);
 
-      // tabelas
+      // ====== Render Cargo/Estrutura ======
       const hist = document.getElementById("histCargo");
-      if (hist && data.historicoCargo) {
-        hist.innerHTML = data.historicoCargo.map(r => `
+      function renderCargo(){
+        if (!hist) return;
+        const rows = data.historicoCargo || [];
+        hist.innerHTML = rows.map(r => `
           <tr>
             <td>${fmtDate(r.data)}</td>
             <td>${r.motivo}</td>
             <td class="strong">${r.cargo}</td>
             <td>${r.salario}</td>
             <td>${r.depto}</td>
-            <td>${r.gestor}</td>
+            <td>${r.gestor || "—"}</td>
           </tr>
         `).join("");
       }
+      renderCargo();
 
+      // ====== Render Benefícios ======
       const ben = document.getElementById("tabBeneficios");
-      if (ben && data.beneficios) {
-        ben.innerHTML = data.beneficios.map(r => `
+      function renderBeneficios(){
+        if (!ben) return;
+        const rows = data.beneficios || [];
+        ben.innerHTML = rows.map((r, idx) => `
           <tr>
             <td class="strong">${r.nome}</td>
+            <td>${r.tipo}</td>
             <td>${r.valor}</td>
             <td>${r.empresa}</td>
             <td>${r.colab}</td>
-            <td><span class="pill ${r.excecao === "Sim" ? "pill--warn" : ""}">${r.excecao}</span></td>
-            <td><span class="badge badge--active">${r.status}</span></td>
+            <td>${r.pessoa}</td>
+            <td>${r.obs || ""}</td>
+            <td><span class="badge badge--active">${r.status || "Ativo"}</span></td>
+            <td class="col-actions">
+              <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
+            </td>
           </tr>
         `).join("");
       }
+      renderBeneficios();
 
+      // ====== Render Férias ======
       const fer = document.getElementById("tabFerias");
       if (fer && data.ferias) {
         fer.innerHTML = data.ferias.map(r => `
@@ -376,11 +555,12 @@
             <td>${r.gozadas}</td>
             <td>${r.vendeu}</td>
             <td>${r.pend}</td>
-            <td>${fmtDate(r.limite)}</td>
+            <td>${r.limite}</td>
           </tr>
         `).join("");
       }
 
+      // afastamentos
       const af = document.getElementById("tabAfast");
       if (af && data.afast) {
         af.innerHTML = data.afast.map(r => `
@@ -394,6 +574,7 @@
         `).join("");
       }
 
+      // advertências
       const adv = document.getElementById("tabAdv");
       if (adv && data.adv) {
         adv.innerHTML = data.adv.map(r => `
@@ -407,7 +588,7 @@
         `).join("");
       }
 
-      // tabs
+      // ====== Tabs ======
       const tabs = document.querySelectorAll(".tab");
       const panels = {
         pessoais: document.getElementById("panel-pessoais"),
@@ -417,19 +598,127 @@
         ferias: document.getElementById("panel-ferias"),
         afastamentos: document.getElementById("panel-afastamentos"),
         advertencias: document.getElementById("panel-advertencias"),
-        observacoes: document.getElementById("panel-observacoes"),
+        treinamentos: document.getElementById("panel-treinamentos"),
       };
 
       function activate(key){
         tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
         Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
       }
-
       tabs.forEach(t => t.addEventListener("click", () => activate(t.dataset.tab)));
+
+      // ====== Modal Cargo ======
+      const cargoModal = document.getElementById("cargoModal");
+      const cargoForm = document.getElementById("cargoForm");
+      const cCargo = document.getElementById("cCargo");
+      const cSalario = document.getElementById("cSalario");
+      const cDepto = document.getElementById("cDepto");
+      const cData = document.getElementById("cData");
+
+      // preencher selects
+      cCargo.innerHTML = `<option value="">Selecione...</option>` + CARGOS_CATALOGO.map(c => `<option value="${c.nome}">${c.nome}</option>`).join("");
+      cDepto.innerHTML = `<option value="">Selecione...</option>` + DEPARTAMENTOS.map(d => `<option value="${d}">${d}</option>`).join("");
+
+      function openCargoModal(){
+        cargoModal.hidden = false;
+        document.body.classList.add("modal-open");
+        cargoForm.reset();
+        cData.valueAsDate = new Date();
+      }
+      function closeCargoModal(){
+        cargoModal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+
+      document.querySelector('[data-action="open-cargo"]').addEventListener("click", openCargoModal);
+      cargoModal.addEventListener("click", (e) => {
+        if (e.target.closest('[data-action="close-cargo"]')) closeCargoModal();
+      });
+
+      // auto preencher salário/depto pelo cargo
+      cCargo.addEventListener("change", () => {
+        const picked = CARGOS_CATALOGO.find(x => x.nome === cCargo.value);
+        if (!picked) return;
+        cSalario.value = picked.salario;
+        if (picked.depto) cDepto.value = picked.depto;
+      });
+
+      cargoForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(cargoForm);
+        const row = {
+          data: fd.get("data"),
+          motivo: fd.get("motivo"),
+          cargo: fd.get("cargo"),
+          salario: fd.get("salario"),
+          depto: fd.get("depto"),
+          gestor: fd.get("gestor") || "—"
+        };
+        // adiciona no topo (mais recente primeiro)
+        data.historicoCargo = [row, ...(data.historicoCargo || [])];
+        renderCargo();
+        closeCargoModal();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+      });
+
+      // ====== Modal Benefício ======
+      const benModal = document.getElementById("beneficioModal");
+      const benForm = document.getElementById("beneficioForm");
+      const bNome = document.getElementById("bNome");
+      const bTipo = document.getElementById("bTipo");
+
+      bNome.innerHTML = `<option value="">Selecione...</option>` + BENEFICIOS_CATALOGO.map(b => `<option value="${b.nome}">${b.nome}</option>`).join("");
+
+      function openBenModal(){
+        benModal.hidden = false;
+        document.body.classList.add("modal-open");
+        benForm.reset();
+        bTipo.value = "";
+      }
+      function closeBenModal(){
+        benModal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+
+      document.querySelector('[data-action="open-beneficio"]').addEventListener("click", openBenModal);
+      benModal.addEventListener("click", (e) => {
+        if (e.target.closest('[data-action="close-beneficio"]')) closeBenModal();
+      });
+
+      bNome.addEventListener("change", () => {
+        const picked = BENEFICIOS_CATALOGO.find(x => x.nome === bNome.value);
+        bTipo.value = picked ? picked.tipo : "";
+      });
+
+      benForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(benForm);
+        const picked = BENEFICIOS_CATALOGO.find(x => x.nome === fd.get("nome"));
+        const row = {
+          nome: fd.get("nome"),
+          tipo: picked ? picked.tipo : (bTipo.value || ""),
+          valor: fd.get("valor"),
+          empresa: fd.get("empresa"),
+          colab: fd.get("colab"),
+          pessoa: fd.get("pessoa"),
+          obs: fd.get("obs") || "",
+          status: "Ativo"
+        };
+        data.beneficios = [row, ...(data.beneficios || [])];
+        renderBeneficios();
+        closeBenModal();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+      });
+
+      // ESC fecha qualquer modal aberto
+      document.addEventListener("keydown", (e) => {
+        if (e.key !== "Escape") return;
+        if (!cargoModal.hidden) closeCargoModal();
+        if (!benModal.hidden) closeBenModal();
+      });
 
       function fmtDate(iso){
         if (!iso || iso === "—") return "—";
-        // aceita yyyy-mm-dd
         const parts = String(iso).split("-");
         if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
         return iso;

@@ -1,6 +1,7 @@
 /* ===== PÁGINA: DADOS GERAIS ===== */
+
 .content{
-  min-height: calc(100vh - var(--topbar-h));
+  min-height: calc(100vh - var(--topbar-h, 80px));
   padding: 26px 20px 60px;
 }
 
@@ -38,6 +39,7 @@
   line-height: 1.45;
 }
 
+/* Card */
 .form-card{
   background: rgba(255,255,255,.92);
   border: 1px solid rgba(15, 20, 40, .10);
@@ -46,6 +48,14 @@
   padding: 16px;
 }
 
+/* Form principal (agora tem abas + ações fora do grid) */
+.form-root{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ===== GRID DOS CAMPOS (dentro de cada aba) ===== */
 .form-grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -75,9 +85,100 @@
   box-shadow: 0 0 0 4px rgba(5, 13, 141, .10);
 }
 
-/* ações (botão salvar) */
+/* ===== ABAS (CSS-only) ===== */
+.tabs{
+  position: relative;
+}
+
+/* Radios escondidos sem “atrapalhar” layout */
+.tab-input{
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Linha de abas */
+.tab-list{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(15, 20, 40, .10);
+  padding-bottom: 10px;
+  margin-bottom: 6px;
+}
+
+/* Botões das abas */
+.tab-label{
+  cursor: pointer;
+  user-select: none;
+  padding: 10px 12px;
+  border-radius: 14px 14px 0 0;
+  border: 1px solid rgba(5, 13, 141, .12);
+  border-bottom: 0;
+  background: rgba(5, 13, 141, .06);
+  color: rgba(15, 20, 40, .90);
+  font-weight: 800;
+  letter-spacing: .2px;
+  opacity: .85;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+}
+
+.tab-label:hover{
+  background: rgba(5, 13, 141, .10);
+  border-color: rgba(5, 13, 141, .18);
+}
+
+.tab-label:active{
+  transform: translateY(1px);
+}
+
+/* Conteúdo das abas */
+.tab-panels{
+  padding-top: 10px;
+}
+
+.tab-panel{
+  display: none;
+}
+
+/* Mostrar painel ativo */
+#tab-info:checked ~ .tab-panels #panel-info{ display: block; }
+#tab-endereco:checked ~ .tab-panels #panel-endereco{ display: block; }
+#tab-contatos:checked ~ .tab-panels #panel-contatos{ display: block; }
+#tab-config:checked ~ .tab-panels #panel-config{ display: block; }
+
+/* Estilo da aba ativa */
+#tab-info:checked ~ .tab-list label[for="tab-info"],
+#tab-endereco:checked ~ .tab-list label[for="tab-endereco"],
+#tab-contatos:checked ~ .tab-list label[for="tab-contatos"],
+#tab-config:checked ~ .tab-list label[for="tab-config"]{
+  opacity: 1;
+  background: rgba(255,255,255,.96);
+  color: rgba(5, 13, 141, .92);
+  border-color: rgba(15, 20, 40, .12);
+}
+
+/* Aba 4 (placeholder) */
+.tab-placeholder{
+  padding: 6px 2px;
+}
+
+.tab-title{
+  margin: 0 0 6px 0;
+  font-size: 1.05rem;
+}
+
+.tab-help{
+  margin: 0;
+  opacity: .80;
+  line-height: 1.45;
+}
+
+/* ===== AÇÕES (botão salvar) ===== */
 .form-actions{
-  grid-column: 1 / -1;
   display: flex;
   justify-content: flex-end;
   padding-top: 6px;
@@ -104,6 +205,7 @@
   transform: translateY(-1px);
 }
 
+/* ===== RESPONSIVO ===== */
 @media (max-width: 720px){
   .form-grid{
     grid-template-columns: 1fr;

@@ -37,7 +37,7 @@
 /* Toolbar */
 .toolbar{
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 14px;
   padding: 10px 6px 14px;
@@ -84,6 +84,45 @@
   background: rgba(5, 13, 141, .05);
 }
 
+/* Filtro status */
+.filters{
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.filter{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .10);
+  background: rgba(255,255,255,.85);
+}
+
+.filter__label{
+  font-size: 12px;
+  font-weight: 900;
+  opacity: .8;
+}
+
+.filter__select{
+  border: 1px solid rgba(15, 20, 40, .14);
+  background: rgba(5, 13, 141, .03);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-weight: 800;
+  outline: none;
+}
+
+.filter__select:focus{
+  border-color: rgba(5, 13, 141, .28);
+  background: rgba(5, 13, 141, .05);
+}
+
 /* Tabela */
 .table-wrap{
   overflow: auto;
@@ -95,7 +134,7 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 980px;
+  min-width: 1040px;
   background: rgba(255,255,255,.92);
 }
 
@@ -106,6 +145,7 @@
   padding: 12px 12px;
   background: rgba(5, 13, 141, .06);
   border-bottom: 1px solid rgba(15, 20, 40, .10);
+  white-space: nowrap;
 }
 
 .table tbody td{
@@ -123,7 +163,7 @@
 .strong{ font-weight: 800; }
 
 .col-status{ width: 120px; }
-.col-actions{ width: 120px; }
+.col-actions{ width: 120px; text-align: right; }
 
 /* Badges */
 .badge{
@@ -149,6 +189,12 @@
   color: rgba(146, 64, 14, .95);
 }
 
+.badge--off{
+  background: rgba(239, 68, 68, .10);
+  border-color: rgba(239, 68, 68, .22);
+  color: rgba(153, 27, 27, .95);
+}
+
 /* Botões (fallback) */
 .btn{
   border: 1px solid rgba(15, 20, 40, .14);
@@ -171,6 +217,8 @@
   font-size: 12px;
 }
 
+.btn__icon{ margin-right: 8px; }
+
 /* Responsivo */
 @media (max-width: 900px){
   .colab-head{
@@ -178,4 +226,5 @@
     align-items: stretch;
   }
   .hint{ display: none; }
+  .col-actions{ text-align: left; }
 }
