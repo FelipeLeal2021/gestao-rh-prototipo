@@ -22,6 +22,7 @@
   margin: 0;
   font-size: 28px;
   letter-spacing: .2px;
+  font-weight: 900;
 }
 
 .cargos-page .page-subtitle{
@@ -87,19 +88,26 @@
 .cargos-page .search__input:focus{
   border-color: rgba(5, 13, 141, .28);
   background: rgba(5, 13, 141, .05);
+  box-shadow: 0 0 0 4px rgba(5, 13, 141, .08);
 }
 
-/* Tabela */
+/* =========================
+   Tabela
+   ========================= */
 .cargos-page .table-wrap{
   overflow: auto;
   border-radius: 14px;
+  border: 1px solid rgba(15, 20, 40, .08);
+  background: rgba(255,255,255,.75);
 }
 
 .cargos-page .table{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 1040px;
+  /* ✅ sem salário, dá pra reduzir */
+  min-width: 920px;
+  background: rgba(255,255,255,.92);
 }
 
 .cargos-page .table thead th{
@@ -110,6 +118,9 @@
   background: rgba(5, 13, 141, .06);
   border-bottom: 1px solid rgba(15, 20, 40, .10);
   white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 1;
 }
 
 .cargos-page .table tbody td{
@@ -117,15 +128,25 @@
   border-bottom: 1px solid rgba(15, 20, 40, .08);
   vertical-align: top;
   font-size: 13px;
+  color: rgba(30, 41, 59, .95);
+  line-height: 1.45;
 }
 
 .cargos-page .table tbody tr:hover td{
   background: rgba(5, 13, 141, .03);
 }
 
-.cargos-page .col-status{ width: 110px; }
-.cargos-page .col-date{ width: 170px; }
-.cargos-page .col-salary{ width: 140px; white-space: nowrap; }
+/* ✅ colunas da lista (sem salário) */
+.cargos-page .col-status{ width: 110px; white-space: nowrap; }
+.cargos-page .col-date{ width: 170px; white-space: nowrap; }
+
+/* ✅ coluna ações (usada no detalhe) */
+.cargos-page .col-actions{
+  width: 120px;
+  white-space: nowrap;
+  text-align: right;
+}
+.cargos-page .table thead th.col-actions{ text-align: right; }
 
 /* Botão tipo link na tabela */
 .cargos-page .row-link{
@@ -190,6 +211,7 @@
   margin: 0;
   font-size: 26px;
   letter-spacing: .2px;
+  font-weight: 900;
 }
 
 /* Tabs */
@@ -202,18 +224,26 @@
 
 .cargos-page .tabs__tab{
   border: 1px solid rgba(15, 20, 40, .12);
-  background: rgba(5, 13, 141, .04);
+  background: rgba(255,255,255,.9);
   padding: 10px 12px;
-  border-radius: 14px;
+  border-radius: 999px;
   cursor: pointer;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 900;
+  color: rgba(5, 13, 141, .92);
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
 }
 
+.cargos-page .tabs__tab:hover{
+  background: rgba(5, 13, 141, .05);
+}
+
+.cargos-page .tabs__tab:active{ transform: translateY(1px); }
+
 .cargos-page .tabs__tab.is-active{
-  background: rgba(5, 13, 141, .10);
+  background: rgba(5, 13, 141, .12);
   border-color: rgba(5, 13, 141, .18);
-  font-weight: 900;
+  box-shadow: 0 10px 22px rgba(5, 13, 141, .10);
 }
 
 /* Painéis */
@@ -232,13 +262,14 @@
 .cargos-page .field label{
   display: block;
   font-size: 12px;
-  opacity: .75;
+  opacity: .78;
   margin: 2px 0 6px;
   font-weight: 900;
 }
 
 .cargos-page .field input,
-.cargos-page .field select{
+.cargos-page .field select,
+.cargos-page .field textarea{
   width: 100%;
   padding: 10px 12px;
   border-radius: 14px;
@@ -247,10 +278,14 @@
   outline: none;
 }
 
+.cargos-page .field textarea{ resize: vertical; }
+
 .cargos-page .field input:focus,
-.cargos-page .field select:focus{
+.cargos-page .field select:focus,
+.cargos-page .field textarea:focus{
   border-color: rgba(5, 13, 141, .28);
   background: rgba(5, 13, 141, .05);
+  box-shadow: 0 0 0 4px rgba(5, 13, 141, .08);
 }
 
 .cargos-page .readonly{
@@ -348,9 +383,17 @@
   flex-wrap: wrap;
 }
 
+.cargos-page .panel-actions{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
 .cargos-page .card-actions{
   display: flex;
   justify-content: flex-end;
+  gap: 10px;
   padding: 10px 6px 2px;
 }
 
@@ -366,7 +409,9 @@
 }
 .cargos-page .mini-list li{ margin: 4px 0; }
 
-/* Botões (fallback) */
+/* =========================
+   Botões (escopados)
+   ========================= */
 .cargos-page .btn{
   border: 1px solid rgba(15, 20, 40, .14);
   background: rgba(255,255,255,.86);
@@ -374,20 +419,62 @@
   border-radius: 14px;
   cursor: pointer;
   font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  user-select: none;
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease, opacity .15s ease;
+  white-space: nowrap;
 }
 
-.cargos-page .btn__icon{ margin-right: 8px; }
+.cargos-page .btn:active{ transform: translateY(1px); }
+
+.cargos-page .btn:disabled{
+  opacity: .55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.cargos-page .btn__icon{
+  width: 26px;
+  height: 26px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.18);
+  font-size: 16px;
+  line-height: 1;
+}
 
 .cargos-page .btn--ghost{
   background: rgba(5, 13, 141, .04);
 }
 
-.cargos-page .btn--success{
-  background: rgba(34, 197, 94, .14);
-  border-color: rgba(34, 197, 94, .24);
+.cargos-page .btn--ghost:hover{
+  background: rgba(5, 13, 141, .07);
 }
 
-/* ===== Modal ===== */
+.cargos-page .btn--success{
+  background: rgba(34, 197, 94, .18);
+  border-color: rgba(34, 197, 94, .28);
+  box-shadow: 0 10px 22px rgba(34, 197, 94, .14);
+}
+
+.cargos-page .btn--success:hover{
+  background: rgba(34, 197, 94, .26);
+}
+
+.cargos-page .btn--sm{
+  padding: 8px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  gap: 8px;
+}
+
+/* =========================
+   Modal CRUD
+   ========================= */
 body.modal-open{ overflow: hidden; }
 
 .cargos-page .modal[hidden]{ display:none; }
@@ -447,6 +534,19 @@ body.modal-open{ overflow: hidden; }
   font-size: 12px;
 }
 
+/* ✅ formulário do modal (os blocos do CRUD) */
+.cargos-page .crud-block{ margin-top: 6px; }
+.cargos-page .crud-block[hidden]{ display: none; }
+
+/* ✅ ações do modal */
+.cargos-page .modal__actions{
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 /* Responsivo */
 @media (max-width: 900px){
   .cargos-page .page-head{
@@ -460,5 +560,6 @@ body.modal-open{ overflow: hidden; }
     grid-template-columns: 1fr;
   }
 
-  .cargos-page .table{ min-width: 980px; }
+  /* ✅ sem salário, pode reduzir também */
+  .cargos-page .table{ min-width: 880px; }
 }

@@ -1,323 +1,319 @@
 // js/pdi.js
-(function () {
-  const $ = (sel) => document.querySelector(sel);
+(() => {
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => document.querySelectorAll(s);
 
   const viewLista = $("#view-lista");
   const viewDetalhe = $("#view-detalhe");
 
-  const tbodyColab = $("#tbody-colaboradores");
-  const tbodyAtiv = $("#tbody-atividades");
-
+  const tbodyColabs = $("#tbody-colaboradores");
   const totalColab = $("#total-colab");
+
+  const tbodyAtiv = $("#tbody-atividades");
   const totalAtiv = $("#total-ativ");
 
   const searchColab = $("#search-colab");
   const searchAtiv = $("#search-ativ");
-  const statusChecks = Array.from(document.querySelectorAll(".filter-status"));
 
   const btnVoltar = $("#btn-voltar");
   const btnIncluirAtiv = $("#btn-incluir-atividade");
-  const btnNovoColab = $("#btn-novo-colab");
+  const btnClearAtivFilters = $("#btnClearAtivFilters");
 
+  const detalheAvatar = $("#detalhe-avatar");
+  const detalheNome = $("#detalhe-nome");
+  const detalheCargo = $("#detalhe-cargo");
+  const detalheDepto = $("#detalhe-depto");
+  const detalheLider = $("#detalhe-lider");
+
+  // Modal
   const modal = $("#modal");
-  const formAtiv = $("#form-atividade");
+  const form = $("#form-atividade");
   const modalTitle = $("#modal-title");
 
-  // Detalhe header
-  const dAvatar = $("#detalhe-avatar");
-  const dNome = $("#detalhe-nome");
-  const dCargo = $("#detalhe-cargo");
-  const dDepto = $("#detalhe-depto");
-  const dLider = $("#detalhe-lider");
+  const fId = $("#f-id");
+  const fDataCadastro = $("#f-data-cadastro");
+  const fCiclo = $("#f-ciclo");
+  const fCompetencia = $("#f-competencia");
+  const fPorque = $("#f-porque");
+  const fOnde = $("#f-onde");
+  const fOque = $("#f-oque");
+  const fResponsavel = $("#f-responsavel");
+  const fQuanto = $("#f-quanto");
+  const fInicio = $("#f-inicio");
+  const fPrazo = $("#f-prazo");
+  const fConclusao = $("#f-conclusao");
+  const fStatus = $("#f-status");
 
-  // Protótipo de dados
-  const colaboradores = [
+  // ===== Mock =====
+  const DB = [
     {
-      id: 1,
+      id: "1",
       nome: "Ana Paula Souza",
       cargo: "Assistente Administrativo",
       depto: "Financeiro",
       lider: "Mariana Teixeira",
-      status: "Em andamento",
-      ultima: "15/01/2024",
       atividades: [
-        { id: 11, ciclo: "2024 - 2º Semestre", comp: "Comunicação", inicio: "01/07/2024", prazo: "10/11/2024", status: "Em andamento" },
-        { id: 12, ciclo: "2024 - 1º Semestre", comp: "Organização", inicio: "10/01/2024", prazo: "10/06/2024", status: "Concluído" },
-        { id: 13, ciclo: "2023 - 2º Semestre", comp: "Excel Avançado", inicio: "05/08/2023", prazo: "05/12/2023", status: "Concluído" },
-        { id: 14, ciclo: "2023 - 1º Semestre", comp: "Gestão de Tempo", inicio: "10/02/2023", prazo: "15/06/2023", status: "Não iniciado" },
+        { id:"a1", ciclo:"2024 - 2º Semestre", competencia:"Comunicação", inicio:"2024-07-01", prazo:"2024-11-10", status:"Em andamento" },
+        { id:"a2", ciclo:"2024 - 1º Semestre", competencia:"Organização", inicio:"2024-01-10", prazo:"2024-06-10", status:"Concluído" },
+        { id:"a3", ciclo:"2023 - 2º Semestre", competencia:"Excel Avançado", inicio:"2023-08-05", prazo:"2023-12-05", status:"Concluído" },
+        { id:"a4", ciclo:"2023 - 1º Semestre", competencia:"Gestão de Tempo", inicio:"2023-02-10", prazo:"2023-08-15", status:"Não iniciado" },
       ],
+      updatedAt: "2024-11-10",
     },
     {
-      id: 2,
-      nome: "Diego Fernandes",
-      cargo: "Analista de Marketing",
-      depto: "Marketing",
-      lider: "Paulo Sérgio Alves",
-      status: "Em andamento",
-      ultima: "Hoje",
+      id: "2",
+      nome: "Lucas Andrade",
+      cargo: "Analista Administrativo Júnior",
+      depto: "Administrativo",
+      lider: "Diretoria",
       atividades: [
-        { id: 21, ciclo: "2024 - 2º Semestre", comp: "Planejamento", inicio: "02/07/2024", prazo: "30/10/2024", status: "Em andamento" },
+        { id:"b1", ciclo:"2024 - 2º Semestre", competencia:"Foco", inicio:"2024-08-01", prazo:"2024-12-01", status:"Não iniciado" },
       ],
-    },
-    {
-      id: 3,
-      nome: "Mariana Oliveira",
-      cargo: "Analista de RH",
-      depto: "Recursos Humanos",
-      lider: "Luciana Andrade",
-      status: "Concluído",
-      ultima: "10/04/2024",
-      atividades: [
-        { id: 31, ciclo: "2024 - 1º Semestre", comp: "Gestão de Conflitos", inicio: "15/01/2024", prazo: "01/04/2024", status: "Concluído" },
-      ],
-    },
-    {
-      id: 4,
-      nome: "João Santos",
-      cargo: "Vendedor",
-      depto: "Vendas",
-      lider: "Marcos Oliveira",
-      status: "Em andamento",
-      ultima: "05/04/2024",
-      atividades: [
-        { id: 41, ciclo: "2024 - 1º Semestre", comp: "Negociação", inicio: "01/02/2024", prazo: "30/05/2024", status: "Em andamento" },
-      ],
-    },
-    {
-      id: 5,
-      nome: "Camila Ribeiro",
-      cargo: "Coordenadora de Projetos",
-      depto: "Projetos",
-      lider: "Mariana Teixeira",
-      status: "Não iniciado",
-      ultima: "--",
-      atividades: [],
+      updatedAt: "2024-08-01",
     },
   ];
 
-  let selectedId = null;
-  let editingActivityId = null;
-
-  function initials(name) {
-    const parts = name.trim().split(/\s+/);
-    return (parts[0][0] + (parts[1]?.[0] || "")).toUpperCase();
+  function fmt(iso){
+    if (!iso) return "—";
+    const [y,m,d] = String(iso).split("-");
+    if (y && m && d) return `${d}/${m}/${y}`;
+    return iso;
   }
 
-  function getStatusBadge(status) {
-    if (status === "Concluído") return `<span class="badge badge--ok">Concluído</span>`;
-    if (status === "Em andamento") return `<span class="badge badge--warn">Em andamento</span>`;
-    return `<span class="badge badge--neutral">Não iniciado</span>`;
+  function computePdiStatus(colab){
+    const list = colab.atividades || [];
+    if (!list.length) return "Não iniciado";
+    if (list.some(a => a.status === "Em andamento")) return "Em andamento";
+    if (list.every(a => a.status === "Concluído")) return "Concluído";
+    if (list.some(a => a.status === "Não iniciado")) return "Não iniciado";
+    return "Não iniciado";
   }
 
-  function currentStatusFilters() {
-    return statusChecks.filter(c => c.checked).map(c => c.value);
+  function badgeClass(status){
+    if (status === "Concluído") return "badge badge--ok";
+    if (status === "Em andamento") return "badge badge--warn";
+    return "badge badge--neutral";
   }
 
-  function renderLista() {
-    const q = (searchColab.value || "").toLowerCase();
-    const allowed = currentStatusFilters();
+  function setView(detailOn){
+    viewLista.classList.toggle("is-hidden", detailOn);
+    viewDetalhe.classList.toggle("is-hidden", !detailOn);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 
-    const filtered = colaboradores.filter(c => {
-      const matchText =
-        c.nome.toLowerCase().includes(q) ||
-        c.cargo.toLowerCase().includes(q) ||
-        c.depto.toLowerCase().includes(q);
+  // ===== Render lista =====
+  function getColabFilters(){
+    const statuses = [...$$(".filter-colab-status:checked")].map(i => i.value);
+    const q = (searchColab.value || "").toLowerCase().trim();
+    return { statuses, q };
+  }
 
-      const matchStatus = allowed.includes(c.status);
-      return matchText && matchStatus;
+  function renderColabs(){
+    const { statuses, q } = getColabFilters();
+
+    const rows = DB.filter(c => {
+      const st = computePdiStatus(c);
+      const matchStatus = statuses.includes(st);
+      const text = `${c.nome} ${c.cargo} ${c.depto}`.toLowerCase();
+      const matchQ = !q || text.includes(q);
+      return matchStatus && matchQ;
     });
 
-    tbodyColab.innerHTML = filtered.map(c => `
-      <tr>
-        <td>
-          <div class="person-cell">
-            <div class="avatar">${initials(c.nome)}</div>
-            <div>
-              <div class="person-name">${c.nome}</div>
-              <div class="person-meta">${c.cargo}</div>
+    tbodyColabs.innerHTML = rows.map(c => {
+      const st = computePdiStatus(c);
+      return `
+        <tr>
+          <td><strong>${c.nome}</strong></td>
+          <td>${c.cargo}</td>
+          <td>${c.depto}</td>
+          <td><span class="${badgeClass(st)}">${st}</span></td>
+          <td>${fmt(c.updatedAt)}</td>
+          <td class="col-actions">
+            <div class="row-actions">
+              <button class="action-btn" type="button" data-open="${c.id}">Abrir</button>
             </div>
-          </div>
-        </td>
-        <td>${c.cargo}</td>
-        <td>${c.depto}</td>
-        <td>${getStatusBadge(c.status)}</td>
-        <td>${c.ultima}</td>
-        <td class="col-actions">
-          <button class="btnp btnp--sm btnp--primary" type="button" data-open="${c.id}">
-            ${c.status === "Concluído" ? "Consultar" : "Editar"}
-          </button>
-        </td>
-      </tr>
-    `).join("");
+          </td>
+        </tr>
+      `;
+    }).join("");
 
-    totalColab.textContent = `Total: ${filtered.length} colaboradores`;
+    totalColab.textContent = `Total: ${rows.length} colaboradores`;
+
+    tbodyColabs.querySelectorAll("[data-open]").forEach(btn => {
+      btn.addEventListener("click", () => openDetail(btn.getAttribute("data-open")));
+    });
   }
 
-  function renderDetalhe() {
-    const c = colaboradores.find(x => x.id === selectedId);
-    if (!c) return;
+  // ===== Detalhe =====
+  let currentColab = null;
 
-    dAvatar.textContent = initials(c.nome);
-    dNome.textContent = `PDI — ${c.nome}`;
-    dCargo.textContent = c.cargo;
-    dDepto.textContent = c.depto;
-    dLider.textContent = c.lider || "—";
+  function getAtivFilters(){
+    const statuses = [...$$(".filter-ativ-status:checked")].map(i => i.value);
+    const q = (searchAtiv.value || "").toLowerCase().trim();
+    return { statuses, q };
+  }
 
-    const q = (searchAtiv.value || "").toLowerCase();
+  function renderAtividades(){
+    if (!currentColab) return;
 
-    const atividades = (c.atividades || []).filter(a => {
-      const hay = `${a.ciclo} ${a.comp} ${a.status}`.toLowerCase();
-      return hay.includes(q);
+    const { statuses, q } = getz
+    const rows = (currentColab.atividades || []).filter(a => {
+      const matchStatus = statuses.includes(a.status);
+      // ✅ busca por competência (texto + placeholder)
+      const text = `${a.competencia}`.toLowerCase();
+      const matchQ = !q || text.includes(q);
+      return matchStatus && matchQ;
     });
 
-    tbodyAtiv.innerHTML = atividades.map(a => `
-      <tr>
-        <td>${a.ciclo}</td>
-        <td><strong>${a.comp}</strong></td>
-        <td>${a.inicio || "—"}</td>
-        <td>${a.prazo || "—"}</td>
-        <td>${getStatusBadge(a.status)}</td>
-        <td class="col-actions">
-          <button class="btnp btnp--sm btnp--ghost" type="button" data-edit="${a.id}">
-            ${a.status === "Concluído" ? "Consultar" : "Editar"}
-          </button>
-        </td>
-      </tr>
-    `).join("");
+    tbodyAtiv.innerHTML = rows.map(a => {
+      const actionLabel = (a.status === "Concluído") ? "Consultar" : "Editar";
+      return `
+        <tr>
+          <td>${a.ciclo}</td>
+          <td><strong>${a.competencia}</strong></td>
+          <td>${fmt(a.inicio)}</td>
+          <td>${fmt(a.prazo)}</td>
+          <td><span class="${badgeClass(a.status)}">${a.status}</span></td>
+          <td class="col-actions">
+            <div class="row-actions">
+              <button class="action-btn" type="button" data-edit="${a.id}">${actionLabel}</button>
+            </div>
+          </td>
+        </tr>
+      `;
+    }).join("");
 
-    totalAtiv.textContent = `Total: ${atividades.length} atividades`;
+    totalAtiv.textContent = `Total: ${rows.length} atividades`;
+
+    tbodyAtiv.querySelectorAll("[data-edit]").forEach(btn => {
+      btn.addEventListener("click", () => openModalEdit(btn.getAttribute("data-edit")));
+    });
   }
 
-  function openDetalhe(id) {
-    selectedId = id;
+  function openDetail(id){
+    currentColab = DB.find(c => c.id === id) || DB[0];
 
-    viewLista.classList.add("is-hidden");
-    viewDetalhe.classList.remove("is-hidden");
+    const initial = (currentColab.nome || "C").trim().slice(0,1).toUpperCase();
+    detalheAvatar.textContent = initial;
+    detalheNome.textContent = `PDI — ${currentColab.nome}`;
+    detalheCargo.textContent = currentColab.cargo || "—";
+    detalheDepto.textContent = currentColab.depto || "—";
+    detalheLider.textContent = currentColab.lider || "—";
 
+    // reset busca e filtros (mantém todos ligados)
     searchAtiv.value = "";
-    renderDetalhe();
+    $$(".filter-ativ-status").forEach(i => i.checked = true);
+
+    renderAtividades();
+    setView(true);
   }
 
-  function backToLista() {
-    selectedId = null;
-    viewDetalhe.classList.add("is-hidden");
-    viewLista.classList.remove("is-hidden");
-    renderLista();
-  }
-
-  function openModal(mode, activityId = null) {
-    editingActivityId = activityId;
-    modalTitle.textContent = mode === "edit" ? "Editar atividade" : "Incluir atividade";
-
-    // reset
-    formAtiv.reset();
-
-    // default: hoje no cadastro
-    const today = new Date().toISOString().slice(0, 10);
-    $("#f-data-cadastro").value = today;
-
-    // carregar dados se for editar
-    if (mode === "edit") {
-      const c = colaboradores.find(x => x.id === selectedId);
-      const a = c?.atividades?.find(x => x.id === activityId);
-      if (a) {
-        // datas no formato dd/mm/aaaa -> converter pra yyyy-mm-dd (best effort)
-        const toISO = (br) => {
-          if (!br || !br.includes("/")) return "";
-          const [dd, mm, yyyy] = br.split("/");
-          return `${yyyy}-${mm.padStart(2,"0")}-${dd.padStart(2,"0")}`;
-        };
-
-        $("#f-ciclo").value = a.ciclo || "";
-        $("#f-competencia").value = a.comp || "";
-        $("#f-inicio").value = toISO(a.inicio);
-        $("#f-prazo").value = toISO(a.prazo);
-        $("#f-status").value = a.status || "Não iniciado";
-      }
-    }
-
+  // ===== Modal =====
+  function openModal(){
     modal.classList.remove("is-hidden");
     modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
   }
 
-  function closeModal() {
+  function closeModal(){
     modal.classList.add("is-hidden");
     modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
   }
 
-  function brDateFromISO(iso) {
-    if (!iso) return "";
-    const [y, m, d] = iso.split("-");
-    return `${d}/${m}/${y}`;
+  function resetForm(){
+    form.reset();
+    fId.value = "";
+    // hoje
+    const today = new Date();
+    fDataCadastro.valueAsDate = today;
   }
 
-  // Eventos
-  searchColab.addEventListener("input", renderLista);
-  statusChecks.forEach(c => c.addEventListener("change", renderLista));
+  function openModalCreate(){
+    modalTitle.textContent = "Incluir atividade";
+    resetForm();
+    openModal();
+  }
 
-  btnVoltar.addEventListener("click", backToLista);
+  function openModalEdit(ativId){
+    if (!currentColab) return;
+    const a = (currentColab.atividades || []).find(x => x.id === ativId);
+    if (!a) return;
 
-  btnIncluirAtiv.addEventListener("click", () => openModal("new"));
+    modalTitle.textContent = "Editar atividade";
+    resetForm();
 
-  btnNovoColab.addEventListener("click", () => alert("Protótipo: inclusão de colaborador ainda não implementada."));
+    fId.value = a.id;
+    fCiclo.value = a.ciclo || "";
+    fCompetencia.value = a.competencia || "";
+    fInicio.value = a.inicio || "";
+    fPrazo.value = a.prazo || "";
+    fStatus.value = a.status || "Não iniciado";
 
-  searchAtiv.addEventListener("input", renderDetalhe);
+    openModal();
+  }
 
-  tbodyColab.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-open]");
-    if (!btn) return;
-    openDetalhe(Number(btn.getAttribute("data-open")));
-  });
-
-  tbodyAtiv.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-edit]");
-    if (!btn) return;
-    openModal("edit", Number(btn.getAttribute("data-edit")));
-  });
-
+  // Close modal handlers
   modal.addEventListener("click", (e) => {
-    if (e.target && e.target.getAttribute("data-close") === "1") closeModal();
+    if (e.target && e.target.getAttribute("data-close")) closeModal();
+  });
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && !modal.classList.contains("is-hidden")) closeModal();
   });
 
-  formAtiv.addEventListener("submit", (e) => {
+  // Save
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!currentColab) return;
 
-    const c = colaboradores.find(x => x.id === selectedId);
-    if (!c) return;
-
-    const data = new FormData(formAtiv);
-    const atividade = {
-      id: editingActivityId || Math.floor(Math.random() * 100000),
-      ciclo: data.get("ciclo") || "",
-      comp: data.get("competencia") || "",
-      inicio: brDateFromISO(data.get("inicio")),
-      prazo: brDateFromISO(data.get("prazo")),
-      status: data.get("status") || "Não iniciado",
+    const id = (fId.value || "").trim();
+    const payload = {
+      id: id || `x${Math.random().toString(16).slice(2)}`,
+      ciclo: fCiclo.value.trim(),
+      competencia: fCompetencia.value.trim(),
+      inicio: fInicio.value || "",
+      prazo: fPrazo.value || "",
+      status: fStatus.value || "Não iniciado",
+      dataCadastro: fDataCadastro.value || "",
+      porque: fPorque.value || "",
+      onde: fOnde.value || "",
+      oque: fOque.value || "",
+      responsavel: fResponsavel.value || "",
+      quanto: fQuanto.value || "",
+      conclusao: fConclusao.value || "",
     };
 
-    if (editingActivityId) {
-      const idx = c.atividades.findIndex(x => x.id === editingActivityId);
-      if (idx >= 0) c.atividades[idx] = { ...c.atividades[idx], ...atividade };
-    } else {
-      c.atividades.unshift(atividade);
-    }
+    const list = currentColab.atividades || [];
+    const idx = list.findIndex(a => a.id === payload.id);
 
-    // atualizar status do PDI por regra simples
-    if (c.atividades.length === 0) c.status = "Não iniciado";
-    else if (c.atividades.every(a => a.status === "Concluído")) c.status = "Concluído";
-    else if (c.atividades.some(a => a.status === "Em andamento")) c.status = "Em andamento";
-    else c.status = "Não iniciado";
+    if (idx >= 0) list[idx] = { ...list[idx], ...payload };
+    else currentColab.atividades = [payload, ...list];
 
-    c.ultima = "Hoje";
+    // atualiza "ultima atualização"
+    currentColab.updatedAt = payload.prazo || payload.inicio || payload.dataCadastro || currentColab.updatedAt;
 
+    renderAtividades();
+    renderColabs();
     closeModal();
-    renderDetalhe();
-    renderLista();
+    alert("Salvo (protótipo) — ainda não grava em banco.");
+  });
 
-    alert("Salvo (protótipo).");
+  // ===== Eventos =====
+  btnVoltar.addEventListener("click", () => setView(false));
+  btnIncluirAtiv.addEventListener("click", openModalCreate);
+
+  searchColab.addEventListener("input", renderColabs);
+  $$(".filter-colab-status").forEach(i => i.addEventListener("change", renderColabs));
+
+  searchAtiv.addEventListener("input", renderAtividades);
+  $$(".filter-ativ-status").forEach(i => i.addEventListener("change", renderAtividades));
+
+  btnClearAtivFilters.addEventListener("click", () => {
+    searchAtiv.value = "";
+    $$(".filter-ativ-status").forEach(i => i.checked = true);
+    renderAtividades();
   });
 
   // init
-  renderLista();
+  renderColabs();
 })();
-

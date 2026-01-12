@@ -1,5 +1,6 @@
 /* feedbacks.css */
 
+/* Página */
 .fb-page{
   max-width: 1200px;
   margin: 0 auto;
@@ -35,30 +36,31 @@
 }
 
 /* Toolbar */
-.fb-toolbar{
+.fb-card .fb-toolbar{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end; /* ✅ como removemos a busca do topo */
   gap: 14px;
   padding: 10px 6px 14px;
   flex-wrap: wrap;
 }
 
-.fb-toolbar__right{
+.fb-card .fb-toolbar__right{
   display: inline-flex;
   gap: 10px;
   align-items: center;
 }
 
-/* Busca */
-.search{
+/* (Opcional) Mantido por segurança caso volte a usar busca no futuro.
+   Como no HTML ela foi removida, essas regras não interferem. */
+.fb-card .search{
   position: relative;
   flex: 1;
   min-width: 260px;
   max-width: 520px;
 }
 
-.search__icon{
+.fb-card .search__icon{
   position: absolute;
   left: 12px;
   top: 50%;
@@ -68,9 +70,9 @@
   opacity: .55;
 }
 
-.search__icon svg{ width: 18px; height: 18px; display: block; }
+.fb-card .search__icon svg{ width: 18px; height: 18px; display: block; }
 
-.search__input{
+.fb-card .search__input{
   width: 100%;
   padding: 10px 12px 10px 40px;
   border-radius: 14px;
@@ -79,19 +81,19 @@
   outline: none;
 }
 
-.search__input:focus{
+.fb-card .search__input:focus{
   border-color: rgba(5, 13, 141, .28);
   background: rgba(5, 13, 141, .05);
 }
 
 /* Tabela */
-.table-wrap{
+.fb-card .table-wrap{
   overflow: auto;
   border-radius: 14px;
   border: 1px solid rgba(15, 20, 40, .08);
 }
 
-.table{
+.fb-card .table{
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
@@ -99,7 +101,7 @@
   background: rgba(255,255,255,.92);
 }
 
-.table thead th{
+.fb-card .table thead th{
   text-align: left;
   font-size: 12px;
   letter-spacing: .2px;
@@ -109,37 +111,37 @@
   white-space: nowrap;
 }
 
-.table thead tr.filter-row th{
+.fb-card .table thead tr.filter-row th{
   background: rgba(5, 13, 141, .03);
   padding: 10px 12px;
 }
 
-.sort{
+.fb-card .sort{
   opacity: .55;
   margin-left: 6px;
   font-size: 11px;
 }
 
-.head-row th[data-sort]{
+.fb-card .head-row th[data-sort]{
   cursor: pointer;
   user-select: none;
 }
 
-.table tbody td{
+.fb-card .table tbody td{
   padding: 12px 12px;
   border-bottom: 1px solid rgba(15, 20, 40, .08);
   vertical-align: middle;
   font-size: 13px;
 }
 
-.table tbody tr:hover td{
+.fb-card .table tbody tr:hover td{
   background: rgba(5, 13, 141, .03);
 }
 
-.col-status{ width: 160px; }
-.col-actions{ width: 160px; }
+.fb-card .col-status{ width: 160px; }
+.fb-card .col-actions{ width: 160px; }
 
-.filter{
+.fb-card .filter{
   width: 100%;
   padding: 9px 10px;
   border-radius: 12px;
@@ -149,12 +151,12 @@
   font-size: 12px;
 }
 
-.filter:focus{
+.fb-card .filter:focus{
   border-color: rgba(5, 13, 141, .26);
 }
 
 /* Pills / Status */
-.pill{
+.fb-card .pill{
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -166,42 +168,42 @@
   background: rgba(5, 13, 141, .04);
 }
 
-.pill__dot{
+.fb-card .pill__dot{
   width: 8px;
   height: 8px;
   border-radius: 999px;
   background: rgba(15, 20, 40, .35);
 }
 
-.pill--ok{
+.fb-card .pill--ok{
   background: rgba(34, 197, 94, .12);
   border-color: rgba(34, 197, 94, .22);
   color: rgba(22, 101, 52, .95);
 }
-.pill--ok .pill__dot{ background: rgba(34, 197, 94, .85); }
+.fb-card .pill--ok .pill__dot{ background: rgba(34, 197, 94, .85); }
 
-.pill--warn{
+.fb-card .pill--warn{
   background: rgba(245, 158, 11, .14);
   border-color: rgba(245, 158, 11, .24);
   color: rgba(146, 64, 14, .95);
 }
-.pill--warn .pill__dot{ background: rgba(245, 158, 11, .85); }
+.fb-card .pill--warn .pill__dot{ background: rgba(245, 158, 11, .85); }
 
 /* Footer */
-.fb-footer{
+.fb-card .fb-footer{
   padding: 12px 6px 2px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.muted{
+.fb-card .muted{
   opacity: .7;
   font-size: 12px;
 }
 
-/* Botões (fallback) */
-.btn{
+/* Botões (escopados na página) */
+.fb-page .btn{
   border: 1px solid rgba(15, 20, 40, .14);
   background: rgba(255,255,255,.86);
   padding: 10px 14px;
@@ -210,29 +212,29 @@
   font-weight: 900;
 }
 
-.btn--ghost{ background: rgba(5, 13, 141, .04); }
+.fb-page .btn--ghost{ background: rgba(5, 13, 141, .04); }
 
-.btn--primary{
+.fb-page .btn--primary{
   background: rgba(37, 99, 235, .14);
   border-color: rgba(37, 99, 235, .24);
 }
 
-.btn--sm{
+.fb-page .btn--sm{
   padding: 8px 10px;
   border-radius: 12px;
   font-size: 12px;
 }
 
-.btn__icon{ margin-right: 6px; }
+.fb-page .btn__icon{ margin-right: 6px; }
 
 /* Ações */
-.row-actions{
+.fb-card .row-actions{
   display: inline-flex;
   gap: 8px;
   align-items: center;
 }
 
-.link-btn{
+.fb-card .link-btn{
   border: 1px solid rgba(37, 99, 235, .22);
   background: rgba(37, 99, 235, .12);
   color: rgba(29, 78, 216, .95);
@@ -243,7 +245,7 @@
   font-size: 12px;
 }
 
-.ghost-btn{
+.fb-card .ghost-btn{
   border: 1px solid rgba(15, 20, 40, .12);
   background: rgba(5, 13, 141, .04);
   color: rgba(15, 20, 40, .88);
@@ -254,24 +256,30 @@
   font-size: 12px;
 }
 
-/* Modal */
-.modal{
+/* Modal (escopado por ID para não afetar outras telas) */
+body.modal-open{ overflow: hidden; }
+
+#modalForm.modal,
+#modalView.modal{
   position: fixed;
   inset: 0;
   display: none;
   z-index: 200;
 }
 
-.modal.is-open{ display: block; }
+#modalForm.modal.is-open,
+#modalView.modal.is-open{ display: block; }
 
-.modal__backdrop{
+#modalForm .modal__backdrop,
+#modalView .modal__backdrop{
   position: absolute;
   inset: 0;
   background: rgba(8, 10, 18, .55);
   backdrop-filter: blur(6px);
 }
 
-.modal__dialog{
+#modalForm .modal__dialog,
+#modalView .modal__dialog{
   position: relative;
   width: min(860px, 92vw);
   max-height: 86vh;
@@ -285,7 +293,8 @@
   padding: 14px;
 }
 
-.modal__head{
+#modalForm .modal__head,
+#modalView .modal__head{
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -294,18 +303,21 @@
   border-bottom: 1px solid rgba(15, 20, 40, .08);
 }
 
-.modal__title{
+#modalForm .modal__title,
+#modalView .modal__title{
   margin: 0;
   font-size: 16px;
 }
 
-.modal__subtitle{
+#modalForm .modal__subtitle,
+#modalView .modal__subtitle{
   margin: 6px 0 0;
   font-size: 12px;
   opacity: .7;
 }
 
-.icon-btn{
+#modalForm .icon-btn,
+#modalView .icon-btn{
   width: 38px;
   height: 38px;
   border-radius: 12px;
@@ -315,14 +327,14 @@
   font-weight: 900;
 }
 
-.form-grid{
+#modalForm .form-grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(240px, 1fr));
   gap: 12px 14px;
   padding: 12px 6px 6px;
 }
 
-.field label{
+#modalForm .field label{
   display: block;
   font-size: 12px;
   font-weight: 900;
@@ -330,7 +342,9 @@
   opacity: .9;
 }
 
-.field input, .field select, .textarea{
+#modalForm .field input,
+#modalForm .field select,
+#modalForm .textarea{
   width: 100%;
   padding: 10px 12px;
   border-radius: 14px;
@@ -339,16 +353,18 @@
   outline: none;
 }
 
-.field input:focus, .field select:focus, .textarea:focus{
+#modalForm .field input:focus,
+#modalForm .field select:focus,
+#modalForm .textarea:focus{
   border-color: rgba(5, 13, 141, .28);
   background: rgba(5, 13, 141, .05);
 }
 
-.field--full{ grid-column: 1 / -1; }
+#modalForm .field--full{ grid-column: 1 / -1; }
+#modalForm .textarea{ resize: vertical; }
 
-.textarea{ resize: vertical; }
-
-.modal__actions{
+#modalForm .modal__actions,
+#modalView .modal__actions{
   display: flex;
   justify-content: flex-end;
   gap: 10px;
@@ -358,38 +374,38 @@
 }
 
 /* Detalhe (Ver mais) */
-.detail{ padding: 10px 6px 6px; }
+#modalView .detail{ padding: 10px 6px 6px; }
 
-.detail__grid{
+#modalView .detail__grid{
   display: grid;
   grid-template-columns: repeat(2, minmax(240px, 1fr));
   gap: 12px 14px;
   padding-bottom: 8px;
 }
 
-.detail__item{
+#modalView .detail__item{
   background: rgba(5, 13, 141, .03);
   border: 1px solid rgba(15, 20, 40, .10);
   border-radius: 14px;
   padding: 10px 12px;
 }
 
-.detail__item--full{ grid-column: 1 / -1; }
+#modalView .detail__item--full{ grid-column: 1 / -1; }
 
-.detail__label{
+#modalView .detail__label{
   display: block;
   font-size: 11px;
   opacity: .7;
   font-weight: 900;
 }
 
-.detail__value{
+#modalView .detail__value{
   display: block;
   margin-top: 4px;
   font-weight: 900;
 }
 
-.detail__text{
+#modalView .detail__text{
   margin: 8px 0 0;
   line-height: 1.45;
   opacity: .9;
@@ -398,5 +414,6 @@
 /* Responsivo */
 @media (max-width: 900px){
   .fb-head{ flex-direction: column; align-items: stretch; }
-  .form-grid, .detail__grid{ grid-template-columns: 1fr; }
+  #modalForm .form-grid,
+  #modalView .detail__grid{ grid-template-columns: 1fr; }
 }

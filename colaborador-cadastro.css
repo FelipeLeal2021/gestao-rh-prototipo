@@ -1,4 +1,4 @@
-/* colaborador-cadastro.css */
+/* colaborador-cadastro.css (ajustado) */
 
 .cad-page{
   max-width: 1200px;
@@ -14,7 +14,6 @@
   opacity: .8;
   color: rgba(15, 20, 40, .9);
 }
-
 .back-link:hover{ opacity: 1; }
 
 .cad-card{
@@ -25,6 +24,7 @@
   padding: 16px;
 }
 
+/* Topo */
 .cad-top{
   display: flex;
   align-items: center;
@@ -66,6 +66,7 @@
   display: inline-flex;
   gap: 10px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 /* Tabs */
@@ -88,7 +89,6 @@
   font-size: 12px;
   opacity: .9;
 }
-
 .tab:hover{ background: rgba(5, 13, 141, .05); }
 
 .tab.is-active{
@@ -103,21 +103,27 @@
   display: none;
   padding: 14px 4px 6px;
 }
-
 .panel.is-active{ display: block; }
 
+/* Cabeçalho de seção (alinhamento e espaçamento padrão) */
 .panel-head{
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  margin: 12px 0 10px;
 }
 
 .panel-title{
-  margin: 0 0 10px;
+  margin: 0;
   font-size: 16px;
+  letter-spacing: .2px;
+}
+
+/* Quando houver <h3 class="panel-title"> direto no panel (sem panel-head) */
+.panel > .panel-title{
+  margin: 0 0 10px;
 }
 
 /* Form */
@@ -125,6 +131,7 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(240px, 1fr));
   gap: 12px 14px;
+  margin-bottom: 8px;
 }
 
 .field label{
@@ -135,7 +142,9 @@
   opacity: .9;
 }
 
-.field input, .field select, .textarea{
+.field input,
+.field select,
+.textarea{
   width: 100%;
   padding: 10px 12px;
   border-radius: 14px;
@@ -144,7 +153,9 @@
   outline: none;
 }
 
-.field input:focus, .field select:focus, .textarea:focus{
+.field input:focus,
+.field select:focus,
+.textarea:focus{
   border-color: rgba(5, 13, 141, .28);
   background: rgba(5, 13, 141, .05);
 }
@@ -163,6 +174,7 @@
   overflow: auto;
   border-radius: 14px;
   border: 1px solid rgba(15, 20, 40, .08);
+  background: rgba(255,255,255,.75);
 }
 
 .table{
@@ -193,15 +205,34 @@
   background: rgba(5, 13, 141, .02);
 }
 
-.strong{ font-weight: 900; }
+/* hover suave nas tabelas (ajuda usabilidade) */
+.table tbody tr:hover td{
+  background: rgba(5, 13, 141, .03);
+}
 
+/* Dependentes: tamanho menor */
+.table--dependentes{ min-width: 760px; }
+
+/* Tabelas maiores */
 .table--beneficios{ min-width: 1180px; }
 .table--ferias{ min-width: 980px; }
 
+/* ✅ Coluna de ações: garante que botões não quebrem e ficam alinhados */
 .col-actions{
-  width: 120px;
+  width: 140px;
   text-align: right;
+  white-space: nowrap;
 }
+.table .col-actions .btn{ white-space: nowrap; }
+
+/* se o último th/td for ações, aplica alinhamento sem depender de classe */
+.table thead th:last-child,
+.table tbody td:last-child{
+  white-space: nowrap;
+}
+
+/* util */
+.strong{ font-weight: 900; }
 
 /* Pills */
 .pill{
@@ -272,9 +303,7 @@
 }
 
 /* Treinamentos em branco */
-.blank{
-  height: 120px;
-}
+.blank{ height: 120px; }
 
 /* ===== MODAL ===== */
 body.modal-open{ overflow: hidden; }
@@ -300,6 +329,8 @@ body.modal-open{ overflow: hidden; }
 .modal__dialog{
   position: relative;
   width: min(760px, 100%);
+  max-height: 86vh;
+  overflow: auto;
   background: rgba(255,255,255,.98);
   border: 1px solid rgba(15, 20, 40, .12);
   border-radius: 18px;
@@ -313,6 +344,8 @@ body.modal-open{ overflow: hidden; }
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(15, 20, 40, .08);
 }
 
 .modal__title{
@@ -335,20 +368,28 @@ body.modal-open{ overflow: hidden; }
   gap: 14px;
 }
 
-.field--full{
-  grid-column: 1 / -1;
-}
+.field--full{ grid-column: 1 / -1; }
 
 .modal__actions{
   margin-top: 14px;
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 20, 40, .08);
 }
 
 /* Responsivo */
 @media (max-width: 900px){
   .form-grid{ grid-template-columns: 1fr; }
   .modal__grid{ grid-template-columns: 1fr; }
-  .col-actions{ text-align: left; }
+
+  /* ações passam a alinhar melhor no mobile */
+  .col-actions{ text-align: left; width: 1%; }
+  .table thead th:last-child,
+  .table tbody td:last-child{ text-align: left; }
+
+  /* tabelas com rolagem natural */
+  .table{ min-width: 980px; }
+  .table--dependentes{ min-width: 760px; }
 }

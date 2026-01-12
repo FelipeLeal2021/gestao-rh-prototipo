@@ -255,6 +255,7 @@
   color: #334155;
   font-size: 13px;
   line-height: 1.45;
+  word-break: break-word;
 }
 
 .competencias .table tbody tr:hover td{
@@ -271,6 +272,32 @@
 .competencias .col-actions{ width: 120px; white-space: nowrap; text-align: right; }
 .competencias .col-grade{ width: 70px; text-align: center; white-space: nowrap; }
 .competencias .col-group{ width: 140px; white-space: nowrap; }
+
+/* garante alinhamento do cabeçalho também */
+.competencias .table thead th.col-actions{ text-align: right; }
+.competencias .table thead th.col-grade{ text-align: center; }
+
+/* =========================
+   Indicadores (Organizacionais)
+   ========================= */
+.competencias .ind-list{
+  margin: 0;
+  padding-left: 18px;
+}
+
+.competencias .ind-list li{
+  margin: 0 0 6px;
+  color: #334155;
+}
+
+.competencias .ind-list li:last-child{
+  margin-bottom: 0;
+}
+
+.competencias .muted{
+  color: var(--muted);
+  opacity: .85;
+}
 
 /* Badge */
 .competencias .badge{

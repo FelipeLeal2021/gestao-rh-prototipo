@@ -30,7 +30,7 @@
 
         <div class="cad-actions">
           <button class="btn btn--ghost" type="button" onclick="history.back()">Cancelar</button>
-          <button class="btn btn--primary" type="button" onclick="alert('Salvar ainda não implementado')">Salvar</button>
+          <button class="btn btn--primary" type="button" onclick="alert('Salvar ainda não implementado (protótipo)')">Salvar</button>
         </div>
       </header>
 
@@ -47,9 +47,15 @@
 
       <!-- PANELS -->
       <section class="panels">
+
         <!-- Dados Pessoais -->
         <div class="panel is-active" id="panel-pessoais">
-          <h3 class="panel-title">Dados Pessoais</h3>
+          <div class="panel-head">
+            <h3 class="panel-title">Dados Pessoais</h3>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+            </div>
+          </div>
 
           <form class="form-grid">
             <div class="field">
@@ -88,11 +94,38 @@
               <input id="email" type="email" placeholder="email@exemplo.com" />
             </div>
           </form>
+
+          <!-- DEPENDENTES (conforme imagem) -->
+          <div class="panel-head" style="margin-top:14px;">
+            <h3 class="panel-title">Dependentes</h3>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+            </div>
+          </div>
+
+          <div class="table-wrap">
+            <table class="table table--dependentes" aria-label="Tabela de dependentes">
+              <thead>
+                <tr>
+                  <th>Dependente</th>
+                  <th>Vínculo</th>
+                  <th>CPF</th>
+                  <th>Data de nascimento</th>
+                </tr>
+              </thead>
+              <tbody id="tabDependentes"></tbody>
+            </table>
+          </div>
         </div>
 
         <!-- Vínculo -->
         <div class="panel" id="panel-vinculo">
-          <h3 class="panel-title">Vínculo com a Empresa</h3>
+          <div class="panel-head">
+            <h3 class="panel-title">Vínculo com a Empresa</h3>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+            </div>
+          </div>
 
           <form class="form-grid">
             <div class="field">
@@ -130,10 +163,13 @@
         <div class="panel" id="panel-estrutura">
           <div class="panel-head">
             <h3 class="panel-title">Cargo e Estrutura</h3>
-            <button class="btn btn--primary btn--sm" type="button" data-action="open-cargo">
-              <span class="btn__icon" aria-hidden="true">+</span>
-              Incluir Novo Cargo
-            </button>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+              <button class="btn btn--primary btn--sm" type="button" data-action="open-cargo">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -146,6 +182,7 @@
                   <th>Salário</th>
                   <th>Departamento</th>
                   <th>Gestor Direto</th>
+                  <th class="col-actions">Ações</th>
                 </tr>
               </thead>
               <tbody id="histCargo"></tbody>
@@ -157,10 +194,13 @@
         <div class="panel" id="panel-beneficios">
           <div class="panel-head">
             <h3 class="panel-title">Benefícios</h3>
-            <button class="btn btn--primary btn--sm" type="button" data-action="open-beneficio">
-              <span class="btn__icon" aria-hidden="true">+</span>
-              Incluir Benefício
-            </button>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+              <button class="btn btn--primary btn--sm" type="button" data-action="open-beneficio">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -187,6 +227,13 @@
         <div class="panel" id="panel-ferias">
           <div class="panel-head">
             <h3 class="panel-title">Férias</h3>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+              <button class="btn btn--primary btn--sm" type="button" data-action="open-ferias">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -200,6 +247,7 @@
                   <th>Vendeu dias?</th>
                   <th>Dias pendentes</th>
                   <th>Data limite</th>
+                  <th class="col-actions">Ações</th>
                 </tr>
               </thead>
               <tbody id="tabFerias"></tbody>
@@ -211,10 +259,13 @@
         <div class="panel" id="panel-afastamentos">
           <div class="panel-head">
             <h3 class="panel-title">Afastamentos</h3>
-            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir afastamento ainda não implementado')">
-              <span class="btn__icon" aria-hidden="true">+</span>
-              Incluir Afastamento
-            </button>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+              <button class="btn btn--primary btn--sm" type="button" data-action="open-afast">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -226,6 +277,7 @@
                   <th>Data final</th>
                   <th>Nº de dias</th>
                   <th>Observação</th>
+                  <th class="col-actions">Ações</th>
                 </tr>
               </thead>
               <tbody id="tabAfast"></tbody>
@@ -237,10 +289,13 @@
         <div class="panel" id="panel-advertencias">
           <div class="panel-head">
             <h3 class="panel-title">Advertências</h3>
-            <button class="btn btn--primary btn--sm" type="button" onclick="alert('Incluir advertência ainda não implementado')">
-              <span class="btn__icon" aria-hidden="true">+</span>
-              Incluir Advertência
-            </button>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+              <button class="btn btn--primary btn--sm" type="button" data-action="open-adv">
+                <span class="btn__icon" aria-hidden="true">+</span>
+                Incluir
+              </button>
+            </div>
           </div>
 
           <div class="table-wrap">
@@ -252,6 +307,7 @@
                   <th>Tipo</th>
                   <th>Motivo</th>
                   <th>Orientação aplicada</th>
+                  <th class="col-actions">Ações</th>
                 </tr>
               </thead>
               <tbody id="tabAdv"></tbody>
@@ -259,26 +315,33 @@
           </div>
         </div>
 
-        <!-- Treinamentos (em branco) -->
+        <!-- Treinamentos -->
         <div class="panel" id="panel-treinamentos">
-          <h3 class="panel-title">Treinamentos</h3>
-          <!-- em branco por enquanto -->
+          <div class="panel-head">
+            <h3 class="panel-title">Treinamentos</h3>
+            <div class="cad-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+            </div>
+          </div>
           <div class="blank"></div>
         </div>
+
       </section>
     </section>
   </main>
 
-  <!-- MODAL: NOVO CARGO -->
+  <!-- MODAL: CARGO (incluir/editar) -->
   <div class="modal" id="cargoModal" hidden>
     <div class="modal__backdrop" data-action="close-cargo"></div>
     <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="cargoModalTitle">
       <div class="modal__header">
-        <h3 class="modal__title" id="cargoModalTitle">Incluir Novo Cargo</h3>
+        <h3 class="modal__title" id="cargoModalTitle">Incluir Cargo</h3>
         <button class="modal__close" type="button" data-action="close-cargo" aria-label="Fechar">✕</button>
       </div>
 
       <form class="modal__form" id="cargoForm">
+        <input type="hidden" id="cargoIndex" name="index" />
+
         <div class="modal__grid">
           <div class="field">
             <label for="cData">Data</label>
@@ -301,9 +364,7 @@
 
           <div class="field">
             <label for="cCargo">Cargo</label>
-            <select id="cCargo" name="cargo" required>
-              <!-- preenchido via JS -->
-            </select>
+            <select id="cCargo" name="cargo" required></select>
           </div>
 
           <div class="field">
@@ -313,9 +374,7 @@
 
           <div class="field">
             <label for="cDepto">Departamento</label>
-            <select id="cDepto" name="depto" required>
-              <!-- preenchido via JS -->
-            </select>
+            <select id="cDepto" name="depto" required></select>
           </div>
 
           <div class="field">
@@ -332,7 +391,7 @@
     </div>
   </div>
 
-  <!-- MODAL: INCLUIR BENEFÍCIO -->
+  <!-- MODAL: BENEFÍCIO (incluir/editar) -->
   <div class="modal" id="beneficioModal" hidden>
     <div class="modal__backdrop" data-action="close-beneficio"></div>
     <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="beneficioModalTitle">
@@ -342,12 +401,12 @@
       </div>
 
       <form class="modal__form" id="beneficioForm">
+        <input type="hidden" id="beneficioIndex" name="index" />
+
         <div class="modal__grid">
           <div class="field">
             <label for="bNome">Nome</label>
-            <select id="bNome" name="nome" required>
-              <!-- preenchido via JS -->
-            </select>
+            <select id="bNome" name="nome" required></select>
           </div>
 
           <div class="field">
@@ -393,9 +452,174 @@
     </div>
   </div>
 
+  <!-- MODAL: FÉRIAS (incluir/editar) -->
+  <div class="modal" id="feriasModal" hidden>
+    <div class="modal__backdrop" data-action="close-ferias"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="feriasModalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="feriasModalTitle">Incluir Férias</h3>
+        <button class="modal__close" type="button" data-action="close-ferias" aria-label="Fechar">✕</button>
+      </div>
+
+      <form class="modal__form" id="feriasForm">
+        <input type="hidden" id="feriasIndex" name="index" />
+
+        <div class="modal__grid">
+          <div class="field field--full">
+            <label for="fAq">Período aquisitivo</label>
+            <input id="fAq" name="aq" type="text" placeholder="Ex.: 15/03/2024 a 14/03/2025" required />
+          </div>
+
+          <div class="field">
+            <label for="fStatus">Status</label>
+            <select id="fStatus" name="status" required>
+              <option value="">Selecione...</option>
+              <option>Em aquisição</option>
+              <option>Gozadas</option>
+              <option>Vencida</option>
+              <option>Programada</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="fDireito">Dias de direito</label>
+            <input id="fDireito" name="direito" type="number" min="0" step="1" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="fGozadas">Gozadas (data)</label>
+            <input id="fGozadas" name="gozadas" type="text" placeholder="Ex.: 10/04/2025 a 09/05/2025" />
+          </div>
+
+          <div class="field">
+            <label for="fVendeu">Vendeu dias?</label>
+            <select id="fVendeu" name="vendeu" required>
+              <option>Não</option>
+              <option>Sim</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="fPend">Dias pendentes</label>
+            <input id="fPend" name="pend" type="number" min="0" step="1" required />
+          </div>
+
+          <div class="field">
+            <label for="fLimite">Data limite</label>
+            <input id="fLimite" name="limite" type="date" />
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-action="close-ferias">Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: AFASTAMENTO (incluir/editar) -->
+  <div class="modal" id="afastModal" hidden>
+    <div class="modal__backdrop" data-action="close-afast"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="afastModalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="afastModalTitle">Incluir Afastamento</h3>
+        <button class="modal__close" type="button" data-action="close-afast" aria-label="Fechar">✕</button>
+      </div>
+
+      <form class="modal__form" id="afastForm">
+        <input type="hidden" id="afastIndex" name="index" />
+
+        <div class="modal__grid">
+          <div class="field">
+            <label for="aTipo">Tipo</label>
+            <input id="aTipo" name="tipo" type="text" placeholder="Ex.: Atestado Médico" required />
+          </div>
+
+          <div class="field">
+            <label for="aIni">Data inicial</label>
+            <input id="aIni" name="ini" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="aFim">Data final</label>
+            <input id="aFim" name="fim" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="aDias">Nº de dias</label>
+            <input id="aDias" name="dias" type="number" min="0" step="1" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="aObs">Observação</label>
+            <input id="aObs" name="obs" type="text" placeholder="Ex.: CID A09 / Observações..." />
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-action="close-afast">Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: ADVERTÊNCIA (incluir/editar) -->
+  <div class="modal" id="advModal" hidden>
+    <div class="modal__backdrop" data-action="close-adv"></div>
+    <div class="modal__dialog" role="dialog" aria-modal="true" aria-labelledby="advModalTitle">
+      <div class="modal__header">
+        <h3 class="modal__title" id="advModalTitle">Incluir Advertência</h3>
+        <button class="modal__close" type="button" data-action="close-adv" aria-label="Fechar">✕</button>
+      </div>
+
+      <form class="modal__form" id="advForm">
+        <input type="hidden" id="advIndex" name="index" />
+
+        <div class="modal__grid">
+          <div class="field">
+            <label for="dData">Data</label>
+            <input id="dData" name="data" type="date" required />
+          </div>
+
+          <div class="field">
+            <label for="dResp">Responsável</label>
+            <input id="dResp" name="resp" type="text" placeholder="Ex.: Lucas Andrade (RH)" required />
+          </div>
+
+          <div class="field">
+            <label for="dTipo">Tipo</label>
+            <select id="dTipo" name="tipo" required>
+              <option value="">Selecione...</option>
+              <option>Verbal</option>
+              <option>Escrita</option>
+              <option>Suspensão</option>
+            </select>
+          </div>
+
+          <div class="field field--full">
+            <label for="dMotivo">Motivo</label>
+            <input id="dMotivo" name="motivo" type="text" placeholder="Ex.: Atrasos frequentes" required />
+          </div>
+
+          <div class="field field--full">
+            <label for="dOrient">Orientação aplicada</label>
+            <input id="dOrient" name="orient" type="text" placeholder="Descreva a orientação aplicada..." required />
+          </div>
+        </div>
+
+        <div class="modal__actions">
+          <button class="btn btn--ghost" type="button" data-action="close-adv">Cancelar</button>
+          <button class="btn btn--primary" type="submit">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
   <script>
     (function () {
-      // ====== Catálogo (para listas/auto preencher) ======
+      // ====== Catálogos ======
       const DEPARTAMENTOS = [
         "Diretoria",
         "Administrativo",
@@ -423,7 +647,7 @@
         { nome: "Parceria Gympass", tipo: "Qualidade de vida" },
       ];
 
-      // ====== DB mock (ajustado conforme seu modelo) ======
+      // ====== DB mock ======
       const DB = {
         1: {
           nome: "Ana Paula Souza",
@@ -438,7 +662,12 @@
           status: "Ativo",
           desligamento: "",
 
-          // ✅ Somente 1 linha conforme pedido
+          dependentes: [
+            { nome: "Rafael Henrique Souza", vinculo: "Cônjuge", cpf: "999.999.999-99", nasc: "1985-06-12" },
+            { nome: "Pedro Henrique Souza", vinculo: "Filho (a)", cpf: "888.888.888-88", nasc: "2009-07-14" },
+            { nome: "Maria Luisa Souza", vinculo: "Filho (a)", cpf: "777.777.777-77", nasc: "2022-02-04" }
+          ],
+
           historicoCargo: [
             {
               data: "2022-03-15",
@@ -450,7 +679,6 @@
             }
           ],
 
-          // ✅ Tabela conforme imagem
           beneficios: [
             { nome:"Vale Alimentação", tipo:"Financeiro", valor:"R$ 700,00", empresa:"R$ 699,00", colab:"R$ 1,00", pessoa:"Titular", obs:"", status:"Ativo" },
             { nome:"Plano Odontológico", tipo:"Saúde", valor:"R$ 35,00", empresa:"R$ 35,00", colab:"R$ -", pessoa:"Titular", obs:"", status:"Ativo" },
@@ -463,7 +691,6 @@
             { nome:"Parceria Gympass", tipo:"Qualidade de vida", valor:"R$ 30,00", empresa:"R$ 30,00", colab:"R$ -", pessoa:"Titular", obs:"", status:"Ativo" },
           ],
 
-          // ✅ Férias conforme exemplo
           ferias: [
             { aq:"15/03/2022 a 14/03/2023", status:"Gozadas", direito:"30", gozadas:"10/04/2023 a 09/05/2023", vendeu:"Não", pend:"0", limite:"14/03/2024" },
             { aq:"15/03/2023 a 14/03/2024", status:"Gozadas", direito:"30", gozadas:"05/06/2024 a 04/07/2024", vendeu:"Não", pend:"0", limite:"14/03/2025" },
@@ -481,34 +708,90 @@
         }
       };
 
+      // ====== Helpers ======
+      const $ = (s) => document.querySelector(s);
+
+      function fmtDate(iso){
+        if (!iso || iso === "—") return "—";
+        const parts = String(iso).split("-");
+        if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        return iso;
+      }
+
+      function setVal(id, val){
+        const el = document.getElementById(id);
+        if (el && val !== undefined) el.value = val;
+      }
+
+      function openModal(modal){
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+      }
+      function closeModal(modal){
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+      }
+
       // ====== Carregar colaborador ======
       const params = new URLSearchParams(window.location.search);
       const id = params.get("id") || "1";
       const data = DB[id] || DB["1"];
 
-      // topo
-      document.getElementById("cadTitle").textContent = `Cadastro — ${data.nome || "Colaborador"}`;
-      document.getElementById("cadRole").textContent = data.cargo || "—";
+      $("#cadTitle").textContent = `Cadastro — ${data.nome || "Colaborador"}`;
+      $("#cadRole").textContent = data.cargo || "—";
 
-      // dados pessoais
-      const set = (id, val) => { const el = document.getElementById(id); if (el && val !== undefined) el.value = val; };
-      set("nome", data.nome || "");
-      set("cpf", data.cpf || "");
-      set("nascimento", data.nascimento || "");
-      set("telefone", data.telefone || "");
-      set("email", data.email || "");
-      if (data.sexo) set("sexo", data.sexo);
-      if (data.tipoVinculo) set("tipoVinculo", data.tipoVinculo);
-      if (data.admissao) set("admissao", data.admissao);
-      if (data.status) set("status", data.status);
-      if (data.desligamento !== undefined) set("desligamento", data.desligamento);
+      setVal("nome", data.nome || "");
+      setVal("cpf", data.cpf || "");
+      setVal("nascimento", data.nascimento || "");
+      setVal("telefone", data.telefone || "");
+      setVal("email", data.email || "");
+      if (data.sexo) setVal("sexo", data.sexo);
+      if (data.tipoVinculo) setVal("tipoVinculo", data.tipoVinculo);
+      if (data.admissao) setVal("admissao", data.admissao);
+      if (data.status) setVal("status", data.status);
+      if (data.desligamento !== undefined) setVal("desligamento", data.desligamento);
 
-      // ====== Render Cargo/Estrutura ======
-      const hist = document.getElementById("histCargo");
+      // ====== Tabs ======
+      const tabs = document.querySelectorAll(".tab");
+      const panels = {
+        pessoais: $("#panel-pessoais"),
+        vinculo: $("#panel-vinculo"),
+        estrutura: $("#panel-estrutura"),
+        beneficios: $("#panel-beneficios"),
+        ferias: $("#panel-ferias"),
+        afastamentos: $("#panel-afastamentos"),
+        advertencias: $("#panel-advertencias"),
+        treinamentos: $("#panel-treinamentos"),
+      };
+
+      function activate(key){
+        tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
+        Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
+      }
+      tabs.forEach(t => t.addEventListener("click", () => activate(t.dataset.tab)));
+
+      // ====== Dependentes ======
+      const depTbody = $("#tabDependentes");
+      function renderDependentes(){
+        const rows = data.dependentes || [];
+        depTbody.innerHTML = rows.length
+          ? rows.map(r => `
+              <tr>
+                <td class="strong">${r.nome}</td>
+                <td>${r.vinculo}</td>
+                <td>${r.cpf}</td>
+                <td>${fmtDate(r.nasc)}</td>
+              </tr>
+            `).join("")
+          : `<tr><td colspan="4" class="muted">Sem dependentes cadastrados</td></tr>`;
+      }
+      renderDependentes();
+
+      // ====== Estrutura (Cargo/Estrutura) ======
+      const hist = $("#histCargo");
       function renderCargo(){
-        if (!hist) return;
         const rows = data.historicoCargo || [];
-        hist.innerHTML = rows.map(r => `
+        hist.innerHTML = rows.map((r, idx) => `
           <tr>
             <td>${fmtDate(r.data)}</td>
             <td>${r.motivo}</td>
@@ -516,15 +799,17 @@
             <td>${r.salario}</td>
             <td>${r.depto}</td>
             <td>${r.gestor || "—"}</td>
+            <td class="col-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-cargo" data-index="${idx}">Editar</button>
+            </td>
           </tr>
         `).join("");
       }
       renderCargo();
 
-      // ====== Render Benefícios ======
-      const ben = document.getElementById("tabBeneficios");
+      // ====== Benefícios ======
+      const ben = $("#tabBeneficios");
       function renderBeneficios(){
-        if (!ben) return;
         const rows = data.beneficios || [];
         ben.innerHTML = rows.map((r, idx) => `
           <tr>
@@ -537,17 +822,18 @@
             <td>${r.obs || ""}</td>
             <td><span class="badge badge--active">${r.status || "Ativo"}</span></td>
             <td class="col-actions">
-              <button class="btn btn--ghost btn--sm" type="button" onclick="alert('Editar ainda não implementado')">Editar</button>
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-beneficio" data-index="${idx}">Editar</button>
             </td>
           </tr>
         `).join("");
       }
       renderBeneficios();
 
-      // ====== Render Férias ======
-      const fer = document.getElementById("tabFerias");
-      if (fer && data.ferias) {
-        fer.innerHTML = data.ferias.map(r => `
+      // ====== Férias ======
+      const fer = $("#tabFerias");
+      function renderFerias(){
+        const rows = data.ferias || [];
+        fer.innerHTML = rows.map((r, idx) => `
           <tr>
             <td>${r.aq}</td>
             <td>${r.status}</td>
@@ -555,87 +841,130 @@
             <td>${r.gozadas}</td>
             <td>${r.vendeu}</td>
             <td>${r.pend}</td>
-            <td>${r.limite}</td>
+            <td>${fmtDate(r.limite)}</td>
+            <td class="col-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-ferias" data-index="${idx}">Editar</button>
+            </td>
           </tr>
         `).join("");
       }
+      renderFerias();
 
-      // afastamentos
-      const af = document.getElementById("tabAfast");
-      if (af && data.afast) {
-        af.innerHTML = data.afast.map(r => `
+      // ====== Afastamentos ======
+      const af = $("#tabAfast");
+      function renderAfast(){
+        const rows = data.afast || [];
+        af.innerHTML = rows.map((r, idx) => `
           <tr>
             <td class="strong">${r.tipo}</td>
             <td>${fmtDate(r.ini)}</td>
             <td>${fmtDate(r.fim)}</td>
             <td>${r.dias}</td>
             <td>${r.obs}</td>
+            <td class="col-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-afast" data-index="${idx}">Editar</button>
+            </td>
           </tr>
         `).join("");
       }
+      renderAfast();
 
-      // advertências
-      const adv = document.getElementById("tabAdv");
-      if (adv && data.adv) {
-        adv.innerHTML = data.adv.map(r => `
+      // ====== Advertências ======
+      const adv = $("#tabAdv");
+      function renderAdv(){
+        const rows = data.adv || [];
+        adv.innerHTML = rows.map((r, idx) => `
           <tr>
             <td>${fmtDate(r.data)}</td>
             <td>${r.resp}</td>
             <td><span class="pill">${r.tipo}</span></td>
             <td>${r.motivo}</td>
             <td>${r.orient}</td>
+            <td class="col-actions">
+              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-adv" data-index="${idx}">Editar</button>
+            </td>
           </tr>
         `).join("");
       }
+      renderAdv();
 
-      // ====== Tabs ======
-      const tabs = document.querySelectorAll(".tab");
-      const panels = {
-        pessoais: document.getElementById("panel-pessoais"),
-        vinculo: document.getElementById("panel-vinculo"),
-        estrutura: document.getElementById("panel-estrutura"),
-        beneficios: document.getElementById("panel-beneficios"),
-        ferias: document.getElementById("panel-ferias"),
-        afastamentos: document.getElementById("panel-afastamentos"),
-        advertencias: document.getElementById("panel-advertencias"),
-        treinamentos: document.getElementById("panel-treinamentos"),
-      };
-
-      function activate(key){
-        tabs.forEach(t => t.classList.toggle("is-active", t.dataset.tab === key));
-        Object.entries(panels).forEach(([k, el]) => el.classList.toggle("is-active", k === key));
-      }
-      tabs.forEach(t => t.addEventListener("click", () => activate(t.dataset.tab)));
-
-      // ====== Modal Cargo ======
-      const cargoModal = document.getElementById("cargoModal");
-      const cargoForm = document.getElementById("cargoForm");
-      const cCargo = document.getElementById("cCargo");
-      const cSalario = document.getElementById("cSalario");
-      const cDepto = document.getElementById("cDepto");
-      const cData = document.getElementById("cData");
-
-      // preencher selects
+      // ====== Preencher selects ======
+      const cCargo = $("#cCargo");
+      const cDepto = $("#cDepto");
       cCargo.innerHTML = `<option value="">Selecione...</option>` + CARGOS_CATALOGO.map(c => `<option value="${c.nome}">${c.nome}</option>`).join("");
       cDepto.innerHTML = `<option value="">Selecione...</option>` + DEPARTAMENTOS.map(d => `<option value="${d}">${d}</option>`).join("");
 
-      function openCargoModal(){
-        cargoModal.hidden = false;
-        document.body.classList.add("modal-open");
-        cargoForm.reset();
-        cData.valueAsDate = new Date();
-      }
-      function closeCargoModal(){
-        cargoModal.hidden = true;
-        document.body.classList.remove("modal-open");
-      }
+      const bNome = $("#bNome");
+      const bTipo = $("#bTipo");
+      bNome.innerHTML = `<option value="">Selecione...</option>` + BENEFICIOS_CATALOGO.map(b => `<option value="${b.nome}">${b.nome}</option>`).join("");
 
-      document.querySelector('[data-action="open-cargo"]').addEventListener("click", openCargoModal);
+      bNome.addEventListener("change", () => {
+        const picked = BENEFICIOS_CATALOGO.find(x => x.nome === bNome.value);
+        bTipo.value = picked ? picked.tipo : "";
+      });
+
+      // ====== Modais: referências ======
+      const cargoModal = $("#cargoModal");
+      const cargoForm = $("#cargoForm");
+      const cargoIndex = $("#cargoIndex");
+      const cData = $("#cData");
+      const cMotivo = $("#cMotivo");
+      const cSalario = $("#cSalario");
+      const cGestor = $("#cGestor");
+
+      const benModal = $("#beneficioModal");
+      const benForm = $("#beneficioForm");
+      const benIndex = $("#beneficioIndex");
+      const bValor = $("#bValor");
+      const bEmpresa = $("#bEmpresa");
+      const bColab = $("#bColab");
+      const bPessoa = $("#bPessoa");
+      const bObs = $("#bObs");
+      const benTitle = $("#beneficioModalTitle");
+
+      const feriasModal = $("#feriasModal");
+      const feriasForm = $("#feriasForm");
+      const feriasIndex = $("#feriasIndex");
+      const feriasTitle = $("#feriasModalTitle");
+
+      const afastModal = $("#afastModal");
+      const afastForm = $("#afastForm");
+      const afastIndex = $("#afastIndex");
+      const afastTitle = $("#afastModalTitle");
+
+      const advModal = $("#advModal");
+      const advForm = $("#advForm");
+      const advIndex = $("#advIndex");
+      const advTitle = $("#advModalTitle");
+
+      // ====== Abrir/fechar: Cargo ======
+      function openCargoModal(mode, idx){
+        $("#cargoModalTitle").textContent = (mode === "edit") ? "Editar Cargo" : "Incluir Cargo";
+        cargoForm.reset();
+        cargoIndex.value = (mode === "edit") ? String(idx) : "";
+
+        if (mode === "edit") {
+          const row = (data.historicoCargo || [])[idx];
+          if (row) {
+            cData.value = row.data || "";
+            cMotivo.value = row.motivo || "";
+            cCargo.value = row.cargo || "";
+            cSalario.value = row.salario || "";
+            cDepto.value = row.depto || "";
+            cGestor.value = row.gestor || "";
+          }
+        } else {
+          cData.valueAsDate = new Date();
+        }
+
+        openModal(cargoModal);
+      }
+      function closeCargoModal(){ closeModal(cargoModal); }
+
       cargoModal.addEventListener("click", (e) => {
         if (e.target.closest('[data-action="close-cargo"]')) closeCargoModal();
       });
 
-      // auto preencher salário/depto pelo cargo
       cCargo.addEventListener("change", () => {
         const picked = CARGOS_CATALOGO.find(x => x.nome === cCargo.value);
         if (!picked) return;
@@ -646,6 +975,7 @@
       cargoForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const fd = new FormData(cargoForm);
+
         const row = {
           data: fd.get("data"),
           motivo: fd.get("motivo"),
@@ -654,46 +984,54 @@
           depto: fd.get("depto"),
           gestor: fd.get("gestor") || "—"
         };
-        // adiciona no topo (mais recente primeiro)
-        data.historicoCargo = [row, ...(data.historicoCargo || [])];
+
+        const idx = cargoIndex.value;
+        if (idx !== "") {
+          data.historicoCargo[Number(idx)] = row;
+        } else {
+          data.historicoCargo = [row, ...(data.historicoCargo || [])];
+        }
+
         renderCargo();
         closeCargoModal();
         alert("Salvo (protótipo) — ainda não grava em banco.");
       });
 
-      // ====== Modal Benefício ======
-      const benModal = document.getElementById("beneficioModal");
-      const benForm = document.getElementById("beneficioForm");
-      const bNome = document.getElementById("bNome");
-      const bTipo = document.getElementById("bTipo");
-
-      bNome.innerHTML = `<option value="">Selecione...</option>` + BENEFICIOS_CATALOGO.map(b => `<option value="${b.nome}">${b.nome}</option>`).join("");
-
-      function openBenModal(){
-        benModal.hidden = false;
-        document.body.classList.add("modal-open");
+      // ====== Abrir/fechar: Benefício ======
+      function openBenModal(mode, idx){
         benForm.reset();
-        bTipo.value = "";
-      }
-      function closeBenModal(){
-        benModal.hidden = true;
-        document.body.classList.remove("modal-open");
-      }
+        benIndex.value = (mode === "edit") ? String(idx) : "";
+        benTitle.textContent = (mode === "edit") ? "Editar Benefício" : "Incluir Benefício";
 
-      document.querySelector('[data-action="open-beneficio"]').addEventListener("click", openBenModal);
+        if (mode === "edit") {
+          const row = (data.beneficios || [])[idx];
+          if (row) {
+            bNome.value = row.nome || "";
+            const picked = BENEFICIOS_CATALOGO.find(x => x.nome === row.nome);
+            bTipo.value = row.tipo || (picked ? picked.tipo : "");
+            bValor.value = row.valor || "";
+            bEmpresa.value = row.empresa || "";
+            bColab.value = row.colab || "";
+            bPessoa.value = row.pessoa || "";
+            bObs.value = row.obs || "";
+          }
+        } else {
+          bTipo.value = "";
+        }
+
+        openModal(benModal);
+      }
+      function closeBenModal(){ closeModal(benModal); }
+
       benModal.addEventListener("click", (e) => {
         if (e.target.closest('[data-action="close-beneficio"]')) closeBenModal();
-      });
-
-      bNome.addEventListener("change", () => {
-        const picked = BENEFICIOS_CATALOGO.find(x => x.nome === bNome.value);
-        bTipo.value = picked ? picked.tipo : "";
       });
 
       benForm.addEventListener("submit", (e) => {
         e.preventDefault();
         const fd = new FormData(benForm);
         const picked = BENEFICIOS_CATALOGO.find(x => x.nome === fd.get("nome"));
+
         const row = {
           nome: fd.get("nome"),
           tipo: picked ? picked.tipo : (bTipo.value || ""),
@@ -704,10 +1042,200 @@
           obs: fd.get("obs") || "",
           status: "Ativo"
         };
-        data.beneficios = [row, ...(data.beneficios || [])];
+
+        const idx = benIndex.value;
+        if (idx !== "") {
+          data.beneficios[Number(idx)] = row;
+        } else {
+          data.beneficios = [row, ...(data.beneficios || [])];
+        }
+
         renderBeneficios();
         closeBenModal();
         alert("Salvo (protótipo) — ainda não grava em banco.");
+      });
+
+      // ====== Abrir/fechar: Férias ======
+      function openFeriasModal(mode, idx){
+        feriasForm.reset();
+        feriasIndex.value = (mode === "edit") ? String(idx) : "";
+        feriasTitle.textContent = (mode === "edit") ? "Editar Férias" : "Incluir Férias";
+
+        if (mode === "edit") {
+          const row = (data.ferias || [])[idx];
+          if (row) {
+            $("#fAq").value = row.aq || "";
+            $("#fStatus").value = row.status || "";
+            $("#fDireito").value = row.direito || "";
+            $("#fGozadas").value = (row.gozadas && row.gozadas !== "—") ? row.gozadas : "";
+            $("#fVendeu").value = row.vendeu || "Não";
+            $("#fPend").value = row.pend || "0";
+
+            // se vier dd/mm, deixa vazio (não dá pra converter com segurança)
+            $("#fLimite").value = (String(row.limite || "").includes("-")) ? row.limite : "";
+          }
+        }
+
+        openModal(feriasModal);
+      }
+      function closeFeriasModal(){ closeModal(feriasModal); }
+
+      feriasModal.addEventListener("click", (e) => {
+        if (e.target.closest('[data-action="close-ferias"]')) closeFeriasModal();
+      });
+
+      feriasForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(feriasForm);
+
+        const limite = fd.get("limite");
+        const row = {
+          aq: fd.get("aq"),
+          status: fd.get("status"),
+          direito: fd.get("direito"),
+          gozadas: fd.get("gozadas") ? fd.get("gozadas") : "—",
+          vendeu: fd.get("vendeu"),
+          pend: fd.get("pend"),
+          limite: limite ? limite : "—"
+        };
+
+        const idx = feriasIndex.value;
+        if (idx !== "") data.ferias[Number(idx)] = row;
+        else data.ferias = [row, ...(data.ferias || [])];
+
+        renderFerias();
+        closeFeriasModal();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+      });
+
+      // ====== Abrir/fechar: Afastamento ======
+      function openAfastModal(mode, idx){
+        afastForm.reset();
+        afastIndex.value = (mode === "edit") ? String(idx) : "";
+        afastTitle.textContent = (mode === "edit") ? "Editar Afastamento" : "Incluir Afastamento";
+
+        if (mode === "edit") {
+          const row = (data.afast || [])[idx];
+          if (row) {
+            $("#aTipo").value = row.tipo || "";
+            $("#aIni").value = row.ini || "";
+            $("#aFim").value = row.fim || "";
+            $("#aDias").value = row.dias || "";
+            $("#aObs").value = row.obs || "";
+          }
+        } else {
+          $("#aIni").valueAsDate = new Date();
+        }
+
+        openModal(afastModal);
+      }
+      function closeAfastModal(){ closeModal(afastModal); }
+
+      afastModal.addEventListener("click", (e) => {
+        if (e.target.closest('[data-action="close-afast"]')) closeAfastModal();
+      });
+
+      afastForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(afastForm);
+
+        const row = {
+          tipo: fd.get("tipo"),
+          ini: fd.get("ini"),
+          fim: fd.get("fim"),
+          dias: fd.get("dias"),
+          obs: fd.get("obs") || ""
+        };
+
+        const idx = afastIndex.value;
+        if (idx !== "") data.afast[Number(idx)] = row;
+        else data.afast = [row, ...(data.afast || [])];
+
+        renderAfast();
+        closeAfastModal();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+      });
+
+      // ====== Abrir/fechar: Advertência ======
+      function openAdvModal(mode, idx){
+        advForm.reset();
+        advIndex.value = (mode === "edit") ? String(idx) : "";
+        advTitle.textContent = (mode === "edit") ? "Editar Advertência" : "Incluir Advertência";
+
+        if (mode === "edit") {
+          const row = (data.adv || [])[idx];
+          if (row) {
+            $("#dData").value = row.data || "";
+            $("#dResp").value = row.resp || "";
+            $("#dTipo").value = row.tipo || "";
+            $("#dMotivo").value = row.motivo || "";
+            $("#dOrient").value = row.orient || "";
+          }
+        } else {
+          $("#dData").valueAsDate = new Date();
+        }
+
+        openModal(advModal);
+      }
+      function closeAdvModal(){ closeModal(advModal); }
+
+      advModal.addEventListener("click", (e) => {
+        if (e.target.closest('[data-action="close-adv"]')) closeAdvModal();
+      });
+
+      advForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const fd = new FormData(advForm);
+
+        const row = {
+          data: fd.get("data"),
+          resp: fd.get("resp"),
+          tipo: fd.get("tipo"),
+          motivo: fd.get("motivo"),
+          orient: fd.get("orient")
+        };
+
+        const idx = advIndex.value;
+        if (idx !== "") data.adv[Number(idx)] = row;
+        else data.adv = [row, ...(data.adv || [])];
+
+        renderAdv();
+        closeAdvModal();
+        alert("Salvo (protótipo) — ainda não grava em banco.");
+      });
+
+      // ====== Clicks globais (ações) ======
+      document.addEventListener("click", (e) => {
+        const el = e.target.closest("[data-action]");
+        if (!el) return;
+
+        const action = el.getAttribute("data-action");
+
+        if (action === "edit-aba") {
+          alert("Editar (protótipo) — você pode manter assim por enquanto.");
+          return;
+        }
+
+        if (action === "open-cargo") openCargoModal("create");
+        if (action === "open-beneficio") openBenModal("create");
+        if (action === "open-ferias") openFeriasModal("create");
+        if (action === "open-afast") openAfastModal("create");
+        if (action === "open-adv") openAdvModal("create");
+      });
+
+      // Editar linhas (delegação por data-index)
+      document.addEventListener("click", (e) => {
+        const btn = e.target.closest("[data-index]");
+        if (!btn) return;
+
+        const idx = Number(btn.getAttribute("data-index"));
+        const action = btn.getAttribute("data-action");
+
+        if (action === "edit-beneficio") openBenModal("edit", idx);
+        if (action === "edit-ferias") openFeriasModal("edit", idx);
+        if (action === "edit-afast") openAfastModal("edit", idx);
+        if (action === "edit-adv") openAdvModal("edit", idx);
+        if (action === "edit-cargo") openCargoModal("edit", idx);
       });
 
       // ESC fecha qualquer modal aberto
@@ -715,14 +1243,10 @@
         if (e.key !== "Escape") return;
         if (!cargoModal.hidden) closeCargoModal();
         if (!benModal.hidden) closeBenModal();
+        if (!feriasModal.hidden) closeFeriasModal();
+        if (!afastModal.hidden) closeAfastModal();
+        if (!advModal.hidden) closeAdvModal();
       });
-
-      function fmtDate(iso){
-        if (!iso || iso === "—") return "—";
-        const parts = String(iso).split("-");
-        if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
-        return iso;
-      }
     })();
   </script>
 </body>

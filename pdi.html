@@ -35,27 +35,29 @@
 
       <div class="pdi-toolbar">
         <div class="pdi-search">
-          <span class="pdi-search__icon" aria-hidden="true">🔎</span>
+          <span class="pdi-search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
+          </span>
           <input id="search-colab" class="pdi-search__input" type="text" placeholder="Pesquisar colaborador..." />
         </div>
 
-        <div class="pdi-filters">
+        <div class="pdi-filters" aria-label="Filtro por status do PDI">
           <label class="chip">
-            <input type="checkbox" class="filter-status" value="Não iniciado" checked>
+            <input type="checkbox" class="filter-colab-status" value="Não iniciado" checked>
             <span>Não iniciado</span>
           </label>
           <label class="chip">
-            <input type="checkbox" class="filter-status" value="Em andamento" checked>
+            <input type="checkbox" class="filter-colab-status" value="Em andamento" checked>
             <span>Em andamento</span>
           </label>
           <label class="chip">
-            <input type="checkbox" class="filter-status" value="Concluído" checked>
+            <input type="checkbox" class="filter-colab-status" value="Concluído" checked>
             <span>Concluído</span>
           </label>
         </div>
       </div>
 
-      <div class="pdi-table-wrap">
+      <div class="pdi-table-wrap" role="region" aria-label="Tabela de PDI por colaborador" tabindex="0">
         <table class="pdi-table" aria-label="Lista de PDIs por colaborador">
           <thead>
             <tr>
@@ -103,20 +105,39 @@
         </button>
       </header>
 
+      <!-- ✅ AQUI: busca + filtros (seta do print) -->
       <div class="pdi-toolbar pdi-toolbar--detail">
         <div class="pdi-search">
-          <span class="pdi-search__icon" aria-hidden="true">🔎</span>
-          <input id="search-ativ" class="pdi-search__input" type="text" placeholder="Pesquisar atividade..." />
+          <span class="pdi-search__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
+          </span>
+          <!-- ✅ Placeholder ajustado -->
+          <input id="search-ativ" class="pdi-search__input" type="text" placeholder="Pesquisar competência..." />
         </div>
 
-        <div class="status-legend">
-          <span class="badge badge--neutral">Não iniciado</span>
-          <span class="badge badge--warn">Em andamento</span>
-          <span class="badge badge--ok">Concluído</span>
+        <div class="pdi-toolbar__right">
+          <div class="pdi-filters" aria-label="Filtro por status das atividades">
+            <label class="chip chip--neutral">
+              <input type="checkbox" class="filter-ativ-status" value="Não iniciado" checked>
+              <span>Não iniciado</span>
+            </label>
+            <label class="chip chip--warn">
+              <input type="checkbox" class="filter-ativ-status" value="Em andamento" checked>
+              <span>Em andamento</span>
+            </label>
+            <label class="chip chip--ok">
+              <input type="checkbox" class="filter-ativ-status" value="Concluído" checked>
+              <span>Concluído</span>
+            </label>
+          </div>
+
+          <button id="btnClearAtivFilters" class="btnp btnp--ghost btnp--sm" type="button" title="Limpar filtros">
+            Limpar
+          </button>
         </div>
       </div>
 
-      <div class="pdi-table-wrap">
+      <div class="pdi-table-wrap" role="region" aria-label="Tabela de atividades do PDI" tabindex="0">
         <table class="pdi-table" aria-label="Atividades do PDI">
           <thead>
             <tr>
@@ -155,6 +176,8 @@
         </div>
 
         <form id="form-atividade" class="form-grid">
+          <input type="hidden" id="f-id" name="id" />
+
           <div class="field">
             <label for="f-data-cadastro">Data do cadastro</label>
             <input id="f-data-cadastro" name="dataCadastro" type="date" required />

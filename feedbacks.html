@@ -31,18 +31,13 @@
 
     <section class="fb-card">
       <div class="fb-toolbar">
-        <div class="search">
-          <span class="search__icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24">
-              <path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/>
-            </svg>
-          </span>
-          <input id="globalSearch" class="search__input" type="text" placeholder="Pesquisar feedback..." />
-        </div>
-
+        <!-- ✅ pesquisa removida (mantive só o botão) -->
         <div class="fb-toolbar__right">
           <button id="btnClearFilters" class="btn btn--ghost btn--sm" type="button">Limpar filtros</button>
         </div>
+
+        <!-- ✅ input oculto só para não quebrar seu feedbacks.js, se ele usar #globalSearch -->
+        <input id="globalSearch" class="search__input" type="text" hidden aria-hidden="true" />
       </div>
 
       <div class="table-wrap" role="region" aria-label="Tabela de feedbacks" tabindex="0">
