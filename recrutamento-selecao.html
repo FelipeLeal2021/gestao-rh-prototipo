@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recrutamento & Seleção • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="recrutamento-selecao.css" />
+
+  <script src="js/include-menu.js" defer></script>
+  <script src="js/recrutamento-selecao.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="rs-page">
+
+    <!-- ====== VIEW: LISTA ====== -->
+    <section id="view-list" class="rs-view is-active" aria-label="Lista de Vagas">
+      <header class="rs-head">
+        <div>
+          <h2 class="rs-title">Recrutamento &amp; Seleção</h2>
+          <p class="rs-sub">Gerencie as vagas: identificação, status e acompanhamento de dias em aberto.</p>
+        </div>
+
+        <div class="rs-actions">
+          <button id="btn-incluir" class="btn btn--success" type="button">Incluir</button>
+        </div>
+      </header>
+
+      <section class="rs-card rs-card--filters" aria-label="Filtros">
+        <div class="rs-grid rs-grid--filters">
+          <div class="rs-field">
+            <label class="rs-label" for="filtro-busca">Buscar</label>
+            <input id="filtro-busca" class="rs-input" type="search" placeholder="Código, cargo, depto, gestor..." />
+          </div>
+
+          <div class="rs-field">
+            <label class="rs-label" for="filtro-status">Status</label>
+            <select id="filtro-status" class="rs-input">
+              <option value="">Todos</option>
+              <option value="solicitada">Solicitada</option>
+              <option value="aberta">Aberta</option>
+              <option value="encerrada">Encerrada</option>
+              <option value="cancelada">Cancelada</option>
+            </select>
+          </div>
+
+          <div class="rs-field">
+            <label class="rs-label" for="filtro-prioridade">Prioridade</label>
+            <select id="filtro-prioridade" class="rs-input">
+              <option value="">Todas</option>
+              <option value="baixa">Baixa</option>
+              <option value="média">Média</option>
+              <option value="alta">Alta</option>
+            </select>
+          </div>
+
+          <div class="rs-field rs-field--btn">
+            <label class="rs-label rs-label--ghost">.</label>
+            <button id="btn-limpar" class="btn btn--soft" type="button">Limpar</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="rs-card" aria-label="Tabela de vagas">
+        <div class="rs-table-wrap">
+          <table class="rs-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Cargo</th>
+                <th>Departamento</th>
+                <th>Gestor</th>
+                <th>Tipo</th>
+                <th>Motivo</th>
+                <th class="t-center">Nº</th>
+                <th>Prioridade</th>
+                <th>Status</th>
+                <th class="t-center">Abertura</th>
+                <th class="t-center">Dias em aberto</th>
+                <th class="t-center">Fechamento</th>
+                <th class="t-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-vagas"></tbody>
+          </table>
+        </div>
+
+        <div id="empty-state" class="rs-empty" hidden>
+          <div class="rs-empty__title">Nenhuma vaga cadastrada</div>
+          <div class="rs-empty__sub">Clique em <b>Incluir</b> para criar a primeira vaga.</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ====== VIEW: FORM ====== -->
+    <section id="view-form" class="rs-view" aria-label="Cadastro/edição/visualização de vaga">
+      <header class="rs-head">
+        <div>
+          <h2 id="form-title" class="rs-title">Incluir vaga</h2>
+          <p id="form-subtitle" class="rs-sub">Preencha os dados da vaga e o acompanhamento do recrutamento.</p>
+        </div>
+
+        <div class="rs-actions">
+          <button id="btn-editar" class="btn btn--success is-hidden" type="button">Editar</button>
+          <button id="btn-voltar" class="btn btn--soft" type="button">Voltar</button>
+        </div>
+      </header>
+
+      <form id="form-vaga" class="rs-card rs-form" autocomplete="off">
+        <!-- Identificação da vaga -->
+        <div class="rs-section">
+          <h3 class="rs-section__title">Identificação da vaga</h3>
+
+          <div class="rs-grid">
+            <div class="rs-field">
+              <label class="rs-label" for="codigoVaga">Código da vaga *</label>
+              <input id="codigoVaga" name="codigoVaga" class="rs-input" type="text" placeholder="Ex.: 0001" required />
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="nomeCargo">Nome do cargo *</label>
+              <input id="nomeCargo" name="nomeCargo" class="rs-input" type="text" required />
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="departamento">Departamento *</label>
+              <input id="departamento" name="departamento" class="rs-input" type="text" required />
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="gestorSolicitante">Gestor solicitante *</label>
+              <input id="gestorSolicitante" name="gestorSolicitante" class="rs-input" type="text" required />
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="tipoVaga">Tipo de vaga *</label>
+              <select id="tipoVaga" name="tipoVaga" class="rs-input" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="nova vaga">Nova vaga</option>
+                <option value="substituição">Substituição</option>
+              </select>
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="motivoAbertura">Motivo da abertura *</label>
+              <select id="motivoAbertura" name="motivoAbertura" class="rs-input" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="crescimento">Crescimento</option>
+                <option value="substituição">Substituição</option>
+                <option value="desligamento">Desligamento</option>
+                <option value="afastamento">Afastamento</option>
+              </select>
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="numeroVagas">Nº de vagas *</label>
+              <input id="numeroVagas" name="numeroVagas" class="rs-input" type="number" min="1" step="1" required />
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="prioridadeVaga">Prioridade da vaga *</label>
+              <select id="prioridadeVaga" name="prioridadeVaga" class="rs-input" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="baixa">Baixa</option>
+                <option value="média">Média</option>
+                <option value="alta">Alta</option>
+              </select>
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="dataSolicitacao">Data da solicitação *</label>
+              <input id="dataSolicitacao" name="dataSolicitacao" class="rs-input" type="date" required />
+            </div>
+          </div>
+        </div>
+
+        <!-- Gestão do recrutamento -->
+        <div class="rs-section">
+          <h3 class="rs-section__title">Gestão do recrutamento</h3>
+
+          <div class="rs-grid">
+            <div class="rs-field">
+              <label class="rs-label" for="statusVaga">Status da vaga *</label>
+              <select id="statusVaga" name="statusVaga" class="rs-input" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="solicitada">Solicitada</option>
+                <option value="aberta">Aberta</option>
+                <option value="encerrada">Encerrada</option>
+                <option value="cancelada">Cancelada</option>
+              </select>
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="dataAbertura">Data de abertura da vaga</label>
+              <input id="dataAbertura" name="dataAbertura" class="rs-input" type="date" />
+              <small class="rs-help">Quando o RH inicia o recrutamento.</small>
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="diasEmAberto">Dias em aberto</label>
+              <input id="diasEmAberto" name="diasEmAberto" class="rs-input" type="text" placeholder="Automático" disabled />
+              <small class="rs-help">Automático: hoje - data de abertura (quando status = Aberta).</small>
+            </div>
+
+            <div class="rs-field">
+              <label class="rs-label" for="dataFechamento">Data de fechamento da vaga</label>
+              <input id="dataFechamento" name="dataFechamento" class="rs-input" type="date" />
+              <small class="rs-help">Data de envio da documentação pelo candidato.</small>
+            </div>
+
+            <div class="rs-field rs-field--full">
+              <label class="rs-label" for="observacao">Observação</label>
+              <textarea id="observacao" name="observacao" class="rs-input rs-textarea" rows="4" placeholder="Anotações do processo..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <footer class="rs-form__footer" id="form-footer">
+          <button class="btn btn--soft" id="btn-cancelar" type="button">Cancelar</button>
+          <button class="btn btn--success" id="btn-salvar" type="submit">Salvar</button>
+        </footer>
+      </form>
+    </section>
+
+  </main>
+</body>
+</html>
