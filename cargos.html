@@ -545,6 +545,17 @@
         <!-- Comportamentais -->
         <div class="crud-block" data-kind="comp">
           <div class="form-grid">
+            <!-- ✅ NOVO: lista de competências cadastradas + grupo -->
+            <div class="field field--full">
+              <label for="c_pick">Selecionar competência cadastrada</label>
+              <select id="c_pick">
+                <option value="">Selecionar...</option>
+              </select>
+              <div style="margin-top:6px; font-size:12px; opacity:.7;">
+                Ao selecionar, os campos abaixo serão preenchidos automaticamente (você pode ajustar).
+              </div>
+            </div>
+
             <div class="field">
               <label for="c_comp">Competência</label>
               <input id="c_comp" type="text" placeholder="Ex: Organização" />
@@ -606,6 +617,98 @@ Segue rotinas sem retrabalho."></textarea>
   </div>
 
   <script>
+    // ===== Biblioteca de Competências Comportamentais (conforme documento) =====
+    const COMP_LIBRARY = [
+      {
+        competencia: "Organização",
+        descricao: "Capacidade de estruturar e controlar atividades e rotinas.",
+        grupo: "Execução",
+        grau: "4",
+        indicadores: [
+          "Mantém documentos físicos e digitais organizados e atualizados.",
+          "Segue rotinas administrativas sem gerar retrabalho.",
+          "Demonstra facilidade para localizar informações quando solicitado."
+        ]
+      },
+      {
+        competencia: "Responsabilidade",
+        descricao: "Assumir consequências dos próprios atos e compromissos.",
+        grupo: "Execução",
+        grau: "5",
+        indicadores: [
+          "Cumpre prazos e acordos assumidos com autonomia.",
+          "Assume suas tarefas sem necessidade de cobranças constantes.",
+          "Comunica dificuldades ou imprevistos de forma antecipada."
+        ]
+      },
+      {
+        competencia: "Precisão",
+        descricao: "Rigor e cuidado na execução das tarefas, com atenção aos detalhes.",
+        grupo: "Execução",
+        grau: "3",
+        indicadores: [
+          "Executa tarefas com atenção, reduzindo erros operacionais.",
+          "Realiza conferências básicas antes de finalizar entregas.",
+          "Demonstra cuidado com dados, informações e registros."
+        ]
+      },
+      {
+        competencia: "Foco",
+        descricao: "Manter atenção direcionada para objetivos e prioridades.",
+        grupo: "Execução",
+        grau: "4",
+        indicadores: [
+          "Mantém atenção nas atividades prioritárias do dia a dia.",
+          "Consegue concluir tarefas sem dispersões frequentes.",
+          "Organiza seu tempo para finalizar as demandas propostas."
+        ]
+      },
+      {
+        competencia: "Trabalho em Equipe",
+        descricao: "Capacidade de cooperar com outras pessoas em prol de objetivos comuns.",
+        grupo: "Relacional",
+        grau: "5",
+        indicadores: [
+          "Coopera com colegas, oferecendo apoio quando necessário.",
+          "Mantém relacionamento respeitoso e colaborativo com o time.",
+          "Contribui para o alcance dos objetivos coletivos da área."
+        ]
+      },
+      {
+        competencia: "Flexibilidade",
+        descricao: "Facilidade de adaptação a mudanças e novos cenários.",
+        grupo: "Relacional",
+        grau: "3",
+        indicadores: [
+          "Aceita ajustes nas rotinas e demandas quando necessário.",
+          "Demonstra abertura para mudanças de processos e prioridades.",
+          "Consegue se adaptar gradualmente a novos contextos de trabalho."
+        ]
+      },
+      {
+        competencia: "Comprometimento",
+        descricao: "Honrar acordos e dedicar-se com responsabilidade às tarefas.",
+        grupo: "Emocional",
+        grau: "4",
+        indicadores: [
+          "Demonstra envolvimento com as atividades sob sua responsabilidade.",
+          "Cumpre o que foi combinado com a liderança e a equipe.",
+          "Mostra interesse em contribuir para os resultados da área."
+        ]
+      },
+      {
+        competencia: "Resiliência",
+        descricao: "Capacidade de manter equilíbrio diante de pressão e adversidades.",
+        grupo: "Emocional",
+        grau: "3",
+        indicadores: [
+          "Mantém postura equilibrada em momentos de maior demanda.",
+          "Consegue lidar com pressões sem comprometer totalmente o desempenho.",
+          "Demonstra esforço para manter o controle emocional diante de dificuldades."
+        ]
+      }
+    ];
+
     // ===== Dados (mock) - conforme documento =====
     const cargoData = {
       "diretor": {
@@ -656,21 +759,30 @@ Segue rotinas sem retrabalho."></textarea>
           { competencia: "Excel", descricao: "Nível de domínio de planilhas e recursos do Excel.", nivel: "Básico" },
           { competencia: "Sistemas Contábeis", descricao: "Grau de familiaridade com sistemas contábeis utilizados na rotina.", nivel: "Básico" }
         ],
+
+        // ✅ COMPLETO conforme documento
         comportamentais: [
-          {
-            competencia: "Organização",
-            descricao: "Capacidade de estruturar e controlar atividades e rotinas.",
-            grupo: "Execução",
-            grau: "4",
-            indicadores: [
-              "Mantém documentos físicos e digitais organizados e atualizados.",
-              "Segue rotinas administrativas sem gerar retrabalho.",
-              "Demonstra facilidade para localizar informações quando solicitado."
-            ]
-          }
+          ...COMP_LIBRARY.map(x => ({
+            competencia: x.competencia,
+            descricao: x.descricao,
+            grupo: x.grupo,
+            grau: x.grau,
+            indicadores: [...x.indicadores]
+          }))
         ],
+
+        // ✅ COMPLETO conforme documento
         indicadores: [
-          { ind: "Cumprimento de prazos", desc: "Entrega as atividades dentro dos prazos combinados, sem necessidade de cobranças constantes." }
+          { ind: "Organização de documentos", desc: "Mantém arquivos físicos e digitais organizados, facilitando a localização das informações quando solicitadas." },
+          { ind: "Cumprimento de prazos", desc: "Entrega as atividades dentro dos prazos combinados, sem necessidade de cobranças constantes." },
+          { ind: "Qualidade das entregas", desc: "Executa as tarefas com atenção, reduzindo erros e retrabalho nas rotinas administrativas." },
+          { ind: "Responsabilidade com as tarefas", desc: "Assume as demandas recebidas e acompanha até a conclusão, demonstrando comprometimento." },
+          { ind: "Apoio às rotinas do setor", desc: "Contribui com as demandas da equipe, oferecendo suporte sempre que solicitado." },
+          { ind: "Organização da rotina de trabalho", desc: "Consegue manter uma rotina organizada, priorizando atividades e evitando acúmulo de tarefas." },
+          { ind: "Atenção às orientações", desc: "Executa as atividades conforme instruções recebidas, respeitando processos e padrões." },
+          { ind: "Postura profissional", desc: "Mantém comportamento adequado, respeito com colegas e cuidado com o ambiente de trabalho." },
+          { ind: "Evolução no aprendizado", desc: "Demonstra evolução ao longo do tempo, reduzindo dúvidas e ganhando mais autonomia." },
+          { ind: "Compromisso com o trabalho", desc: "Demonstra interesse, envolvimento e disposição para contribuir com o funcionamento da área." }
         ]
       }
     };
@@ -997,8 +1109,37 @@ Segue rotinas sem retrabalho."></textarea>
 
     const blocks = $$("#crudModal .crud-block");
 
+    // ✅ seletor de competência cadastrada (Comportamentais)
+    const c_pick = $("#c_pick");
+
     function showBlock(kind){
       blocks.forEach(b => b.hidden = (b.dataset.kind !== kind));
+    }
+
+    function populateCompPick(){
+      if (!c_pick) return;
+      c_pick.innerHTML = `<option value="">Selecionar...</option>` + COMP_LIBRARY
+        .map(c => `<option value="${escapeHtml(c.competencia)}">${escapeHtml(c.competencia)} — ${escapeHtml(c.grupo)}</option>`)
+        .join("");
+    }
+
+    function fillCompFromLibrary(name){
+      const item = COMP_LIBRARY.find(x => x.competencia === name);
+      if (!item) return;
+
+      $("#c_comp").value = item.competencia || "";
+      $("#c_desc").value = item.descricao || "";
+      $("#c_grupo").value = item.grupo || "Execução";
+      $("#c_grau").value = item.grau || "3";
+      $("#c_inds").value = (item.indicadores || []).join("\n");
+    }
+
+    if (c_pick){
+      c_pick.addEventListener("change", () => {
+        const name = (c_pick.value || "").trim();
+        if (!name) return;
+        fillCompFromLibrary(name);
+      });
     }
 
     function openCrud(kind, mode="create", index=-1){
@@ -1035,6 +1176,12 @@ Segue rotinas sem retrabalho."></textarea>
       // set defaults
       if (kind === "comp") $("#c_grau").value = "3";
 
+      // ✅ prepara lista de competências cadastradas
+      if (kind === "comp") {
+        populateCompPick();
+        c_pick.value = "";
+      }
+
       const data = cargoData[currentCargoId];
       if (mode === "edit" && index >= 0) {
         if (kind === "tec") {
@@ -1050,6 +1197,12 @@ Segue rotinas sem retrabalho."></textarea>
           $("#c_grupo").value = r?.grupo || "Execução";
           $("#c_grau").value = r?.grau || "3";
           $("#c_inds").value = (r?.indicadores || []).join("\n");
+
+          // tenta selecionar no "cadastradas" se existir
+          if (c_pick) {
+            const exists = COMP_LIBRARY.some(x => x.competencia === (r?.competencia || ""));
+            c_pick.value = exists ? (r?.competencia || "") : "";
+          }
         }
         if (kind === "perf") {
           const r = data.indicadores[index];

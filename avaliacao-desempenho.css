@@ -1,5 +1,6 @@
 /* avaliacao-desempenho.css */
 
+/* ===== Layout geral ===== */
 .ad{
   max-width: 1180px;
   margin: 24px auto 60px;
@@ -30,6 +31,7 @@
   font-size: 13px;
 }
 
+/* ===== Card base ===== */
 .ad-card{
   background: rgba(255,255,255,.78);
   border: 1px solid rgba(15,20,40,.10);
@@ -42,6 +44,7 @@
   padding: 16px;
 }
 
+/* ===== Toolbar / Search ===== */
 .ad-toolbar{
   display: flex;
   align-items: center;
@@ -75,6 +78,7 @@
   font-size: 13px;
 }
 
+/* ===== Tables ===== */
 .ad-table-wrap{
   overflow: auto;
   padding: 8px 10px 14px;
@@ -84,7 +88,7 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 920px; /* ajustado p/ novas colunas */
+  min-width: 920px;
 }
 
 .ad-table thead th{
@@ -120,6 +124,7 @@
   white-space: nowrap;
 }
 
+/* Filters row */
 .ad-filters th{
   padding: 10px 10px 12px;
   background: rgba(5,13,141,.02);
@@ -138,6 +143,7 @@
 
 .ad-filter--select{ cursor: pointer; }
 
+/* Pills */
 .ad-pill{
   display: inline-flex;
   align-items: center;
@@ -155,7 +161,7 @@
 .ad-pill--danger{ background: rgba(255, 140, 140, .22); }
 .ad-pill--ok{ background: rgba(140, 235, 180, .22); }
 
-/* Buttons */
+/* ===== Buttons ===== */
 .ad-btn{
   border: 1px solid rgba(15,20,40,.12);
   background: rgba(255,255,255,.92);
@@ -219,7 +225,7 @@
   font-weight: 900;
 }
 
-/* Meta bar */
+/* ===== Meta bar ===== */
 .ad-meta{
   display: grid;
   grid-template-columns: 52px 1fr;
@@ -272,7 +278,7 @@
   background: rgba(245,246,250,.92);
 }
 
-/* Tabs */
+/* ===== Tabs ===== */
 .ad-tabs{
   display: flex;
   gap: 8px;
@@ -297,7 +303,7 @@
   color: #fff;
 }
 
-/* Panels */
+/* ===== Panels ===== */
 .ad-panel{
   display: none;
   padding: 10px 6px 6px;
@@ -318,7 +324,7 @@
   justify-content: space-between;
   gap: 12px;
   padding: 0 6px;
-  flex-wrap: wrap; /* melhora em telas menores */
+  flex-wrap: wrap;
 }
 
 .ad-link{
@@ -342,9 +348,9 @@
 
 .ad-muted{ opacity: .75; }
 
-/* Form table */
+/* ===== Form tables ===== */
 .ad-table--form{
-  min-width: 1100px; /* agora tem tabelas com 5/6 colunas */
+  min-width: 1100px;
 }
 
 .ad-table--form thead th,
@@ -353,7 +359,7 @@
 }
 
 .ad-table--form tbody td[rowspan]{
-  vertical-align: middle; /* melhor para as células com rowspan (comp) */
+  vertical-align: middle;
 }
 
 .ad-group td{
@@ -424,7 +430,7 @@
   padding: 2px 4px;
 }
 
-/* score cards */
+/* ===== Score cards ===== */
 .ad-scorecard{
   margin: 8px 6px 10px;
   padding: 10px 12px;
@@ -455,7 +461,7 @@
 
 .ad-scorecard__sep{ opacity: .35; }
 
-/* textarea */
+/* ===== Textarea ===== */
 .ad-label{
   display: block;
   margin: 10px 6px 6px;
@@ -494,7 +500,7 @@
   justify-content: space-between;
 }
 
-/* Final */
+/* ===== Final ===== */
 .ad-final{
   margin: 8px 6px 10px;
   border-radius: 14px;
@@ -522,7 +528,140 @@
   font-weight: 900;
 }
 
-/* Responsive */
+/* =====================================================================
+   ✅ NOVO: Accordion (Competências Organizacionais recolhíveis)
+   - agora fica no CSS (você pode remover o <style> extra do HTML)
+===================================================================== */
+.ad-acc{
+  border: 1px solid rgba(15,20,40,.10);
+  border-radius: 16px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 12px 35px rgba(0,0,0,.06);
+  overflow: hidden;
+  margin-top: 12px;
+}
+
+/* remove marcador padrão */
+.ad-acc summary{ list-style: none; }
+.ad-acc summary::-webkit-details-marker{ display: none; }
+
+/* header do accordion */
+.ad-acc__sum{
+  cursor: pointer;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: rgba(15,20,40,.03);
+  border-bottom: 1px solid rgba(15,20,40,.08);
+  user-select: none;
+}
+
+.ad-acc__left{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.ad-acc__caret{
+  width: 18px;
+  height: 18px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(15,20,40,.12);
+  background: rgba(255,255,255,.7);
+  flex: 0 0 auto;
+}
+
+.ad-acc__caret::before{
+  content: "▸";
+  opacity: .8;
+}
+
+details[open] .ad-acc__caret::before{
+  content: "▾";
+}
+
+.ad-acc__title{
+  font-weight: 900;
+  letter-spacing: .2px;
+  text-transform: uppercase;
+  font-size: 12.5px;
+  color: rgba(15,20,40,.92);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ad-acc__right{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.ad-acc__avg{
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,20,40,.14);
+  background: rgba(255,255,255,.75);
+  font-weight: 900;
+  font-size: 12px;
+}
+
+/* bolinha de status */
+.ad-acc__status{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  display: inline-grid;
+  place-items: center;
+  border: 1px solid rgba(15,20,40,.18);
+  background: rgba(255,255,255,.75);
+  flex: 0 0 auto;
+}
+
+/* verde = completo */
+.ad-acc.is-complete .ad-acc__status{
+  border-color: rgba(46,204,113,.55);
+  background: rgba(46,204,113,.16);
+}
+.ad-acc.is-complete .ad-acc__status::before{
+  content:"✓";
+  font-weight: 900;
+  font-size: 13px;
+}
+
+/* vermelho = incompleto */
+.ad-acc.is-incomplete .ad-acc__status{
+  border-color: rgba(231,76,60,.55);
+  background: rgba(231,76,60,.12);
+}
+.ad-acc.is-incomplete .ad-acc__status::before{
+  content:"!";
+  font-weight: 900;
+  font-size: 13px;
+}
+
+.ad-acc__content{
+  padding: 12px 14px 14px;
+}
+
+/* tabela compacta dentro do accordion */
+.ad-table--mini th{ font-size: 12px; }
+.ad-table--mini td{ font-size: 13px; }
+
+/* melhora foco ao navegar com teclado */
+.ad-acc__sum:focus,
+.ad-acc__sum:focus-visible{
+  outline: 2px solid rgba(60, 90, 255, .30);
+  outline-offset: 2px;
+}
+
+/* ===== Responsive ===== */
 @media (max-width: 1100px){
   .ad-meta__grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -538,4 +677,8 @@
   .ad{ padding: 0 14px; }
   .ad-card--pad{ padding: 12px; }
   .ad-tabs{ padding-left: 0; }
+
+  /* accordion mais “mobile friendly” */
+  .ad-acc__title{ font-size: 12px; }
+  .ad-acc__avg{ display: none; } /* opcional: reduz poluição visual */
 }

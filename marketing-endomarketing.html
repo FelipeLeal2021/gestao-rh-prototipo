@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marketing & Endomarketing • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="marketing-endomarketing.css" />
+
+  <script src="js/include-menu.js" defer></script>
+  <script src="js/marketing-endomarketing.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="me-page">
+
+    <!-- ===== VIEW: LISTA ===== -->
+    <section id="view-list" class="me-view is-active" aria-label="Calendário de Marketing & Endomarketing">
+      <header class="me-head">
+        <div>
+          <h2 class="me-title">Marketing &amp; Endomarketing</h2>
+          <p class="me-sub">Planeje ações por data, separando feriados nacionais, municipais e datas estratégicas.</p>
+        </div>
+
+        <div class="me-actions">
+          <button id="btn-hoje" class="btn btn--soft" type="button">Ir para mês atual</button>
+        </div>
+      </header>
+
+      <!-- Filtros -->
+      <section class="me-card me-card--filters" aria-label="Filtros">
+        <div class="me-grid me-grid--filters">
+          <div class="me-field">
+            <label class="me-label" for="f-mes">Mês</label>
+            <select id="f-mes" class="me-input"></select>
+          </div>
+
+          <div class="me-field">
+            <label class="me-label" for="f-ano">Ano</label>
+            <select id="f-ano" class="me-input"></select>
+          </div>
+
+          <div class="me-field me-field--wide">
+            <label class="me-label" for="f-busca">Buscar</label>
+            <input id="f-busca" class="me-input" type="search" placeholder="Nome da data, responsável, descrição..." />
+          </div>
+
+          <div class="me-field">
+            <label class="me-label" for="f-tipo">Tipo</label>
+            <select id="f-tipo" class="me-input">
+              <option value="">Todos</option>
+              <option value="feriado nacional">Feriado nacional</option>
+              <option value="feriado municipal">Feriado municipal</option>
+              <option value="comemorativa">Comemorativa</option>
+              <option value="estratégica">Estratégica</option>
+              <option value="dia normal">Dia normal</option>
+            </select>
+          </div>
+
+          <div class="me-field">
+            <label class="me-label" for="f-acao">Haverá ação?</label>
+            <select id="f-acao" class="me-input">
+              <option value="">Todos</option>
+              <option value="sim">Sim</option>
+              <option value="nao">Não</option>
+            </select>
+          </div>
+
+          <div class="me-field">
+            <label class="me-label" for="f-status">Status</label>
+            <select id="f-status" class="me-input">
+              <option value="">Todos</option>
+              <option value="planejada">Planejada</option>
+              <option value="concluída">Concluída</option>
+              <option value="cancelada">Cancelada</option>
+              <option value="não iniciada">Não iniciada</option>
+              <option value="não realizada">Não realizada</option>
+            </select>
+          </div>
+
+          <div class="me-field me-field--btn">
+            <label class="me-label me-label--ghost">.</label>
+            <button id="btn-limpar" class="btn btn--soft" type="button">Limpar</button>
+          </div>
+        </div>
+
+        <div class="me-filters-note">
+          <span class="me-chip me-chip--nat"><span class="me-dot me-dot--nat"></span>Feriado nacional</span>
+          <span class="me-chip me-chip--mun"><span class="me-dot me-dot--mun"></span>Feriado municipal</span>
+          <span class="me-chip me-chip--com"><span class="me-dot me-dot--com"></span>Comemorativa</span>
+          <span class="me-chip me-chip--est"><span class="me-dot me-dot--est"></span>Estratégica</span>
+          <span class="me-chip me-chip--nor"><span class="me-dot me-dot--nor"></span>Dia normal</span>
+        </div>
+      </section>
+
+      <!-- Tabela -->
+      <section class="me-card" aria-label="Tabela do mês">
+        <div class="me-table-wrap">
+          <table class="me-table">
+            <thead>
+              <tr>
+                <th class="t-center">Data</th>
+                <th>Dia da Semana</th>
+                <th>Nome da data</th>
+                <th>Tipo</th>
+                <th class="t-center">Haverá ação?</th>
+                <th>Status da ação</th>
+                <th class="t-right">Ações</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-dias"></tbody>
+          </table>
+        </div>
+
+        <div id="empty-state" class="me-empty" hidden>
+          <div class="me-empty__title">Nenhum dia encontrado</div>
+          <div class="me-empty__sub">Ajuste os filtros para visualizar resultados.</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===== VIEW: PLANEJAR/EDITAR ===== -->
+    <section id="view-form" class="me-view" aria-label="Planejamento de ação">
+      <header class="me-head">
+        <div>
+          <h2 id="form-title" class="me-title">Planejar ação</h2>
+          <p id="form-sub" class="me-sub">Defina o tipo da data e, se houver ação, preencha o planejamento abaixo.</p>
+        </div>
+
+        <div class="me-actions">
+          <button id="btn-voltar" class="btn btn--soft" type="button">Voltar</button>
+        </div>
+      </header>
+
+      <form id="form-dia" class="me-card me-form" autocomplete="off">
+
+        <div class="me-section">
+          <h3 class="me-section__title">Informações da data</h3>
+
+          <div class="me-grid">
+            <div class="me-field">
+              <label class="me-label" for="fd-dia">Dia</label>
+              <input id="fd-dia" class="me-input" type="text" disabled />
+            </div>
+
+            <div class="me-field">
+              <label class="me-label" for="fd-semana">Dia da semana</label>
+              <input id="fd-semana" class="me-input" type="text" disabled />
+            </div>
+
+            <div class="me-field me-field--wide">
+              <label class="me-label" for="fd-nome">Nome da data</label>
+              <input id="fd-nome" class="me-input" type="text" placeholder="Ex.: Aniversário da empresa" />
+            </div>
+
+            <div class="me-field">
+              <label class="me-label" for="fd-tipo">Tipo</label>
+              <select id="fd-tipo" class="me-input">
+                <option value="dia normal">Dia normal</option>
+                <option value="feriado nacional">Feriado nacional</option>
+                <option value="feriado municipal">Feriado municipal</option>
+                <option value="comemorativa">Comemorativa</option>
+                <option value="estratégica">Estratégica</option>
+              </select>
+            </div>
+
+            <div class="me-field">
+              <label class="me-label" for="fd-acao">Haverá ação?</label>
+              <select id="fd-acao" class="me-input">
+                <option value="nao">Não</option>
+                <option value="sim">Sim</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div id="block-acao" class="me-section me-section--action">
+          <h3 class="me-section__title">Planejamento da ação</h3>
+
+          <div class="me-grid">
+            <div class="me-field">
+              <label class="me-label" for="fa-tipo">Tipo de ação</label>
+              <select id="fa-tipo" class="me-input">
+                <option value="" selected disabled>Selecione</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Endomarketing">Endomarketing</option>
+                <option value="Marketing/Endomarketing">Marketing/Endomarketing</option>
+              </select>
+            </div>
+
+            <div class="me-field me-field--wide">
+              <label class="me-label" for="fa-desc">Descrição da ação</label>
+              <input id="fa-desc" class="me-input" type="text" placeholder="O que será feito?" />
+            </div>
+
+            <div class="me-field me-field--wide">
+              <label class="me-label" for="fa-obj">Objetivo da ação</label>
+              <input id="fa-obj" class="me-input" type="text" placeholder="Qual o objetivo?" />
+            </div>
+
+            <div class="me-field">
+              <label class="me-label" for="fa-resp">Responsável</label>
+              <input id="fa-resp" class="me-input" type="text" placeholder="Nome do responsável" />
+            </div>
+
+            <div class="me-field">
+              <label class="me-label" for="fa-status">Status</label>
+              <select id="fa-status" class="me-input">
+                <option value="planejada">Planejada</option>
+                <option value="concluída">Concluída</option>
+                <option value="cancelada">Cancelada</option>
+                <option value="não iniciada" selected>Não iniciada</option>
+                <option value="não realizada">Não realizada</option>
+              </select>
+            </div>
+
+            <div class="me-field me-field--full">
+              <label class="me-label" for="fa-obs">Observação</label>
+              <textarea id="fa-obs" class="me-input me-textarea" rows="4" placeholder="Observações gerais..."></textarea>
+            </div>
+          </div>
+
+          <small class="me-help">Se “Haverá ação?” estiver como “Não”, este bloco fica inativo.</small>
+        </div>
+
+        <footer class="me-form__footer">
+          <button id="btn-cancelar" class="btn btn--soft" type="button">Cancelar</button>
+          <button class="btn btn--success" type="submit">Salvar</button>
+        </footer>
+      </form>
+    </section>
+
+  </main>
+</body>
+</html>

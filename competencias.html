@@ -10,6 +10,19 @@
 
   <!-- Carrega o menu/header automaticamente -->
   <script src="js/include-menu.js" defer></script>
+
+  <!-- (pequeno ajuste visual para lista de indicadores dentro da célula) -->
+  <style>
+    /* mantém clean a lista de indicadores na tabela */
+    .ind-list{
+      margin: 0;
+      padding-left: 18px;
+    }
+    .ind-list li{
+      margin: 2px 0;
+      line-height: 1.35;
+    }
+  </style>
 </head>
 
 <body>
@@ -265,7 +278,7 @@
         </div>
 
         <!-- =========================
-             ORGANIZACIONAIS
+             ORGANIZACIONAIS (CORRIGIDO: 1 competência = 1 linha)
         ========================== -->
         <div class="tabpanel" id="tab-organizacionais">
           <div class="card">
@@ -301,131 +314,76 @@
                 </thead>
 
                 <tbody id="tbody-organizacionais">
-                  <!-- Ética e Responsabilidade Profissional -->
                   <tr>
                     <td class="strong">Ética e Responsabilidade Profissional</td>
                     <td>Age com honestidade, cumpre normas e executa suas atividades com rigor técnico e responsabilidade.</td>
-                    <td>• Cumpre normas internas e políticas da empresa sem necessidade de reforço constante.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Ética e Responsabilidade Profissional</td>
-                    <td>Age com honestidade, cumpre normas e executa suas atividades com rigor técnico e responsabilidade.</td>
-                    <td>• Demonstra postura ética no tratamento de informações e nas relações profissionais.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Ética e Responsabilidade Profissional</td>
-                    <td>Age com honestidade, cumpre normas e executa suas atividades com rigor técnico e responsabilidade.</td>
-                    <td>• Assume responsabilidades e responde adequadamente por suas entregas.</td>
+                    <td>
+                      <ul class="ind-list">
+                        <li>Cumpre normas internas e políticas da empresa sem necessidade de reforço constante.</li>
+                        <li>Demonstra postura ética no tratamento de informações e nas relações profissionais.</li>
+                        <li>Assume responsabilidades e responde adequadamente por suas entregas.</li>
+                      </ul>
+                    </td>
                     <td class="col-grade">5</td>
                     <td class="col-status"><span class="badge badge--active">Ativo</span></td>
                     <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
-                  <!-- Compromisso com o Cliente -->
                   <tr>
                     <td class="strong">Compromisso com o Cliente</td>
                     <td>Atua com postura de atendimento, buscando compreender necessidades e entregar soluções com qualidade.</td>
-                    <td>• Demonstra atenção e cordialidade no atendimento a clientes internos e externos.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Compromisso com o Cliente</td>
-                    <td>Atua com postura de atendimento, buscando compreender necessidades e entregar soluções com qualidade.</td>
-                    <td>• Busca compreender as demandas antes de executar ou encaminhar soluções.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Compromisso com o Cliente</td>
-                    <td>Atua com postura de atendimento, buscando compreender necessidades e entregar soluções com qualidade.</td>
-                    <td>• Preocupa-se com a qualidade e clareza das entregas realizadas.</td>
+                    <td>
+                      <ul class="ind-list">
+                        <li>Demonstra atenção e cordialidade no atendimento a clientes internos e externos.</li>
+                        <li>Busca compreender as demandas antes de executar ou encaminhar soluções.</li>
+                        <li>Preocupa-se com a qualidade e clareza das entregas realizadas.</li>
+                      </ul>
+                    </td>
                     <td class="col-grade">5</td>
                     <td class="col-status"><span class="badge badge--active">Ativo</span></td>
                     <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
-                  <!-- Organização e Cumprimento de Prazos -->
                   <tr>
                     <td class="strong">Organização e Cumprimento de Prazos</td>
                     <td>Mantém rotinas organizadas, segue processos e cumpre prazos com responsabilidade.</td>
-                    <td>• Mantém controle das próprias atividades e documentos sob sua responsabilidade.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Organização e Cumprimento de Prazos</td>
-                    <td>Mantém rotinas organizadas, segue processos e cumpre prazos com responsabilidade.</td>
-                    <td>• Cumpre prazos estabelecidos ou sinaliza previamente possíveis atrasos.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Organização e Cumprimento de Prazos</td>
-                    <td>Mantém rotinas organizadas, segue processos e cumpre prazos com responsabilidade.</td>
-                    <td>• Segue processos e padrões definidos pela empresa.</td>
+                    <td>
+                      <ul class="ind-list">
+                        <li>Mantém controle das próprias atividades e documentos sob sua responsabilidade.</li>
+                        <li>Cumpre prazos estabelecidos ou sinaliza previamente possíveis atrasos.</li>
+                        <li>Segue processos e padrões definidos pela empresa.</li>
+                      </ul>
+                    </td>
                     <td class="col-grade">5</td>
                     <td class="col-status"><span class="badge badge--active">Ativo</span></td>
                     <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
-                  <!-- Aprendizado e Evolução Contínua -->
                   <tr>
                     <td class="strong">Aprendizado e Evolução Contínua</td>
                     <td>Demonstra abertura para aprender, busca atualização e melhoria constante.</td>
-                    <td>• Demonstra interesse em aprender novas rotinas, sistemas ou processos.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Aprendizado e Evolução Contínua</td>
-                    <td>Demonstra abertura para aprender, busca atualização e melhoria constante.</td>
-                    <td>• Aplica aprendizados no dia a dia de trabalho.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Aprendizado e Evolução Contínua</td>
-                    <td>Demonstra abertura para aprender, busca atualização e melhoria constante.</td>
-                    <td>• Busca evoluir tecnicamente e profissionalmente dentro da função.</td>
+                    <td>
+                      <ul class="ind-list">
+                        <li>Demonstra interesse em aprender novas rotinas, sistemas ou processos.</li>
+                        <li>Aplica aprendizados no dia a dia de trabalho.</li>
+                        <li>Busca evoluir tecnicamente e profissionalmente dentro da função.</li>
+                      </ul>
+                    </td>
                     <td class="col-grade">5</td>
                     <td class="col-status"><span class="badge badge--active">Ativo</span></td>
                     <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
                   </tr>
 
-                  <!-- Respeito e Colaboração -->
                   <tr>
                     <td class="strong">Respeito e Colaboração</td>
                     <td>Contribui para um ambiente saudável, respeitando as pessoas e colaborando com o time.</td>
-                    <td>• Mantém relacionamento respeitoso com colegas, líderes e clientes.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Respeito e Colaboração</td>
-                    <td>Contribui para um ambiente saudável, respeitando as pessoas e colaborando com o time.</td>
-                    <td>• Colabora com a equipe quando solicitado ou quando identifica necessidade.</td>
-                    <td class="col-grade">5</td>
-                    <td class="col-status"><span class="badge badge--active">Ativo</span></td>
-                    <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                  </tr>
-                  <tr>
-                    <td class="strong">Respeito e Colaboração</td>
-                    <td>Contribui para um ambiente saudável, respeitando as pessoas e colaborando com o time.</td>
-                    <td>• Contribui para um ambiente de trabalho positivo e cooperativo.</td>
+                    <td>
+                      <ul class="ind-list">
+                        <li>Mantém relacionamento respeitoso com colegas, líderes e clientes.</li>
+                        <li>Colabora com a equipe quando solicitado ou quando identifica necessidade.</li>
+                        <li>Contribui para um ambiente de trabalho positivo e cooperativo.</li>
+                      </ul>
+                    </td>
                     <td class="col-grade">5</td>
                     <td class="col-status"><span class="badge badge--active">Ativo</span></td>
                     <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
@@ -530,7 +488,7 @@
               <div class="field field--full" data-show="organizacionais">
                 <label for="o-indicadores">Indicadores</label>
                 <textarea id="o-indicadores" rows="4" placeholder="Um por linha. Ex: • Mantém relacionamento respeitoso..."></textarea>
-                <small class="help">Dica: no protótipo, cada indicador vira uma linha na tabela.</small>
+                <small class="help">Dica: cada indicador vira um item dentro da lista na mesma linha da competência.</small>
               </div>
 
               <div class="field" data-show="organizacionais">
@@ -629,7 +587,6 @@
 
         // reset
         form.reset();
-
         if (type === "organizacionais") {
           document.getElementById("o-grau").value = "5";
         }
@@ -637,6 +594,7 @@
         // preencher se for editar
         if (mode === "edit" && row) {
           const tds = row.querySelectorAll("td");
+
           if (type === "tecnicas") {
             document.getElementById("t-nome").value = tds[0]?.innerText.trim() || "";
             document.getElementById("t-categoria").value = tds[1]?.innerText.trim() || "";
@@ -655,8 +613,16 @@
           if (type === "organizacionais") {
             document.getElementById("o-nome").value = tds[0]?.innerText.trim() || "";
             document.getElementById("o-conceito").value = tds[1]?.innerText.trim() || "";
-            // no protótipo, cada linha é um indicador (vira 1 linha no textarea)
-            document.getElementById("o-indicadores").value = (tds[2]?.innerText.trim() || "").replace(/^•\s?/gm, "• ");
+
+            // agora indicadores ficam em lista dentro da mesma célula
+            const indText = (tds[2]?.innerText || "").trim();
+            const indLines = indText
+              .split("\n")
+              .map(s => s.trim())
+              .filter(Boolean)
+              .map(s => "• " + s.replace(/^•\s*/, ""));
+
+            document.getElementById("o-indicadores").value = indLines.join("\n");
             document.getElementById("o-grau").value = tds[3]?.innerText.trim() || "5";
             document.getElementById("o-status").value = (tds[4]?.innerText.trim() || "Ativo");
           }
@@ -698,6 +664,16 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape" && !modal.hidden) closeModal();
       });
+
+      function normalizeIndicator(s){
+        return String(s || "").replace(/^•\s*/, "").trim();
+      }
+
+      function indicatorsHtml(indicators){
+        const list = (indicators || []).map(normalizeIndicator).filter(Boolean);
+        if (!list.length) return `<ul class="ind-list"><li></li></ul>`;
+        return `<ul class="ind-list">${list.map(i => `<li>${escapeHtml(i)}</li>`).join("")}</ul>`;
+      }
 
       // Submit (protótipo): atualiza tabela (edit) ou adiciona (create)
       form.addEventListener("submit", (e) => {
@@ -761,6 +737,7 @@
           }
         }
 
+        // ✅ ORGANIZACIONAIS (corrigido: salva 1 linha, não duplica)
         if (type === "organizacionais") {
           const nome = document.getElementById("o-nome").value.trim();
           const conceito = document.getElementById("o-conceito").value.trim();
@@ -768,53 +745,32 @@
           const status = document.getElementById("o-status").value.trim() || "Ativo";
           const indicadoresRaw = document.getElementById("o-indicadores").value || "";
 
-          // transforma em linhas
           const indicadores = indicadoresRaw
             .split("\n")
-            .map(s => s.trim())
-            .filter(Boolean)
-            .map(s => s.startsWith("•") ? s : "• " + s);
+            .map(normalizeIndicator)
+            .filter(Boolean);
+
+          const indHTML = indicatorsHtml(indicadores);
 
           if (mode === "edit" && editingRow) {
             const tds = editingRow.querySelectorAll("td");
             tds[0].innerText = nome;
             tds[1].innerText = conceito;
-            tds[2].innerText = (indicadores[0] || "• ");
+            tds[2].innerHTML = indHTML;
             tds[3].innerText = grau;
             tds[4].innerHTML = `<span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${status}</span>`;
-
-            // se tiver mais indicadores, cria novas linhas (protótipo)
-            if (indicadores.length > 1) {
-              const tbody = document.getElementById("tbody-organizacionais");
-              for (let i = 1; i < indicadores.length; i++) {
-                const tr = document.createElement("tr");
-                tr.innerHTML = `
-                  <td class="strong">${escapeHtml(nome)}</td>
-                  <td>${escapeHtml(conceito)}</td>
-                  <td>${escapeHtml(indicadores[i])}</td>
-                  <td class="col-grade">${escapeHtml(grau)}</td>
-                  <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
-                  <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-                `;
-                tbody.insertBefore(tr, editingRow.nextSibling);
-              }
-            }
           } else {
             const tbody = document.getElementById("tbody-organizacionais");
-            const list = indicadores.length ? indicadores : ["• "];
-
-            list.forEach(ind => {
-              const tr = document.createElement("tr");
-              tr.innerHTML = `
-                <td class="strong">${escapeHtml(nome)}</td>
-                <td>${escapeHtml(conceito)}</td>
-                <td>${escapeHtml(ind)}</td>
-                <td class="col-grade">${escapeHtml(grau)}</td>
-                <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
-                <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
-              `;
-              tbody.prepend(tr);
-            });
+            const tr = document.createElement("tr");
+            tr.innerHTML = `
+              <td class="strong">${escapeHtml(nome)}</td>
+              <td>${escapeHtml(conceito)}</td>
+              <td>${indHTML}</td>
+              <td class="col-grade">${escapeHtml(grau)}</td>
+              <td class="col-status"><span class="badge ${status === "Ativo" ? "badge--active" : "badge--inactive"}">${escapeHtml(status)}</span></td>
+              <td class="col-actions"><button class="btn btn--ghost btn--sm" type="button" data-action="edit-row" data-type="organizacionais">Editar</button></td>
+            `;
+            tbody.prepend(tr);
           }
         }
 
@@ -834,4 +790,3 @@
   </script>
 </body>
 </html>
- 

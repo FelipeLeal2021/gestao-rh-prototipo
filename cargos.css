@@ -4,7 +4,11 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 26px 20px 60px;
+  color: #0f172a;
 }
+
+.cargos-page,
+.cargos-page *{ box-sizing: border-box; }
 
 .cargos-view{ display: none; }
 .cargos-view.is-active{ display: block; }
@@ -74,7 +78,11 @@
   opacity: .55;
 }
 
-.cargos-page .search__icon svg{ width: 18px; height: 18px; display: block; }
+.cargos-page .search__icon svg{
+  width: 18px;
+  height: 18px;
+  display: block;
+}
 
 .cargos-page .search__input{
   width: 100%;
@@ -105,7 +113,6 @@
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  /* ✅ sem salário, dá pra reduzir */
   min-width: 920px;
   background: rgba(255,255,255,.92);
 }
@@ -123,6 +130,9 @@
   z-index: 1;
 }
 
+.cargos-page .table thead th:first-child{ border-top-left-radius: 12px; }
+.cargos-page .table thead th:last-child{ border-top-right-radius: 12px; }
+
 .cargos-page .table tbody td{
   padding: 12px 12px;
   border-bottom: 1px solid rgba(15, 20, 40, .08);
@@ -131,6 +141,8 @@
   color: rgba(30, 41, 59, .95);
   line-height: 1.45;
 }
+
+.cargos-page .table tbody tr:last-child td{ border-bottom: 0; }
 
 .cargos-page .table tbody tr:hover td{
   background: rgba(5, 13, 141, .03);
@@ -159,7 +171,6 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-
 .cargos-page .row-link:hover{ opacity: .85; }
 
 .cargos-page .strong{ font-weight: 900; }
@@ -231,7 +242,7 @@
   font-size: 13px;
   font-weight: 900;
   color: rgba(5, 13, 141, .92);
-  transition: transform .06s ease, background .2s ease, box-shadow .2s ease;
+  transition: transform .06s ease, background .2s ease, box-shadow .2s ease, opacity .15s ease;
 }
 
 .cargos-page .tabs__tab:hover{
@@ -310,6 +321,9 @@
   font-size: 13px;
 }
 
+/* melhora o clique */
+.cargos-page .radio input{ accent-color: rgba(5, 13, 141, .92); }
+
 /* Segmented (Sim/Não) */
 .cargos-page .segmented{
   display: inline-flex;
@@ -325,7 +339,9 @@
   cursor: pointer;
   background: transparent;
   font-weight: 900;
+  transition: background .15s ease, opacity .15s ease;
 }
+.cargos-page .segmented__btn:hover{ background: rgba(5, 13, 141, .05); }
 
 .cargos-page .segmented__btn.is-active{
   background: rgba(5, 13, 141, .12);
@@ -427,6 +443,8 @@
   white-space: nowrap;
 }
 
+.cargos-page .btn:hover{ background: rgba(5, 13, 141, .05); }
+
 .cargos-page .btn:active{ transform: translateY(1px); }
 
 .cargos-page .btn:disabled{
@@ -493,11 +511,14 @@ body.modal-open{ overflow: hidden; }
   position: absolute;
   inset: 0;
   background: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
 }
 
 .cargos-page .modal__dialog{
   position: relative;
   width: min(860px, 100%);
+  max-height: 86vh;
+  overflow: auto;
   background: rgba(255,255,255,.98);
   border: 1px solid rgba(15, 20, 40, .12);
   border-radius: 18px;
@@ -511,6 +532,8 @@ body.modal-open{ overflow: hidden; }
   justify-content: space-between;
   gap: 10px;
   margin-bottom: 10px;
+  padding: 6px 6px 10px;
+  border-bottom: 1px solid rgba(15, 20, 40, .08);
 }
 
 .cargos-page .modal__title{
@@ -528,6 +551,8 @@ body.modal-open{ overflow: hidden; }
   font-weight: 900;
 }
 
+.cargos-page .modal__close:hover{ background: rgba(5, 13, 141, .09); }
+
 .cargos-page .modal__hint{
   margin: 0 0 10px;
   opacity: .75;
@@ -538,6 +563,11 @@ body.modal-open{ overflow: hidden; }
 .cargos-page .crud-block{ margin-top: 6px; }
 .cargos-page .crud-block[hidden]{ display: none; }
 
+/* ✅ deixa o select "Selecionar competência cadastrada" com cara melhor */
+.cargos-page .crud-block select{
+  cursor: pointer;
+}
+
 /* ✅ ações do modal */
 .cargos-page .modal__actions{
   margin-top: 14px;
@@ -545,6 +575,8 @@ body.modal-open{ overflow: hidden; }
   justify-content: flex-end;
   gap: 10px;
   flex-wrap: wrap;
+  padding-top: 12px;
+  border-top: 1px solid rgba(15, 20, 40, .08);
 }
 
 /* Responsivo */
@@ -560,6 +592,14 @@ body.modal-open{ overflow: hidden; }
     grid-template-columns: 1fr;
   }
 
-  /* ✅ sem salário, pode reduzir também */
+  .cargos-page .col-actions{ text-align: left; width: 140px; }
+  .cargos-page .table thead th.col-actions{ text-align: left; }
+
   .cargos-page .table{ min-width: 880px; }
+}
+
+@media (max-width: 520px){
+  .cargos-page{ padding: 20px 14px 54px; }
+  .cargos-page .card{ padding: 12px; }
+  .cargos-page .page-title{ font-size: 24px; }
 }

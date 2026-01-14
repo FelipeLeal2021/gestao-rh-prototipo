@@ -141,6 +141,11 @@
   box-shadow: 0 0 0 4px rgba(5, 13, 141, .06);
 }
 
+/* ✅ NOVO: inputs do cadastro (sem ícone, padding normal) */
+.pdi-search__input--plain{
+  padding-left: 12px;
+}
+
 /* Filters (chips) */
 .pdi-filters{
   display: inline-flex;
@@ -300,6 +305,12 @@
   cursor: pointer;
   font-weight: 900;
   white-space: nowrap;
+  transition: transform .12s ease, background .12s ease, border-color .12s ease, opacity .12s ease;
+}
+
+.btnp:hover{
+  background: rgba(5, 13, 141, .06);
+  border-color: rgba(5, 13, 141, .22);
 }
 
 .btnp:active{ transform: translateY(1px); }
@@ -339,6 +350,30 @@
 }
 
 .action-btn:hover{ background: rgba(5, 13, 141, .11); }
+
+/* =========================
+   ✅ NOVO: Tela de cadastro (view-cadastro)
+   (não quebra o resto, só melhora o layout)
+========================= */
+#view-cadastro .pdi-toolbar{
+  align-items: flex-start;
+}
+
+#view-cadastro .pdi-search{
+  max-width: none;
+  min-width: 260px;
+}
+
+#view-cadastro label.muted{
+  opacity: .8;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+/* Campos do cadastro em grid (quando existir wrapper inline) */
+#view-cadastro .pdi-toolbar .pdi-search{
+  max-width: none;
+}
 
 /* Modal */
 .modal.is-hidden{ display: none; }

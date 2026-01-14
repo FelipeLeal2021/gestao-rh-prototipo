@@ -10,7 +10,6 @@
 
   <!-- Carrega o menu/header automaticamente -->
   <script src="js/include-menu.js" defer></script>
-  <script src="js/pdi.js" defer></script>
 </head>
 
 <body>
@@ -21,14 +20,15 @@
     <!-- =========================
          VIEW 1: LISTA DE COLABORADORES
     ========================== -->
-    <section id="view-lista" class="pdi-card">
+    <section id="view-lista" class="pdi-card" aria-label="Lista de colaboradores do PDI">
       <header class="pdi-card__head">
         <div>
           <h2 class="pdi-title">Plano de Desenvolvimento Individual (PDI)</h2>
           <p class="pdi-subtitle">Acompanhe atividades do PDI por colaborador.</p>
         </div>
 
-        <button class="btnp btnp--primary" type="button" id="btn-novo-colab" title="Protótipo">
+        <!-- ✅ AGORA CLICÁVEL: abre a tela de cadastro -->
+        <button class="btnp btnp--primary" type="button" id="btn-novo-colab">
           + Incluir
         </button>
       </header>
@@ -81,7 +81,65 @@
     </section>
 
     <!-- =========================
+         VIEW 1.5: CADASTRO (NOVO PDI / NOVO COLABORADOR)
+         ✅ NOVO: tela de cadastro aberta por "Incluir" e também pode ser usada antes de "Abrir"
+    ========================== -->
+    <section id="view-cadastro" class="pdi-card is-hidden" aria-label="Cadastro de PDI">
+      <header class="pdi-card__head">
+        <div class="pdi-person">
+          <button class="btnp btnp--ghost" id="btn-voltar-cadastro" type="button">← Voltar</button>
+
+          <div class="pdi-person__info">
+            <div class="avatar" id="cadastro-avatar">N</div>
+            <div>
+              <h2 class="pdi-title">Cadastro de PDI</h2>
+              <p class="pdi-subtitle">Preencha os dados do colaborador para criar/abrir o PDI.</p>
+              <p class="muted">Depois você poderá incluir atividades no detalhe.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btnp btnp--primary" type="button" id="btn-salvar-cadastro">
+          Salvar e abrir
+        </button>
+      </header>
+
+      <div class="pdi-toolbar pdi-toolbar--detail">
+        <div class="pdi-search" style="gap:12px; align-items:flex-start;">
+          <div style="width:100%;">
+            <label class="muted" for="cad-nome" style="display:block; margin:0 0 6px;">Colaborador</label>
+            <input id="cad-nome" class="pdi-search__input" type="text" placeholder="Ex: Ana Paula Souza" />
+          </div>
+
+          <div style="width:100%;">
+            <label class="muted" for="cad-cargo" style="display:block; margin:0 0 6px;">Cargo</label>
+            <input id="cad-cargo" class="pdi-search__input" type="text" placeholder="Ex: Auxiliar Administrativo" />
+          </div>
+
+          <div style="width:100%;">
+            <label class="muted" for="cad-depto" style="display:block; margin:0 0 6px;">Departamento</label>
+            <input id="cad-depto" class="pdi-search__input" type="text" placeholder="Ex: Financeiro" />
+          </div>
+
+          <div style="width:100%;">
+            <label class="muted" for="cad-lider" style="display:block; margin:0 0 6px;">Líder responsável</label>
+            <input id="cad-lider" class="pdi-search__input" type="text" placeholder="Ex: Mariana Teixeira" />
+          </div>
+        </div>
+
+        <div class="pdi-toolbar__right">
+          <button class="btnp btnp--ghost" type="button" id="btn-cancelar-cadastro">Cancelar</button>
+        </div>
+      </div>
+
+      <div class="pdi-footer muted">
+        <span>Dica: ao salvar, o PDI será criado e você será levado para a tela de detalhe.</span>
+      </div>
+    </section>
+
+    <!-- =========================
          VIEW 2: DETALHE DO PDI DO COLABORADOR
+         ✅ "Abrir" leva para esta tela
     ========================== -->
     <section id="view-detalhe" class="pdi-card is-hidden" aria-label="Detalhe do PDI">
       <header class="pdi-card__head">
@@ -105,13 +163,11 @@
         </button>
       </header>
 
-      <!-- ✅ AQUI: busca + filtros (seta do print) -->
       <div class="pdi-toolbar pdi-toolbar--detail">
         <div class="pdi-search">
           <span class="pdi-search__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M10 2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2zm0 2a6 6 0 1 1 0 12 6 6 0 0 1 0-12z"/></svg>
           </span>
-          <!-- ✅ Placeholder ajustado -->
           <input id="search-ativ" class="pdi-search__input" type="text" placeholder="Pesquisar competência..." />
         </div>
 
@@ -251,5 +307,440 @@
     </div>
 
   </main>
+
+  <script>
+    (function () {
+      // =========================
+      // Helpers de view
+      // =========================
+      const viewLista = document.getElementById("view-lista");
+      const viewCadastro = document.getElementById("view-cadastro");
+      const viewDetalhe = document.getElementById("view-detalhe");
+
+      function showOnly(view) {
+        [viewLista, viewCadastro, viewDetalhe].forEach(v => v.classList.add("is-hidden"));
+        view.classList.remove("is-hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+
+      // =========================
+      // Dados (protótipo)
+      // =========================
+      let COLABS = [
+        {
+          id: "c1",
+          nome: "Ana Paula Souza",
+          cargo: "Auxiliar Administrativo",
+          depto: "Financeiro",
+          lider: "Mariana Teixeira",
+          status: "Em andamento",
+          atualizadoEm: "09/07/2025",
+        },
+        {
+          id: "c2",
+          nome: "João Victor Martins",
+          cargo: "Operador Produção",
+          depto: "Produção",
+          lider: "Mariana Teixeira",
+          status: "Não iniciado",
+          atualizadoEm: "—",
+        },
+        {
+          id: "c3",
+          nome: "Fernanda Rocha",
+          cargo: "Analista Financeiro",
+          depto: "Financeiro",
+          lider: "Mariana Teixeira",
+          status: "Concluído",
+          atualizadoEm: "12/07/2025",
+        },
+      ];
+
+      // Atividades por colaborador
+      let ATIV = {
+        c1: [
+          { id: "a1", ciclo: "2025 - 2º Semestre", competencia: "Comunicação", inicio: "2025-07-10", prazo: "2025-09-30", status: "Em andamento" },
+          { id: "a2", ciclo: "2025 - 2º Semestre", competencia: "Organização", inicio: "2025-07-15", prazo: "2025-10-15", status: "Não iniciado" },
+        ],
+        c2: [],
+        c3: [
+          { id: "a3", ciclo: "2025 - 1º Semestre", competencia: "Gestão do tempo", inicio: "2025-02-01", prazo: "2025-05-30", status: "Concluído" },
+        ],
+      };
+
+      // =========================
+      // Elementos
+      // =========================
+      const tbodyColabs = document.getElementById("tbody-colaboradores");
+      const totalColab = document.getElementById("total-colab");
+      const searchColab = document.getElementById("search-colab");
+      const statusChecksColab = Array.from(document.querySelectorAll(".filter-colab-status"));
+
+      const detalheAvatar = document.getElementById("detalhe-avatar");
+      const detalheNome = document.getElementById("detalhe-nome");
+      const detalheCargo = document.getElementById("detalhe-cargo");
+      const detalheDepto = document.getElementById("detalhe-depto");
+      const detalheLider = document.getElementById("detalhe-lider");
+
+      const tbodyAtiv = document.getElementById("tbody-atividades");
+      const totalAtiv = document.getElementById("total-ativ");
+      const searchAtiv = document.getElementById("search-ativ");
+      const statusChecksAtiv = Array.from(document.querySelectorAll(".filter-ativ-status"));
+
+      // Cadastro (novo colab)
+      const cadNome = document.getElementById("cad-nome");
+      const cadCargo = document.getElementById("cad-cargo");
+      const cadDepto = document.getElementById("cad-depto");
+      const cadLider = document.getElementById("cad-lider");
+      const cadastroAvatar = document.getElementById("cadastro-avatar");
+
+      // Modal
+      const modal = document.getElementById("modal");
+      const formAtiv = document.getElementById("form-atividade");
+      const modalTitle = document.getElementById("modal-title");
+
+      // Botões
+      const btnNovoColab = document.getElementById("btn-novo-colab");
+      const btnVoltar = document.getElementById("btn-voltar");
+      const btnVoltarCadastro = document.getElementById("btn-voltar-cadastro");
+      const btnCancelarCadastro = document.getElementById("btn-cancelar-cadastro");
+      const btnSalvarCadastro = document.getElementById("btn-salvar-cadastro");
+      const btnIncluirAtiv = document.getElementById("btn-incluir-atividade");
+      const btnClearAtivFilters = document.getElementById("btnClearAtivFilters");
+
+      let currentColabId = null;
+
+      // =========================
+      // UI helpers
+      // =========================
+      function initials(name) {
+        const parts = (name || "").trim().split(/\s+/).filter(Boolean);
+        if (!parts.length) return "N";
+        const a = parts[0][0] || "";
+        const b = (parts[parts.length - 1][0] || "");
+        return (a + b).toUpperCase();
+      }
+
+      function fmtDateBr(iso) {
+        if (!iso) return "—";
+        if (String(iso).includes("/")) return iso; // já está em BR
+        const d = new Date(iso + "T00:00:00");
+        if (Number.isNaN(d.getTime())) return "—";
+        const dd = String(d.getDate()).padStart(2, "0");
+        const mm = String(d.getMonth() + 1).padStart(2, "0");
+        const yy = d.getFullYear();
+        return `${dd}/${mm}/${yy}`;
+      }
+
+      function pillStatus(status) {
+        const s = status || "";
+        // usa classes do seu CSS (chips já existem no detalhe; aqui é só um badge simples)
+        const base = "chip";
+        if (s === "Concluído") return `<span class="${base} chip--ok"><span>${s}</span></span>`;
+        if (s === "Em andamento") return `<span class="${base} chip--warn"><span>${s}</span></span>`;
+        return `<span class="${base} chip--neutral"><span>${s || "Não iniciado"}</span></span>`;
+      }
+
+      // =========================
+      // Render: Lista
+      // =========================
+      function getColabFilters() {
+        const q = (searchColab.value || "").toLowerCase().trim();
+        const allowed = new Set(statusChecksColab.filter(c => c.checked).map(c => c.value));
+        return { q, allowed };
+      }
+
+      function renderColabs() {
+        const { q, allowed } = getColabFilters();
+
+        const filtered = COLABS.filter(c => {
+          const txt = `${c.nome} ${c.cargo} ${c.depto} ${c.status}`.toLowerCase();
+          const okQ = !q || txt.includes(q);
+          const okS = allowed.has(c.status);
+          return okQ && okS;
+        });
+
+        tbodyColabs.innerHTML = "";
+        filtered.forEach(c => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${c.nome}</td>
+            <td>${c.cargo}</td>
+            <td>${c.depto}</td>
+            <td>${pillStatus(c.status)}</td>
+            <td>${c.atualizadoEm || "—"}</td>
+            <td class="col-actions">
+              <!-- ✅ AGORA CLICÁVEL: "Abrir" abre a tela (detalhe/cadastro do PDI) -->
+              <button class="btnp btnp--primary btnp--sm" type="button"
+                data-action="abrir"
+                data-id="${c.id}">
+                Abrir
+              </button>
+            </td>
+          `;
+          tbodyColabs.appendChild(tr);
+        });
+
+        totalColab.textContent = `Total: ${filtered.length} colaboradores`;
+      }
+
+      // =========================
+      // Render: Detalhe + Atividades
+      // =========================
+      function getAtivFilters() {
+        const q = (searchAtiv.value || "").toLowerCase().trim();
+        const allowed = new Set(statusChecksAtiv.filter(c => c.checked).map(c => c.value));
+        return { q, allowed };
+      }
+
+      function renderAtividades() {
+        const { q, allowed } = getAtivFilters();
+        const list = (ATIV[currentColabId] || []);
+
+        const filtered = list.filter(a => {
+          const txt = `${a.ciclo} ${a.competencia} ${a.status}`.toLowerCase();
+          const okQ = !q || txt.includes(q);
+          const okS = allowed.has(a.status);
+          return okQ && okS;
+        });
+
+        tbodyAtiv.innerHTML = "";
+        filtered.forEach(a => {
+          const tr = document.createElement("tr");
+          tr.innerHTML = `
+            <td>${a.ciclo}</td>
+            <td>${a.competencia}</td>
+            <td>${fmtDateBr(a.inicio)}</td>
+            <td>${fmtDateBr(a.prazo)}</td>
+            <td>${pillStatus(a.status)}</td>
+            <td class="col-actions">
+              <button class="btnp btnp--ghost btnp--sm" type="button"
+                data-action="editar-ativ"
+                data-ativ-id="${a.id}">
+                Editar
+              </button>
+            </td>
+          `;
+          tbodyAtiv.appendChild(tr);
+        });
+
+        totalAtiv.textContent = `Total: ${filtered.length} atividades`;
+      }
+
+      function openDetalhe(colabId) {
+        const c = COLABS.find(x => x.id === colabId);
+        if (!c) return;
+
+        currentColabId = colabId;
+
+        detalheAvatar.textContent = initials(c.nome);
+        detalheNome.textContent = c.nome;
+        detalheCargo.textContent = c.cargo;
+        detalheDepto.textContent = c.depto;
+        detalheLider.textContent = c.lider || "—";
+
+        // limpa buscas/filtros do detalhe (mantém checks como estão)
+        searchAtiv.value = "";
+        renderAtividades();
+
+        showOnly(viewDetalhe);
+      }
+
+      // =========================
+      // Cadastro: abrir / salvar
+      // =========================
+      function openCadastro() {
+        cadNome.value = "";
+        cadCargo.value = "";
+        cadDepto.value = "";
+        cadLider.value = "";
+        cadastroAvatar.textContent = "N";
+        showOnly(viewCadastro);
+      }
+
+      function saveCadastroAndOpen() {
+        const nome = (cadNome.value || "").trim();
+        const cargo = (cadCargo.value || "").trim();
+        const depto = (cadDepto.value || "").trim();
+        const lider = (cadLider.value || "").trim();
+
+        if (!nome || !cargo || !depto) {
+          alert("Preencha pelo menos: Colaborador, Cargo e Departamento.");
+          return;
+        }
+
+        const id = "c" + Math.random().toString(16).slice(2, 8);
+        const novo = {
+          id,
+          nome,
+          cargo,
+          depto,
+          lider: lider || "—",
+          status: "Não iniciado",
+          atualizadoEm: "—",
+        };
+
+        COLABS = [novo, ...COLABS];
+        ATIV[id] = [];
+
+        renderColabs();
+        openDetalhe(id);
+      }
+
+      // =========================
+      // Modal: abrir / fechar / editar
+      // =========================
+      function openModal(mode, atividade) {
+        modal.classList.remove("is-hidden");
+        modal.setAttribute("aria-hidden", "false");
+
+        modalTitle.textContent = (mode === "edit") ? "Editar atividade" : "Incluir atividade";
+
+        // preenche form
+        document.getElementById("f-id").value = atividade?.id || "";
+        document.getElementById("f-data-cadastro").value = atividade?.dataCadastro || new Date().toISOString().slice(0,10);
+        document.getElementById("f-ciclo").value = atividade?.ciclo || "";
+        document.getElementById("f-competencia").value = atividade?.competencia || "";
+        document.getElementById("f-porque").value = atividade?.porque || "";
+        document.getElementById("f-onde").value = atividade?.onde || "";
+        document.getElementById("f-oque").value = atividade?.oque || "";
+        document.getElementById("f-responsavel").value = atividade?.responsavel || "";
+        document.getElementById("f-quanto").value = atividade?.quanto || "";
+        document.getElementById("f-inicio").value = atividade?.inicio || "";
+        document.getElementById("f-prazo").value = atividade?.prazo || "";
+        document.getElementById("f-conclusao").value = atividade?.conclusao || "";
+        document.getElementById("f-status").value = atividade?.status || "Não iniciado";
+      }
+
+      function closeModal() {
+        modal.classList.add("is-hidden");
+        modal.setAttribute("aria-hidden", "true");
+      }
+
+      // =========================
+      // Eventos
+      // =========================
+
+      // ✅ Incluir (lista) abre cadastro
+      btnNovoColab.addEventListener("click", openCadastro);
+
+      // Voltar do cadastro
+      btnVoltarCadastro.addEventListener("click", () => {
+        showOnly(viewLista);
+      });
+      btnCancelarCadastro.addEventListener("click", () => {
+        showOnly(viewLista);
+      });
+
+      // Avatar live no cadastro
+      cadNome.addEventListener("input", () => {
+        cadastroAvatar.textContent = initials(cadNome.value);
+      });
+
+      // Salvar cadastro e abrir detalhe
+      btnSalvarCadastro.addEventListener("click", saveCadastroAndOpen);
+
+      // Voltar do detalhe
+      btnVoltar.addEventListener("click", () => {
+        showOnly(viewLista);
+      });
+
+      // Lista: clique em Abrir
+      tbodyColabs.addEventListener("click", (e) => {
+        const btn = e.target.closest('[data-action="abrir"]');
+        if (!btn) return;
+        openDetalhe(btn.dataset.id);
+      });
+
+      // Busca/filtros colabs
+      searchColab.addEventListener("input", renderColabs);
+      statusChecksColab.forEach(ch => ch.addEventListener("change", renderColabs));
+
+      // Detalhe: incluir atividade
+      btnIncluirAtiv.addEventListener("click", () => {
+        if (!currentColabId) return;
+        openModal("new", null);
+      });
+
+      // Detalhe: editar atividade
+      tbodyAtiv.addEventListener("click", (e) => {
+        const btn = e.target.closest('[data-action="editar-ativ"]');
+        if (!btn) return;
+        const id = btn.dataset.ativId;
+        const list = ATIV[currentColabId] || [];
+        const atividade = list.find(a => a.id === id);
+        openModal("edit", atividade || null);
+      });
+
+      // Busca/filtros atividades
+      searchAtiv.addEventListener("input", renderAtividades);
+      statusChecksAtiv.forEach(ch => ch.addEventListener("change", renderAtividades));
+
+      // Limpar filtros (atividades)
+      btnClearAtivFilters.addEventListener("click", () => {
+        searchAtiv.value = "";
+        statusChecksAtiv.forEach(ch => ch.checked = true);
+        renderAtividades();
+      });
+
+      // Fechar modal
+      modal.addEventListener("click", (e) => {
+        if (e.target.closest("[data-close]")) closeModal();
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && !modal.classList.contains("is-hidden")) closeModal();
+      });
+
+      // Salvar atividade (new/edit)
+      formAtiv.addEventListener("submit", (e) => {
+        e.preventDefault();
+        if (!currentColabId) return;
+
+        const list = ATIV[currentColabId] || [];
+        const id = document.getElementById("f-id").value || ("a" + Math.random().toString(16).slice(2, 8));
+
+        const atividade = {
+          id,
+          dataCadastro: document.getElementById("f-data-cadastro").value,
+          ciclo: document.getElementById("f-ciclo").value,
+          competencia: document.getElementById("f-competencia").value,
+          porque: document.getElementById("f-porque").value,
+          onde: document.getElementById("f-onde").value,
+          oque: document.getElementById("f-oque").value,
+          responsavel: document.getElementById("f-responsavel").value,
+          quanto: document.getElementById("f-quanto").value,
+          inicio: document.getElementById("f-inicio").value,
+          prazo: document.getElementById("f-prazo").value,
+          conclusao: document.getElementById("f-conclusao").value,
+          status: document.getElementById("f-status").value,
+        };
+
+        const idx = list.findIndex(a => a.id === id);
+        if (idx >= 0) list[idx] = atividade;
+        else list.unshift(atividade);
+
+        ATIV[currentColabId] = list;
+
+        // atualiza "última atualização" e status no colab (bem simples)
+        const c = COLABS.find(x => x.id === currentColabId);
+        if (c) {
+          c.atualizadoEm = fmtDateBr(new Date().toISOString().slice(0,10));
+          c.status = (list.some(a => a.status === "Em andamento")) ? "Em andamento"
+                   : (list.length && list.every(a => a.status === "Concluído")) ? "Concluído"
+                   : "Não iniciado";
+        }
+
+        renderAtividades();
+        renderColabs();
+        closeModal();
+      });
+
+      // =========================
+      // Init
+      // =========================
+      showOnly(viewLista);
+      renderColabs();
+    })();
+  </script>
 </body>
 </html>

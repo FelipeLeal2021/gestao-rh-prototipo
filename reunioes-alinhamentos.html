@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reuniões & Alinhamentos • Gestão de RH</title>
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="reunioes-alinhamentos.css" />
+
+  <script src="js/include-menu.js" defer></script>
+  <script src="js/reunioes-alinhamentos.js" defer></script>
+</head>
+
+<body>
+  <div id="app-menu"></div>
+
+  <main class="ra-page">
+
+    <!-- ===== VIEW: LISTA ===== -->
+    <section id="view-list" class="ra-view is-active" aria-label="Lista de Reuniões">
+      <header class="ra-head">
+        <div>
+          <h2 class="ra-title">Reuniões &amp; Alinhamentos</h2>
+          <p class="ra-sub">Registre reuniões, alinhamentos, decisões e pendências para acompanhamento.</p>
+        </div>
+
+        <div class="ra-actions">
+          <button id="btn-incluir" class="btn btn--success" type="button">Incluir</button>
+        </div>
+      </header>
+
+      <section class="ra-card" aria-label="Tabela de reuniões">
+        <div class="ra-table-wrap">
+          <table class="ra-table">
+            <thead>
+              <tr class="ra-cols">
+                <th>Código</th>
+                <th>Tipo</th>
+                <th class="t-center">Data</th>
+                <th>Área/Departamento</th>
+                <th>Responsável</th>
+                <th>Participantes</th>
+                <th>Objetivo</th>
+                <th>Status</th>
+                <th class="t-right">Ações</th>
+              </tr>
+
+              <!-- filtros nas colunas -->
+              <tr class="ra-filters">
+                <th><input id="f-codigo" class="ra-input ra-input--mini" placeholder="Filtrar" /></th>
+                <th>
+                  <select id="f-tipo" class="ra-input ra-input--mini">
+                    <option value="">Todos</option>
+                    <option value="reunião de alinhamento">Reunião de alinhamento</option>
+                    <option value="reunião de equipe">Reunião de equipe</option>
+                    <option value="reunião de resultados">Reunião de resultados</option>
+                    <option value="reunião de lideranças">Reunião de lideranças</option>
+                  </select>
+                </th>
+                <th class="t-center"><input id="f-data" class="ra-input ra-input--mini" type="date" /></th>
+                <th><input id="f-area" class="ra-input ra-input--mini" placeholder="Filtrar" /></th>
+                <th><input id="f-resp" class="ra-input ra-input--mini" placeholder="Filtrar" /></th>
+                <th><input id="f-part" class="ra-input ra-input--mini" placeholder="Filtrar" /></th>
+                <th><input id="f-obj" class="ra-input ra-input--mini" placeholder="Filtrar" /></th>
+                <th>
+                  <select id="f-status" class="ra-input ra-input--mini">
+                    <option value="">Todos</option>
+                    <option value="agendada">Agendada</option>
+                    <option value="realizada">Realizada</option>
+                    <option value="cancelada">Cancelada</option>
+                    <option value="não realizada">Não realizada</option>
+                  </select>
+                </th>
+                <th class="t-right">
+                  <button id="btn-limpar" class="btn btn--soft btn--mini" type="button">Limpar</button>
+                </th>
+              </tr>
+            </thead>
+
+            <tbody id="tbody-reunioes"></tbody>
+          </table>
+        </div>
+
+        <div id="empty-state" class="ra-empty" hidden>
+          <div class="ra-empty__title">Nenhuma reunião encontrada</div>
+          <div class="ra-empty__sub">Use <b>Incluir</b> para cadastrar a primeira reunião.</div>
+        </div>
+      </section>
+    </section>
+
+    <!-- ===== VIEW: FORM ===== -->
+    <section id="view-form" class="ra-view" aria-label="Cadastro/visualização de reunião">
+      <header class="ra-head">
+        <div>
+          <h2 id="form-title" class="ra-title">Incluir reunião</h2>
+          <p id="form-sub" class="ra-sub">Preencha os dados de identificação e o registro da reunião.</p>
+        </div>
+
+        <div class="ra-actions">
+          <button id="btn-editar" class="btn btn--success is-hidden" type="button">Editar</button>
+          <button id="btn-voltar" class="btn btn--soft" type="button">Voltar</button>
+        </div>
+      </header>
+
+      <form id="form-ra" class="ra-card ra-form" autocomplete="off">
+
+        <!-- Identificação -->
+        <div class="ra-section">
+          <h3 class="ra-section__title">Identificação</h3>
+
+          <div class="ra-grid">
+            <div class="ra-field">
+              <label class="ra-label" for="codigo">Código *</label>
+              <input id="codigo" class="ra-input" type="text" placeholder="Ex.: REU-0001" required />
+            </div>
+
+            <div class="ra-field">
+              <label class="ra-label" for="tipo">Tipo de reunião *</label>
+              <select id="tipo" class="ra-input" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="reunião de alinhamento">Reunião de alinhamento</option>
+                <option value="reunião de equipe">Reunião de equipe</option>
+                <option value="reunião de resultados">Reunião de resultados</option>
+                <option value="reunião de lideranças">Reunião de lideranças</option>
+              </select>
+            </div>
+
+            <div class="ra-field">
+              <label class="ra-label" for="data">Data *</label>
+              <input id="data" class="ra-input" type="date" required />
+            </div>
+
+            <div class="ra-field">
+              <label class="ra-label" for="area">Área / Departamento *</label>
+              <input id="area" class="ra-input" type="text" placeholder="Ex.: RH" required />
+            </div>
+
+            <div class="ra-field">
+              <label class="ra-label" for="responsavel">Responsável pela reunião *</label>
+              <input id="responsavel" class="ra-input" type="text" placeholder="Ex.: Marcelo Ribeiro" required />
+            </div>
+
+            <div class="ra-field">
+              <label class="ra-label" for="status">Status *</label>
+              <select id="status" class="ra-input" required>
+                <option value="" disabled selected>Selecione</option>
+                <option value="agendada">Agendada</option>
+                <option value="realizada">Realizada</option>
+                <option value="cancelada">Cancelada</option>
+                <option value="não realizada">Não realizada</option>
+              </select>
+            </div>
+
+            <div class="ra-field ra-field--full">
+              <label class="ra-label" for="participantes">Participantes *</label>
+              <input id="participantes" class="ra-input" type="text" placeholder="Separe por vírgula: Ana, João,..." required />
+            </div>
+
+            <div class="ra-field ra-field--full">
+              <label class="ra-label" for="objetivo">Objetivo da reunião *</label>
+              <textarea id="objetivo" class="ra-input ra-textarea" rows="3" required></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Registro da reunião -->
+        <div class="ra-section">
+          <h3 class="ra-section__title">Registro da reunião</h3>
+
+          <div class="ra-grid">
+            <div class="ra-field ra-field--full">
+              <label class="ra-label" for="resumo">Resumo da reunião</label>
+              <textarea id="resumo" class="ra-input ra-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="ra-field ra-field--full">
+              <label class="ra-label" for="pontos">Pontos alinhados</label>
+              <textarea id="pontos" class="ra-input ra-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="ra-field ra-field--full">
+              <label class="ra-label" for="decisoes">Decisões tomadas</label>
+              <textarea id="decisoes" class="ra-input ra-textarea" rows="4"></textarea>
+            </div>
+
+            <div class="ra-field ra-field--full">
+              <label class="ra-label" for="pendencias">Pendências / Ações geradas</label>
+              <textarea id="pendencias" class="ra-input ra-textarea" rows="4"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <footer id="form-footer" class="ra-form__footer">
+          <button id="btn-cancelar" class="btn btn--soft" type="button">Cancelar</button>
+          <button id="btn-salvar" class="btn btn--success" type="submit">Salvar</button>
+        </footer>
+      </form>
+    </section>
+
+  </main>
+</body>
+</html>

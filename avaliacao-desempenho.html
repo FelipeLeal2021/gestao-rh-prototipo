@@ -10,6 +10,119 @@
 
   <!-- inclui menu/header -->
   <script src="js/include-menu.js" defer></script>
+
+  <!-- ✅ estilos extras (só para: blocos recolhidos + ícone verde/vermelho) -->
+  <style>
+    /* Accordion dos grupos (Competências Organizacionais) */
+    .ad-acc{
+      border: 1px solid rgba(15,20,40,.10);
+      border-radius: 16px;
+      background: rgba(255,255,255,.78);
+      box-shadow: 0 12px 35px rgba(0,0,0,.06);
+      overflow: hidden;
+      margin-top: 12px;
+    }
+    .ad-acc summary{ list-style: none; }
+    .ad-acc summary::-webkit-details-marker{ display:none; }
+
+    .ad-acc__sum{
+      cursor: pointer;
+      padding: 12px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: rgba(15,20,40,.03);
+      border-bottom: 1px solid rgba(15,20,40,.08);
+      user-select: none;
+    }
+
+    .ad-acc__left{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .ad-acc__caret{
+      width: 18px;
+      height: 18px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 8px;
+      border: 1px solid rgba(15,20,40,.12);
+      background: rgba(255,255,255,.7);
+      flex: 0 0 auto;
+    }
+    .ad-acc__caret::before{ content: "▸"; opacity: .8; }
+    details[open] .ad-acc__caret::before{ content: "▾"; }
+
+    .ad-acc__title{
+      font-weight: 900;
+      letter-spacing: .2px;
+      text-transform: uppercase;
+      font-size: 12.5px;
+      color: rgba(15,20,40,.92);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .ad-acc__right{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      flex: 0 0 auto;
+    }
+
+    .ad-acc__avg{
+      padding: 5px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(15,20,40,.14);
+      background: rgba(255,255,255,.75);
+      font-weight: 900;
+      font-size: 12px;
+    }
+
+    /* Status (verde = preenchido, vermelho = não preenchido) */
+    .ad-acc__status{
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      display: inline-grid;
+      place-items: center;
+      border: 1px solid rgba(15,20,40,.18);
+      background: rgba(255,255,255,.75);
+      flex: 0 0 auto;
+    }
+
+    .ad-acc.is-complete .ad-acc__status{
+      border-color: rgba(46,204,113,.55);
+      background: rgba(46,204,113,.16);
+    }
+    .ad-acc.is-complete .ad-acc__status::before{
+      content:"✓";
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .ad-acc.is-incomplete .ad-acc__status{
+      border-color: rgba(231,76,60,.55);
+      background: rgba(231,76,60,.12);
+    }
+    .ad-acc.is-incomplete .ad-acc__status::before{
+      content:"!";
+      font-weight: 900;
+      font-size: 13px;
+    }
+
+    .ad-acc__content{
+      padding: 12px 14px 14px;
+    }
+
+    /* tabela interna do accordion */
+    .ad-table--mini th{ font-size: 12px; }
+  </style>
 </head>
 
 <body>
@@ -269,7 +382,7 @@
           </div>
         </section>
 
-        <!-- ====== COMPETÊNCIAS ORGANIZACIONAIS ====== -->
+        <!-- ====== COMPETÊNCIAS ORGANIZACIONAIS (✅ AGORA RECOLHÍVEL POR ITEM) ====== -->
         <section class="ad-panel" id="tab-org">
           <div class="ad-panel__top">
             <h3 class="ad-h3">Avaliação das Competências Organizacionais</h3>
@@ -298,206 +411,331 @@
             </div>
           </div>
 
-          <div class="ad-table-wrap">
-            <table class="ad-table ad-table--form" data-calc="org">
-              <thead>
-                <tr>
-                  <th style="width:46%">Competência Organizacional</th>
-                  <th style="width:14%">Nível Requerido</th>
-                  <th style="width:14%">Nível Atingido</th>
-                  <th style="width:14%">Desempenho</th>
-                  <th style="width:12%">Média</th>
-                </tr>
-              </thead>
+          <!-- ✅ Cada item agora começa RECOLHIDO, com ícone verde/vermelho -->
+          <details class="ad-acc is-complete" data-acc-group="org-etica">
+            <summary class="ad-acc__sum">
+              <span class="ad-acc__left">
+                <span class="ad-acc__caret" aria-hidden="true"></span>
+                <span class="ad-acc__title">Ética e responsabilidade profissional</span>
+              </span>
+              <span class="ad-acc__right">
+                <span class="ad-acc__avg"><span data-avg-for="org-etica">0%</span></span>
+                <span class="ad-acc__status" aria-label="Status" data-group-status="org-etica"></span>
+              </span>
+            </summary>
 
-              <tbody>
-                <!-- ÉTICA -->
-                <tr class="ad-group"><td colspan="5"><strong>ÉTICA E RESPONSABILIDADE PROFISSIONAL</strong></td></tr>
+            <div class="ad-acc__content">
+              <div class="ad-table-wrap">
+                <table class="ad-table ad-table--form ad-table--mini" data-calc="org">
+                  <thead>
+                    <tr>
+                      <th style="width:54%">Competência Organizacional</th>
+                      <th style="width:16%">Nível Requerido</th>
+                      <th style="width:16%">Nível Atingido</th>
+                      <th style="width:14%">Desempenho</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="ad-row" data-group="org-etica" data-req="5">
+                      <td class="ad-q">• Cumpre normas internas e políticas da empresa sem necessidade de reforço constante.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-etica" data-req="5">
-                  <td class="ad-q">• Cumpre normas internas e políticas da empresa sem necessidade de reforço constante.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-etica">0%</strong></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-etica" data-req="5">
+                      <td class="ad-q">• Demonstra postura ética no tratamento de informações e nas relações profissionais.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-etica" data-req="5">
-                  <td class="ad-q">• Demonstra postura ética no tratamento de informações e nas relações profissionais.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-etica" data-req="5">
+                      <td class="ad-q">• Assume responsabilidades e responde adequadamente por suas entregas.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
 
-                <tr class="ad-row" data-group="org-etica" data-req="5">
-                  <td class="ad-q">• Assume responsabilidades e responde adequadamente por suas entregas.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+          <details class="ad-acc is-complete" data-acc-group="org-cliente">
+            <summary class="ad-acc__sum">
+              <span class="ad-acc__left">
+                <span class="ad-acc__caret" aria-hidden="true"></span>
+                <span class="ad-acc__title">Compromisso com o cliente</span>
+              </span>
+              <span class="ad-acc__right">
+                <span class="ad-acc__avg"><span data-avg-for="org-cliente">0%</span></span>
+                <span class="ad-acc__status" aria-label="Status" data-group-status="org-cliente"></span>
+              </span>
+            </summary>
 
-                <!-- CLIENTE -->
-                <tr class="ad-group"><td colspan="5"><strong>COMPROMISSO COM O CLIENTE</strong></td></tr>
+            <div class="ad-acc__content">
+              <div class="ad-table-wrap">
+                <table class="ad-table ad-table--form ad-table--mini" data-calc="org">
+                  <thead>
+                    <tr>
+                      <th style="width:54%">Competência Organizacional</th>
+                      <th style="width:16%">Nível Requerido</th>
+                      <th style="width:16%">Nível Atingido</th>
+                      <th style="width:14%">Desempenho</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="ad-row" data-group="org-cliente" data-req="5">
+                      <td class="ad-q">• Demonstra atenção e cordialidade no atendimento a clientes internos e externos.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-cliente" data-req="5">
-                  <td class="ad-q">• Demonstra atenção e cordialidade no atendimento a clientes internos e externos.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-cliente">0%</strong></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-cliente" data-req="5">
+                      <td class="ad-q">• Busca compreender as demandas antes de executar ou encaminhar soluções.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-cliente" data-req="5">
-                  <td class="ad-q">• Busca compreender as demandas antes de executar ou encaminhar soluções.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-cliente" data-req="5">
+                      <td class="ad-q">• Preocupa-se com a qualidade e clareza das entregas realizadas.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
 
-                <tr class="ad-row" data-group="org-cliente" data-req="5">
-                  <td class="ad-q">• Preocupa-se com a qualidade e clareza das entregas realizadas.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+          <details class="ad-acc is-complete" data-acc-group="org-prazos">
+            <summary class="ad-acc__sum">
+              <span class="ad-acc__left">
+                <span class="ad-acc__caret" aria-hidden="true"></span>
+                <span class="ad-acc__title">Organização e cumprimento de prazos</span>
+              </span>
+              <span class="ad-acc__right">
+                <span class="ad-acc__avg"><span data-avg-for="org-prazos">0%</span></span>
+                <span class="ad-acc__status" aria-label="Status" data-group-status="org-prazos"></span>
+              </span>
+            </summary>
 
-                <!-- PRAZOS -->
-                <tr class="ad-group"><td colspan="5"><strong>ORGANIZAÇÃO E CUMPRIMENTO DE PRAZOS</strong></td></tr>
+            <div class="ad-acc__content">
+              <div class="ad-table-wrap">
+                <table class="ad-table ad-table--form ad-table--mini" data-calc="org">
+                  <thead>
+                    <tr>
+                      <th style="width:54%">Competência Organizacional</th>
+                      <th style="width:16%">Nível Requerido</th>
+                      <th style="width:16%">Nível Atingido</th>
+                      <th style="width:14%">Desempenho</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="ad-row" data-group="org-prazos" data-req="5">
+                      <td class="ad-q">• Mantém controle das próprias atividades e documentos sob sua responsabilidade.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-prazos" data-req="5">
-                  <td class="ad-q">• Mantém controle das próprias atividades e documentos sob sua responsabilidade.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-prazos">0%</strong></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-prazos" data-req="5">
+                      <td class="ad-q">• Cumpre prazos estabelecidos ou sinaliza previamente possíveis atrasos.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-prazos" data-req="5">
-                  <td class="ad-q">• Cumpre prazos estabelecidos ou sinaliza previamente possíveis atrasos.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-prazos" data-req="5">
+                      <td class="ad-q">• Segue processos e padrões definidos pela empresa.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
 
-                <tr class="ad-row" data-group="org-prazos" data-req="5">
-                  <td class="ad-q">• Segue processos e padrões definidos pela empresa.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+          <details class="ad-acc is-complete" data-acc-group="org-aprend">
+            <summary class="ad-acc__sum">
+              <span class="ad-acc__left">
+                <span class="ad-acc__caret" aria-hidden="true"></span>
+                <span class="ad-acc__title">Aprendizado e evolução contínua</span>
+              </span>
+              <span class="ad-acc__right">
+                <span class="ad-acc__avg"><span data-avg-for="org-aprend">0%</span></span>
+                <span class="ad-acc__status" aria-label="Status" data-group-status="org-aprend"></span>
+              </span>
+            </summary>
 
-                <!-- APRENDIZADO -->
-                <tr class="ad-group"><td colspan="5"><strong>APRENDIZADO E EVOLUÇÃO CONTÍNUA</strong></td></tr>
+            <div class="ad-acc__content">
+              <div class="ad-table-wrap">
+                <table class="ad-table ad-table--form ad-table--mini" data-calc="org">
+                  <thead>
+                    <tr>
+                      <th style="width:54%">Competência Organizacional</th>
+                      <th style="width:16%">Nível Requerido</th>
+                      <th style="width:16%">Nível Atingido</th>
+                      <th style="width:14%">Desempenho</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="ad-row" data-group="org-aprend" data-req="5">
+                      <td class="ad-q">• Demonstra interesse em aprender novas rotinas, sistemas ou processos.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-aprend" data-req="5">
-                  <td class="ad-q">• Demonstra interesse em aprender novas rotinas, sistemas ou processos.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-aprend">0%</strong></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-aprend" data-req="5">
+                      <td class="ad-q">• Aplica aprendizados no dia a dia de trabalho.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-aprend" data-req="5">
-                  <td class="ad-q">• Aplica aprendizados no dia a dia de trabalho.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-aprend" data-req="5">
+                      <td class="ad-q">• Busca evoluir tecnicamente e profissionalmente dentro da função.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
 
-                <tr class="ad-row" data-group="org-aprend" data-req="5">
-                  <td class="ad-q">• Busca evoluir tecnicamente e profissionalmente dentro da função.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
+          <details class="ad-acc is-complete" data-acc-group="org-respeito">
+            <summary class="ad-acc__sum">
+              <span class="ad-acc__left">
+                <span class="ad-acc__caret" aria-hidden="true"></span>
+                <span class="ad-acc__title">Respeito e colaboração</span>
+              </span>
+              <span class="ad-acc__right">
+                <span class="ad-acc__avg"><span data-avg-for="org-respeito">0%</span></span>
+                <span class="ad-acc__status" aria-label="Status" data-group-status="org-respeito"></span>
+              </span>
+            </summary>
 
-                <!-- RESPEITO -->
-                <tr class="ad-group"><td colspan="5"><strong>RESPEITO E COLABORAÇÃO</strong></td></tr>
+            <div class="ad-acc__content">
+              <div class="ad-table-wrap">
+                <table class="ad-table ad-table--form ad-table--mini" data-calc="org">
+                  <thead>
+                    <tr>
+                      <th style="width:54%">Competência Organizacional</th>
+                      <th style="width:16%">Nível Requerido</th>
+                      <th style="width:16%">Nível Atingido</th>
+                      <th style="width:14%">Desempenho</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="ad-row" data-group="org-respeito" data-req="5">
+                      <td class="ad-q">• Mantém relacionamento respeitoso com colegas, líderes e clientes.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-respeito" data-req="5">
-                  <td class="ad-q">• Mantém relacionamento respeitoso com colegas, líderes e clientes.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                  <td class="ad-center" rowspan="3"><strong class="ad-avgval" data-avg-for="org-respeito">0%</strong></td>
-                </tr>
+                    <tr class="ad-row" data-group="org-respeito" data-req="5">
+                      <td class="ad-q">• Colabora com a equipe quando solicitado ou quando identifica necessidade.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
 
-                <tr class="ad-row" data-group="org-respeito" data-req="5">
-                  <td class="ad-q">• Colabora com a equipe quando solicitado ou quando identifica necessidade.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
-
-                <tr class="ad-row" data-group="org-respeito" data-req="5">
-                  <td class="ad-q">• Contribui para um ambiente de trabalho positivo e cooperativo.</td>
-                  <td class="ad-center">5</td>
-                  <td class="ad-center">
-                    <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
-                    </select>
-                  </td>
-                  <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+                    <tr class="ad-row" data-group="org-respeito" data-req="5">
+                      <td class="ad-q">• Contribui para um ambiente de trabalho positivo e cooperativo.</td>
+                      <td class="ad-center">5</td>
+                      <td class="ad-center">
+                        <select class="ad-select" data-role="att">
+                          <option value="">Selecione</option>
+                          <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
+                        </select>
+                      </td>
+                      <td class="ad-center"><span class="ad-pct" data-role="pct">0%</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </details>
 
           <label class="ad-label" for="obs-org">Observações (opcional)</label>
           <textarea id="obs-org" class="ad-textarea" rows="3" placeholder="Digite observações..."></textarea>
@@ -555,7 +793,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -566,7 +805,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -576,7 +816,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -590,7 +831,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -601,7 +843,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -611,7 +854,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -625,7 +869,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -636,7 +881,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -646,7 +892,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -660,7 +907,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -671,7 +919,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -681,7 +930,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -695,7 +945,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -706,7 +957,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -716,7 +968,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -730,7 +983,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -741,7 +995,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -751,7 +1006,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -765,7 +1021,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -776,7 +1033,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -786,7 +1044,8 @@
                   <td class="ad-center">4</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option selected>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4" selected>4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -800,7 +1059,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -811,7 +1071,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -821,7 +1082,8 @@
                   <td class="ad-center">3</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -883,7 +1145,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -896,7 +1159,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -909,7 +1173,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -922,7 +1187,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -935,7 +1201,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -948,7 +1215,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -961,7 +1229,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -974,7 +1243,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -987,7 +1257,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -1000,7 +1271,8 @@
                   <td class="ad-center">5</td>
                   <td class="ad-center">
                     <select class="ad-select" data-role="att">
-                      <option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option>
+                      <option value="">Selecione</option>
+                      <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5" selected>5</option>
                     </select>
                     <div class="ad-muted" style="margin-top:6px;"><span class="ad-pct" data-role="pct">0%</span></div>
                   </td>
@@ -1119,95 +1391,17 @@
 
       // ---------- Dados (conforme documento) ----------
       const COLABS_ANDAMENTO = [
-        {
-          colaborador: "Ana Paula Souza",
-          cargo: "Auxiliar Administrativo",
-          depto: "Financeiro",
-          admissao: "10/02/2023",
-          status: "Não avaliado",
-          data: "—",
-          acaoLabel: "Avaliar",
-          acaoHabilitada: false
-        },
-        {
-          colaborador: "João Victor Martins",
-          cargo: "Operador Produção",
-          depto: "Produção",
-          admissao: "05/05/2021",
-          status: "Não avaliado",
-          data: "—",
-          acaoLabel: "Avaliar",
-          acaoHabilitada: false
-        },
-        {
-          colaborador: "Fernanda Rocha",
-          cargo: "Analista Financeiro",
-          depto: "Financeiro",
-          admissao: "15/10/2020",
-          status: "Avaliado",
-          data: "08/05/2024",
-          acaoLabel: "Visualizar",
-          acaoHabilitada: false
-        },
-        {
-          colaborador: "Marcos Oliveira",
-          cargo: "Supervisor Vendas",
-          depto: "Comercial",
-          admissao: "12/01/2019",
-          status: "Não avaliado",
-          data: "—",
-          acaoLabel: "Avaliar",
-          acaoHabilitada: false
-        },
+        { colaborador: "Ana Paula Souza", cargo: "Auxiliar Administrativo", depto: "Financeiro", admissao: "10/02/2023", status: "Não avaliado", data: "—", acaoLabel: "Avaliar", acaoHabilitada: false },
+        { colaborador: "João Victor Martins", cargo: "Operador Produção", depto: "Produção", admissao: "05/05/2021", status: "Não avaliado", data: "—", acaoLabel: "Avaliar", acaoHabilitada: false },
+        { colaborador: "Fernanda Rocha", cargo: "Analista Financeiro", depto: "Financeiro", admissao: "15/10/2020", status: "Avaliado", data: "08/05/2024", acaoLabel: "Visualizar", acaoHabilitada: false },
+        { colaborador: "Marcos Oliveira", cargo: "Supervisor Vendas", depto: "Comercial", admissao: "12/01/2019", status: "Não avaliado", data: "—", acaoLabel: "Avaliar", acaoHabilitada: false },
       ];
 
       const COLABS_ENCERRADO = [
-        {
-          colaborador: "Ana Paula Souza",
-          cargo: "Auxiliar Administrativo",
-          depto: "Financeiro",
-          admissao: "10/02/2023",
-          status: "Avaliado",
-          data: "09/07/2025",
-          acaoLabel: "Visualizar",
-          acaoHabilitada: true,
-          avaliacao: {
-            lider: "Mariana Teixeira"
-          }
-        },
-        {
-          colaborador: "João Victor Martins",
-          cargo: "Operador Produção",
-          depto: "Produção",
-          admissao: "05/05/2021",
-          status: "Avaliado",
-          data: "11/07/2025",
-          acaoLabel: "Visualizar",
-          acaoHabilitada: false,
-          avaliacao: { lider: "Mariana Teixeira" }
-        },
-        {
-          colaborador: "Fernanda Rocha",
-          cargo: "Analista Financeiro",
-          depto: "Financeiro",
-          admissao: "15/10/2020",
-          status: "Avaliado",
-          data: "12/07/2025",
-          acaoLabel: "Visualizar",
-          acaoHabilitada: false,
-          avaliacao: { lider: "Mariana Teixeira" }
-        },
-        {
-          colaborador: "Marcos Oliveira",
-          cargo: "Supervisor Vendas",
-          depto: "Comercial",
-          admissao: "12/01/2019",
-          status: "Avaliado",
-          data: "13/07/2025",
-          acaoLabel: "Visualizar",
-          acaoHabilitada: false,
-          avaliacao: { lider: "Mariana Teixeira" }
-        },
+        { colaborador: "Ana Paula Souza", cargo: "Auxiliar Administrativo", depto: "Financeiro", admissao: "10/02/2023", status: "Avaliado", data: "09/07/2025", acaoLabel: "Visualizar", acaoHabilitada: true, avaliacao: { lider: "Mariana Teixeira" } },
+        { colaborador: "João Victor Martins", cargo: "Operador Produção", depto: "Produção", admissao: "05/05/2021", status: "Avaliado", data: "11/07/2025", acaoLabel: "Visualizar", acaoHabilitada: false, avaliacao: { lider: "Mariana Teixeira" } },
+        { colaborador: "Fernanda Rocha", cargo: "Analista Financeiro", depto: "Financeiro", admissao: "15/10/2020", status: "Avaliado", data: "12/07/2025", acaoLabel: "Visualizar", acaoHabilitada: false, avaliacao: { lider: "Mariana Teixeira" } },
+        { colaborador: "Marcos Oliveira", cargo: "Supervisor Vendas", depto: "Comercial", admissao: "12/01/2019", status: "Avaliado", data: "13/07/2025", acaoLabel: "Visualizar", acaoHabilitada: false, avaliacao: { lider: "Mariana Teixeira" } },
       ];
 
       let currentCycleMode = "andamento"; // andamento | encerrado
@@ -1237,8 +1431,6 @@
 
           const actionsTd = tr.querySelector(".ad-col-actions");
 
-          // Em andamento: sem cliques (modelo)
-          // Encerrado: só Ana Paula habilitada para abrir a avaliação
           if (!c.acaoHabilitada) {
             const btn = document.createElement("button");
             btn.type = "button";
@@ -1267,11 +1459,11 @@
         });
       }
 
-      // ---------- Calculo ----------
-      function calcTable(tableEl) {
-        if (!tableEl) return { avgPct: 0, nota10: 0 };
+      // ---------- Cálculo (ajustado para múltiplas tabelas por seção) ----------
+      function calcByScope(scopeKey) {
+        const tables = document.querySelectorAll(`table[data-calc="${scopeKey}"]`);
+        const rows = Array.from(tables).flatMap(t => Array.from(t.querySelectorAll(".ad-row")));
 
-        const rows = tableEl.querySelectorAll(".ad-row");
         let sumPct = 0;
         let count = 0;
 
@@ -1281,9 +1473,10 @@
           const req = Number(r.dataset.req || 5);
           const attSel = r.querySelector('[data-role="att"]');
           const pctEl = r.querySelector('[data-role="pct"]');
-          const att = Number(attSel?.value || 1);
 
-          const pct = Math.max(0, Math.min(100, (att / req) * 100));
+          const att = Number(attSel?.value || 0); // ✅ vazio = 0
+          const pct = (req > 0) ? Math.max(0, Math.min(100, (att / req) * 100)) : 0;
+
           if (pctEl) pctEl.textContent = `${Math.round(pct)}%`;
 
           const g = r.dataset.group || "__all__";
@@ -1295,15 +1488,16 @@
           count++;
         });
 
-        // atualiza médias por grupo (quando existir)
+        // atualiza médias por grupo (funciona no accordion porque o data-avg-for está no summary)
         Object.entries(groups).forEach(([g, v]) => {
           const avg = v.count ? (v.sum / v.count) : 0;
-          const avgEl = tableEl.querySelector(`[data-avg-for="${g}"]`);
-          if (avgEl) avgEl.textContent = `${Math.round(avg)}%`;
+          document.querySelectorAll(`[data-avg-for="${g}"]`).forEach(el => {
+            el.textContent = `${Math.round(avg)}%`;
+          });
         });
 
         const avgPct = count ? (sumPct / count) : 0;
-        const nota10 = avgPct / 10; // 100% -> 10
+        const nota10 = avgPct / 10;
         return { avgPct, nota10 };
       }
 
@@ -1311,14 +1505,24 @@
         return n.toFixed(2).replace(".", ",");
       }
 
-      function recalcAll() {
-        const orgTable = document.querySelector('table[data-calc="org"]');
-        const compTable = document.querySelector('table[data-calc="comp"]');
-        const perfTable = document.querySelector('table[data-calc="perf"]');
+      // ---------- Status (✅ ícone verde/vermelho por item no accordion) ----------
+      function updateAccStatus() {
+        const accs = document.querySelectorAll("[data-acc-group]");
+        accs.forEach(acc => {
+          const groupKey = acc.getAttribute("data-acc-group");
+          const selects = acc.querySelectorAll(`.ad-row[data-group="${groupKey}"] .ad-select[data-role="att"]`);
 
-        const org = calcTable(orgTable);
-        const comp = calcTable(compTable);
-        const perf = calcTable(perfTable);
+          // completo se TODOS tiverem valor
+          const hasMissing = Array.from(selects).some(s => !String(s.value || "").trim());
+          acc.classList.toggle("is-incomplete", hasMissing);
+          acc.classList.toggle("is-complete", !hasMissing);
+        });
+      }
+
+      function recalcAll() {
+        const org = calcByScope("org");
+        const comp = calcByScope("comp");
+        const perf = calcByScope("perf");
 
         // cards
         document.getElementById("scoreOrgPct").textContent = `${formatPt(org.avgPct)}%`;
@@ -1342,6 +1546,9 @@
         document.getElementById("finalComp").textContent = formatPt(comp.nota10);
         document.getElementById("finalPerf").textContent = formatPt(perf.nota10);
         document.getElementById("finalTotal").textContent = formatPt(final);
+
+        // ✅ atualiza ícones verde/vermelho
+        updateAccStatus();
       }
 
       document.addEventListener("change", (e) => {
@@ -1360,13 +1567,11 @@
           const cycleLabel = btn.dataset.cycleLabel || "Avaliação de Desempenho";
           currentCycleLabel = cycleLabel;
 
-          // Não iniciado: mensagem fora do período (não abre lista)
           if (cycleStatus === "Não iniciado") {
             alert("Fora do período de avaliação.");
             return;
           }
 
-          // Em andamento: abre lista, mas sem ações
           if (cycleStatus === "Em andamento") {
             currentCycleMode = "andamento";
             cycleTitle.textContent = `Avaliação de Desempenho — ${cycleLabel}`;
@@ -1410,7 +1615,6 @@
 
           avaliacaoTitle.textContent = `Avaliação de Desempenho — ${currentCycleLabel}`;
 
-          // protótipo: se for visualizar, trava campos
           const readonly = (status === "visualizar");
           document.querySelectorAll("#view-avaliacao .ad-select, #view-avaliacao .ad-input, #view-avaliacao .ad-textarea")
             .forEach(el => el.disabled = readonly);
@@ -1496,7 +1700,8 @@
       bindTableFilters("tableCiclos", "searchCiclo");
       bindTableFilters("tableColabs", "searchColab");
 
-      // inicial: não renderiza colabs até selecionar ciclo
+      // ✅ inicia com tudo recolhido + calcula e pinta status
+      document.querySelectorAll("#tab-org details.ad-acc").forEach(d => d.open = false);
       recalcAll();
     })();
   </script>

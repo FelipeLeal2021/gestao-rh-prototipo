@@ -145,10 +145,11 @@
 
             <div class="field">
               <label>Status</label>
+              <!-- AJUSTE: trocado Inativo por Desligado -->
               <select id="status">
                 <option>Ativo</option>
                 <option>Afastado</option>
-                <option>Inativo</option>
+                <option>Desligado</option>
               </select>
             </div>
 
@@ -195,7 +196,7 @@
           <div class="panel-head">
             <h3 class="panel-title">Benefícios</h3>
             <div class="cad-actions">
-              <button class="btn btn--ghost btn--sm" type="button" data-action="edit-aba">Editar</button>
+              <!-- AJUSTE: removido o botão Editar do topo desta aba -->
               <button class="btn btn--primary btn--sm" type="button" data-action="open-beneficio">
                 <span class="btn__icon" aria-hidden="true">+</span>
                 Incluir
@@ -659,7 +660,9 @@
           email: "ana.paula@email.com",
           tipoVinculo: "CLT",
           admissao: "2022-03-15",
-          status: "Ativo",
+
+          // AJUSTE: Ana Paula agora é DESLIGADO (no vínculo)
+          status: "Desligado",
           desligamento: "",
 
           dependentes: [
@@ -1070,8 +1073,6 @@
             $("#fGozadas").value = (row.gozadas && row.gozadas !== "—") ? row.gozadas : "";
             $("#fVendeu").value = row.vendeu || "Não";
             $("#fPend").value = row.pend || "0";
-
-            // se vier dd/mm, deixa vazio (não dá pra converter com segurança)
             $("#fLimite").value = (String(row.limite || "").includes("-")) ? row.limite : "";
           }
         }
